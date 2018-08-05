@@ -1,0 +1,36 @@
+<SWIM>	
+	<UnitType Name="Shared_OMU_DB_Group" Platform="Linux">
+		 
+		<Install>
+			<Component Name="NYadmin" ExecutionOrder="10" UponError="Stop"/>
+			<Component Name="omap-common-db" ExecutionOrder="20" UponError="Stop" DisplayGroup="OMU-DB"/>	
+			<Component Name="omap-core-db" ExecutionOrder="30" UponError="Stop" DisplayGroup="OMU-DB"/>
+		</Install>
+		
+		<Upgrade>
+						<!--<Component Name="NYadmin" ExecutionOrder="10" UponError="Stop"/>-->
+						<Component Name="OMAP-PRE-UPGRADE"  ExecutionOrder="10"  UponError="Stop"  DisplayGroup="OMU-DB"/>
+                        <Component Name="omap-common-db" ExecutionOrder="20" UponError="Stop" DisplayGroup="OMU-DB"/>
+                        <Component Name="omap-core-db" ExecutionOrder="30" UponError="Stop" DisplayGroup="OMU-DB"/>
+		</Upgrade>
+		<Parameters>
+		
+			<!--omap-common-db Parameters-->
+             <Parameter ComponentName="omap-common-db" Name="INSTALL_TYPE_TABLE_MANAGE" Display="false"/>
+	
+			
+			
+			 <!--omap-core-db Parameters-->
+             <Parameter ComponentName="omap-core-db" Name="OMAP_SERVER_HOSTNAME" Display="true">
+                    <Value>[UnitGroup.xml:/substring-before(/UnitGroup/Physical[@GroupName='Shared_OMU_DB_Group']/UnitInstance[contains(@UnitName,'b1a')]/@Hostname,'.')]</Value>
+			   </Parameter>
+	 	<Parameter ComponentName="omap-core-db" Display="true" Name="OMAP_SERVER_IP">
+				<Value>[UnitGroup.xml:/UnitGroup/Physical[@GroupName='Shared_OMU_DB_Group']/UnitInstance[1]/Connection/@IP]</Value>
+			</Parameter>  
+		<Parameter ComponentName="omap-core-db" Display="false" Name="DBNAME">
+				<Value>omap_db</Value>
+		</Parameter>
+
+		</Parameters>
+	</UnitType>
+</SWIM>

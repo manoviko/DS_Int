@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Name="MAP-POST-CONFIG" Version="_VERSION-_BUILD" Platform="Linux">
+		
+		<Install>
+		
+			<Copy ChmodFlags="+x" ExecutionOrder="10" Overwrite="true" UponError="Stop">
+				<Source>./*</Source>
+			</Copy>
+			
+			<Copy ExecutionOrder="15" UponError="Stop" Overwrite="true"> 
+				<Source>./MAP.configure.ksh</Source>
+				<Target>/home/smsc/autoconfig.all/scripts/</Target>
+			</Copy>
+			
+			<Execute ExecutionOrder="20" UponError="Continue">
+				<Command>/home/smsc/autoconfig.all/scripts/HLRC.configure.ksh</Command>
+			</Execute>
+
+			<Execute ExecutionOrder="30" UponError="Stop">
+				<Command>./map_post_config.sh</Command>
+			</Execute>
+			
+			<!-- otherwise auto config script will corrupt configuration files -->
+			<Execute ExecutionOrder="40" UponError="Stop">
+				<Command>sed -i -e 's/^\s*configure_sfe_group\s*MRE$/\#configure_sfe_group MRE/' -e 's/^\s*configure_sfe_group\s*HLRC$/\#configure_sfe_group HLRC/' /home/smsc/autoconfig.all/scripts/MAP.configure.ksh</Command>
+			</Execute>
+			
+			<Execute ExecutionOrder="50" UponError="Stop">
+				<Command>./build_installed_eis.pl</Command>
+			</Execute>
+		
+		
+		</Install>
+		<Upgrade>
+		 <Copy ChmodFlags="+x" ExecutionOrder="10" Overwrite="true" UponError="Stop">
+				<Source>./*</Source>
+			</Copy>
+			
+			<Copy ExecutionOrder="15" UponError="Stop" Overwrite="true"> 
+				<Source>./MAP.configure.ksh</Source>
+				<Target>/home/smsc/autoconfig.all/scripts/</Target>
+			</Copy>
+			<Execute ExecutionOrder="14" UponError="Stop">
+			     <Command>			    
+                          Date=`date '+%d%m%Y%H%M'`				 
+                          echo "WARN : backup map site configuration"
+                          cp -r /var/cti/smsc/site/config/MAP /var/cti/smsc/site/config/MAP_bkp_${Date}			    
+			    </Command>
+            </Execute>			
+			 <Execute ExecutionOrder="15" UponError="Stop">
+			     <Command>cd /var/cti/smsc &amp;&amp; tar cvf /var/tmp/map_conf_backup.tar /var/cti/smsc/map.5.3.100/config/ /var/cti/smsc/site/config/MAP</Command>
+			</Execute>
+			<Execute ExecutionOrder="17" UponError="Stop">
+			   <Command>cp -p /var/cti/smsc/map.5.3.100/config/MAP/site.MAP* /var/cti/smsc/site/config/MAP</Command>
+             </Execute>
+			<Execute ExecutionOrder="20" UponError="Continue">
+				<Command>/home/smsc/autoconfig.all/scripts/HLRC.configure.ksh</Command>
+			</Execute>
+
+			<Execute ExecutionOrder="30" UponError="Stop">
+				<Command>./map_post_config.sh</Command>
+			</Execute>
+			
+			<!-- otherwise auto config script will corrupt configuration files -->
+			<Execute ExecutionOrder="40" UponError="Stop">
+				<Command>sed -i -e 's/^\s*configure_sfe_group\s*MRE$/\#configure_sfe_group MRE/' -e 's/^\s*configure_sfe_group\s*HLRC$/\#configure_sfe_group HLRC/' /home/smsc/autoconfig.all/scripts/MAP.configure.ksh</Command>
+			</Execute>
+			
+			<!--<Execute ExecutionOrder="50" UponError="Stop">
+				<Command>./build_installed_eis.pl</Command>
+			</Execute>-->
+		</Upgrade>
+	
+	
+	</Component>
+	
+</SWIM>

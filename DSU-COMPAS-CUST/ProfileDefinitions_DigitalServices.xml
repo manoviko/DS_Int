@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Provisioning>
+	<ProfileDefinition HashCode="485388300" Name="DigitalServices" Version="6.0.0.0">
+		<Entities>
+			<Entity>
+				<Name>Subscriber</Name>
+				<DsvEntityName>SUB</DsvEntityName>
+				 <Fields>
+					 <Field>
+                      <Name>SemReceiveIpEnabled</Name>
+                            <DsvName>CnsSemReceiveIpEnabled</DsvName>
+                          <DbName>SUBSCRIBERS.SEM_RECEIVE_IP_ENABLED</DbName>
+                          <XsdValidation>
+                             <Type>xs:boolean</Type>
+                             <MinOcc>0</MinOcc>
+                             <MaxOcc>1</MaxOcc>
+                             <Nillable>true</Nillable>
+                          </XsdValidation>
+                  <DisplayName>SEM receive IP enabled</DisplayName>
+                  <Description>Indicates whether user can receive IP messages via the Middleware</Description>
+               </Field>
+					 <Field>
+                      <Name>SemSendIpEnabled</Name>
+                            <DsvName>CnsSemSendIpEnabled</DsvName>
+                          <DbName>SUBSCRIBERS.SEM_SEND_IP_ENABLED</DbName>
+                          <XsdValidation>
+                             <Type>xs:boolean</Type>
+                             <MinOcc>0</MinOcc>
+                             <MaxOcc>1</MaxOcc>
+                             <Nillable>true</Nillable>
+                          </XsdValidation>
+                  <DisplayName>SEM send IP enabled</DisplayName>
+                  <Description>Indicates whether user can send IP messages via the Middleware</Description>
+               </Field>
+					 <Field>
+                      <Name>RcsConfigToken</Name>
+                            <DsvName>CnsRcsConfigToken</DsvName>
+                          <DbName>SUBSCRIBERS.RCS_CONFIG_TOKEN</DbName>
+                          <XsdValidation>
+                             <Type>compas:SecuredString</Type>
+                             <MinOcc>0</MinOcc>
+                             <MaxOcc>1</MaxOcc>
+                             <Nillable>true</Nillable>
+                          </XsdValidation>
+                  <DisplayName>RCS Config Token</DisplayName>
+                  <Description>Used to retrieve configuration without user authentication</Description>
+               </Field> 
+  			   <Field>
+                      <Name>RcsConfigVersion</Name>
+                            <DsvName>CnsRcsConfigVersion</DsvName>
+                          <DbName>SUBSCRIBERS.RCS_CONFIG_VERSION</DbName>
+                          <XsdValidation>
+                             <Type>compas:SecuredString</Type>
+                             <MinOcc>0</MinOcc>
+                             <MaxOcc>1</MaxOcc>
+                             <Nillable>true</Nillable>
+                          </XsdValidation>
+                  <DisplayName>RCS Config Version</DisplayName>
+                  <Description>RCS Config Version</Description>
+               </Field>               
+               </Fields>		
+               		
+				<Collections>
+					<Collection>
+						<Name>UserDevices</Name>
+						<CollectionElement>
+							<Name>UserDevice</Name>
+							<DsvEntityName>USER_DEVICE</DsvEntityName>
+							<KeyField>DEVICE_URI</KeyField>
+							<SqlDefinition>
+								<Tables>
+									<Table>
+										<Name>USER_DEVICES</Name>
+										<Type>Main</Type>
+										<Key>DEVICE_URI</Key>
+									</Table>
+								</Tables>
+								<NaturalJoins>
+									<Join>
+										<TableName>SUBSCRIBERS</TableName>
+										<DsvEntityName>SUB</DsvEntityName>
+									</Join>
+								</NaturalJoins>
+								<ForeignKey>
+									<DsvName>Uid</DsvName>
+									<DbName>USER_DEVICES.SUBSCRIBER_ID</DbName>
+								</ForeignKey>
+							</SqlDefinition>
+							<Fields>
+								<Field>
+									<Name>DEVICE_URI</Name>
+									<DsvName>DEVICE_URI</DsvName>
+									<DbName>USER_DEVICES.DEVICE_URI</DbName>
+									<XsdValidation>
+										<Type>xs:string</Type>
+										<MinOcc>0</MinOcc>
+										<MaxOcc>1</MaxOcc>
+										<Nillable>false</Nillable>
+										<MaxLength>256</MaxLength>
+									</XsdValidation>
+									<DisplayName>Device URI</DisplayName>
+									<Description>Defines device SIP URI</Description>
+								</Field>
+                                 <Field>
+										<Name>DEVICE_AUTO_PROVISIONED</Name>
+										<DsvName>DEVICE_AUTO_PROVISIONED</DsvName>
+										<DbName>USER_DEVICES.DEVICE_AUTO_PROVISIONED</DbName>
+										<XsdValidation>
+											<Type>xs:nonNegativeInteger</Type>
+											<MinOcc>0</MinOcc>
+											<MaxOcc>1</MaxOcc>
+											<Nillable>false</Nillable>
+											<Lov>
+												<Value>0</Value>
+												<Value>1</Value>
+											</Lov>
+										</XsdValidation>
+										<DisplayName>Device Auto Provisioned</DisplayName>
+										<Description>This field hold the device provisioned mechanism,the field should be updated when the device is auto provisioned</Description>
+								</Field>
+								<Field>
+									<Name>DEVICE_Q_VALUE</Name>
+									<DsvName>DEVICE_Q_VALUE</DsvName>
+									<DbName>USER_DEVICES.DEVICE_Q_VALUE</DbName>
+									<XsdValidation>
+										<Type>xs:string</Type>
+										<MinOcc>0</MinOcc>
+										<MaxOcc>1</MaxOcc>
+										<Nillable>false</Nillable>
+										<MaxLength>3</MaxLength>
+										<Patterns>
+										<Value>[0]\.[0-9]|1|0|1\.0</Value>
+										</Patterns>
+									</XsdValidation>
+									<DisplayName>Device Q Value</DisplayName>
+									<Description>Device Quality Value: range [0.0 - 1.0]</Description>
+								</Field>
+								 <Field>
+								  <Name>RCS_SA_MSG_ENABLED</Name>
+									<DsvName>RCS_SA_MSG_ENABLED</DsvName>
+									  <DbName>USER_DEVICES.RCS_SA_MSG_ENABLED</DbName>
+										 <XsdValidation>
+											 <Type>xs:boolean</Type>
+											 <MinOcc>0</MinOcc>
+											 <MaxOcc>1</MaxOcc>
+											<Nillable>false</Nillable>
+										  </XsdValidation>
+									  <DisplayName>RCS SA MSG enabled</DisplayName>
+									  <Description>0=RCS SA MSG Disabled; 1=RCS SA MSG Enabled</Description>
+							   </Field>
+								<Field>
+									<Name>DEVICE_CLASS</Name>
+									<DsvName>DEVICE_CLASS</DsvName>
+									<DbName>USER_DEVICES.DEVICE_CLASS</DbName>
+									<XsdValidation>
+										<Type>compas:SecuredString</Type>
+										<MinOcc>0</MinOcc>
+										<MaxOcc>1</MaxOcc>										
+										<Nillable>false</Nillable>
+										<MaxLength>20</MaxLength>
+										<Lov>
+											<Value>0</Value>
+											<Value>1</Value>
+											<Value>2</Value>
+										</Lov>
+									</XsdValidation>
+									<DisplayName>Device Class</DisplayName>
+									<Description>Defines the user device class: 0=SS7; 1=IP; 2=Dual</Description>
+								</Field>
+								<Field>
+									<Name>DEVICE_MSISDN</Name>
+									<DsvName>DEVICE_MSISDN</DsvName>
+									<DbName>USER_DEVICES.DEVICE_MSISDN</DbName>
+									<XsdValidation>
+										<Type>compas:SecuredString</Type>
+										<MinOcc>0</MinOcc>
+										<MaxOcc>1</MaxOcc>
+										<Nillable>true</Nillable>
+										<MaxLength>50</MaxLength>
+									</XsdValidation>
+									<DisplayName>Device MSISDN</DisplayName>
+									<Description>Defines the device TEL URI</Description>
+								</Field>
+								<Field>
+									<Name>DEVICE_INTERWORKING_MODE</Name>
+									<DsvName>DEVICE_INTERWORKING_MODE</DsvName>
+									<DbName>USER_DEVICES.DEVICE_INTERWORKING_MODE</DbName>
+									<XsdValidation>
+										<Type>xs:string</Type>
+										<MinOcc>0</MinOcc>
+										<MaxOcc>1</MaxOcc>
+										<Nillable>false</Nillable>
+										<MaxLength>20</MaxLength>
+										<Lov>
+											<Value>1</Value>
+											<Value>2</Value>
+											<Value>3</Value>
+										</Lov>
+									</XsdValidation>
+									<DisplayName>Device Interworking Mode</DisplayName>
+									<Description>1=Transport Level Interworking;  2=Service Level Interworking; 3=3 = Dual mode (device support SLI and TLI)</Description>
+								</Field>
+								<Field>
+									<Name>DEVICE_SLI_MESSAGING_FORMAT</Name>
+									<DsvName>DEVICE_SLI_MESSAGING_FORMAT</DsvName>
+									<DbName>USER_DEVICES.DEVICE_SLI_MESSAGING_FORMAT</DbName>
+									<XsdValidation>
+										<Type>xs:nonNegativeInteger</Type>
+										<MinOcc>0</MinOcc>
+										<MaxOcc>1</MaxOcc>
+										<Nillable>false</Nillable>
+										<Lov>
+											<Value>1</Value>
+											<Value>2</Value>
+											<Value>3</Value>
+										</Lov>
+									</XsdValidation>
+									<DisplayName>Device SLI Messaging Format</DisplayName>
+									<Description>Device SLI Messaging Format: 1=text/plain; 2=text/html; 3=CPIM</Description>
+								</Field>
+								<Field>
+									<Name>DEVICE_TLI_MESSAGING_FORMAT</Name>
+									<DsvName>DEVICE_TLI_MESSAGING_FORMAT</DsvName>
+									<DbName>USER_DEVICES.DEVICE_TLI_MESSAGING_FORMAT</DbName>
+									<XsdValidation>
+										<Type>xs:nonNegativeInteger</Type>
+										<MinOcc>0</MinOcc>
+										<MaxOcc>1</MaxOcc>
+										<Nillable>false</Nillable>
+										<Lov>
+											<Value>1</Value>
+											<Value>2</Value>
+										</Lov>
+									</XsdValidation>
+									<DisplayName>Device TLI Messaging Format</DisplayName>
+									<Description>Device TLI Messaging Format: 1=3GPP; 2=3GGP2</Description>
+								</Field>								
+							</Fields>
+						</CollectionElement>
+					</Collection>
+				</Collections>
+			</Entity>
+		</Entities>
+	</ProfileDefinition>
+</Provisioning>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="SEM-SIL-SSH" Version="_VERSION-_BUILD" SequentialExecution="true">
+	<Install>
+	
+		<Copy ExecutionOrder="10" Overwrite="true" UponError="Stop" ChmodFlags="+x">
+			<Source>./create_sil_ssh.pl</Source>
+		</Copy>
+
+		<Execute ExecutionOrder="20" UponError="Stop">
+                        <Command>test -d /usr/cti/conf/autoconf || mkdir -p /usr/cti/conf/autoconf</Command>
+                </Execute>
+
+		<Copy ExecutionOrder="30" Overwrite="true" UponError="Stop">
+			<Source>/var/cti/data/swim/systems/{SystemName}/UnitGroup.xml</Source>
+			<Target>/usr/cti/conf/autoconf/</Target>
+		</Copy>
+
+        <Execute ExecutionOrder="40" UponError="Stop">
+			<Command>./create_sil_ssh.pl --group={UnitType} --net_name=Data --user=smsc --pass={SMSC_PASSWD} --unitgr_dir=/usr/cti/conf/autoconf/</Command>
+		</Execute>				
+		
+	</Install>
+	
+	<Uninstall>
+	<!-- nothing to uninstall, but removing version from swim anyway -->
+		<Execute ExecutionOrder="10" UponError="Stop">
+			<Command>echo</Command>
+		</Execute>
+	</Uninstall>
+	
+	
+	<Parameters>
+
+			<Parameter Name="SMSC_PASSWD" Level="UnitType" Display="false" DisplayName="SMSC_PASSWD">
+				<Restrictions>
+					<Type>Password</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Description>smsc user password</Description>
+				<Value>smsR\$r4R</Value>
+			</Parameter>
+
+	</Parameters>
+</Component>
+</SWIM>

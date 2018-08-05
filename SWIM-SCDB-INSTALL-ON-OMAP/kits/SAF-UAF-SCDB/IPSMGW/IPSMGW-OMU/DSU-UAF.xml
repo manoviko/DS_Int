@@ -1,0 +1,143 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.5.3.0-03\UAF.xsd">
+	<UnitType Name="DSU" Platform="Linux">
+		<Dependencies>
+			<Component Name="swp-Storage-Expand" UnitName="*omu*">
+				<DependsOn>
+					<Component UnitName="*omu*[aA1]$" Name="swp-Storage-BundleScratch"/>
+				</DependsOn>
+			</Component>
+				<Component Name="Oracle-SW" UnitName="*omu*">
+				<DependsOn>
+					<Component UnitName="*omu*" Name="swp-NW-sync"/>
+				</DependsOn>
+			
+			</Component>
+
+			<Component Name="swp-HA" UnitName="*omu*[^aA1]$">
+				<DependsOn>
+					<Component UnitName="*omu*[aA1]$" Name="swp-HA"/>
+				</DependsOn>
+			</Component>
+
+			<Component Name="Oracle-DB-Creation" UnitName="*omu*[^aA1]$">
+				<DependsOn>
+					<Component UnitName="*omu*[aA1]$" Name="Oracle-DB-Creation"/>
+				</DependsOn>
+			</Component>
+
+	</Dependencies>
+
+		<Install>
+			<Component Name="CSP_Base_Linux" ExecutionOrder="10" UponError="Stop" DisplayGroup="DSU"/>
+			<Component Name="SEM-OMU-PRE" ExecutionOrder="15" UponError="Stop" DisplayGroup="DSU"/>
+			<Component Name="mVAS-IPSMGW-Networking-Customization" 	UponError="Stop" 		ExecutionOrder="20" 	DisplayGroup="DSU"/>
+			<Component Name="SEM-REMOVE-JAVA-TOMCAT" ExecutionOrder="25" UponError="Stop" DisplayGroup="DSU">
+			  	<OnlyOn>
+					<UnitName>.*[aA1]$</UnitName>
+				</OnlyOn>
+			</Component>				
+			<Component Name="swp_jre_1.7-64" ExecutionOrder="30" UponError="Stop" DisplayGroup="DSU"/>
+			<Component Name="System_Kit"		ExecutionOrder="31" UponError="Stop" DisplayGroup="DSU"/>
+			<Component Name="UPDATE-JAVA-HOME" ExecutionOrder="40" UponError="Stop" DisplayGroup="DSU"/>
+			<Component Name="swp_tomcat7_0-RHEL6" ExecutionOrder="50" UponError="Stop" DisplayGroup="DSU"/>
+							
+			<Component Name="mVAS-IPSMGW-Customization-OMU" 	UponError="Stop" 		ExecutionOrder="70"		DisplayGroup="DSU"/>					
+			<Component Name="swp-HA" ExecutionOrder="75" UponError="Stop" DisplayGroup="DSU"/>
+					
+			<Component Name="swp-NW-sync" ExecutionOrder="130" UponError="Stop" DisplayGroup="DSU"/>				
+
+			<Component Name="Oracle-SW" ExecutionOrder="140" UponError="Stop" DisplayGroup="DSU"/>	
+			<Component Name="Oracle-Infra" ExecutionOrder="150" UponError="Stop" DisplayGroup="DSU"/>
+			<!-- Component Name="Oracle_PSU" ExecutionOrder="160" UponError="Stop" DisplayGroup="DSU"/ -->
+
+		</Install>
+                <Upgrade>
+                   <Component Name="CSP_Base_Linux" ExecutionOrder="10" UponError="Stop" DisplayGroup="DSU"/>
+                </Upgrade>
+	 	<Parameters>
+
+			<!-- CSP_Base_Linux Parameters -->
+			<Parameter ComponentName="CSP_Base_Linux" Name="Legacy_Cleanup" Display="false"/>
+			
+			<!-- HA Parameters -->			
+			<Parameter ComponentName="swp-HA" Display="false" Name="ClusterUUID" />
+			<Parameter ComponentName="swp-HA" Display="false" Name="ClusterName">
+				<Value>ECS-OMU</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-HA" Display="false" Name="IsOCS">
+				<Value>false</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-HA" Display="true" Name="HeartbeatNIC">
+				<Value>eth1,eth0</Value>
+			</Parameter>
+		
+			
+			<!--Oracle Parameters-->
+		
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="ORACLE_INSTALLATION_TYPE">
+				<Value>Single-instance</Value>
+			</Parameter>
+			
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="ORACLE_SW_DIR">
+				<Value>/var</Value>
+                        </Parameter>
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="IS_DNFS">
+                                <Value>true</Value>
+                        </Parameter>
+
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="SW_INSTALL_TYPE">
+                                <Value>EE</Value>
+                        </Parameter>
+
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="IS_OCS" />
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="IS-OCS" />
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="ORACLE_CRS_DIR" />
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="CSS_DIAGWAIT" />
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="CSS_DISKTIMEOUT" />
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="CSS_MISSCOUNT" />
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="LOCAL_PUBLIC_IP" />
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="LOCAL_VIRTUAL_IP" />
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="LOCAL_PRIVATE_IP" />
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="HSBN_NICS" />
+       		<Parameter ComponentName="Oracle-SW" Display="false" Name="HEARTBEAT_NICS" />
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="REMOTE_NODE_NAME" />
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="LOCAL_PRIVATE_NETMASK" />
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="SCAN_IP" />
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="LOCAL_PUBLIC_NETMASK"/>
+			
+			<!-- Parameter ComponentName="Oracle_PSU" Display="false" Name="instance_number">
+				<Value></Value>
+			</Parameter -->
+			
+			<!-- Parameter ComponentName="mVAS-IPSMGW-Networking-Customization" Name="NIC_1" Display="true" Overwrite="true">
+				<Value>eth0</Value>
+			</Parameter>
+			<Parameter ComponentName="mVAS-IPSMGW-Networking-Customization" Name="NIC_2" Display="true" Overwrite="true">
+				<Value>eth1</Value>
+			</Parameter>	
+			<Parameter ComponentName="mVAS-IPSMGW-Networking-Customization" Name="NIC_3" Display="true" Overwrite="true">
+				<Value>eth2</Value>
+			</Parameter>	
+			<Parameter ComponentName="mVAS-IPSMGW-Networking-Customization" Name="DEVICE_1" Display="true" Overwrite="true">
+				<Value>ADMIN_DEVICE</Value>
+			</Parameter>
+			<Parameter ComponentName="mVAS-IPSMGW-Networking-Customization" Name="DEVICE_2" Display="true" Overwrite="true">
+				<Value>SZ_DEVICE</Value>
+			</Parameter>	
+			<Parameter ComponentName="mVAS-IPSMGW-Networking-Customization" Name="DEVICE_3" Display="true" Overwrite="true">
+				<Value>NFS_DEVICE</Value>
+			</Parameter -->	
+			
+			<Parameter ComponentName="mVAS-IPSMGW-Customization-OMU" Name="Notifier_MNIC" Display="false" Overwrite="true">
+				<Value>ADMIN_MNIC</Value>
+			</Parameter>	
+			
+			<Parameter ComponentName="mVAS-IPSMGW-Customization-OMU" Name="SyslogServer" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"SyslogServer.")]/VUnitInstance/@VirtualIp]</Value>
+			</Parameter>
+
+							
+			
+		</Parameters>
+	</UnitType>
+</SWIM>

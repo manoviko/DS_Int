@@ -1,0 +1,9 @@
+IPSMGW-CUST,IPGW.1/groups.xml
+IPSMGW-CUST,IPGW.1/DigitalVAS.config
+IPSMGW-CUST,IPGW.1/StatisticsHandler.config
+IPSMGW-CUST,IPGW.1/SetLDAPConnectivityError.xml
+IPSMGW-CUST,IPGW.1/DigitalVAS.config_ccm-metadata.xml
+IPSMGW-CUST,IPGW.1/Billing.config
+IPSMGW-CUST,IPGW.1/Tracing.config
+IPSMGW-CUST,IPGW.1/LdapQueryAttributes.config
+IPSMGW-CUST,IPGW.1/IPGWLicense.config

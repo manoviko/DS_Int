@@ -1,0 +1,214 @@
+<Configuration>
+	<Parameters>
+		<Component Name="ProfileDefinition">
+			<Group Name="General">
+				<Parameter Name="FailOnChecksum">
+					<Description>Indicated whether exception will be throws in case of checksum validation fail.</Description>
+					<Type>Boolean</Type>
+					<Restriction>
+						<RequiresRestart>true</RequiresRestart>
+						<MinVal/>
+						<MaxVal/>
+						<MaxLength/>
+						<Mandatory>true</Mandatory>
+						<Lov/>
+						<Level>1</Level>
+					</Restriction>
+					<Value>
+						<Item Value="false"/>
+					</Value>
+				</Parameter>
+				<Parameter Name="SaveGeneratedToDisk">
+					<Description>Do we whant to save the generated configuration files to disk for debug.</Description>
+					<Type>Boolean</Type>
+					<Restriction>
+						<RequiresRestart>true</RequiresRestart>
+						<MinVal/>
+						<MaxVal/>
+						<MaxLength/>
+						<Mandatory>true</Mandatory>
+						<Lov/>
+						<Level>1</Level>
+					</Restriction>
+					<Value>
+						<Item Value="true"/>
+					</Value>
+				</Parameter>
+				<Parameter Name="InputPath">
+					<Description>The path to the output directory</Description>
+					<Type>String</Type>
+					<Restriction>
+						<RequiresRestart>true</RequiresRestart>
+						<MinVal/>
+						<MaxVal/>
+						<MaxLength/>
+						<Mandatory>true</Mandatory>
+						<Lov/>
+						<Level>1</Level>
+					</Restriction>
+					<Value>
+						<Item Value="/usr/cti/conf/profiledefinition"/>
+					</Value>
+				</Parameter>
+				<Parameter Name="DataStructureCreator">
+					<Description>Defines the data structure names to be created out of the profile definition XML file and their associated class.</Description>
+					<Type>Map</Type>
+					<Restriction>
+						<RequiresRestart>true</RequiresRestart>
+						<MinVal/>
+						<MaxVal/>
+						<MaxLength/>
+						<Mandatory>true</Mandatory>
+						<Lov/>
+						<Level>1</Level>
+					</Restriction>
+					<Value>
+						<Item Key="DynamicServices" Value="comverse.compas.profileloader.creators.impl.DynamicServicesDefinitionCreator"/>
+						<Item Key="Contract" Value="comverse.compas.profileloader.creators.impl.ContractCreator"/>
+						<Item Key="Xsd" Value="comverse.compas.profileloader.creators.impl.XsdCreator"/>
+						<Item Key="Jdsv" Value="comverse.compas.profileloader.creators.impl.JdsvCreator"/>
+						<Item Key="API" Value="comverse.compas.profileloader.creators.impl.ApiCreator"/>
+					</Value>
+				</Parameter>
+				<Parameter Name="EntityNameToPaTypeMapping">
+					<Description>Map between the entity name in the input file to the PA type as it in the contract.xml file. If we do not find a mapping we assume the entity in the input file is the same as in the contract.xml file</Description>
+					<Type>Map</Type>
+					<Restriction>
+						<RequiresRestart>true</RequiresRestart>
+						<MinVal/>
+						<MaxVal/>
+						<MaxLength/>
+						<Mandatory>true</Mandatory>
+						<Lov/>
+						<Level>1</Level>
+					</Restriction>
+					<Value>
+						<Item Key="Subscriber" Value="Common"/>
+						<Item Key="COS" Value="ServicePackage"/>
+						<Item Key="ServiceLevel" Value="DsProfileCos"/>
+						<Item Key="DomainDefaults" Value="DsProfileCos"/>
+						<Item Key="SystemDefaults" Value="DsProfileCos"/>
+					</Value>
+				</Parameter>
+				<Parameter Name="PaTypeToBeIgnored">
+					<Description>List PA types / entity names to be ignored and skipped from PA contract creation</Description>
+					<Type>List</Type>
+					<Restriction>
+						<RequiresRestart>true</RequiresRestart>
+						<MinVal/>
+						<MaxVal/>
+						<MaxLength/>
+						<Mandatory>true</Mandatory>
+						<Lov/>
+						<Level>1</Level>
+					</Restriction>
+					<Value>
+						<Item Value="DYNAMIC_PROFILE"/>
+						<Item Value="EMAIL_UID_FLAGS"/>
+					</Value>
+				</Parameter>				
+			</Group>
+			<Group Name="Xsd">
+				<Parameter Name="XsdNodeNamesMapping">
+					<Description>Map between the descriptor restriction nodes names to the xsd restriction names.</Description>
+					<Type>Map</Type>
+					<Restriction>
+						<RequiresRestart>true</RequiresRestart>
+						<MinVal/>
+						<MaxVal/>
+						<MaxLength/>
+						<Mandatory>true</Mandatory>
+						<Lov/>
+						<Level>1</Level>
+					</Restriction>
+					<Value>
+						<Item Key="Type" Value="base"/>
+						<Item Key="MinOcc" Value="minOccurs"/>
+						<Item Key="MaxOcc" Value="maxOccurs"/>
+						<Item Key="Nillable" Value="nillable"/>
+						<Item Key="MinVal" Value="xs:minInclusive"/>
+						<Item Key="MaxVal" Value="xs:maxInclusive"/>
+						<Item Key="MaxLength" Value="xs:maxLength"/>
+						<Item Key="MinLength" Value="xs:minLength"/>
+						<Item Key="Patterns" Value="xs:pattern"/>
+						<Item Key="Lov" Value="xs:enumeration"/>
+					</Value>
+				</Parameter>
+				<Parameter Name="EntityHeaderXsdToLocationMapping">
+					<Description>Map between the entity name header xsd and its location</Description>
+					<Type>Map</Type>
+					<Restriction>
+						<RequiresRestart>true</RequiresRestart>
+						<MinVal/>
+						<MaxVal/>
+						<MaxLength/>
+						<Mandatory>true</Mandatory>
+						<Lov/>
+						<Level>1</Level>
+					</Restriction>
+					<Value>
+						<Item Key="Subscriber" Value="cpe/headerXsdSchema-Subscriber.xsd"/>
+						<Item Key="ServiceLevel" Value="dsprofilecos/headerXsdSchema-ServiceLevel.xsd"/>
+						<Item Key="DomainDefaults" Value="dsprofilecos/headerXsdSchema-DomainDefaults.xsd"/>
+						<Item Key="SystemDefaults" Value="dsprofilecos/headerXsdSchema-SystemDefaults.xsd"/>
+						<Item Key="Domain" Value="domain/headerXsdSchema-Domain.xsd"/>
+						<Item Key="SmscGroup" Value="smscgroup/headerXsdSchema-SmscGroup.xsd"/>
+						<Item Key="ServicePackage" Value="servicepackage/headerXsdSchema-ServicePackage.xsd"/>
+						<Item Key="EmsProfile" Value="emsprofile/headerXsdSchema-EmsProfile.xsd"/>
+						<Item Key="PagProvider" Value="pagprovider/headerXsdSchema-PagProvider.xsd"/>
+						<Item Key="PagApplication" Value="pagapplication/headerXsdSchema-PagApplication.xsd"/>
+						<Item Key="PagCosApplications" Value="pagcosapplications/headerXsdSchema-PagCosApplications.xsd"/>
+						<Item Key="AcMessage" Value="acmessage/headerXsdSchema-AcMessage.xsd"/>
+						<Item Key="SubscriberVas" Value="subscribervas/headerXsdSchema-SubscriberVas.xsd"/>
+						<Item Key="MmsVc" Value="mmsvc/headerXsdSchema-MmsVc.xsd"/>
+						<Item Key="PagContentClassification" Value="pagcontentclassification/headerXsdSchema-PagContentClassification.xsd"/>
+						<Item Key="MmsLi" Value="mmsli/headerXsdSchema-MmsLi.xsd"/>
+						<Item Key="PoolMailbox" Value="poolmailbox/headerXsdSchema-PoolMailbox.xsd"/>
+						<Item Key="ContentCategory" Value="contentcategory/headerXsdSchema-ContentCategory.xsd"/>
+						<Item Key="ContentProfile" Value="contentprofile/headerXsdSchema-ContentProfile.xsd"/>
+						<Item Key="Interception" Value="interception/headerXsdSchema-Interception.xsd"/>
+						<Item Key="MwApplication" Value="mwapplication/headerXsdSchema-MWApplication.xsd"/>
+						<Item Key="MwAppPackage" Value="mwapppackage/headerXsdSchema-MWAppPackage.xsd"/>						
+					</Value>
+				</Parameter>
+				<Parameter Name="EntitySchemaXsdToLocationMapping">
+					<Description>Map between the entity name header xsd and its location</Description>
+					<Type>Map</Type>
+					<Restriction>
+						<RequiresRestart>true</RequiresRestart>
+						<MinVal/>
+						<MaxVal/>
+						<MaxLength/>
+						<Mandatory>true</Mandatory>
+						<Lov/>
+						<Level>1</Level>
+					</Restriction>
+					<Value>
+						<Item Key="Subscriber" Value="cpe/xsdSchema.xsd"/>
+						<Item Key="ServiceLevel" Value="dsprofilecos/XsdSchema-ServiceLevel.xsd"/>
+						<Item Key="DomainDefaults" Value="dsprofilecos/XsdSchema-DomainDefaults.xsd"/>
+						<Item Key="SystemDefaults" Value="dsprofilecos/XsdSchema-SystemDefaults.xsd"/>
+						<Item Key="Domain" Value="domain/xsdSchema.xsd"/>
+						<Item Key="SmscGroup" Value="smscgroup/xsdSchema.xsd"/>
+						<Item Key="ServicePackage" Value="servicepackage/xsdSchema.xsd"/>
+						<Item Key="EmsProfile" Value="emsprofile/xsdSchema.xsd"/>
+						<Item Key="PagProvider" Value="pagprovider/xsdSchema.xsd"/>
+						<Item Key="PagApplication" Value="pagapplication/xsdSchema.xsd"/>
+						<Item Key="PagCosApplications" Value="pagcosapplications/xsdSchema.xsd"/>
+						<Item Key="AcMessage" Value="acmessage/xsdSchema.xsd"/>
+						<Item Key="SubscriberVas" Value="subscribervas/xsdSchema.xsd"/>
+						<Item Key="MmsVc" Value="mmsvc/xsdSchema.xsd"/>
+						<Item Key="PagContentClassification" Value="pagcontentclassification/xsdSchema.xsd"/>
+						<Item Key="MmsLi" Value="mmsli/xsdSchema.xsd"/>
+						<Item Key="PoolMailbox" Value="poolmailbox/xsdSchema.xsd"/>
+						<Item Key="ContentCategory" Value="contentcategory/xsdSchema.xsd"/>
+						<Item Key="ContentProfile" Value="contentprofile/xsdSchema.xsd"/>
+						<Item Key="Interception" Value="interception/xsdSchema.xsd"/>
+						<Item Key="MwApplication" Value="mwapplication/xsdSchema.xsd"/>
+						<Item Key="MwAppPackage" Value="mwapppackage/xsdSchema.xsd"/>
+					</Value>
+				</Parameter>
+			</Group>
+		</Component>
+	</Parameters>
+</Configuration>

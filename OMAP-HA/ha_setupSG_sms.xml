@@ -1,0 +1,99 @@
+<swpHA>
+	<configuration>
+
+		<group>
+			<name>sms_omap_general</name>
+			<attribute>
+				<AutoStart>1</AutoStart>
+				<AutoStartPolicy>Order</AutoStartPolicy>
+				<FailOverPolicy>Priority</FailOverPolicy>
+			</attribute>
+			<resource>
+				<type>IP</type>
+				<name>sms-omap-general-vip</name>
+				<attribute>
+					<Device-ResAlias>__SMSC_OMAP_DEVICE__</Device-ResAlias>
+					<Address>__SMS-OMAP-GENERAL-VIP__</Address>
+					<NetMask>__LOCAL_SZ_NETMASK__</NetMask>
+				</attribute>
+			</resource>
+		</group>
+
+	<!--	<group>
+			<name>sms_omap_processing</name>
+			<attribute>
+				<AutoStart>1</AutoStart>
+				<Load>3</Load>
+				<AutoStartPolicy>Load</AutoStartPolicy>
+				<FailOverPolicy>Load</FailOverPolicy>
+			</attribute>
+			<resource>
+				<type>Mount</type>
+				<name>sms-omap-cdr-mount</name>
+				<attribute>
+					<NetAppID>sms-omap-cdr_filer</NetAppID>
+					<NetAppVol>sms_omap_cdr_filer</NetAppVol>
+					<MountPoint>"/data/sms-cdr"</MountPoint>
+					<MountOpt>"rw,bg,hard,nointr,tcp,vers=3,timeo=600,rsize=32768,wsize=32768"</MountOpt>
+				  </attribute>
+			</resource>
+			<resource>
+				<type>Mount</type>
+				<name>sms-omap-trace-mount</name>
+				<attribute>
+					<NetAppID>sms-omap-trace_filer</NetAppID>
+					<NetAppVol>sms_omap_trace_filer</NetAppVol>
+					<MountPoint>"/data/sms_omap_trace"</MountPoint>
+					<MountOpt>"rw,bg,hard,nointr,tcp,vers=3,timeo=600,rsize=32768,wsize=32768"</MountOpt>
+				  </attribute>
+			</resource>
+				<resource>
+				<type>Mount</type>
+				<name>sms-omap-stats-mount</name>
+				<attribute>
+					<NetAppID>sms-omap-stats_filer</NetAppID>
+					<NetAppVol>sms_omap_stats_filer</NetAppVol>
+					<MountPoint>"/data/sms-statistics"</MountPoint>
+					<MountOpt>"rw,bg,hard,nointr,tcp,vers=3,timeo=600,rsize=32768,wsize=32768"</MountOpt>
+				  </attribute>
+			</resource>
+			 <resource>
+				<type>Mount</type>
+				<name>sms-omap-fraud-mount</name>
+				<attribute>
+					<NetAppID>sms-omap-fraud_filer</NetAppID>
+					<NetAppVol>sms_omap_fraud_filer</NetAppVol>
+					<MountPoint>"/data/sms-fraud"</MountPoint>
+					<MountOpt>"rw,bg,hard,nointr,tcp,vers=3,timeo=600,rsize=32768,wsize=32768"</MountOpt>
+				  </attribute>
+			</resource>
+			 <resource>
+				<type>Mount</type>
+				<name>sms-omap-data-miner-mount</name>
+				<attribute>
+					<NetAppID>sms-omap-data-miner_filer</NetAppID>
+					<NetAppVol>sms_omap_data_miner_filer</NetAppVol>
+					<MountPoint>"/data/sms_omap_data_miner"</MountPoint>
+					<MountOpt>"rw,bg,hard,nointr,tcp,vers=3,timeo=600,rsize=32768,wsize=32768"</MountOpt>
+				  </attribute>
+			 </resource>
+			<resource>
+				<type>IP</type>
+				<name>omap-syslog-vip</name>
+				<attribute>
+					<Device-ResAlias>SZ_MNIC</Device-ResAlias>
+					<Address>sms-omap-processing-vip</Address>
+					<NetMask>"255.255.255.0"</NetMask>
+				</attribute>
+				<depend>sms-omap-cdr-mount</depend>
+				<depend>sms-omap-trace-mount</depend>
+				<depend>sms-omap-stats-mount</depend>
+				<depend>sms-omap-fraud-mount</depend>
+				<depend>sms-omap-data-miner-mount</depend>
+			</resource>
+		</group> -->
+
+
+	</configuration>
+</swpHA>
+

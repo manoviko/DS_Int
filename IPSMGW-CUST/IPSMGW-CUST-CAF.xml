@@ -1,0 +1,466 @@
+<SWIM>
+    <Component Platform="Linux" Name="IPSMGW-CUST" Version="_VERSION-_BUILD">
+    
+        <Install>
+
+			<Copy ChmodFlags="u+rwx" ExecutionOrder="10" UponError="Stop">
+				<Source>{SystemDirectory}/UnitGroup.xml</Source>
+				<Target>/usr/cti/conf/autoconf/</Target>
+			</Copy>
+			
+            <Copy ChmodFlags="+x" ExecutionOrder="20" UponError="Stop">
+                <Source>./{ComponentName}</Source>
+            </Copy>
+            <Copy ExecutionOrder="25" Overwrite="true" ChmodFlags="+x" UponError="Stop">
+                   <Source>./ldap_bind_answer.txt</Source>
+                   <Target>/tmp/</Target>
+            </Copy>           
+            <Copy ChmodFlags="+x" ExecutionOrder="30" UponError="Stop">
+                <Source>./post_scripts</Source>
+            </Copy>            
+
+            <Execute ExecutionOrder="40" UponError="Stop">
+                <Command>PATH=$PATH:/usr/local/bin; ./{ComponentName}</Command>
+            </Execute>
+            
+			<Execute ExecutionOrder="50" UponError="Stop">
+				<Command>./post_scripts/add_to_monitor_ipgw.sh</Command>
+			</Execute>    
+			
+			<Execute ExecutionOrder="60" UponError="Stop">
+				<Command>./post_scripts/build_installed_eis.pl</Command>
+			</Execute>
+			
+			<Execute ExecutionOrder="70" Timeout="60" UponError="Stop">
+				<Command>./post_scripts/ipgw_tnsnames_config.sh {MiddleWareDBSID} {MiddleWareDBHOST} {MWTraceDBSID} {MWTraceDBHOST}</Command>
+			</Execute>	
+			
+           <!-- Execute ExecutionOrder="90" Timeout="30" UponError="Stop">
+                <Command>
+					/bin/sed -i -e 's/ConnectionPoolManager.IMSPool.user=.*$/ConnectionPoolManager.IMSPool.user={MiddleWareDBUserName}/i' \
+						-e  's/ConnectionPoolManager.IMSPool.password=.*$/ConnectionPoolManager.IMSPool.password={MiddleWareDBPassword}/i' \
+						-e  's/ConnectionPoolManager.IMSPool.dbInstance=.*$/ConnectionPoolManager.IMSPool.dbInstance={MiddleWareDBSID}/i' \
+						-e 's/ConnectionPoolManager.IMSPool.host=.*$/ConnectionPoolManager.IMSPool.host={MiddleWareDBHOST}/i'  /home/smsc/site/config/IPGW.1/ConnectionPoolManager.config
+				</Command>
+            </Execute>
+            			
+			<Execute ExecutionOrder="100" UponError="Stop">
+				<Command>/bin/sed -i -e 's/DevicesConnectionPoolManager.DevicesPool.user=.*$/DevicesConnectionPoolManager.DevicesPool.user={MiddleWareDBUserName}/i' \
+												  -e  's/DevicesConnectionPoolManager.DevicesPool.password=.*$/DevicesConnectionPoolManager.DevicesPool.password={MiddleWareDBPassword}/i' \
+												  -e 's/^DevicesConnectionPoolManager.DevicesPool.host=.*$/DevicesConnectionPoolManager.DevicesPool.host={MiddleWareDBHOST}/'  \
+												  -e 's/^DevicesConnectionPoolManager.DevicesPool.dbInstance=.*$/DevicesConnectionPoolManager.DevicesPool.dbInstance={MiddleWareDBSID}/' /home/smsc/site/config/IPGW.1/DevicesConnectionPoolManager.config
+				 </Command>
+			</Execute>
+			<Execute ExecutionOrder="110" UponError="Stop">
+				<Command>/bin/sed -i -e 's/RegistrarConnectionPoolManager.RegistrarPool.user=.*$/RegistrarConnectionPoolManager.RegistrarPool.user={MiddleWareDBUserName}/i' \
+												  -e 's/^RegistrarConnectionPoolManager.RegistrarPool.host=.*$/RegistrarConnectionPoolManager.RegistrarPool.host={MiddleWareDBHOST}/'  \
+												  -e 's/^RegistrarConnectionPoolManager.RegistrarPool.dbInstance=.*$/RegistrarConnectionPoolManager.RegistrarPool.dbInstance={MiddleWareDBSID}/' \
+												   -e 's/^RegistrarConnectionPoolManager.RegistrarPool.password=.*$/RegistrarConnectionPoolManager.RegistrarPool.password={MiddleWareDBPassword}/' /home/smsc/site/config/IPGW.1/RegistrarConnectionPoolManager.config
+				 </Command>
+			</Execute>
+			<Execute ExecutionOrder="115" UponError="Stop">
+				<Command>/bin/sed -i -e 's/SubscriberConnectionPoolManager.SubscriberPool.user=.*$/DevicesConnectionPoolManager.DevicesPool.user={MiddleWareDBUserName}/i' \
+												  -e 's/^SubscriberConnectionPoolManager.SubscriberPool.host=.*$/DevicesConnectionPoolManager.DevicesPool.host={MiddleWareDBHOST}/'  \
+												  -e 's/^SubscriberConnectionPoolManager.SubscriberPool.dbInstance=.*$/DevicesConnectionPoolManager.DevicesPool.dbInstance={MiddleWareDBSID}/' \
+												   -e 's/^SubscriberConnectionPoolManager.SubscriberPool.password=.*$/DevicesConnectionPoolManager.DevicesPool.password={MiddleWareDBPassword}/' /home/smsc/site/config/IPGW.1/SubscriberConnectionPoolManager.config
+				 </Command>
+			</Execute -->
+			
+			<!-- Execute ExecutionOrder="116" UponError="Stop">
+				<Command>/bin/sed -i 's/DigitalVAS.DigitalVASMode=.*/DigitalVAS.DigitalVASMode=1/' /home/smsc/site/config/IPGW.1/DigitalVAS.config</Command>
+			</Execute -->
+            <Execute ExecutionOrder="116" UponError="Stop">
+				<Command>
+				  /bin/sed -i 's/CompasProvisionClientService.vas.host=.*/CompasProvisionClientService.vas.host=sem-spm/' /var/cti/smsc/middleware-core.6.6.0.0/config/middleware/compas/CompasProvisionClientService.config
+				</Command>
+			</Execute>
+            <Execute ExecutionOrder="118" UponError="Stop">
+				<Command>
+				  /bin/sed -i 's/CompasProvisionClientService.vms.host=.*/CompasProvisionClientService.vms.host=sem-spm/' /var/cti/smsc/middleware-core.6.6.0.0/config/middleware/compas/CompasProvisionClientService.config
+				</Command>
+			</Execute>			
+			
+			<Execute ExecutionOrder="120" UponError="Stop">
+				<Command>./post_scripts/ipgw_post_config.sh scratch</Command>
+			</Execute>
+			
+            <Execute ExecutionOrder="130" UponError="Stop">
+              <Command>
+                IPgwId=`find /var/cti/smsc/site/config -regex ".*IPGW.[0-9].[0-9]+" -type d -printf "%f"`
+                if [[ "$IPgwId" =~ "IPGW.1." ]]; then
+                    iIPgwId=`echo $IPgwId|sed 's/IPGW.1.//'`
+                    if [ ! -z $iIPgwId ]; then
+						echo "Executing: smsc -class MRE_CONSOLE -inst 1.$iIPgwId linkToCust IPGW 1.$iIPgwId"
+                        su - smsc -c "smsc -class MRE_CONSOLE -inst 1.$iIPgwId linkToCust IPGW 1.$iIPgwId"
+                    else
+                        echo "ERROR: Failed to parse instance id from $IPgwId"
+                        exit 1
+                    fi
+              else
+                echo "ERROR: Failed to parse IPGW site number"
+                exit 2
+            fi
+            </Command>
+            <ExpectedExitCode>0</ExpectedExitCode>
+         </Execute>	
+         
+			<Execute ExecutionOrder="140" UponError="Stop">
+				<Command>./post_scripts/update_limits.sh -u smsc -f 32768</Command>
+			</Execute>        
+		         
+            <Execute ExecutionOrder="230" UponError="Stop">
+               <Command>
+                  DiamFile=/home/smsc/site/config/IPGW.1/DiameterConfiguration.config
+                  DiamFileBack=${DiamFile}.`date '+%d%m%Y%H%M'`
+                  if [ -f $DiamFile ]; then
+                     /bin/cp -f $DiamFile $DiamFileBack
+                     /bin/awk 'NR > 1{print t} {t = $0}END{if (NF) print }' $DiamFileBack > $DiamFile
+                  fi
+                 </Command>
+            </Execute>											        
+            <Execute ExecutionOrder="240" UponError="Stop">
+              <Command>
+			   if [ -f /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/ApplicationProvisioning.config ]; then
+                  Date=`date '+%d%m%Y%H%M'`
+                  echo "WARN : /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/ApplicationProvisioning.config already exists. Backup it as /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/ApplicationProvisioning.config.${Date}"
+                  /bin/cp -f /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/ApplicationProvisioning.config /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/ApplicationProvisioning.config.${Date}
+			      sed -i '/APP_PROV.NIPProxy_MAP.maxConnections/d' /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/ApplicationProvisioning.config
+				  sed -i '/APP_PROV.ESMEs_no-service-list.statisticsLogicalGroup/ a\APP_PROV.NIPProxy_MAP.maxConnections=40' /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/ApplicationProvisioning.config
+               fi
+               </Command>
+	    </Execute>
+            <!--<Execute ExecutionOrder="245" Timeout="30" UponError="Stop">
+                <Command>
+                     /bin/sed -i -e 's/DigitalVAS.EnableLDAP=.*$/DigitalVAS.EnableLDAP={EnableLDAP}/i' /home/smsc/site/config/IPGW.1/DigitalVAS.config 
+                </Command>
+            </Execute>-->
+             <SetParams ExecutionOrder="250" UponError="Stop">
+                 <ExecutionGroup>LDAP_PARAMS</ExecutionGroup>
+              </SetParams>
+            <!--<SetParams ExecutionOrder="260" UponError="Stop">
+                    <ExecutionGroup>dynamicParam</ExecutionGroup>
+            </SetParams>-->
+            <!--<Execute ExecutionOrder="270" UponError="Stop">
+                     <Command>./sca_enable_ha.sh -a /tmp/ldap_bind_answer.txt</Command>
+            </Execute>-->
+            
+        </Install>
+
+        <Upgrade>
+        
+			<Copy ChmodFlags="u+rwx" ExecutionOrder="10" UponError="Stop">
+				<Source>{SystemDirectory}/UnitGroup.xml</Source>
+				<Target>/usr/cti/conf/autoconf/</Target>
+			</Copy>    
+			
+			<Copy ExecutionOrder="15" UponError="Stop">
+				<Source>./*.list</Source>
+				<Target>/var/tmp/</Target>
+			</Copy>			    
+
+            <Copy ChmodFlags="+x" ExecutionOrder="20" UponError="Stop">
+                <Source>./{ComponentName}</Source>
+            </Copy>
+            
+            <Execute ExecutionOrder="30" UponError="Stop">
+                <Command>cd /home/smsc/site/config &amp;&amp; tar cvf /var/tmp/IPGW_Site_conf_backup.tar IPGW.1.?/* IPGW.1/topologiesSite.config</Command>
+            </Execute>            
+
+            <Execute ExecutionOrder="50" UponError="Stop">
+				  <Command>cp -p /var/tmp/upgrade.sh .</Command>
+			</Execute>            
+			<Execute ExecutionOrder="60" UponError="Stop">
+			    <Command>./upgrade.sh {ComponentName} {ComponentVersion}</Command>
+				 <ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			
+			<!-- Restore configurations -->
+			<Execute ExecutionOrder="70" UponError="Stop">
+				 <Command>tar xvf /var/tmp/IPGW_Site_conf_backup.tar -C /home/smsc/site/config</Command>
+			</Execute> 	
+			
+			<!-- merging files to site level according predefined list -->
+            <Execute ExecutionOrder="90" UponError="Stop">
+				<Command>/var/tmp/exeMergeConfigManualUpdateFiles.sh /var/tmp/merge_after_upgrade_Site.list /var/tmp/mergeConfigFile.pl</Command>
+             </Execute> 
+			 
+             <!-- hot fix for non merged files -->
+            <Execute ExecutionOrder="95" UponError="Stop">
+				<Command>/var/tmp/exeMergeConfigManualUpdateFiles.sh /var/tmp/force_copy_after_upgrade_Site.list /var/tmp/hot_fix_force_copy_after_upgrade_Site.sh</Command>
+             </Execute>
+            
+			<Execute ExecutionOrder="100" UponError="Stop">
+              <Command>
+			   if [ -f /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/ApplicationProvisioning.config ]; then
+                  Date=`date '+%d%m%Y%H%M'`
+                  echo "WARN : /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/ApplicationProvisioning.config already exists. Backup it as /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/ApplicationProvisioning.config.${Date}"
+                  /bin/cp -f /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/ApplicationProvisioning.config /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/ApplicationProvisioning.config.${Date}
+			      sed -i '/APP_PROV.NIPProxy_MAP.maxConnections/d' /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/ApplicationProvisioning.config
+				  sed -i '/APP_PROV.ESMEs_no-service-list.statisticsLogicalGroup/ a\APP_PROV.NIPProxy_MAP.maxConnections=40' /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/ApplicationProvisioning.config
+               fi
+               </Command>
+			  </Execute>
+			  <Execute ExecutionOrder="110" UponError="Stop">
+			   <Command>
+			    if [ -f /home/smsc/site/config/sms.config.all ]; then
+                  Date=`date '+%d%m%Y%H%M'`
+                  echo "WARN : /home/smsc/site/config/sms.config.all already exists. Backup it as /home/smsc/site/config/sms.config.all.${Date}"
+                  /bin/cp -f /home/smsc/site/config/sms.config.all /home/smsc/site/config/sms.config.all.${Date}
+			      sed -i -e "s/number_of_sfes=.*/number_of_sfes=0/g" /home/smsc/site/config/sms.config.all
+				fi
+			   </Command>
+             </Execute>
+             <!--<Execute ExecutionOrder="120" UponError="Stop">
+			   <Command>
+			    if [ -f /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/Billing/Billing.config ]; then
+                  Date=`date '+%d%m%Y%H%M'`
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/Billing/Billing.config to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/Billing/Billing.config /var/cti/smsc/site/config/IPGW.1/
+			    fi
+			   </Command>
+             </Execute>-->
+			 <Execute ExecutionOrder="111" UponError="Stop">
+			   <Command>
+			    if [ -f /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/statistics/Statistics.config ]; then
+                  Date=`date '+%d%m%Y%H%M'`
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/statistics/Statistics.config to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/statistics/Statistics.config /var/cti/smsc/site/config/IPGW.1/
+			    fi
+			   </Command>
+             </Execute>
+			 <Execute ExecutionOrder="112" UponError="Stop">
+			  <Command>
+			   /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/diameter/Errors/*.* /var/cti/smsc/site/config/IPGW.1/
+			  </Command>
+			 </Execute>
+			 
+			 <Execute ExecutionOrder="114" UponError="Stop">
+			  <Command>
+			   /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/diameter/diameterRO/*.* /var/cti/smsc/site/config/IPGW.1/
+			  </Command>
+			 </Execute>
+			 
+			 <Execute ExecutionOrder="116" UponError="Stop">
+			  <Command>
+			   /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/diameter/diameterRF/*.* /var/cti/smsc/site/config/IPGW.1/ 
+			  </Command>
+			 </Execute>
+			 
+			 <Execute ExecutionOrder="118" UponError="Stop">
+			  <Command>
+			    /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/diameter/*.* /var/cti/smsc/site/config/IPGW.1/
+			 </Command>
+			 </Execute>
+			 
+			 <Execute ExecutionOrder="120" UponError="Stop">
+			   <Command>
+			    if [ -f /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/LdapAntiFraudQuery.config ]; then
+                  Date=`date '+%d%m%Y%H%M'`
+				  echo "WARN : /var/cti/smsc/site/config/IPGW.1/LdapAntiFraudQuery.config already exists. Backup it as /var/cti/smsc/site/config/IPGW.1/LdapAntiFraudQuery.config.${Date}"
+				  /bin/cp -f /var/cti/smsc/site/config/IPGW.1/LdapAntiFraudQuery.config /var/cti/smsc/site/config/IPGW.1/LdapAntiFraudQuery.config.${Date}
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/LdapAntiFraudQuery.config to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/LdapAntiFraudQuery.config /var/cti/smsc/site/config/IPGW.1/
+			    fi
+			   </Command>
+             </Execute>
+			 <Execute ExecutionOrder="125" UponError="Stop">
+			   <Command>
+			    if [ -f /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/LdapQuery.config ]; then
+                  Date=`date '+%d%m%Y%H%M'`
+				  echo "WARN : /var/cti/smsc/site/config/IPGW.1/LdapQuery.config already exists. Backup it as /var/cti/smsc/site/config/IPGW.1/LdapQuery.config.${Date}"
+				  /bin/cp -f /var/cti/smsc/site/config/IPGW.1/LdapQuery.config /var/cti/smsc/site/config/IPGW.1/LdapQuery.config.${Date}
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/LdapQuery.config to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/LdapQuery.config /var/cti/smsc/site/config/IPGW.1/
+			    fi
+			   </Command>
+             </Execute>
+			 <Execute ExecutionOrder="127" UponError="Stop">
+              <Command>
+                 id=`cd /var/cti/smsc/site/config; ls -l|grep MRE_CONSOLE|cut -d "." -f 2,3`
+                 if [ -f /home/smsc/site/config/MRE_CONSOLE.${id}/mre_console.config ]; then
+                      Date=`date '+%d%m%Y%H%M'`
+                      echo "WARN : /home/smsc/site/config/MRE_CONSOLE.${id}/mre_console.config already exists. Backup it as /home/smsc/site/config/MRE_CONSOLE.${id}/mre_console.config.${Date}"
+                      /bin/cp -f /home/smsc/site/config/MRE_CONSOLE.${id}/mre_console.config /home/smsc/site/config/MRE_CONSOLE.${id}/mre_console.config.${Date}
+                      sed -i 's/MRE,MGW,SELFPROV,IMSC_ROUTER/MRE,MGW,SELFPROV,IMSC_ROUTER,IPGW/' /home/smsc/site/config/MRE_CONSOLE.${id}/mre_console.config
+                  fi
+                </Command>
+             </Execute>
+             <SetParams ExecutionOrder="130" UponError="Stop">
+	          <ExecutionGroup>LDAP_PARAMS</ExecutionGroup>
+             </SetParams>
+        </Upgrade>
+
+        <Uninstall>
+            <Execute ExecutionOrder="1" Timeout="60" UponError="Stop">
+                <Command>su - smsc -c "stopm"</Command>
+            </Execute>
+            <Execute ExecutionOrder="2" UponError="Stop">
+                <Command>comp=`rpm -qa|grep {ComponentName}|sed 's/\.Linux.x86_64//'` ; [ -z "$comp" ] &amp;&amp; exit 0 || rpm -e $comp</Command>
+            </Execute>
+            <Execute ExecutionOrder="3" UponError="Stop">
+                <Command>rm -rf /var/lib/rpm/pkgadd/lock</Command>
+            </Execute>
+        </Uninstall>
+
+        <Rollback>
+            <Execute ExecutionOrder="1" Timeout="60" UponError="Stop">
+                <Command>su - smsc -c "stopm"</Command>
+            </Execute>
+            <Execute ExecutionOrder="2" UponError="Stop">
+                <Command>comp=`rpm -qa|grep {ComponentName}|sed 's/\.Linux.x86_64//'` ; [ -z "$comp" ] &amp;&amp; exit 0 || rpm -e $comp</Command>
+            </Execute>
+            <Execute ExecutionOrder="3" UponError="Stop">
+                <Command>rm -rf /var/lib/rpm/pkgadd/lock</Command>
+            </Execute>
+        </Rollback>
+        
+		<Parameters>
+			<!-- IP GW DB Parameters -->
+			<Parameter DisplayName="IP SM GW TraceDB HOST" Display="false" Name="MWTraceDBHOST" Level="System">
+				<Description>IP SM GW TraceDB HOST</Description>
+				<Value>MWTRACESDB</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			<Parameter DisplayName="IP SM GW TraceDB SID" Display="false" Name="MWTraceDBSID" Level="System">
+				<Description>IP SM GW TraceDB SID</Description>
+				<Value>ODS</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>					
+				</Restrictions>
+			</Parameter>
+			
+			
+            <Parameter Name="MiddleWareDBUserName" Level="System" Display="false" DisplayName="Middleware DB User Name">
+                <Restrictions>
+                    <Type>String</Type>
+                    <Mandatory>true</Mandatory>
+                    <MaxLength>255</MaxLength>
+                </Restrictions>
+                <Description>Middleware DB User Name</Description>
+                <Value>MW</Value>
+            </Parameter>
+            <Parameter Name="MiddleWareDBPassword" Level="System" Display="false" DisplayName="Middleware DB password">
+                <Restrictions>
+                    <Type>String</Type>
+                    <Mandatory>true</Mandatory>
+                    <MaxLength>255</MaxLength>
+                </Restrictions>
+                <!-- Value>KHQ6HckHdqgnwHpH1wUPNw==</Value -->
+                <Value>AZdZhkzS4zPflwd\/NI7ZAQ==</Value>
+                <Description>Middleware DB Password</Description>
+            </Parameter>
+            <Parameter Name="MiddleWareDBSID" Level="System" Display="false" DisplayName="Middleware DB Service Name">
+                <Restrictions>
+                    <Type>String</Type>
+                    <Mandatory>true</Mandatory>
+                    <MaxLength>255</MaxLength>
+                </Restrictions>
+                <Description>Middleware DB Service Name</Description>
+                <Value>SEM_DB</Value>
+            </Parameter>
+            <Parameter Name="MiddleWareDBHOST" Level="System" Display="false" DisplayName="Middleware DB Name">
+                <Restrictions>
+                    <Type>String</Type>
+                    <Mandatory>true</Mandatory>
+                    <MaxLength>255</MaxLength>
+                </Restrictions>
+                <Description>Middleware DB Name</Description>
+                <Value>MW_DB</Value>
+            </Parameter>        
+                     <!-- LDAP Parameters -->
+                      <Parameter Name="NLdapServers" Level="System" Display="true" DisplayName="number of LDAP servers to configurate" ExecutionGroup="LDAP_PARAMS" Overwrite="true">
+                        <Description>List.size in LdapAntiFraudQuery.config</Description>
+                        <Restrictions>
+                                <Type>String</Type>
+                                <Mandatory>true</Mandatory>
+                        </Restrictions>
+                        <Value>1</Value>
+                        <File Name="/home/smsc/site/config/IPGW.1/LdapAntiFraudQuery.config" Format="KeyValue" ParameterPath="LdapAntiFraudQuery.server.priorityList.size"></File>
+                       </Parameter>
+
+                      <Parameter Name="LDAP feature" Level="System" Display="true" DisplayName="Enable Disable LDAP feature" ExecutionGroup="LDAP_PARAMS" Overwrite="true">
+			<Description>valid values 0=disable 1=enable in DigitalVAS.config</Description>
+			<Restrictions>
+				<Type>String</Type>
+				<Mandatory>true</Mandatory>
+			</Restrictions>
+			<Value>1</Value>
+			<File Name="/home/smsc/site/config/IPGW.1/DigitalVAS.config" Format="KeyValue" ParameterPath="DigitalVAS.EnableLDAP"></File>
+         	       </Parameter>
+                       <Parameter Name="LDAP server hostname/IP addresses for Bind Request" Level="System" Display="true" DisplayName="LDAP HOSTNAME" ExecutionGroup="LDAP_PARAMS" Overwrite="true">
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>false</Mandatory>
+                                </Restrictions>
+                                <Description>Ldap address/hostname or LDAP farm name</Description>
+                                <File Name="/home/smsc/site/config/IPGW.1/LdapAntiFraudQuery.config" Format="KeyValue" ParameterPath="LdapAntiFraudQuery.server.0.host"></File>
+                                <Value></Value>
+                        </Parameter>
+                        <Parameter Name="LDAP port for Bind Request" Level="System" Display="true" DisplayName="LDAP PORT" ExecutionGroup="LDAP_PARAMS" Overwrite="true">
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>false</Mandatory>
+                                </Restrictions>
+                                <Description>LDAP server port number</Description>
+                                <File Name="/home/smsc/site/config/IPGW.1/LdapAntiFraudQuery.config" Format="KeyValue" ParameterPath="LdapAntiFraudQuery.server.0.port"></File>
+                                <Value>10389</Value>
+                        </Parameter>
+                        <Parameter Name="LDAP password for Bind authentication" Level="System" Display="true" DisplayName="LDAP PASSWORD" ExecutionGroup="LDAP_PARAMS" Overwrite="true">
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>false</Mandatory>
+                                </Restrictions>
+                                <Description>LDAP password for the simple authentication</Description>
+                                <File Name="/home/smsc/site/config/IPGW.1/LdapAntiFraudQuery.config" Format="KeyValue" ParameterPath="LdapAntiFraudQuery.credentials"></File>
+                                <Value>secret</Value>
+                        </Parameter>
+                        <Parameter Name="LDAP query Access Key" Level="System" Display="true" DisplayName="LDAP query" ExecutionGroup="LDAP_PARAMS" Overwrite="true">
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>false</Mandatory>
+                                </Restrictions>
+                                <Description>LDAP query Access Key</Description>
+                                <File Name="/home/smsc/site/config/IPGW.1/LdapAntiFraudQuery.config" Format="KeyValue" ParameterPath="LdapAntiFraudQuery.rootDN"></File>
+                                <Value>o=COSMOTE,dc=IPSMGW</Value>
+                        </Parameter>
+                        <Parameter Name="LDAP Bind Request-directly object name for bind" Level="System" Display="true" DisplayName="LDAP object name" ExecutionGroup="LDAP_PARAMS" Overwrite="true">
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>false</Mandatory>
+                                </Restrictions>
+                                <Description>LDAP directly object name for bind - principal in LdapAntiFraudQuery.config</Description>
+                                <File Name="/home/smsc/site/config/IPGW.1/LdapAntiFraudQuery.config" Format="KeyValue" ParameterPath="LdapAntiFraudQuery.principal"></File>
+                                <Value>uid=admin,ou=system</Value>
+                        </Parameter>
+                       
+
+                        <Parameter Name="LDAP port" Level="System" Display="true" DisplayName="LDAP PORT" GroupName="DYN_Params" ExecutionGroup="dynamicParam" Overwrite="true">
+                                 <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                </Restrictions>
+                                <Description>LDAP server port number</Description>
+                                <Value></Value>
+                                <File Name="/tmp/ldap_bind_answer.txt" Format="KeyValue"></File>
+                                <ParameterPath>ldap_port</ParameterPath>
+                        </Parameter>
+                        <Parameter Name="LDAP server" Level="System" Display="true" DisplayName="LDAP HOSTNAME" GroupName="DYN_Params" ExecutionGroup="dynamicParam" Overwrite="true">
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                </Restrictions>
+                                <Description>Ldap address/hostname or LDAP farm name</Description>
+                                <Value></Value>
+                                <File Name="/tmp/ldap_bind_answer.txt" Format="KeyValue"></File>
+                                <ParameterPath>ldap_hostname</ParameterPath>
+                        </Parameter>                    
+	</Parameters>	
+        <Groups>
+        <Group Name="DYN_Params" DefaultInstances="0" MinOccur="0" MaxOccur="2" DisplayName="To enable LDAP setup, change number of insntaces to '1' or to '2' and fill all required LDAP configuration parameters"/>
+        </Groups> 
+    </Component>
+</SWIM>

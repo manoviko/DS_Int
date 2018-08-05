@@ -1,0 +1,23 @@
+<AAS>
+	<Users>
+		<User>
+			<Name>mw_spm_app_user</Name>
+			<FullName>Provisioning application user</FullName>
+			<Type>Application</Type>
+			<Password>t7hu/qJEE5hDSzhqYiRguA==</Password>
+			<DefaultDomainId/>
+			<AdminBlocked>false</AdminBlocked>
+			<ReadOnly>false</ReadOnly>
+			<Roles>
+			  <Role Name="prov_app"/>
+			</Roles>
+			<Domains>
+				<Domain Id="#all"/>
+			</Domains>
+			
+			<Systems>
+				<System Id="#all"/>
+			</Systems>
+		</User>
+	</Users>
+</AAS>

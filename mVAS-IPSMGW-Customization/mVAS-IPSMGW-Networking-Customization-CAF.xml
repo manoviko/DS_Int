@@ -1,0 +1,111 @@
+<SWIM>
+	<Component Platform="Linux" Name="mVAS-IPSMGW-Networking-Customization" Version="_VERSION-_BUILD">
+		<Install>
+		
+			<!-- taken from spec file -->
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>
+								if [ `ls /etc/sysconfig/network-scripts/ifcfg-eth*|wc -l` -ne `ls -l /sys/class/net/eth*|wc -l` ]; then
+									echo "[ERROR] Number of Interfaces in /etc/sysconfig/network-scripts/ifcfg-eth* DO NOT match the number of active interfaces (ifconfig -a), Exiting!"
+									exit 1
+								fi
+				</Command>
+			</Execute>
+
+			<Execute ExecutionOrder="30" UponError="Stop">
+				<Command>rm -f /var/tmp/mVAS-Networking-dynamic.param; touch /var/tmp/mVAS-Networking-dynamic.param</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			
+			<SetParams ExecutionOrder="40" UponError="Continue">
+				<ExecutionGroup>dynamicParam</ExecutionGroup>
+			</SetParams>
+			
+			<Copy ChmodFlags="755" ExecutionOrder="20" UponError="Stop" Overwrite="true">			
+				<Source>./scripts/dtd.sh</Source>
+			</Copy>
+						
+			<Execute ExecutionOrder="50" UponError="Stop">
+				<Command>./scripts/dtd.sh</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			
+		</Install>
+		<Upgrade>
+			
+			<!-- taken from spec file -->
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>
+								if [ `ls /etc/sysconfig/network-scripts/ifcfg-eth*|wc -l` -ne `ls -l /sys/class/net/eth*|wc -l` ]; then
+									echo "[ERROR] Number of Interfaces in /etc/sysconfig/network-scripts/ifcfg-eth* DO NOT match the number of active interfaces (ifconfig -a), Exiting!"
+									exit 1
+				</Command>
+			</Execute>
+
+			<Execute ExecutionOrder="30" UponError="Stop">
+				<Command>rm -f /var/tmp/mVAS-Networking-dynamic.param; touch /var/tmp/mVAS-Networking-dynamic.param</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			
+			<SetParams ExecutionOrder="40" UponError="Continue">
+				<ExecutionGroup>dynamicParam</ExecutionGroup>
+			</SetParams>
+			
+			<Copy ChmodFlags="755" ExecutionOrder="20" UponError="Stop" Overwrite="true">			
+				<Source>./scripts/dtd.sh</Source>
+			</Copy>
+						
+			<Execute ExecutionOrder="50" UponError="Stop">
+				<Command>./scripts/dtd.sh</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			
+		</Upgrade>
+
+		<Uninstall>
+			<Execute ExecutionOrder="10" UponError="Continue">
+				<Command>rm -f /usr/cti/conf/swp/networking.dtd</Command>
+			</Execute>
+		</Uninstall>
+		
+		<Parameters>
+			<Parameter Name="NIC" Level="UnitType" GroupName="NIC_Count" Display="true" ExecutionGroup="dynamicParam">
+				<Description>Interface Name (eth0, eth1 etc')</Description>
+				<File Name="/var/tmp/mVAS-Networking-dynamic.param" Format="KeyValue"/>
+				<ParameterPath>eth</ParameterPath>
+				<Value>[UnitGroup.xml:concat('eth', string({InstanceIndex}-1))]</Value>
+   				<Restrictions>
+					<Type>Enum</Type>
+   					<Enum>
+						<Item Display="eth0" Value="eth0"/>
+						<Item Display="eth1" Value="eth1"/>
+						<Item Display="eth2" Value="eth2"/>
+						<Item Display="eth3" Value="eth3"/>
+						<Item Display="eth4" Value="eth4"/>
+					</Enum>
+   					<Mandatory>true</Mandatory>
+   				</Restrictions>
+   			</Parameter>
+			<Parameter Name="DEVICE" Level="UnitType" GroupName="NIC_Count" Display="true" ExecutionGroup="dynamicParam">
+				<Description>Device Type (Admin, SZ, NFS etc')</Description>
+				<File Name="/var/tmp/mVAS-Networking-dynamic.param" Format="KeyValue"/>
+				<ParameterPath>device</ParameterPath>
+				<Value></Value>
+   				<Restrictions>
+					<Type>Enum</Type>
+   					<Enum>
+						<Item Display="Admin" Value="ADMIN_DEVICE"/>
+						<Item Display="SZ" Value="SZ_DEVICE"/>
+						<Item Display="NFS" Value="NFS_DEVICE"/>
+						<Item Display="HA" Value="HA_DEVICE"/>
+						<Item Display="Backup" Value="BACKUP_DEVICE"/>
+					</Enum>
+   					<Mandatory>true</Mandatory>
+   				</Restrictions>
+   			</Parameter>
+		</Parameters>
+		<Groups>
+			<Group Name="NIC_Count" DefaultInstances="3" MinOccur="1" MaxOccur="5" DisplayName="Number of Network Interfaces"/>
+		</Groups>
+	</Component>
+</SWIM>

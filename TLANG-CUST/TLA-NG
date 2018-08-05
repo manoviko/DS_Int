@@ -1,0 +1,70 @@
+#!/bin/sh
+
+prepend_path ()
+{
+    if [ -d "$1" ]; then
+        temp_path=`echo $2 | awk -F":"  \
+          '{for (i=1; i<=NF; i++) if ($i != "'$1'") printf ":"$i}'`
+        echo "$1$temp_path"
+    else
+        echo "$2"
+    fi
+}
+
+build_classpath_variable ()
+{
+    for appl in `echo "$CLASSPATH_BASE_DIR" |
+                        awk -F":" '{for (i=NF; i>=1; i--) print $i}' ` ; do
+       if [ -d "$appl" ]; then
+          for jarfile in ${appl}/bin/*.jar ${appl}/lib/*.jar ; do
+             if [ -f ${jarfile} ]
+              then
+                CLASSPATH="${jarfile}:$CLASSPATH"
+             fi
+          done
+       fi
+       CLASSPATH=`prepend_path $appl "$CLASSPATH"`
+    done
+
+    CLASSPATH=$CLASSPATH:$CATALINA_HOME/bin/bootstrap.jar:$CATALINA_HOME/lib:${JAVA_HOME}lib/
+
+}
+
+tla_ng_password="tlang" # TODO should be encrypeted
+
+#Provide proper permission for debug files
+DEBUG_LOCATION="/var/cti/logs/tla-ng/"
+OSusername="smsc"
+files=`find $DEBUG_LOCATION -user $OSusername `
+
+for file in $files
+do
+   chmod 775 $file
+done
+
+#expect -c "spawn -noecho su - tla_ng_user -c \"\/usr\/cti\/apps\/tla-ng\/scripts\/tla_main -apps TLA_NG core_start_tlang\"; expect (yes/no)? {send -- \"yes\n\"; exp_continue} assword: {send --  \"$tla_ng_password\n\"; exp_continue; } timeout {exp_continue}; "
+
+#/usr/cti/apps/tla-ng/scripts/tla_main -apps TLA_NG core_start_tlang
+#exec /usr/java/jdk1.7.0/bin/java -Dexternal_starter MonitorTest
+export CLASSPATH_BASE_DIR="/usr/cti/apps/tla-ng/"
+#export CLASSPATH="/usr/local/swp-tomcat-6.0//bin/bootstrap.jar:/usr/local/swp-tomcat-6.0//lib:/usr/java/jdk1.7.0/lib/:/usr/cti/apps/tla-ng/bin/:/usr/cti/apps/tla-ng/lib/"
+export CATALINA_HOME="/usr/cti/apps/tla-ng/lib/tomcat/"
+export CATALINA_SERVER="$CATALINA_HOME/server/lib"
+export CATALINA_COMMON="$CATALINA_HOME/common/lib"
+export CATALINA_BASE="/usr/cti/conf/tla-ng/tomcat.TLANG/"
+export JAVA_HOME="/usr/java/jre1.7"
+export TLA_NG_CONFIG="/usr/cti/conf/tla-ng/"
+build_classpath_variable
+export CLASSPATH="/usr/cti/apps/tla-ng/bin:$CLASSPATH"
+#export DASH_DEFINES="-Dprojects_top=/usr/cti/apps//  -DTLA_NG_TOP=/usr/cti/apps/  -DTLA_NG_HOME=/usr/cti/apps/  -DTLA_NG_ISMSC=  -DTLA_NG_CONFIGS=/usr/cti/conf/  -DTLA_NG_CLASS=  -DTLA_NG_INST=  -DTLA_NG_CONFIG=  -DSITE_CONFIGS=  -DCOMSIG_ANCILLARY_CLASS=  -DTLA_NG_SCRIPTS=  -DTLA_NG_RCP=scp  -DTLA_NG_RSH=ssh"
+export DASH_DEFINES="-Dprojects_top=/usr/cti/apps/tla-ng/  -DTLA_NG_TOP=/usr/cti/apps/  -DTLA_NG_HOME=/usr/cti/apps/tla_ng_user  -DTLA_NG_ISMSC=  -DTLA_NG_CONFIGS=/usr/cti/conf/tla-ng/  -DTLA_NG_CLASS=  -DTLA_NG_INST=  -DTLA_NG_CONFIG=  -DSITE_CONFIGS=  -DCOMSIG_ANCILLARY_CLASS=  -DTLA_NG_SCRIPTS=  -DTLA_NG_RCP=scp  -DTLA_NG_RSH=ssh"
+
+HOSTNAME=`hostname`
+# get ip address of local host to allow remote JMX connections
+LOCAL_IP=`getent hosts admin-${HOSTNAME} | cut -d" " -f1,1`
+
+#exec $JAVA_HOME/bin/java -server -Dfile.encoding=ISO8859_1 -Xms512M -Xmx512M -DTLA-NG -XX:+UseConcMarkSweepGC $JAVA_OPTS $JAVA_ARGS $DASH_DEFINES \
+#com.comverse.tlang.main.TLANGBootstrap -tlang_logger_file $TLA_NG_CONFIG/Log4j.config $CATALINA_HOME $CATALINA_BASE
+
+exec $JAVA_HOME/bin/java -server -Dfile.encoding=ISO8859_1 -Xms1024M -Xmx1024M -DTLA-NG -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/home/smsc/site/trace -Dcom.sun.management.jmxremote -Djava.rmi.server.hostname=${LOCAL_IP} -Dcom.sun.management.jmxremote.port=64788 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djavax.net.ssl.trustStore=/usr/cti/apps/certificates/TLA_NGClientKeystore -Djavax.net.ssl.trustStorePassword=d7H_32wt $JAVA_OPTS $JAVA_ARGS $DASH_DEFINES \
+com.comverse.tlang.main.TLANGBootstrap -tlang_logger_file $TLA_NG_CONFIG/Log4j.config $CATALINA_HOME $CATALINA_BASE

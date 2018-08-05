@@ -1,0 +1,249 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\UAF.xsd">
+	<UnitType Name="SMS-OMU" Platform="Linux">
+		<Install>
+			<Component Name="SMS-XMLs" ExecutionOrder="10" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="SMS-HA" ExecutionOrder="40" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="SMS-DB-Creation" ExecutionOrder="50" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			
+			<Component Name="tracedb_swp-DBWatch_config_add"   ExecutionOrder="55"	UponError="Stop"	DisplayGroup="SMS-OMU"/>			
+			
+			<Component Name="NYadmin" ExecutionOrder="60" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYACE" ExecutionOrder="70" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYXERCES" ExecutionOrder="80" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYAGENTXPP" ExecutionOrder="90" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYINFRA" ExecutionOrder="100" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYSMSBASE" ExecutionOrder="110" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYJGE" ExecutionOrder="120" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYJRM" ExecutionOrder="130" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYJUTIL" ExecutionOrder="140" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYSHARED" ExecutionOrder="150" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYSMSCUSTCOMM" ExecutionOrder="160" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="omap-common-db" ExecutionOrder="190" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="omap-core-db" ExecutionOrder="200" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<!-- Component Name="omap-traces-db" ExecutionOrder="210" UponError="Stop" DisplayGroup="SMS-OMU"/ -->
+			<!-- Component Name="omap-statistics-db" ExecutionOrder="220" UponError="Stop" DisplayGroup="SMS-OMU"/ -->
+			<Component Name="omap-common-app" ExecutionOrder="230" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="omap-core-app" ExecutionOrder="240" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<!-- Component Name="omap-statistics-app" ExecutionOrder="250" UponError="Stop" DisplayGroup="SMS-OMU"/ -->
+			<!--<Component Name="omap-diagnostics" ExecutionOrder="260" UponError="Stop" DisplayGroup="SMS-OMU"/>-->
+			<Component Name="omap-trace-ng" ExecutionOrder="265" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<!-- Component Name="NYBEUTILS" ExecutionOrder="270" UponError="Stop" DisplayGroup="SMS-OMU"/ -->
+			
+                        <Component Name="ftm" ExecutionOrder="275" UponError="Stop" DisplayGroup="SMS-OMU"/>
+                        <Component Name="ConverterTool" ExecutionOrder="280" UponError="Stop" DisplayGroup="SMS-OMU"/>
+									
+			<!-- Component Name="NYAUTOCONFIG" ExecutionOrder="300" UponError="Stop" DisplayGroup="SMS-OMU"/ -->
+			
+		</Install>
+		<Uninstall>
+			<!-- Component Name="NYAUTOCONFIG" ExecutionOrder="10" UponError="Stop" DisplayGroup="SMS-OMU"/ -->
+			<Component Name="ftm" ExecutionOrder="12" UponError="Stop" DisplayGroup="SMS-OMU"/> 			
+                        <Component Name="ConverterTool" ExecutionOrder="14" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<!-- Component Name="NYBEUTILS" ExecutionOrder="13" UponError="Stop" DisplayGroup="SMS-OMU"/ -->
+    		<Component Name="omap-trace-ng" ExecutionOrder="15" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<!--<Component Name="omap-diagnostics" ExecutionOrder="20" UponError="Stop" DisplayGroup="SMS-OMU"/>-->
+			<!-- Component Name="omap-statistics-app" ExecutionOrder="30" UponError="Stop" DisplayGroup="SMS-OMU"/ -->
+			<Component Name="omap-core-app" ExecutionOrder="40" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="omap-common-app" ExecutionOrder="50" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<!-- Component Name="omap-statistics-db" ExecutionOrder="60" UponError="Stop" DisplayGroup="SMS-OMU"/ -->
+			<!-- Component Name="omap-traces-db" ExecutionOrder="70" UponError="Stop" DisplayGroup="SMS-OMU"/ -->
+			<Component Name="omap-core-db" ExecutionOrder="80" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="omap-common-db" ExecutionOrder="90" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYSMSCUSTCOMM" ExecutionOrder="110" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYSHARED" ExecutionOrder="120" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYJUTIL" ExecutionOrder="130" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYJRM" ExecutionOrder="140" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYJGE" ExecutionOrder="150" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYSMSBASE" ExecutionOrder="160" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYINFRA" ExecutionOrder="170" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYAGENTXPP" ExecutionOrder="180" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYXERCES" ExecutionOrder="190" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYACE" ExecutionOrder="200" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="NYadmin" ExecutionOrder="210" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="tracedb_swp-DBWatch_config_remove"	ExecutionOrder="215"	UponError="Stop"    DisplayGroup="SMS-OMU"/>  		
+			<Component Name="SMS-DB-Creation" ExecutionOrder="220" UponError="Stop" DisplayGroup="SMS-OMU"/>
+		</Uninstall>
+		<Upgrade>
+		    <Component Name="SMS-XMLs" ExecutionOrder="10" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="SMS-HA" ExecutionOrder="40" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="omap-common-db" ExecutionOrder="190" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="omap-core-db" ExecutionOrder="200" UponError="Stop" DisplayGroup="SMS-OMU"/>
+			<Component Name="omap-trace-ng" ExecutionOrder="265" UponError="Stop" DisplayGroup="SMS-OMU"/>
+		</Upgrade>
+		<Parameters>
+		
+			<Parameter ComponentName="SMS-XMLs" Name="TRACE-DB_VIP_DEVICE" Display="false" Overwrite="true">
+				<Value>SZ_MNIC</Value>
+			</Parameter>		
+		
+			<!-- =============   DB Watch ADD=================-->
+			<Parameter ComponentName="tracedb_swp-DBWatch_config_add" Name="DBNAME_ADD" Display="false" Overwrite="true">
+				<Value>ODS</Value>
+			</Parameter>
+			<Parameter ComponentName="tracedb_swp-DBWatch_config_add" Name="NEWTNS" Display="false" Overwrite="true">
+				<Value>tnsname</Value>
+			</Parameter>
+			<Parameter ComponentName="tracedb_swp-DBWatch_config_add" Name="TNSNAME" Display="false" Overwrite="true">
+				<Value>ODS</Value>
+			</Parameter>
+			<Parameter ComponentName="tracedb_swp-DBWatch_config_add" Name="TNSHOST" Display="false" Overwrite="true">
+				<Value>trace-db-ora-vip</Value>
+			</Parameter>
+			
+			<!-- =============   DB Watch Remove =================-->		
+			<Parameter ComponentName="tracedb_swp-DBWatch_config_remove" Name="DBNAME_REMOVE" Display="false" Overwrite="true">
+				<Value>ODS</Value>
+			</Parameter>					
+		
+		
+			<Parameter ComponentName="omap-common-db" Name="INSTALL_TYPE_TABLE_MANAGE" Display="false" Overwrite="true">
+				<Value>EE</Value>
+			</Parameter>
+			
+			<Parameter ComponentName="omap-trace-ng" Name="aas.ip_address" Display="false"/>			
+			
+					
+			<!-- NY BE-UTILS parameters -->
+			<!-- Parameter ComponentName="NYBEUTILS" Name="InstancesListT2CGroup" Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml://Virtual/Vapplication[@ApplicationLabel="TRACE2CSV"]/VUnitInstance[@VHostname="omap-processing-vip"]/@InstanceLabel]</Value>
+			</Parameter -->
+			<!-- Parameter ComponentName="NYBEUTILS" Name="RegisterToVeritas_sfe" Display="false" Overwrite="true">
+				<Value>false</Value>
+			</Parameter -->
+			<!-- Parameter ComponentName="NYBEUTILS" Name="RegisterToVeritas_OMU" Display="false" Overwrite="true">
+				<Value>true</Value>
+			</Parameter -->
+			<!-- Parameter ComponentName="NYBEUTILS" Name="VeritasGroupT2C" Display="false" Overwrite="true">
+				<Value>sms_omap_processing</Value>
+			</Parameter -->
+			<!-- Parameter ComponentName="NYBEUTILS" Name="DependancyMount" Display="false" Overwrite="true">
+				<Value>omap-processing-vip</Value>
+			</Parameter -->			
+			
+
+			<!--SMS-HA Parameters-->
+			<Parameter ComponentName="SMS-HA" Name="XML_Location" Display="false">
+				<Value>/usr/cti/conf/SMS-OMU/ha_setupSG.xml</Value>
+			</Parameter>
+			<!--SMS-DB-Creation Parameters-->
+			<Parameter ComponentName="SMS-DB-Creation" Name="XML_Location" Display="false">
+				<Value>/usr/cti/conf/SMS-OMU/Oracle-DB-Creation.xml</Value>
+			</Parameter>
+
+			<!--omap-traces-db Parameters-->
+			<!-- Parameter ComponentName="omap-traces-db" Name="IS_INSTALL_TBS" Display="false">
+				<Value>false</Value>
+			</Parameter -->
+			<!--omap-statistics-db Parameters-->
+			<!-- Parameter ComponentName="omap-statistics-db" Name="IS_COREDB_STATSDB_IN_SAME_HOST" Display="false">
+				<Value>true</Value>
+			</Parameter>
+			<Parameter ComponentName="omap-statistics-db" Name="IS_ROUTER_INSTALLATION" Display="false">
+				<Value>false</Value>
+			</Parameter>
+			<Parameter ComponentName="omap-statistics-db" Name="IS_SFE_PRESENT" Display="false">
+				<Value>true</Value>
+			</Parameter>
+			<Parameter ComponentName="omap-statistics-db" Name="IS_LIGHT_OMAP_INSTALLATION" Display="false">
+				<Value>false</Value>
+			</Parameter -->
+			<!--omap-common-app Parameters-->
+			<Parameter ComponentName="omap-common-app" Name="DB_TYPE" Display="false">
+				<Value>A/S</Value>
+			</Parameter>
+			<Parameter ComponentName="omap-common-app" Name="VIRTUAL_HOSTNAME" Display="false">
+				<Value>omap-general-vip</Value>
+			</Parameter>
+			<Parameter ComponentName="omap-common-app" Name="NUMBER_OF_HOSTS_FOR_RAC_CONF" Display="false">
+				<Value>2</Value>
+			</Parameter>
+			<Parameter ComponentName="omap-common-app" Name="DB_INSTANCE_NAME" Display="false">
+				<Value>ODS</Value>
+			</Parameter>
+			<Parameter ComponentName="omap-common-app" Name="INSTALL_TYPE_TABLE_MANAGE" Display="false" Overwrite="true">
+				<Value>EE</Value>
+			</Parameter>						
+			<!--omap-core-app Parameters-->
+			<Parameter ComponentName="omap-core-app" Name="NUMBER_OF_RAC" Display="false">
+				<Value>1</Value>
+			</Parameter>
+			<Parameter ComponentName="omap-core-app" Name="scdb.local_location_dir" Display="false">
+				<Value>scdb</Value>
+			</Parameter>
+			<Parameter ComponentName="omap-core-app" Name="USE_ON_DEMAND" Display="false">
+				<Value>false</Value>
+			</Parameter>
+			<!--omap-statistics-app Parameters-->
+			<!-- Parameter ComponentName="omap-statistics-app" Name="IS_OMAP_CONFIG_AND_STATISTICS_TOGETHER" Display="false">
+				<Value>true</Value>
+			</Parameter>
+			<Parameter ComponentName="omap-statistics-app" Name="NUMBER_OF_RAC" Display="false">
+				<Value>1</Value>
+			</Parameter -->
+			<!--NYAUTOCONFIG Parameters-->
+			<!-- Parameter ComponentName="NYAUTOCONFIG" Name="ConfigurableApplications" Display="false">
+				<Value>GFT TRACE_INFO TRACE_EVENTS sfe DBSEI MRE MRE_CONSOLE MGW MGW_CONSOLE SELFPROV SELFPROV_CONSOLE BROADCAST EMAIL HLRC</Value>
+			</Parameter>
+			<Parameter ComponentName="NYAUTOCONFIG" Name="RunAutoConfig" Display="false">
+				<Value>true</Value>
+			</Parameter>
+				<Parameter ComponentName="NYAUTOCONFIG" Name="IPGWApplication" Display="false" Overwrite="true">
+					<Value>false</Value>
+				</Parameter>
+				<Parameter ComponentName="NYAUTOCONFIG" Name="vsfe_names" Display="false"></Parameter -->
+                         <Parameter ComponentName="ConverterTool" Name="SystemDefaults.filetypes_to_process" Display="false" Overwrite="true">
+                                        <Value>IPSMGWCDR</Value>
+                          </Parameter>     				
+                         <Parameter ComponentName="ConverterTool" Name="SystemDefaults.config_folders" Display="false" Overwrite="true">
+                                        <Value>DTAG/GREECENATCO/IPSMGW</Value>
+                          </Parameter>			
+					
+		</Parameters>
+		<Dependencies>
+			<Component Name="SMS-HA" UnitName="*omu*[aA1]$">
+				<DependsOn>
+					<Component UnitName="*omu*[^aA1]$" Name="SMS-HA"/>
+				</DependsOn>
+			</Component>
+			<Component Name="SMS-DB-Creation" UnitName="*omu*">
+				<DependsOn>
+					<Component UnitName="*omu*" Name="SMS-HA"/>
+				</DependsOn>
+			</Component>
+			<Component Name="SMS-DB-Creation" UnitName="*omu*[aA1]$">
+				<DependsOn>
+					<Component UnitName="*omu*[^aA1]$" Name="SMS-DB-Creation"/>
+				</DependsOn>
+			</Component>
+			<Component Name="omap-common-db" UnitName="*omu*[aA1]$">
+				<DependsOn>
+					<!--<Component UnitName="*omu*[aA1]$" Name="omap-diagnostics"/>-->
+					<!-- Component UnitName="*omu*[aA1]$" Name="omap-statistics-app"/ -->
+					<Component UnitName="*omu*[^aA1]$" Name="omap-core-app"/>										
+				</DependsOn>
+			</Component>
+			<!-- Component UnitName="*omu*[^aA1]$" Name="omap-statistics-app" -->
+			<Component UnitName="*omu*[aA1]$" Name="omap-core-app">
+				<DependsOn>
+					<Component UnitName="*omu*[^aA1]$" Name="omap-trace-ng"/>
+				</DependsOn>
+			</Component>
+			<Component UnitName="*omu*" Name="ftm">
+				<DependsOn>
+					<!-- Component UnitName="*omu*" Name="NYBEUTILS"/ -->
+					<Component UnitName="*omu*" Name="omap-trace-ng"/>
+				</DependsOn>
+			</Component>				
+			<!-- Component UnitName="*omu*" Name="NYBEUTILS">
+				<DependsOn>
+					<Component UnitName="*omu*" Name="omap-trace-ng"/>
+				</DependsOn>
+			</Component -->			
+			<Component UnitName="*omu*" Name="tracedb_swp-DBWatch_config_add">
+				<DependsOn>
+					<Component UnitName="*omu*" Name="SMS-DB-Creation"></Component>
+				</DependsOn>
+			</Component>	
+		</Dependencies>
+	</UnitType>
+</SWIM>

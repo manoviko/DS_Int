@@ -1,0 +1,631 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\DSMYDATA\WORK\SWIM\1.4.1.0-02\SAF.xsd">
+	<System>
+		<Install>
+			<UnitType Name="OMU_Group" UponError="Stop" 	ExecutionOrder="1">
+				<UAF Name="DSU-UAF.xml" 					ExecutionOrder="1"/>
+				<UAF Name="COMPONENTS-UAF.xml" 	ExecutionOrder="2"/>
+				<UAF Name="SMS-OMU-UAF.xml" 				ExecutionOrder="3"/>
+				<UAF Name="IPSMGW-OMU-UAF.xml" ExecutionOrder="4" />				
+			</UnitType>
+		</Install>
+		<Uninstall>
+                        <UnitType Name="OMU_Group" UponError="Stop" ExecutionOrder="1">
+								<UAF Name="IPSMGW-OMU-UAF.xml" ExecutionOrder="1"/>
+                                <UAF Name="SMS-OMU-UAF.xml" ExecutionOrder="2"/>
+                                <UAF Name="COMPONENTS-UAF.xml" 	ExecutionOrder="3"/>
+                                <UAF Name="DSU-UAF.xml" 					ExecutionOrder="4"/>
+                        </UnitType>
+                </Uninstall>
+                
+		<Upgrade>
+			<UnitType Name="OMU_Group" UponError="Stop" ExecutionOrder="1">
+			<UAF Name="DSU-UAF.xml"   ExecutionOrder="1"/>
+				<UAF Name="COMPONENTS-UAF.xml" 	ExecutionOrder="2"/>
+				<UAF Name="SMS-OMU-UAF.xml" 				ExecutionOrder="3"/>
+				<UAF Name="IPSMGW-OMU-UAF.xml" ExecutionOrder="4"/>
+			</UnitType>
+		</Upgrade>
+	
+		<Parameters>
+		
+			<Parameter ComponentName="CSP_Base_Linux" Display="false" Name="Vmtools_only"/>
+			<Parameter ComponentName="CSP_Base_Linux" Display="false" Name="No_Vmtools"/>
+					
+		
+			<Alias DisplayName="Test/Production sizing" Display="true" Overwrite="true">
+				<Value>Production</Value>
+				<Restrictions>
+					<Type>Enum</Type>
+					<Mandatory>true</Mandatory>
+					<Enum>
+						<Item  Display="Test system" Value="Test"></Item>
+						<Item Display="Production system" Value="Production"></Item>
+					</Enum>					
+				</Restrictions>			
+				<Parameter ComponentName="SMS-XMLs" Name="Test_Production"></Parameter>
+				<Parameter ComponentName="OMU-XMLs" Name="Test_Production"></Parameter>
+				<Parameter ComponentName="SEM-OMU-PRE" Name="Test_Production"></Parameter>
+				<Parameter ComponentName="SEM-OMU-XMLs" Name="Test_Production"></Parameter>
+				<Parameter ComponentName="SEM-UTILS" Name="Test_Production"></Parameter>
+			</Alias>
+			
+			<!-- Parameter ComponentName="OMU-XMLs" Name="CDR-ADMIN-VIP" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"FTM_VIP.")]/VUnitInstance/@VirtualIp]</Value>
+			</Parameter -->
+			<Parameter ComponentName="OMU-XMLs" Name="OMAP-DB-VIP" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"ODB.")]/VUnitInstance/@VirtualIp]</Value>
+			</Parameter>
+			<Parameter ComponentName="OMU-XMLs" Name="MAINT-ADMIN-VIP" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"SiteBook.")]/VUnitInstance/@VirtualIp]</Value>
+			</Parameter>
+			<Parameter ComponentName="OMU-XMLs" Name="CENTRAL-LOG-VIP" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"SyslogServer.")]/VUnitInstance/@VirtualIp]</Value>
+			</Parameter>
+			
+			<!-- Components -->
+            <Parameter ComponentName="omap-common-app" Display="false" Overwrite="true" Name="VIRTUAL_HOSTNAME">
+               <Value>omap-general-vip</Value>
+            </Parameter>			
+			<Parameter ComponentName="omap-common-app" Name="HOST_IP_FOR_RAC_CONF" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://string-join(/UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance/Connection[@Type='Management']/@IP,',')]</Value>
+			</Parameter>
+			<Parameter ComponentName="omap-common-app" Display="false" Overwrite="true" Name="NUMBER_OF_HOSTS_FOR_RAC_CONF">
+               <Value>1</Value>
+            </Parameter>
+
+
+			<Alias DisplayName="AAS IP" Display="false" Overwrite="true">
+				<Value>AAS</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<!-- Parameter ComponentName="omap-trace-ng" Name="aas.ip_address"/ -->
+				<Parameter ComponentName="omap-core-app" Name="aas.ip_address"/>
+			</Alias>
+						
+			<Parameter ComponentName="omap-trace-ng" Name="NUMBER_OF_RAC" Overwrite="true" Display="false">
+               <Value>1</Value>
+            </Parameter>			
+            <Parameter ComponentName="omap-trace-ng" Name="OMAP_COMMON_VERSION" Display="false" /> 	
+            <Parameter ComponentName="omap-trace-ng" Name="DB_INSTANCE_NAME" Display="false" Overwrite="true">
+				<Value>ODS</Value>
+			</Parameter>
+            <Parameter ComponentName="omap-trace-ng" Name="TRACE_NG_VIP" Overwrite="true" Display="false">
+               <Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"Trace_UI.")]/VUnitInstance/@VirtualIp]</Value>
+            </Parameter>            
+			<Parameter ComponentName='omap-trace-ng' Name='RAC_TYPE' Overwrite="true" Display="false">
+				<Value>ECS</Value>
+            </Parameter>
+            <Parameter ComponentName='omap-trace-ng' Name='NUMBER_OF_HOSTS_FOR_RAC' Overwrite="true" Display="false">
+				<Value>1</Value>
+            </Parameter>
+            <Parameter ComponentName='omap-trace-ng' Name='DB_TYPE' Overwrite="true" Display="false">
+				<Value>A/S</Value>
+            </Parameter>
+            <Parameter ComponentName='omap-trace-ng' Name='HOST_IP_FOR_RAC' Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://string-join(/UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance/Connection[@Type='Management']/@IP,',')]</Value>
+            </Parameter>
+            <Parameter ComponentName="omap-trace-ng" Name="DB_VIP" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://distinct-values(/UnitGroup/Virtual/Vapplication/VUnitInstance/VConnection[@VHostname='trace-db-vip']/@VirtualIp)]</Value>
+            </Parameter>
+			<Parameter ComponentName='omap-trace-ng' Name='IS_IPSMGW' Overwrite="true" Display="false">
+				<Value>true</Value>
+            </Parameter>
+          
+                        
+            <!--  SMS-OMU -->
+			<Parameter ComponentName="SMS-XMLs" Name="SMS-CDR-ADMIN-VIP" Overwrite="true" Display="false">
+<Value>[UnitGroup.xml://distinct-values(/UnitGroup/Virtual/Vapplication/VUnitInstance/VConnection[@VHostname='omap-processing-vip']/@VirtualIp)]</Value>
+			</Parameter>
+			<Parameter ComponentName="omap-core-db" Name="OMAP_SERVER_HOSTNAME" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance[contains(@Hostname,"1a")]/@UnitName]</Value>
+			</Parameter>
+			
+            <Parameter ComponentName="omap-core-app" Display="false" Overwrite="true" Name="use_partitionsless_tracesdb">
+				<Value>false</Value>
+			</Parameter>			
+           <Parameter ComponentName='omap-core-app' Name='NUMBER_OF_RAC' Overwrite="true" Display="false">
+				<Value>1</Value>
+            </Parameter>
+            <Parameter ComponentName='omap-core-app' Name='NUMBER_OF_HOSTS_FOR_RAC' Overwrite="true" Display="false">
+				<Value>2</Value>
+            </Parameter>
+            <Parameter ComponentName='omap-core-app' Name='DB_TYPE' Overwrite="true" Display="false">
+				<Value>A/S</Value>
+            </Parameter>
+            <Parameter ComponentName='omap-core-app' Name='DB_VIP' Overwrite="true" Display="false">
+		<Value>[UnitGroup.xml://distinct-values(/UnitGroup/Virtual/Vapplication/VUnitInstance/VConnection[@VHostname='trace-db-vip']/@VirtualIp)]</Value>
+            </Parameter>		
+            <Parameter ComponentName='omap-core-app' Name='HOST_IP_FOR_RAC' Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://string-join(/UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance/Connection[@Type='Management']/@IP,',')]</Value>
+            </Parameter>     
+            <Parameter ComponentName='omap-core-app'  Name="install_lawfulInterception_plugin" Overwrite="true" Display="false">
+				<Value>false</Value>
+            </Parameter>
+            <Parameter ComponentName='omap-core-app'  Name="install_broadcast_plugin" Overwrite="true" Display="false">
+				<Value>false</Value>
+            </Parameter>   
+            <Parameter ComponentName='omap-core-app'  Name="install_dashboard_plugin" Overwrite="true" Display="false">
+				<Value>false</Value>
+            </Parameter>
+            <Parameter ComponentName='omap-core-app'  Name="install_aduit_log_tab_in_monitoring" Overwrite="true" Display="false">
+				<Value>false</Value>
+            </Parameter>
+            <Parameter ComponentName='omap-core-app'  Name="install_passwordManagement_plugin" Overwrite="true" Display="false">
+				<Value>false</Value>
+            </Parameter>                                                         
+
+           <Parameter ComponentName='omap-statistics-app' Name='NUMBER_OF_RAC' Overwrite="true" Display="false">
+				<Value>1</Value>
+            </Parameter>
+            <Parameter ComponentName='omap-statistics-app' Name='NUMBER_OF_HOSTS_FOR_RAC' Overwrite="true" Display="false">
+				<Value>2</Value>
+            </Parameter>
+            <Parameter ComponentName='omap-statistics-app' Name='DB_TYPE' Overwrite="true" Display="false">
+				<Value>A/S</Value>
+            </Parameter>
+            <Parameter ComponentName='omap-statistics-app' Name='DB_VIP' Overwrite="true" Display="false">
+            <Value>[UnitGroup.xml://distinct-values(/UnitGroup/Virtual/Vapplication/VUnitInstance/VConnection[@VHostname='trace-db-vip']/@VirtualIp)]</Value>
+            </Parameter>		
+            <Parameter ComponentName='omap-statistics-app' Name='HOST_IP_FOR_RAC' Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://string-join(/UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance/Connection[@Type='Management']/@IP,',')]</Value>
+            </Parameter>              
+						
+			<Alias Display="false" DisplayName="OCS">
+				<Value>false</Value>
+				<Restrictions>
+					<Type>Boolean</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="swp-HA" 							Name="IsOCS"/>
+				<Parameter ComponentName="Oracle-SW" 						Name="IS_OCS"/>
+				<!-- Parameter ComponentName="scdb_customization_sem" 	Name="IsOCS"/ -->	
+				<Parameter ComponentName="OMU-HA" 							Name="IsOCS"/>		
+				<Parameter ComponentName="SEM-HA" 							Name="IsOCS"/>	
+				<Parameter ComponentName="SEM-OMU-POST" 				Name="IsOCS"/>
+				<Parameter ComponentName="SMS-HA" 							Name="IsOCS"/>				
+					
+			</Alias>
+
+			<Alias Display="false" DisplayName="RAC">
+				<Value>false</Value>
+				<Restrictions>
+					<Type>Boolean</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="swp-HA" Name="IsRAC"/>
+			</Alias>
+                                
+			<Alias Display="false" DisplayName="SZ Netmask">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance[1]/Connection[@Type="Data"]/@Netmask]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+				</Restrictions>
+				<Parameter ComponentName="OMU-XMLs" Name="SZ-Netmask"/>
+				<Parameter ComponentName="SMS-XMLs" Name="SZ-Netmask"/>				
+			</Alias>
+
+
+			<Alias Display="false" DisplayName="Admin Netmask">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance[1]/Connection[@Type="Management"]/@Netmask]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+				</Restrictions>
+				<Parameter ComponentName="OMU-XMLs" Name="Admin-Netmask"/>
+				<Parameter ComponentName="SMS-XMLs" Name="Admin-Netmask"/>
+				<Parameter ComponentName="SEM-OMU-XMLs" Name="Admin-Netmask"/>
+			</Alias>
+
+			<!-- should be separated from above since not on the same level -->
+			<Parameter ComponentName="omap-trace-ng" Name="TRACE_NG_SUBNET_MASK" Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance[1]/Connection[@Type="Management"]/@Netmask]</Value>
+			</Parameter>
+
+
+			<!--COMPONENETS Aliases Start @@@Delete this part if COMPONENTS not installed@@@-->
+			<Alias Display="false" DisplayName="SPM Agent Batch Directory">
+				<Value>/data/sem-spm-agent-data</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>				
+				<Parameter ComponentName="SpmAgent" Name="BATCH_HOME_DIR"/>
+				<!-- Parameter ComponentName="MW_DB_INSTALL" Name="BATCHWRITEDIR"/ -->
+			</Alias>			
+			
+			<Parameter ComponentName="OSSP-NG" Name="PROXY_REDIRECTION" Display="false" Overwrite="true">
+				<Value>FALSE</Value>
+			</Parameter>
+			
+			<!-- Parameter ComponentName="PgwAgent" Name="BIND_TO_IP" Overwrite="true" Display="false">
+				<Value>maint-admin-vip</Value>
+			</Parameter -->
+			
+			<Alias Display="false" DisplayName="Monitoring Type">
+				<Value>Cluster</Value>
+				<Restrictions>
+					<Type>Enum</Type>
+					<Enum>
+						<Item Display="None" Value="None"/>
+						<Item Display="Babysitter" Value="Babysitter"/>
+						<Item Display="Cluster" Value="Cluster"/>
+					</Enum>
+				</Restrictions>
+				<Parameter ComponentName="AAS" Name="MONITORING_TYPE"/>
+				<Parameter ComponentName="OSSP-NG" Name="MONITORING_TYPE"/>
+				<Parameter ComponentName="SCDB" Name="Monitoring_Type"/>
+				<!-- Parameter ComponentName="PM" Name="Monitoring_Type"/ -->
+				<Parameter ComponentName="Site-Book-Server" Name="Monitoring_Type"/>
+				<Parameter ComponentName="Site-Book-DB" Name="Monitoring_Type"/>
+			</Alias>
+		
+			<Alias Display="false" DisplayName="omap_maint Group Name">
+				<Value>omap_maint</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+				<Parameter ComponentName="ccmng-manager-db" 	Name="CCM.RESOURCE_GROUP_NAME"/>
+				<Parameter ComponentName="ccmng-manager-appl" 	Name="CCM.RESOURCE_GROUP_NAME"/>
+				<!-- Parameter ComponentName="PgwAgent" 					Name="CLUSTER_RESOURCE_GROUP"/ -->
+				<Parameter ComponentName="SCDB" 						Name="Cluster_Resource_Group_Name"/>
+				<Parameter ComponentName="Site-Book-Server" 					Name="Cluster_Resource_Group_Name"/>
+				<Parameter ComponentName="Site-Book-DB" 					Name="Cluster_Resource_Group_Name"/>
+			</Alias>
+
+			<Alias Display="false" DisplayName="omap_maint Virtual IP\Hostname">
+				<Value>maint-admin-vip</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+				<Parameter ComponentName="ccmng-manager-appl" Name="CCM.VIRTUAL_HOST_NAME"/>
+				<Parameter ComponentName="Site-Book-Server" Name="Bind_To_Ip"/>
+			</Alias>
+
+			<Alias Display="false" DisplayName="omap_global Group Name">
+				<Value>omap_global</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+				<Parameter ComponentName="AAS" Name="CLUSTER_RESOURCE_GROUP_NAME"/>
+				<Parameter ComponentName="OSSP-NG" Name="CLUSTER_RESOURCE_GROUP_NAME"/>
+				<!-- Parameter ComponentName="PGW" Name="CLUSTER_RESOURCE_GROUP"/ -->
+			</Alias>
+
+
+			<Alias Display="false" DisplayName="omap_cdr Group Name">
+				<Value>sms_omap_processing</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+				<Parameter ComponentName="ftm" Name="Cluster_Group_Name"/>
+			</Alias>
+
+			<Alias Display="false" DisplayName="Resource Dependencies">
+				<Value>NONE</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+				<Parameter ComponentName="AAS" Name="RESOURCE_DEPENDENCIES"/>
+				<Parameter ComponentName="OSSP-NG" Name="RESOURCE_DEPENDENCIES"/>
+				<Parameter ComponentName="Site-Book-Server" Name="Resource_Dependencies"/>
+			</Alias>
+
+			<Alias Display="false" DisplayName="Components Database Name (omap_db)">
+				<Value>omap_db</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+				<Parameter ComponentName="AAS-DB" Name="DB_NAME"/>
+				<Parameter ComponentName="ccmng-manager-appl" Name="DB_NAME"/>
+				<Parameter ComponentName="ccmng-manager-db" Name="DB_NAME"/>
+				<Parameter ComponentName="Site-Book-DB" Name="DB_NAME"/>
+				<Parameter ComponentName="Site-Book-Server" Name="DB_NAME"/>
+				<!-- Parameter ComponentName="ftm_db" Name="DB_NAME"/ -->
+			</Alias>
+			
+			<Parameter ComponentName="AAS-DB" Name="INSTANCE_NAME" Display="false" Overwrite="true">
+				<Value>omap_db</Value>
+			</Parameter>
+
+			<Alias Display="false" DisplayName="omap_db dbf files location">
+				<Value>/data/omap_db_data/omap_db/dbf/</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+				<Parameter ComponentName="ccmng-manager-db" Name="ORACLE_DB_PATH"/>
+				<Parameter ComponentName="ccmng-manager-db" Name="CCM.DB_UPGRADE_FOLDER_PATH"/>
+				<Parameter ComponentName="Site-Book-DB" Name="ORACLE_DBF_LOCATION"/>
+			</Alias>
+
+			<Alias Display="false" DisplayName="omap_db oracle connection string">
+				<Value>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=omap-db-vip)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=omap_db)(SERVER=DEDICATED)))</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+				<Parameter ComponentName="AAS-DB" 							Name="AAS-DB_General_URL"/>
+				<Parameter ComponentName="AAS" 							Name="AAS-DB_General_URL"/>				
+				<Parameter ComponentName="ccmng-manager-appl" 	Name="db.db_general_url"/>
+				<Parameter ComponentName="ccmng-manager-db" 	Name="db.db_general_url"/>
+				<Parameter ComponentName="Site-Book-DB" 					Name="DB_URL"/>
+				<Parameter ComponentName="Site-Book-Server" 					Name="DB_URL"/>
+			</Alias>
+
+			<Alias Display="false" DisplayName="SSL certification file">
+				<Value></Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+				<Parameter ComponentName="AAS" 				Name="KEY_STORE_FILE"/>
+				<Parameter ComponentName="OSSP-NG" 	Name="KEY_STORE_FILE"/>
+				<!-- Parameter ComponentName="PGW" 			Name="KEY_STORE_FILE"/ -->
+				<!-- Parameter ComponentName="PgwAgent" 		Name="KEY_STORE_FILE"/ -->
+			</Alias>
+
+			<Alias Display="false" DisplayName="SSL certification file password">
+				<Value></Value>
+				<Restrictions>
+					<Type>Password</Type>
+				</Restrictions>
+				<Parameter ComponentName="AAS" 				Name="KEY_STORE_PASS"/>
+				<Parameter ComponentName="OSSP-NG" 	Name="KEY_STORE_PASS"/>
+				<!-- Parameter ComponentName="PGW" 			Name="KEY_STORE_PASS"/>
+				<Parameter ComponentName="PgwAgent" 		Name="KEY_STORE_PASS"/ -->
+			</Alias>
+
+			<Alias Display="false" DisplayName="Home directory of Tomcat">
+				<Value>/usr/local/swp-tomcat-7.0/</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+				<Parameter ComponentName="WSA" 						Name="TOMCAT_HOME_DIRECTORY"/>
+			</Alias>
+
+			<Alias Display="false" DisplayName="Home directory of Java">
+				<Value>/usr/java/jre1.7/</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+				<Parameter ComponentName="SCDB" Name="Java_Path"/>
+			</Alias>
+			
+			<Alias Display="false" DisplayName="Shared partition location path">
+				<Value>/usr/cti/apps/omap_maint/</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+				<Parameter ComponentName="SCDB" 		Name="ShareLocation"/>
+				<Parameter ComponentName="Site-Book-Server" 	Name="SHARE_DIR"/>
+				<!-- Parameter ComponentName="OSSP-NG" Name="SHARELOCATION"/ -->
+			</Alias>
+
+			<Alias Display="true" DisplayName="Allowed IP Addresses to connect to system (Pipe seperated)">
+				<Value>10.*.*.*|172.*.*.*</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+				<Parameter ComponentName="ccmng-manager-appl" 	Name="CCM.ALLOWED_IP_ADDRESS"/>
+				<Parameter ComponentName="ccmng-agent" 				Name="CCM.ALLOWED_IP_ADDRESS"/>
+				<Parameter ComponentName="omap-common-app" 	Name="SUBNET_MASK"/>
+				<Parameter ComponentName="omap-core-app" 			Name="SUBNET_MASK"/>
+				<Parameter ComponentName="omap-statistics-app" 	Name="SUBNET_MASK"/>
+			</Alias>
+
+			<Alias Display="false" DisplayName="SMSC Version">
+				<Value>5.2.000</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+				<Parameter ComponentName="omap-common-app" Name="infra_version"/>
+				<Parameter ComponentName="omap-common-app" Name="sms_base_version"/>
+				<Parameter ComponentName="omap-common-app" Name="smsc_version"/>
+			</Alias>
+
+			<Alias Display="false" DisplayName="sms_omap_db group VIP address">
+				   <Value>[UnitGroup.xml://distinct-values(/UnitGroup/Virtual/Vapplication/VUnitInstance/VConnection[@VHostname='trace-db-vip']/@VirtualIp)]</Value>
+                   <Restrictions>
+						 <Type>String</Type>
+						<Mandatory>true</Mandatory>
+                    </Restrictions>
+                    <Parameter ComponentName="SMS-XMLs" 				Name="SMS-TRACE-DB-VIP"/>
+                     <Parameter ComponentName="omap-common-app" 	Name="DB_VIP"/>
+            </Alias>
+
+			<Alias Display="false" DisplayName="sms_omap_general group VIP address">
+                <Value>[UnitGroup.xml://distinct-values(/UnitGroup/Virtual/Vapplication/VUnitInstance/VConnection[@VHostname='omap-general-vip']/@VirtualIp)]</Value>
+                                <Restrictions>
+                                        <Type>String</Type>
+										<Mandatory>true</Mandatory>
+                                </Restrictions>
+                                <Parameter ComponentName="SMS-XMLs" 		Name="SMS-MAINT-ADMIN-VIP"/>
+                                <Parameter ComponentName="omap-core-app" 	Name="GUI_IP"/>
+                        </Alias>
+
+			<Alias Display="false" DisplayName="IP Address of first node in cluter (on admin network)">
+                                <Value>[UnitGroup.xml://UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance[contains(@Hostname,"1a")]/Connection[@Type="Management"]/@IP]</Value>
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                </Restrictions>
+                                <Parameter ComponentName="omap-core-db" 		Name="OMAP_SERVER_IP"/>
+                                <Parameter ComponentName="omap-statistics-db" 	Name="OMAP_COREDB_IP"/>
+								<Parameter ComponentName="SEM-OMU-POST" 	Name="SEM_OMU_IP_1" />                               
+                        </Alias>
+		
+			<Alias Display="false" DisplayName="IP Address of second node in cluter (on admin network)">
+                                <Value>[UnitGroup.xml://UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance[contains(@Hostname,"1b")]/Connection[@Type="Management"]/@IP]</Value>
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                </Restrictions>
+								<Parameter ComponentName="SEM-OMU-POST" 	Name="SEM_OMU_IP_2" />                               
+                        </Alias>		
+		
+			<!--COMPONENETS Aliases End-->
+			
+			<Alias DisplayName="Application Product Name as it appears in scdb.xml, e.g. ECS" Display="true" Overwrite="true">
+				<Value>IPSMGW</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="SEM-ossp_menu" Name="App_Product_Name"></Parameter>
+			</Alias>
+			<!--<Alias DisplayName="OMAP Product Name as it appears in scdb.xml, e.g. HUB" Display="true" Overwrite="true">
+				<Value>HUB</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="SEM-ossp_menu" Name="Omap_Product_Name"></Parameter>
+			</Alias>-->			
+			
+			
+			<!--   SEM CUST -->
+			
+			<Parameter ComponentName="SEM-OMU-XMLs" Display="false" Name="SPM-AGENT-VIP" Overwrite="true">
+					<Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,'SEM_SPMAgent.')]/VUnitInstance/VConnection/@VirtualIp]</Value>	
+			</Parameter>		
+			
+			<Parameter ComponentName="WSA" Name="WSA_RESOURCE_GROUP" Display="false" Overwrite="true">
+				<Value>sem_spm_agent</Value>
+			 </Parameter>
+
+			<Alias Display="false" DisplayName="Middleware DB Host">
+				 <Value>MW_DB</Value>
+			 	<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				 </Restrictions>
+				<Parameter ComponentName="ComPAS-CUST"          Name="MiddleWareDBHOST"/>
+				<Parameter ComponentName="SpmAgent-CUST"          Name="MiddleWareDBHOST"/>
+				 <Parameter ComponentName="WSA-CUST" Name="MiddleWareDBHOST"/>
+			 </Alias>
+			
+			<Alias Display="false" DisplayName="Middleware DB Service Name(Compas DB)">
+				<Value>SEM_DB</Value>
+                <Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="ComPAS-CUST"   	Name="MiddleWareDBSID"/>
+				<Parameter ComponentName="SpmAgent-CUST"   	Name="MiddleWareDBSID"/>				
+				<Parameter ComponentName="WSA-CUST" 			Name="MiddleWareDBSID"/>
+			 </Alias>
+			 
+			<!-- Alias Display="false" DisplayName="SCDB ROOT system name">
+				<Value>[File=/var/cti/data/swim/systems/SystemList.xml://SystemList/SystemRoot/@SystemName]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="SEM-PM-CUST" 	Name="ROOT_SYS_ID"/>
+				<Parameter ComponentName="SEM-Site-Book-Server" 	Name="SB_ROOT_SYS_ID"/>
+			</Alias -->
+			
+			<!-- Alias Display="false" DisplayName="SCDB SEM system name">
+				<Value>[File=/var/cti/data/swim/systems/SystemList.xml://SystemList/SystemRoot/SystemRoot[contains(@SystemLabel,"ECS")]/@SystemName]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="dns_configuration_hub" Name="HUB_SYS_NAME"/>				
+			</Alias -->
+			
+			<Alias Display="false" DisplayName="SCDB HUB system name">
+           <Value>[File=/var/cti/data/swim/systems/SystemList.xml://SystemList/SystemRoot/SystemRoot[contains(@SystemLabel,"HUB")]/@SystemName]</Value>
+            <Restrictions>
+              <Type>String</Type>
+              <Mandatory>true</Mandatory>
+            </Restrictions>
+          <!-- Parameter ComponentName="SEM-Site-Book-Server" Name="SB_HUB_SYS_ID"/ -->
+          <Parameter ComponentName="SEM-OMAPCOMMON-CUST" Name="admin_system_name"/>
+       </Alias>
+       
+        <Parameter ComponentName="SCDB" Name="MACHINE_TYPE" Display="false" Overwrite="true"/>
+					
+			<!--   =============== SEM-OMU-POST ================ -->
+			<Parameter ComponentName="RegistrarTool" Name="OUTPUT_DIR"  Display="false" Overwrite="true"></Parameter>
+			
+			<Alias DisplayName="NTP SERVER1" Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml://UnitGroup/Logical/Application[contains(@ApplicationName,"NTPSERVER1.")]/UnitInstance/@MngIp]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="mVAS-IPSMGW-Customization-OMU" Name="NtpServer1"/>
+			</Alias>
+			<Alias DisplayName="NTP SERVER2" Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml://UnitGroup/Logical/Application[contains(@ApplicationName,"NTPSERVER2.")]/UnitInstance/@MngIp]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="mVAS-IPSMGW-Customization-OMU" Name="NtpServer2"/>						
+			</Alias>
+			
+			<Alias Display="false" DisplayName="First IP of the SNMP manager (smu1a)">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[contains(@GroupName,"SMU")]/UnitInstance[contains(@Hostname,"1a")]/Connection[@Type="Management"]/@IP]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>					
+				<Parameter ComponentName="SEM-OMU-POST" Name="snmpManagerPA1"/>
+				<Parameter ComponentName="mVAS-IPSMGW-Customization-OMU" Name="SnmpManagerPA1"/>
+			</Alias>
+			<Alias Display="false" DisplayName="Second IP of the SNMP manager(smu1b)">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[contains(@GroupName,"SMU")]/UnitInstance[contains(@Hostname,"1b")]/Connection[@Type="Management"]/@IP]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>					
+				<Parameter ComponentName="SEM-OMU-POST" Name="snmpManagerPA2"/>
+				<Parameter ComponentName="mVAS-IPSMGW-Customization-OMU" Name="SnmpManagerPA2"/>				
+			</Alias>
+			<Alias Display="false" DisplayName="Virtual IP of the SNMP manager (SMU)">
+				<Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"SNMPMANAGER.")]/VUnitInstance/@VirtualIp]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>					
+				<Parameter ComponentName="SEM-OMU-POST" Name="ICC_VIP"/>
+				<Parameter ComponentName="mVAS-IPSMGW-Customization-OMU" Name="SnmpManager"/>	
+			</Alias>
+            <Parameter ComponentName='SEM-OMU-POST' Name='NTP_PEERS' Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://string-join(/UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance/@UnitName,',')]</Value>
+            </Parameter>										
+
+			<Parameter ComponentName="UPDATE-JAVA-HOME" Name="JAVA_HOME" Display="false" Overwrite="true">
+				<Value>/usr/java/jre1.7</Value>
+			</Parameter>		
+
+			<!--     ============= MW_TRACE SCHEMA ============= -->
+			<Parameter  ComponentName="MW_TRACE_DB_INSTALL_LINUX" Name="MW_TRACE_SID" Display="false" Overwrite="true">
+				<Value>ODS</Value>
+			</Parameter>
+			<!-- Parameter  ComponentName="MW_TRACE_DB_INSTALL_LINUX" Name="MW_TRACE_PASS" Display="false" Overwrite="true">
+				<Value>Mw71Trace9</Value>
+			</Parameter -->	
+			<!-- Parameter  ComponentName="MW_TRACE_DB_INSTALL_LINUX" Name="DBA_ADMIN_PASS" Display="false" Overwrite="true">
+				<Value>Dba87Admin1</Value>
+			</Parameter -->	
+			<Parameter  ComponentName="MW_TRACE_DB_INSTALL_LINUX" Name="DBA_ADMIN_PASS" Display="false" Overwrite="true"/>
+			<Parameter  ComponentName="MW_TRACE_DB_INSTALL_LINUX" Name="TEMP_TBS" Display="false" Overwrite="true"/>
+			<Parameter  ComponentName="MW_TRACE_DB_INSTALL_LINUX" Name="MW_TRACE_DATA_FILES" Display="false" Overwrite="true"/>
+			<Parameter  ComponentName="MW_TRACE_DB_INSTALL_LINUX" Name="MW_TRACE_INDEX_FILES" Display="false" Overwrite="true"/>
+			<Parameter  ComponentName="MW_TRACE_DB_INSTALL_LINUX" Name="MW_TRACE_PASS" Display="false" Overwrite="true"/>
+			<Parameter  ComponentName="MW_TRACE_DB_INSTALL_LINUX" Name="HOME_DIR" Display="false" Overwrite="true">
+				<Value>/data/trace_db_data/ODS/dbf</Value>
+			</Parameter>	
+			<Parameter  ComponentName="MW_TRACE_DB_INSTALL_LINUX" Name="ORACLE_HOME" Display="false" Overwrite="true">
+				<Value>/oracle/product/v12.1.0</Value>
+			</Parameter>
+			<Parameter  ComponentName="MW_TRACE_DB_INSTALL_LINUX" Name="COMPRESSION" Display="false" Overwrite="true"/>
+	
+		
+		</Parameters>		 
+	</System>
+</SWIM>

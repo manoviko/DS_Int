@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<filter>
+        <virtual>
+                <!-- Add here application elements with the application mane as text -->
+                <!-- For example to include the ADMINDB application you will add: -->
+        <!--    <application>ADMINDB</application> -->
+                <application>CentralSCDB.System4.comverse.com</application>
+                <application>MIPS1.System4.comverse.com</application>
+                <application>ODS.System4.comverse.com</application>
+                <application>ProfileCounter.Trilogue4.Trilogue4</application>
+        </virtual>
+        <physicalBlackList>
+  <!--
+        topology will not include System with name "System1"
+        <TopologyLevel>System1/*/*</TopologyLevel>
+
+         topology will not include ALL farms with name "OMU_Farm"
+        <TopologyLevel>*/OMU_Farm/*</TopologyLevel>
+
+        topology will not include ALL units with name "omu1"
+        <TopologyLevel>*/*/omu1</TopologyLevel>
+
+        topology will not include ALL farm/group named "OMU_Farm" under "System1"
+        <TopologyLevel>System1/OMU_Farm/*</TopologyLevel>
+
+        topology will not include ALL units named "omu1" under farm/group name "OMU_Farm"
+        <TopologyLevel>*/OMU_Farm/omu1</TopologyLevel>
+
+        topology will not include  unit "omu1" under farm/group  "OMU_Farm" under system "System1"
+        <TopologyLevel>System1/OMU_Farm/omu1</TopologyLevel>
+ -->
+
+
+    <TopologyLevel>*/NetApp_Group/*</TopologyLevel>
+    <TopologyLevel>*/LBA_Group/*</TopologyLevel>
+    <TopologyLevel>*/IBM-BC_Group/*</TopologyLevel>
+    <TopologyLevel>*/HP-BC_Group/*</TopologyLevel>
+    <TopologyLevel>*/HSBU_Group/*</TopologyLevel>
+    <TopologyLevel>*/VP-SEM-DSU/*</TopologyLevel>
+    <TopologyLevel>*/VP-SEM-App/*</TopologyLevel>
+    <TopologyLevel>*/vManagment_Group/*</TopologyLevel>
+    <TopologyLevel>*/VP-SEM-DSCS/*</TopologyLevel>
+</physicalBlackList>
+</filter>

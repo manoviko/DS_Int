@@ -1,0 +1,247 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\UAF.xsd">
+	<UnitType Name="ISU_Group" Platform="Linux">
+		<Install>
+			<Component Name="CSP_Base_Linux" 			ExecutionOrder="10"		UponError="Stop"		DisplayGroup="ISU"/>
+			<!-- Component Name="SEM-VM-NW-SZ" 			ExecutionOrder="20" 	UponError="Stop"	DisplayGroup="ISU"/ -->
+			<Component Name="mVAS-IPSMGW-Customization-APP" 			ExecutionOrder="20" 	UponError="Stop"	DisplayGroup="ISU"/>
+			
+			<Component Name="NYadmin" 						ExecutionOrder="30" 	UponError="Stop"	DisplayGroup="ISU"/>
+			<Component Name="SEM-SIL-SSH" 				ExecutionOrder="55" 	UponError="Stop"	DisplayGroup="ISU"/>			
+			<Component Name="swp_jre_1.7-64" 				ExecutionOrder="60" 	UponError="Stop"	DisplayGroup="ISU"/>
+			<Component Name="System_Kit" 					ExecutionOrder="61" 	UponError="Stop"	DisplayGroup="ISU"/>			
+			<Component Name="UPDATE-JAVA-HOME"	ExecutionOrder="62" 	UponError="Stop"	DisplayGroup="ISU"/>			
+			<Component Name="swp_tomcat7_0-RHEL6" 			ExecutionOrder="70" 	UponError="Stop"	DisplayGroup="ISU"/>
+			
+			 <Component Name="Babysitter-IC" 				ExecutionOrder="72" 	UponError="Stop"	DisplayGroup="ISU"/>
+			<Component Name="DNS_Client" 					ExecutionOrder="75" 	UponError="Stop"	DisplayGroup="ISU"/>
+			<Component Name="Ora_Client_Linux" 			ExecutionOrder="80"		UponError="Stop" 		DisplayGroup="ISU"/>
+			<Component Name="NYACE" 						ExecutionOrder="100"	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYXERCES" 					ExecutionOrder="110"	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYAGENTXPP" 				ExecutionOrder="120"	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYINFRA" 					ExecutionOrder="130"	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYSMSBASE" 				ExecutionOrder="140"	UponError="Stop"		DisplayGroup="ISU"/>
+			<!--Component Name="NYJUTIL" 						ExecutionOrder="150"	UponError="Stop" 		DisplayGroup="ISU"/>
+			<Component Name="NYJGE" 						ExecutionOrder="160"	UponError="Stop" 		DisplayGroup="ISU"/>
+			<Component Name="NYJRM" 						ExecutionOrder="170"	UponError="Stop" 		DisplayGroup="ISU"/-->
+			<Component Name="NYSHARED" 				ExecutionOrder="180"	UponError="Stop" 		DisplayGroup="ISU"/>
+			<!--Component Name="NYSMSLICENSE" 			ExecutionOrder="190"	UponError="Stop"		DisplayGroup="ISU"/-->
+			<!--Component Name="NYSMRT" 						ExecutionOrder="200"	UponError="Stop"		DisplayGroup="ISU"/-->
+			<!--Component Name="NYSMSCTL" 					ExecutionOrder="210"	UponError="Stop"		DisplayGroup="ISU"/-->
+			<Component Name="NYM-INFRA" 					ExecutionOrder="220"	UponError="Stop"		DisplayGroup="ISU"/>	
+			<Component Name="NYM-CODECS" 			ExecutionOrder="230"	UponError="Stop"		DisplayGroup="ISU"/>	
+			<Component Name="NYM-PPGW" 				ExecutionOrder="240"	UponError="Stop"		DisplayGroup="ISU"/>
+			<!--Component Name="NYM-PREPAID-CUST" 	ExecutionOrder="241" 	UponError="Stop"	    DisplayGroup="ISU"/-->
+      <!--Component Name="NYM-PRSNL"                ExecutionOrder="245"    UponError="Stop"      DisplayGroup="ISU"/-->
+
+			<Component Name="NYM-CNSL" 					ExecutionOrder="250"	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="MRE-CONSOLE-CUST" 	ExecutionOrder="255"	UponError="Stop"		DisplayGroup="ISU"/>
+			
+			<Component Name="NYAUTOCONFIG" 			ExecutionOrder="260"	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="MIDDLEWARE-SRV" 		ExecutionOrder="265" 	UponError="Stop"	DisplayGroup="ISU"/>			
+			<Component Name="ACCESS-CORE" 			ExecutionOrder="270" 	UponError="Stop"		DisplayGroup="ISU"/>	
+			<Component Name="ACCESS-CORE-IPSMGW" 			ExecutionOrder="271" 	UponError="Stop"		DisplayGroup="ISU"/>	
+			<Component Name="ACCESS-DIAMETER" 	ExecutionOrder="275" 	UponError="Stop"	DisplayGroup="ISU"/>					
+			<Component Name="IPSMGW-CUST" 			ExecutionOrder="280" UponError="Stop"		DisplayGroup="ISU"/>
+
+			<!--Component Name="NYBEUTILS" 					ExecutionOrder="300"	UponError="Stop"		DisplayGroup="ISU"/-->	
+			<!--Component Name="NYSMSCUSTCOMM" 	ExecutionOrder="340"	UponError="Stop"		DisplayGroup="ISU"/-->			
+				
+			<Component Name="ccmng-agent" 				ExecutionOrder="390" 	UponError="Stop"	DisplayGroup="ISU"/>
+			<Component Name="TLANG" 				ExecutionOrder="395" 	UponError="Stop"	DisplayGroup="ISU"/>
+			<Component Name="SNMP_CONFIG" 			ExecutionOrder="400" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="SYSLOG_CONFIG"		ExecutionOrder="405"	UponError="Stop"		DisplayGroup="ISU"/>				
+			<Component Name="DISABLE-APPS" 			ExecutionOrder="450" 	UponError="Stop"		DisplayGroup="ISU"/>			
+			<Component Name="NTP_Client"  					ExecutionOrder="460" 	UponError="Stop" 		DisplayGroup="ISU"/>			
+			<Component Name="create_sbuser" 				ExecutionOrder="465" 	UponError="Stop"	DisplayGroup="ISU"/>
+			<Component Name="CREATE-SEMUS"			ExecutionOrder="500"	UponError="Stop"	DisplayGroup="ISU"/>
+			<Component Name="BABYSITTER-CUST"		ExecutionOrder="505" 	UponError="Stop" 	DisplayGroup="ISU"/>
+      <Component Name="TLANG-CUST" 	        ExecutionOrder="550" 	UponError="Stop"	DisplayGroup="ISU"/>			
+      <!-- Component Name="STATISTICS-CUST"        ExecutionOrder="510"            UponError="Stop"                DisplayGroup="ISU"/ -->                             
+      <Component Name="FILE-CLEANUP-CUST"	ExecutionOrder="600" UponError="Stop" DisplayGroup="ISU"/>
+      <Component Name="AUDIT-CUST"	ExecutionOrder="700" UponError="Stop" DisplayGroup="ISU"/>
+			<Component Name="Linux_AS6_Hkit" 			ExecutionOrder="800" 	UponError="Stop"	DisplayGroup="ISU"/>
+			<Component Name="SWIM-Secure"				ExecutionOrder="810" 	UponError="Stop" 	DisplayGroup="ISU"/>
+			<Component Name="UPDATE-VERSION"		ExecutionOrder="820"	UponError="Stop"	DisplayGroup="ISU"/>			
+			<Component Name="SetSwimJreTomcat" 		ExecutionOrder="850" 	UponError="Stop"   DisplayGroup="ISU"/>		
+
+		</Install>
+		
+		<Upgrade>
+            <Component Name="CSP_Base_Linux"                        ExecutionOrder="5"             UponError="Stop"                DisplayGroup="ISU"/>
+			<Component Name="PreUpgradeOrRollback"  ExecutionOrder="10"  UponError="Stop"  DisplayGroup="ISU"/>
+			<Component Name="NYACE" 						ExecutionOrder="80" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYINFRA" 					ExecutionOrder="110" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYSMSBASE" 				ExecutionOrder="120"	UponError="Stop"  	DisplayGroup="ISU"/>
+			<Component Name="NYJUTIL" 						ExecutionOrder="150" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYSHARED" 				ExecutionOrder="160" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYSMSLICENSE" 			ExecutionOrder="170" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYSMRT" 						ExecutionOrder="180" 	UponError="Stop"		DisplayGroup="ISU"/>
+            <Component Name="NYM-PRSNL"                             ExecutionOrder="185"    UponError="Stop"                DisplayGroup="ISU"/>                     
+			<Component Name="NYSMSCTL" 					ExecutionOrder="220" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYM-INFRA" 					ExecutionOrder="230" 	UponError="Stop"		DisplayGroup="ISU"/>	
+			<Component Name="NYM-CODECS" 			ExecutionOrder="240" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYM-CNSL" 					ExecutionOrder="242"	UponError="Stop"		DisplayGroup="ISU"/>	
+            <Component Name="MRE-CONSOLE-CUST" 	            ExecutionOrder="245"	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="MIDDLEWARE-SRV" 		ExecutionOrder="250" 	UponError="Stop"	DisplayGroup="ISU"/>		
+			<Component Name="ACCESS-CORE" 			ExecutionOrder="270" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="ACCESS-DIAMETER" 	ExecutionOrder="275" 	UponError="Stop"	DisplayGroup="ISU"/>						
+			<Component Name="IPSMGW-CUST" 			ExecutionOrder="280" UponError="Stop"		DisplayGroup="ISU"/>	
+			<Component Name="NYBEUTILS" 					ExecutionOrder="300" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYSMSCUSTCOMM" 	ExecutionOrder="310" 	UponError="Stop"		DisplayGroup="ISU"/>			
+			<Component Name="ccmng-agent" 				ExecutionOrder="360" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="TLANG" 				ExecutionOrder="365" 	UponError="Stop"	DisplayGroup="ISU"/>
+			<Component Name="TLANG-CUST" 	        ExecutionOrder="367" 	UponError="Stop"	DisplayGroup="ISU"/>
+            <Component Name="FILE-CLEANUP-CUST"	ExecutionOrder="370" UponError="Stop" DisplayGroup="ISU"/>
+			<Component Name="UPDATE-VERSION"		ExecutionOrder="390"	UponError="Stop"	DisplayGroup="ISU"/>		
+			<Component Name="Reboot-KIT"   				ExecutionOrder="400"	UponError="Stop" 	DisplayGroup="ISU"/>		
+											
+		</Upgrade>
+		
+		<Uninstall>
+			<Component Name="Linux_AS6_Hkit" 			ExecutionOrder="10" 	UponError="Stop"	DisplayGroup="ISU"/>
+
+			<Component Name="NYM-CNSL" 					ExecutionOrder="20" 	UponError="Stop"		DisplayGroup="ISU"/>
+
+			<Component Name="NYSMSCUSTCOMM" 	ExecutionOrder="60" 	UponError="Stop"		DisplayGroup="ISU"/>	
+            <Component Name="NYM-PRSNL"         ExecutionOrder="62"    UponError="Stop"                DisplayGroup="ISU"/>
+            <Component Name="TLANG" 			ExecutionOrder="70" 	UponError="Stop"	DisplayGroup="ISU"/>			
+			<Component Name="ccmng-agent" 				ExecutionOrder="80" 	UponError="Stop"		DisplayGroup="ISU"/>					
+			<Component Name="NYBEUTILS" 					ExecutionOrder="100" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="IPSMGW-CUST" 	ExecutionOrder="120" UponError="Stop"		DisplayGroup="ISU"/>	
+			<Component Name="ACCESS-DIAMETER" 	ExecutionOrder="125" 	UponError="Stop"	DisplayGroup="ISU"/>
+			<Component Name="ACCESS-CORE" 			ExecutionOrder="130" 	UponError="Stop"		DisplayGroup="ISU"/>	
+			<Component Name="MIDDLEWARE-SRV" 		ExecutionOrder="135" 	UponError="Stop"	DisplayGroup="ISU"/>					
+			<Component Name="Babysitter-IC" 				ExecutionOrder="140" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYM-INFRA" 					ExecutionOrder="150" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYSHARED" 				ExecutionOrder="160" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYJRM" 						ExecutionOrder="170" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYJGE" 						ExecutionOrder="180" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYJUTIL" 						ExecutionOrder="190" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYSMSBASE" 				ExecutionOrder="200" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYINFRA" 					ExecutionOrder="210" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYAGENTXPP" 				ExecutionOrder="220" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYXERCES" 					ExecutionOrder="230" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="NYACE" 						ExecutionOrder="240" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="Ora_Client_Linux" 			ExecutionOrder="250" 	UponError="Stop"		DisplayGroup="ISU"/>
+			<Component Name="swp_tomcat7_0-RHEL6" 			ExecutionOrder="390" 	UponError="Stop"	DisplayGroup="ISU"/>			
+			<Component Name="swp_jre_1.7-32" 					ExecutionOrder="400" 	UponError="Stop"	DisplayGroup="ISU"/>
+			<Component Name="NYadmin" 						ExecutionOrder="280" 	UponError="Stop"		DisplayGroup="ISU"/>
+		</Uninstall>
+
+		<Dependencies>
+			<Component UnitName="*isu[0-9]" Name="NYadmin">
+				<DependsOn>
+					<Component UnitName="*isu[0-9]" Name="CSP_Base_Linux"/>
+				</DependsOn>
+			</Component>
+			<Component UnitName="*isu[0-9]" Name="SEM-SIL-SSH">
+				<DependsOn>
+					<Component UnitName="*isu[0-9]" Name="NYadmin"/>
+				</DependsOn>
+			</Component>
+		</Dependencies>		
+		
+		<Parameters>
+
+			  <!--Babysitter-IC Parameters-->
+              <Parameter ComponentName="Babysitter-IC" Name="AgentXPortNumber" Display="false">
+                <Value>1055</Value>
+             </Parameter>		
+		
+			<Parameter ComponentName="DNS_Client" Name="BALANCER_IPS"	 Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml://string-join(/UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance/Connection[@Type="Data"]/@IP,',')]</Value>
+			</Parameter>
+
+		
+			<Parameter ComponentName="SilSSH" Name="GROUPS_RegEx" Display="false" Overwrite="true">
+				<Value>ISU_Group</Value>
+			</Parameter>
+			<!--Parameter ComponentName="NYSMSMAIL" Name="EMAIL.active_isp_server" Display="false" Overwrite="true"/-->
+			<!--Parameter ComponentName="NYSMSMAIL" Name="EMAIL.standby_isp_server" Display="false" Overwrite="true"/-->
+			<!--Parameter ComponentName="NYSMSMAIL" Name="EMAIL.domain_names" Display="false" Overwrite="true"/-->
+			
+			<!-- =============     NY AUTOCONFIG ============= -->
+			<Parameter ComponentName="NYAUTOCONFIG" Name="ConfigurableApplications" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="NYAUTOCONFIG" Name="RunAutoConfig" Display="false" Overwrite="true">
+				<Value>false</Value>
+			</Parameter>
+			<Parameter ComponentName="NYAUTOCONFIG" Name="vsfe_names" Display="false" Overwrite="true">
+				<Value></Value>
+			</Parameter>
+			<Parameter ComponentName="NYAUTOCONFIG" Name="IPGWApplication" Display="false" Overwrite="true">
+				<Value>false</Value>
+			</Parameter>			
+			
+			<!-- =============          MRE CONSOLE              ============= -->
+			<Parameter ComponentName="NYM-CNSL" Name="MRE_CONSOLE_INSTANCE" Display="false" Overwrite="true">
+                <Value>[UnitGroup.xml://UnitGroup/Logical/Application[@ApplicationName[contains(.,"MRE_CONSOLE")]]/UnitInstance[@UnitName="{HostName}"]/AppInstance/@InstanceName]</Value>
+            </Parameter>
+			<Parameter ComponentName="NYM-CNSL" Name="HOST_IP_FOR_MW_DB" Display="false"/>
+			<Parameter ComponentName="NYM-CNSL" Name="HOST_IP_FOR_AAS" Display="false"/>
+			<Parameter ComponentName="NYM-CNSL" Name="DEPENDENCY_CLASSES" Display="false" Overwrite="true">
+				<Value></Value>
+			</Parameter>
+			
+			<Parameter ComponentName="MRE-CONSOLE-CUST" Name="MRE_CONSOLE_INSTANCE" Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml://UnitGroup/Logical/Application[@ApplicationName[contains(.,"MRE_CONSOLE")]]/UnitInstance[@UnitName="{HostName}"]/AppInstance/@InstanceName]</Value>
+			</Parameter>
+			
+			<!-- ============			GFT				============= -->
+			<Parameter ComponentName="NYBEUTILS" Name="RegisterToVeritas" Display="false" Overwrite="true">
+				<Value>false</Value>
+			</Parameter>
+			<Parameter ComponentName="NYBEUTILS" Name="VeritasGroup1" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="NYBEUTILS" Name="VeritasGroup2" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="NYBEUTILS" Name="InstancesListGFTGroup1" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="NYBEUTILS" Name="InstancesListGFTGroup2" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="NYBEUTILS" Name="RegisterToVeritas_OMU" Display="false" Overwrite="true">
+				<Value>false</Value>
+			</Parameter>
+			<Parameter ComponentName="NYBEUTILS" Name="RegisterToVeritas_sfe" Display="false" Overwrite="true">
+				<Value>false</Value>
+			</Parameter>
+
+		  <!-- ============			TLA				============= -->
+			<Parameter ComponentName="TLANG" Name="JAVA_HOME_DIRECTORY" Display="false"/>
+			<Parameter ComponentName="TLANG" Name="TOMCAT_HOME_DIRECTORY" Display="false"/>
+			<!-- allowed ip will not be in use -->
+			<Parameter ComponentName="TLANG" Name="TLANG.ALLOWED_IP_ADDRESS" Display="false" Overwrite="true"></Parameter>
+			<Parameter ComponentName="TLANG" Name="TLANG_WATCHDOG" Display="false" Overwrite="true">
+				<Value>Monitor</Value>
+			</Parameter>
+			<Parameter ComponentName="TLANG" Name="TLA_NG_GROUP" Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml:substring-before((//UnitGroup/Logical/Application[contains(@ApplicationName,'TLA_NG.')]/UnitInstance[@UnitName="{HostName}"]/AppInstance/@InstanceName),".")]</Value>
+			</Parameter>
+			<Parameter ComponentName="TLANG" Name="TLA_NG_INSTANCE" Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml:substring-after((//UnitGroup/Logical/Application[contains(@ApplicationName,'TLA_NG.')]/UnitInstance[@UnitName="{HostName}"]/AppInstance/@InstanceName),".")]</Value>
+			</Parameter>
+			<Parameter ComponentName="TLANG" Name="SMS_INFRA_AND_BASE_VERSION"	 Display="false" Overwrite="true"/>
+			<!-- the name is misleading , this is trace db vip -->
+			<Parameter ComponentName="TLANG" Name="OMAP_DB_HOSTNAME" Display="false" Overwrite="true">
+				<Value>MWTRACESDB</Value>
+			</Parameter>			
+			<Parameter ComponentName="TLANG" Name="OMAP_DB_IP" Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"ODB.")]/VUnitInstance/@VirtualIp]</Value>
+			</Parameter>
+			<Parameter ComponentName="TLANG" Name="PRODUCT_LIST" Display="false" Overwrite="true">
+				<Value>IPGW</Value>
+			</Parameter>
+			
+			<!--<Parameter ComponentName="NYTLOADER" Name="VeritasGroup1" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="NYTLOADER" Name="VeritasGroup2" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="NYTLOADER" Name="InstancesListTRACEGroup1" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="NYTLOADER" Name="InstancesListTRACEGroup2" Display="false" Overwrite="true"/>-->			
+
+
+			<!-- Parameter ComponentName="SEM-VM-NW-SZ" Name="AdminIP" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[@GroupName="{UnitType}"]/UnitInstance[contains(@Hostname,"{HostName}")]/Connection[@Type="Management"]/@IP]</Value>
+			</Parameter>
+			<Parameter ComponentName="SEM-VM-NW-SZ" Name="SZIP" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[@GroupName="{UnitType}"]/UnitInstance[contains(@Hostname,"{HostName}")]/Connection[@Type="Data"]/@IP]</Value>
+			</Parameter -->					
+
+		</Parameters>
+
+	</UnitType>
+
+</SWIM>

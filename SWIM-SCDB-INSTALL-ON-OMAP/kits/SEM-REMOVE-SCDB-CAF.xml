@@ -1,0 +1,17 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\WORK\SWIM_1.1.1.0_1_xsd\CAF.xsd">
+	<Component Platform="Linux" Name="SEM-REMOVE-SCDB" Version="_VERSION-_BUILD">
+
+		<Install>
+		
+			<Copy ChmodFlags="+x" ExecutionOrder="10" UponError="Stop">
+				<Source>./scdb_swim_installer.sh</Source>
+			</Copy>
+		
+			<Execute ExecutionOrder="20" UponError="Stop">
+				<Command>./scdb_swim_installer.sh -uninstall=SCDB</Command>
+			</Execute>
+			
+		</Install>
+		
+	</Component>
+</SWIM>

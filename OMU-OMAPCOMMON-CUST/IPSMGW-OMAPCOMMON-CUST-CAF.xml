@@ -1,0 +1,157 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="IPSMGW-OMAPCOMMON-CUST" Version="_VERSION-_BUILD">
+
+		<Install>
+		
+				<!-- Disable topology feature in omapCommonAppl -->
+				<!-- Execute ExecutionOrder="10" UponError="Stop">
+					<Command>
+						
+						Date=`date '+%d%m%Y%H%M'`
+						omapVersion=$(cat /home/smsc/.nyappl/smsc.OMAP|sed 's/omapCoreAppl\.\([0-9]\{1,\}\.[0-9]\{1,\}.[0-9]\{1,\}\):.*/\1/')
+				
+						if [ -z $omapVersion ]; then
+							echo "ERROR: Failed to extract OMAP COMMON version"
+							exit 1
+						fi
+			
+						omapCommonApplFile=/home/smsc/omapCommonAppl.${omapVersion}/config/omapCommonAppl.config
+						echo "INFO: Disable topologyWS.use_topology_web_service parameter in $omapCommonApplFile"
+						
+						if [ ! -f $omapCommonApplFile ]; then
+							echo "ERROR: $omapCommonApplFile is not found..."
+							exit 1
+						fi
+				
+						sed -i.${Date} 's/^topologyWS.use_topology_web_service\s*=.*/topologyWS.use_topology_web_service=false/' $omapCommonApplFile
+					
+					</Command>
+				</Execute -->
+				
+				
+				<!-- the idea taken from omap-core-app-postinstall CAF -->
+                        <!-- Execute UponError="Stop" Timeout="1800" ExecutionOrder="20">
+                                <Command>
+													omapCoreVers=`cat ~smsc/.nyappl/smsc.OMAP|perl -ne 'print "$1\n" if /(omapCoreAppl.*?):/'`
+													if [ -z $omapCoreVers ]; then
+														echo "ERROR: Failed to extract omapCoreAppl version"
+														exit 1
+													fi
+                                
+													/home/smsc/${omapCoreVers}/scripts/installTopology.sh</Command>
+                                <ExpectedExitCode>0</ExpectedExitCode>
+                        </Execute -->	
+                        
+                        <!-- Execute UponError="Stop" Timeout="1800" ExecutionOrder="25">
+                                <Command>/home/smsc/omapCoreAppl.6.8.100/scripts/installPlugins.sh</Command>
+                                <ExpectedExitCode>0</ExpectedExitCode>
+                        </Execute -->  
+				<SetParams ExecutionOrder="10" UponError="Stop">
+                       <ExecutionGroup>SetParam</ExecutionGroup>
+                </SetParams>		
+                 
+				<Execute ExecutionOrder="50" UponError="Stop">
+					<Command>
+									## if false, each application will retrive topology directly from DB (for example TRACENG)
+									## if true, topology will be retrieved from OMAP Monitoring GUI
+									if [ ! "`grep topologyWS.use_topology_web_service /var/cti/smsc/site/config/omapCommonAppl.config`" ]; then
+										  echo "topologyWS.use_topology_web_service=false" >> /var/cti/smsc/site/config/omapCommonAppl.config
+										  echo "INFO: Updated  /var/cti/smsc/site/config/omapCommonAppl.config with topologyWS.use_topology_web_service=false"
+									else
+										echo "INFO: topologyWS.use_topology_web_service already exists in /var/cti/smsc/site/config/omapCommonAppl.config"
+									fi
+					</Command>
+				</Execute>
+				
+				<Copy ExecutionOrder="60" ChmodFlags="+x" Overwrite="true">
+					<Source>./omap_core_post.sh</Source>
+				</Copy>
+				
+				<Execute ExecutionOrder="70" UponError="Stop">
+					<Command>./omap_core_post.sh</Command>
+				</Execute>
+				
+				<Execute UponError="Stop" Timeout="80" ExecutionOrder="2">
+                   <Command>
+				    sed -i s/"^scdb.admin_system_name=HUB-Comverse,HUB-Site-1,admin"/"scdb.admin_system_name={admin_system_name},OMU-SMSC,OMU-SMSC-Site,admin"/g /var/cti/smsc/omapCommonAppl.5.3.100/config/omapCommonAppl.config
+				   </Command>
+                </Execute>
+				<!--<Execute ExecutionOrder="80" UponError="Stop">
+					<Command>su - smsc -c "smsc -nobanner -class OMAP rm_set scdb.admin_system_name={admin_system_name}"</Command>
+				</Execute>-->
+				
+				
+		</Install>
+		
+		<Upgrade>
+		
+				<!-- Disable topology feature in omapCommonAppl -->
+				<!-- Execute ExecutionOrder="10" UponError="Stop">
+					<Command>
+						
+						Date=`date '+%d%m%Y%H%M'`
+						omapVersion=$(cat /home/smsc/.nyappl/smsc.OMAP|sed 's/omapCoreAppl\.\([0-9]\{1,\}\.[0-9]\{1,\}.[0-9]\{1,\}\):.*/\1/')
+				
+						if [ -z $omapVersion ]; then
+							echo "ERROR: Failed to extract OMAP COMMON version"
+							exit 1
+						fi
+			
+						omapCommonApplFile=/home/smsc/omapCommonAppl.${omapVersion}/config/omapCommonAppl.config
+						echo "INFO: Disable topologyWS.use_topology_web_service parameter in $omapCommonApplFile"
+						
+						if [ ! -f $omapCommonApplFile ]; then
+							echo "ERROR: $omapCommonApplFile is not found..."
+							exit 1
+						fi
+				
+						sed -i.${Date} 's/^topologyWS.use_topology_web_service\s*=.*/topologyWS.use_topology_web_service=false/' $omapCommonApplFile
+					
+					</Command>
+				</Execute -->	
+		
+				<Execute ExecutionOrder="20" UponError="Stop">
+					<Command>
+									if [ ! "`grep topologyWS.use_topology_web_service /var/cti/smsc/site/config/omapCommonAppl.config`" ]; then
+										  echo "topologyWS.use_topology_web_service=false" >> /var/cti/smsc/site/config/omapCommonAppl.config
+										  echo "INFO: Updated  /var/cti/smsc/site/config/omapCommonAppl.config with topologyWS.use_topology_web_service=false"
+									else
+										echo "INFO: topologyWS.use_topology_web_service already exists in /var/cti/smsc/site/config/omapCommonAppl.config"
+									fi
+					</Command>
+				</Execute>
+				
+				<Copy ExecutionOrder="60" ChmodFlags="+x" Overwrite="true">
+					<Source>./omap_core_post.sh</Source>
+				</Copy>
+				
+				<Execute ExecutionOrder="70" UponError="Stop">
+					<Command>./omap_core_post.sh</Command>
+				</Execute>
+				
+				<Execute UponError="Stop" Timeout="80" ExecutionOrder="2">
+                   <Command>
+				    sed -i s/"^scdb.admin_system_name=HUB-Comverse,HUB-Site-1,admin"/"scdb.admin_system_name={admin_system_name},OMU-SMSC,OMU-SMSC-Site,admin"/g /var/cti/smsc/omapCommonAppl.5.3.100/config/omapCommonAppl.config
+				   </Command>
+                </Execute>
+
+				<!--<Execute ExecutionOrder="80" UponError="Stop">
+					<Command>su - smsc -c "smsc -nobanner -class OMAP rm_set scdb.admin_system_name={admin_system_name}"</Command>
+				</Execute>-->								
+						
+		</Upgrade>
+		
+		<Parameters>
+			<Parameter Display="true" Name="admin_system_name" Level="System" Overwrite="true" ExecutionGroup="SetParam">
+				<Description>SCDB Admin Name OMU system name from SystemList.xml e.g. T001-Natco1-MVAS</Description>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<!--<Value>HUB-Site-1</Value>-->
+				<Value>T001-Natco1-MVAS</Value>
+			</Parameter>
+			
+		</Parameters>
+	</Component>
+</SWIM>

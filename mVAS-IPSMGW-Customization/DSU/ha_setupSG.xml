@@ -1,0 +1,90 @@
+<!--
+SWP HA default Service Groups XML template
+
+This template is an example of a base service groups XML
+Parameters required:
+Per each <group> element:
+group		name of the group
+attribute	list of VCS group attributes in the form <attribute_name>attribute_value</attribute_name>
+		SystemList and AutoStartList will get defined automatically
+
+resource	name of the resource
+type		standatd VCS resource type
+attribute	list of attributes in the form <attribute_name>attribute_value</attribute_name>
+-->
+
+<swpHA>
+	<configuration>
+
+<!-- DATABASE MOUNTS START -->
+	<!-- OMAP DB -->
+		<group>
+			<name>sem_db</name>
+			<attribute>
+				<AutoStart>1</AutoStart>
+                <AutoStartPolicy>Order</AutoStartPolicy>
+                 <FailOverPolicy>Priority</FailOverPolicy>
+			</attribute>
+			<resource>
+				<type>Mount</type>
+							<name>sem-db-data-mount</name>
+				<attribute>
+								<Critical>1</Critical>
+								<NetAppID>__oracle_data_volume_ip__</NetAppID>
+								<NetAppVol>__full_path_to_oracle_data__</NetAppVol>
+								<MountPoint>"/data/sem_db_data"</MountPoint>
+								<MountOpt>"rw,bg,hard,nointr,tcp,nfsvers=3,timeo=600,rsize=32768,wsize=32768"</MountOpt>
+							  </attribute>
+						</resource>
+						<resource>
+							<type>Mount</type>
+							<name>sem-db-archives-mount</name>
+							<attribute>
+								<Critical>1</Critical>
+								<NetAppID>__oracle_archives_volume_ip__</NetAppID>
+								<NetAppVol>__full_path_to_oracle_archives__</NetAppVol>
+								<MountPoint>"/data/sem_db_archives"</MountPoint>
+								<MountOpt>"rw,bg,hard,nointr,tcp,nfsvers=3,timeo=600,rsize=32768,wsize=32768"</MountOpt>
+							  </attribute>
+						</resource>
+						<resource>
+							<type>Mount</type>
+							<name>sem-db-logs-mount</name>
+							<attribute>
+								<Critical>1</Critical>
+								<NetAppID>__oracle_redo_logs_volume_ip__</NetAppID>
+								<NetAppVol>__full_path_to_oracle_redo_logs__</NetAppVol>
+								<MountPoint>"/data/sem_db_logs"</MountPoint>
+								<MountOpt>"rw,bg,hard,nointr,tcp,nfsvers=3,timeo=600,rsize=32768,wsize=32768"</MountOpt>
+							  </attribute>
+						</resource>
+						<resource>
+							<type>Mount</type>
+							<name>sem-db-backup-mount</name>
+							<attribute>
+								<Critical>1</Critical>
+								<NetAppID>__oracle_backup_volume_ip__</NetAppID>
+								<NetAppVol>__full_path_to_oracle_backup__</NetAppVol>
+								<MountPoint>"/data/sem_db_backup"</MountPoint>
+								<MountOpt>"rw,bg,hard,nointr,tcp,nfsvers=3,timeo=600,rsize=32768,wsize=32768"</MountOpt>
+							</attribute>
+						</resource>
+			
+			
+                        <resource>
+                                <type>IP</type>
+				<name>sem-db-vip</name>
+				<attribute>
+										<Critical>1</Critical>
+                                        <Device-ResAlias>__ORA_DEVICE__</Device-ResAlias>
+                                        <Address>__ORA_VIP__</Address>
+                                        <NetMask>__LOCAL_SZ_NETMASK__</NetMask>
+                                </attribute>
+								<depend>sem-db-data-mount</depend>
+                                <depend>sem-db-archives-mount</depend>
+                                <depend>sem-db-logs-mount</depend>
+                                <depend>sem-db-backup-mount</depend>
+                        </resource>
+                </group>	
+        </configuration>
+</swpHA>

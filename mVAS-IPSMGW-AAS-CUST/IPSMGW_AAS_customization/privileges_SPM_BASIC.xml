@@ -1,0 +1,173 @@
+<AAS>
+   <Privileges>
+      <PrivilegesGroup Name='SPM'>
+         <Privilege Name='WebProvisioningLogin'>
+            <Desc>Provisioning Web Access</Desc>
+         </Privilege>
+         <Privilege Name='StartBatch'>
+            <Desc>Start provisioning batch processing</Desc>
+         </Privilege>
+         <Privilege Name='StopBatch'>
+            <Desc>Stop provisioning batch processing</Desc>
+         </Privilege>
+         <Privilege Name='StatusBatch'>
+            <Desc>Get provisioning batch processing progress</Desc>
+         </Privilege>
+         <Privilege Name='CreateOrModifyDomain'>
+            <Desc>Create or Modify Domain</Desc>
+            <Dependances>
+               <Privilege Name='ModifyDomain'/>
+               <Privilege Name='CreateDomain'/>
+               <Privilege Name='RetrieveDomain'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='CreateOrModifyCOS'>
+            <Desc>Create or Modify COS</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveCOS'/>
+               <Privilege Name='CreateCOS'/>
+               <Privilege Name='ModifyCOS'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='CreateOrModifyServiceLevel'>
+            <Desc>Create or Modify ServiceLevel</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveServiceLevel'/>
+               <Privilege Name='ModifyServiceLevel'/>
+               <Privilege Name='CreateServiceLevel'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='RetrieveServiceLevel'>
+            <Desc>Retrieve ServiceLevel</Desc>
+         </Privilege>
+         <Privilege Name='ModifyServiceLevel'>
+            <Desc>Modify ServiceLevel</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveServiceLevel'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='CreateServiceLevel'>
+            <Desc>Create ServiceLevel</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveServiceLevel'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='DeleteServiceLevel'>
+            <Desc>Delete ServiceLevel</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveServiceLevel'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='RetrieveCOS'>
+            <Desc>Retrieve COS</Desc>
+         </Privilege>
+         <Privilege Name='ModifyCOS'>
+            <Desc>Modify COS</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveCOS'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='CreateCOS'>
+            <Desc>Create COS</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveCOS'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='DeleteCOS'>
+            <Desc>Delete COS</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveCOS'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='RetrieveDomainDefaults'>
+            <Desc>Retrieve DomainDefaults</Desc>
+         </Privilege>
+         <Privilege Name='ModifyDomainDefaults'>
+            <Desc>Modify DomainDefaults</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveDomainDefaults'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='RetrieveSystemDefaults'>
+            <Desc>Retrieve SystemDefaults</Desc>
+         </Privilege>
+         <Privilege Name='ModifySystemDefaults'>
+            <Desc>Modify SystemDefaults</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveSystemDefaults'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='RetrieveDomain'>
+            <Desc>Retrieve Domain</Desc>
+         </Privilege>
+         <Privilege Name='ModifyDomain'>
+            <Desc>Modify Domain</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveDomain'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='CreateDomain'>
+            <Desc>Create Domain</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveDomain'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='DeleteDomain'>
+            <Desc>Delete Domain</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveDomain'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='CreateSubscriber'>
+            <Desc>Create Subscriber</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveSubscriber'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='RetrieveSubscriber'>
+            <Desc>Retrieve Subscriber</Desc>
+         </Privilege>
+         <Privilege Name='ModifySubscriber'>
+            <Desc>Modify Subscriber</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveSubscriber'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='DeleteSubscriber'>
+            <Desc>Delete Subscriber</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveSubscriber'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='RetrieveSchema'>
+            <Desc>Retrieve Provisioning Request Schema</Desc>
+         </Privilege>
+         <Privilege Name='RetrieveConfigurationMap'>
+            <Desc>Retrieve system configuration map</Desc>
+         </Privilege>         
+         <Privilege Name='CreateOrModifySubscriber'>
+            <Desc>Create Or Modify Subscriber</Desc>
+            <Dependances>
+               <Privilege Name='CreateSubscriber'/>
+               <Privilege Name='RetrieveSubscriber'/>
+               <Privilege Name='ModifySubscriber'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='BlockSubscriber'>
+            <Desc>Block Subscriber</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveSubscriber'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='UnBlockSubscriber'>
+            <Desc>UnBlock Subscriber</Desc>
+            <Dependances>
+               <Privilege Name='RetrieveSubscriber'/>
+            </Dependances>
+         </Privilege>
+         <Privilege Name='BatchProvisioning'>
+            <Desc>Batch Provisioning - allows to read and edit batch provisioning files</Desc>
+         </Privilege>         
+      </PrivilegesGroup>
+   </Privileges>
+</AAS>

@@ -1,0 +1,45 @@
+<AAS>
+	<Roles>
+		<Role Name="prov_app">
+			<Desc>Role dedicated to the provisioning application</Desc>
+			<ReadOnly>false</ReadOnly>
+			<Privileges>
+				<Privilege Name="GetUserProfile"/>
+				<Privilege Name="GetDomainsList"/>
+				<Privilege Name="RetrieveCOS"/>
+				<Privilege Name="ModifySystemDefaults"/>
+				<Privilege Name="CreateCOS"/>
+				<Privilege Name="ModifyCOS"/>
+				<Privilege Name="RetrieveSystemDefaults"/>
+				<Privilege Name="CreateOrModifyDomain"/>
+				<Privilege Name="CreateOrModifyServiceLevel"/>
+				<Privilege Name="ModifyServiceLevel"/>
+				<Privilege Name="CreateOrModifyCOS"/>
+				<Privilege Name="DeleteServiceLevel"/>
+				<Privilege Name="RetrieveSubscriber"/>
+				<Privilege Name="UnBlockSubscriber"/>
+				<Privilege Name="RetrieveSchema"/>
+				<Privilege Name="RetrieveConfigurationMap"/>
+				<Privilege Name="DeleteSubscriber"/>
+				<Privilege Name="StatusBatch"/>
+				<Privilege Name="StartBatch"/>
+				<Privilege Name="CreateSubscriber"/>
+				<Privilege Name="CreateServiceLevel"/>
+				<Privilege Name="ModifySubscriber"/>
+				<Privilege Name="WebProvisioningLogin"/>
+				<Privilege Name="ModifyDomainDefaults"/>
+				<Privilege Name="BlockSubscriber"/>
+				<Privilege Name="ModifyDomain"/>
+				<Privilege Name="CreateDomain"/>
+				<Privilege Name="DeleteCOS"/>
+				<Privilege Name="DeleteDomain"/>
+				<Privilege Name="RetrieveServiceLevel"/>
+				<Privilege Name="StopBatch"/>
+				<Privilege Name="RetrieveDomainDefaults"/>
+				<Privilege Name="CreateOrModifySubscriber"/>
+				<Privilege Name="RetrieveDomain"/>
+				<Privilege Name="BatchProvisioning"/>
+			</Privileges>
+		</Role>
+	</Roles>
+</AAS>

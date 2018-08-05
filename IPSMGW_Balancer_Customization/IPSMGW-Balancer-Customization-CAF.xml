@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Name="IPSMGW-Balancer-Customization" Version="_VERSION-_BUILD" Platform="Linux">
+		
+	<Install>
+	
+			<Copy ExecutionOrder="10" ChmodFlags="755" UponError="Stop" Overwrite="true">
+				<Source>./InputApplicationList_IPSMGW.xml</Source>
+				<Target>/usr/cti/conf/balancer</Target>
+			</Copy>
+			<Execute ExecutionOrder="15" UponError="Stop">
+				<Command>chown balancericuser:balancericuser /usr/cti/conf/balancer/InputApplicationList_IPSMGW.xml</Command>
+			</Execute>	
+			
+		</Install>
+
+		<Upgrade>
+		
+			<Copy ExecutionOrder="10" ChmodFlags="755" UponError="Stop" Overwrite="true">
+				<Source>./InputApplicationList_IPSMGW.xml</Source>
+				<Target>/usr/cti/conf/balancer</Target>
+			</Copy>
+			<Execute ExecutionOrder="15" UponError="Stop">
+				<Command>chown balancericuser:balancericuser /usr/cti/conf/balancer/InputApplicationList_IPSMGW.xml</Command>
+			</Execute>			
+					
+		</Upgrade>
+						
+	</Component>
+</SWIM>

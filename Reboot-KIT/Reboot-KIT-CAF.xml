@@ -1,0 +1,23 @@
+<SWIM>
+	<Component Platform="Linux" Name="Reboot-KIT" Version="_VERSION-_BUILD">
+
+		<Install>
+
+			<Reboot ExecutionOrder="1" UponError="Stop" Timeout="1800"/>
+
+		</Install>
+		
+		<Upgrade>
+
+			<Reboot ExecutionOrder="1" UponError="Stop" Timeout="1800"/>
+
+		</Upgrade>		
+		
+		<Uninstall>
+			<Execute ExecutionOrder="10" UponError="Continue">
+				<Command>echo uninstalling</Command>
+			</Execute>
+		</Uninstall>
+
+	</Component>
+</SWIM>

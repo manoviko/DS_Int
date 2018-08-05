@@ -1,0 +1,17 @@
+<SWIM>
+
+	<System>
+		<Install>
+			<UnitType Name="OMU_Group" UponError="Stop" 	ExecutionOrder="1">
+				<UAF Name="OMU-DB-Replication-UAF.xml" ExecutionOrder="1"/>
+			</UnitType>
+		</Install>
+		
+		<Uninstall>
+			<UnitType Name="OMU_Group" UponError="Stop" 	ExecutionOrder="1">
+				<UAF Name="OMU-DB-Replication-UAF.xml" ExecutionOrder="1"/>
+			</UnitType>
+		</Uninstall>		
+	</System>
+
+</SWIM>

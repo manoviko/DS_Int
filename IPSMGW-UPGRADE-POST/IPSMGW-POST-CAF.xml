@@ -1,0 +1,111 @@
+<SWIM>
+    <Component Platform="Linux" Name="IPSMGW-POST" Version="_VERSION-_BUILD">    
+        <Upgrade>
+		    <Execute ExecutionOrder="11" UponError="Stop">
+			   <Command>			    
+                  Date=`date '+%d%m%Y%H%M'`
+				  id=`cd /var/cti/smsc/site/config; ls -l|grep IPGW.1.|cut -d "." -f 2,3`
+				  /bin/cp -f /home/smsc/site/config/IPGW.${id}/log4j.xml /home/smsc/site/config/IPGW.${id}/log4j.xml.${Date}
+				  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/instance/log4j.xml to /var/cti/smsc/site/config/IPGW.1.x/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/instance/log4j.xml /var/cti/smsc/site/config/IPGW.${id}/			    
+			   </Command>
+             </Execute>
+           <Execute ExecutionOrder="12" UponError="Stop">
+			   <Command>			    
+                  Date=`date '+%d%m%Y%H%M'`
+				  /bin/cp -f /var/cti/smsc/site/config/IPGW.1/IPORoamingAccessControl.xml /var/cti/smsc/site/config/IPGW.1/IPORoamingAccessControl.xml.${Date}
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/IPORoamingAccessControl.xml to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/IPORoamingAccessControl.xml /var/cti/smsc/site/config/IPGW.1/			    
+			   </Command>
+             </Execute>
+			 <Execute ExecutionOrder="13" UponError="Stop">
+			   <Command>			    
+                  Date=`date '+%d%m%Y%H%M'`
+				  /bin/cp -f /var/cti/smsc/site/config/IPGW.1/NetworkIDtoMSCAddr.xml /var/cti/smsc/site/config/IPGW.1/NetworkIDtoMSCAddr.xml.${Date}
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/addressing/NetworkIDtoMSCAddr.xml to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/addressing/NetworkIDtoMSCAddr.xml /var/cti/smsc/site/config/IPGW.1/			    
+			   </Command>
+             </Execute>
+			  <Execute ExecutionOrder="14" UponError="Stop">
+			   <Command>			    
+                  Date=`date '+%d%m%Y%H%M'`
+				  /bin/cp -f /var/cti/smsc/site/config/IPGW.1/SS7RoamingAccessControl.xml /var/cti/smsc/site/config/IPGW.1/SS7RoamingAccessControl.xml.${Date}
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/SS7RoamingAccessControl.xml to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/SS7RoamingAccessControl.xml /var/cti/smsc/site/config/IPGW.1/			    
+			   </Command>
+             </Execute>
+			 <Execute ExecutionOrder="15" UponError="Stop">
+			   <Command>			    
+                  Date=`date '+%d%m%Y%H%M'`
+				  /bin/cp -f /var/cti/smsc/site/config/IPGW.1/SIPToSGAPMappingService.xml /var/cti/smsc/site/config/IPGW.1/SIPToSGAPMappingService.xml.${Date}
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/addressing/SIPToSGAPMappingService.xml to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/addressing/SIPToSGAPMappingService.xml /var/cti/smsc/site/config/IPGW.1/			    
+			   </Command>
+             </Execute>
+			 <Execute ExecutionOrder="16" UponError="Stop">
+			   <Command>			    
+                  Date=`date '+%d%m%Y%H%M'`
+				  /bin/cp -f /var/cti/smsc/site/config/IPGW.1/ODBSupeiErrorHandlerSMRT.xml /var/cti/smsc/site/config/IPGW.1/ODBSupeiErrorHandlerSMRT.xml.${Date}
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/ODBSupeiErrorHandlerSMRT.xml to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/ODBSupeiErrorHandlerSMRT.xml /var/cti/smsc/site/config/IPGW.1/			    
+			   </Command>
+             </Execute>
+			 <Execute ExecutionOrder="17" UponError="Stop">
+			   <Command>			    
+                  Date=`date '+%d%m%Y%H%M'`
+				  /bin/cp -f /var/cti/smsc/site/config/IPGW.1/ValidateAllOGCallsSMRT.xml /var/cti/smsc/site/config/IPGW.1/ValidateAllOGCallsSMRT.xml.${Date}
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/ValidateAllOGCallsSMRT.xml to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/ValidateAllOGCallsSMRT.xml /var/cti/smsc/site/config/IPGW.1/			    
+			   </Command>
+             </Execute>
+			 <Execute ExecutionOrder="18" UponError="Stop">
+			   <Command>			    
+                  Date=`date '+%d%m%Y%H%M'`
+				  /bin/cp -f /var/cti/smsc/site/config/IPGW.1/ValidateINTDestinationSMRT.xml /var/cti/smsc/site/config/IPGW.1/ValidateINTDestinationSMRT.xml.${Date}
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/ValidateINTDestinationSMRT.xml to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/ValidateINTDestinationSMRT.xml /var/cti/smsc/site/config/IPGW.1/			    
+			   </Command>
+             </Execute>			 
+			 <Execute ExecutionOrder="19" UponError="Stop">
+			   <Command>			    
+                  Date=`date '+%d%m%Y%H%M'`
+				  /bin/cp -f /var/cti/smsc/site/config/IPGW.1/LDAPQueryResultCodeHandlerSMRT.xml /var/cti/smsc/site/config/IPGW.1/LDAPQueryResultCodeHandlerSMRT.xml.${Date}
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/LDAPQueryResultCodeHandlerSMRT.xml to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/LDAPQueryResultCodeHandlerSMRT.xml /var/cti/smsc/site/config/IPGW.1/			    
+			   </Command>
+             </Execute>
+			 <Execute ExecutionOrder="20" UponError="Stop">
+			   <Command>			    
+                  Date=`date '+%d%m%Y%H%M'`
+				  /bin/cp -f /var/cti/smsc/site/config/IPGW.1/ValidatePremInfoDestinationSMRT.xml /var/cti/smsc/site/config/IPGW.1/ValidatePremInfoDestinationSMRT.xml.${Date}
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/ValidatePremInfoDestinationSMRT.xml to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/ValidatePremInfoDestinationSMRT.xml /var/cti/smsc/site/config/IPGW.1/			    
+			   </Command>
+             </Execute>
+			 <Execute ExecutionOrder="21" UponError="Stop">
+			   <Command>			    
+                  Date=`date '+%d%m%Y%H%M'`
+				  /bin/cp -f /var/cti/smsc/site/config/IPGW.1/CDRFinalStateEnabledSMRT.xml /var/cti/smsc/site/config/IPGW.1/CDRFinalStateEnabledSMRT.xml.${Date}
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/CDRFinalStateEnabledSMRT.xml to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/CDRFinalStateEnabledSMRT.xml /var/cti/smsc/site/config/IPGW.1/			    
+			   </Command>
+             </Execute>
+			 <Execute ExecutionOrder="22" UponError="Stop">
+			   <Command>			    
+                  Date=`date '+%d%m%Y%H%M'`
+				  /bin/cp -f /var/cti/smsc/site/config/IPGW.1/ValidatePremEntrDestinationSMRT.xml /var/cti/smsc/site/config/IPGW.1/ValidatePremEntrDestinationSMRT.xml.${Date}
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/ValidatePremEntrDestinationSMRT.xml to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/ValidatePremEntrDestinationSMRT.xml /var/cti/smsc/site/config/IPGW.1/			    
+			   </Command>
+             </Execute>			  
+			  <Execute ExecutionOrder="23" UponError="Stop">
+			   <Command>			    
+                  Date=`date '+%d%m%Y%H%M'`
+				  /bin/cp -f /var/cti/smsc/site/config/IPGW.1/DiameterChargingServer.xml /var/cti/smsc/site/config/IPGW.1/DiameterChargingServer.xml.${Date}
+                  echo "WARN : copy /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/diameter/DiameterChargingServer.xml to /var/cti/smsc/site/config/IPGW.1/"
+                  /bin/cp -p /var/cti/smsc/ipsmgw-cust.6.7.0.0/config/site/group/diameter/DiameterChargingServer.xml /var/cti/smsc/site/config/IPGW.1/			    
+			   </Command>
+             </Execute>							
+        </Upgrade> 
+    </Component>
+</SWIM>

@@ -1,0 +1,217 @@
+<SWIM>
+        <Component Name="TLANG-CUST" Platform="Linux" Version="_VERSION-_BUILD">
+            <Install>
+                  <Copy ExecutionOrder="10" Overwrite="true" UponError="Stop" ChmodFlags="+x">
+                                <Source>./*</Source>
+                        </Copy>
+                        <Execute ExecutionOrder="30" Timeout="30" UponError="Stop">
+                                <Command>/bin/sed -i -e 's/TLANG.db_password=.*$/TLANG.db_password={MWTraceDBPassword}/' /usr/cti/conf/tla-ng/db.config</Command>
+                        </Execute>
+                        <Execute ExecutionOrder="40" Timeout="30" UponError="Stop">
+                                <Command>/bin/sed -i -e 's/TLANG.db_user_name=.*$/TLANG.db_user_name={MWTraceDBUserName}/' /usr/cti/conf/tla-ng/db.config</Command>
+                        </Execute>
+                        <Execute ExecutionOrder="50" Timeout="30" UponError="Stop">
+                                <Command>/bin/sed -i -e 's/is_smsc_id_required=.*$/is_smsc_id_required=false/' /usr/cti/conf/tla-ng/db.config</Command>
+                        </Execute>
+                        <!--<Execute ExecutionOrder="60" Timeout="30" UponError="Stop">
+                                <Command>/bin/sed -i -e 's/MGW_fields.config*$/SEM_fields.config/' /usr/cti/conf/tla-ng/config.dir</Command>
+                        </Execute>-->
+                        <!--<Execute ExecutionOrder="60" Timeout="30" UponError="Stop">
+                                <Command>/bin/sed -i -e 's/product = MGW,CAU.*$/product = MGW,CAU,IMPA,SPL,VIMPA,ONS/' /usr/cti/conf/tla-ng/site.config</Command>
+                        </Execute>-->
+                        <!--<Execute ExecutionOrder="60" Timeout="30" UponError="Stop">
+                                <Command>/bin/sed -i -e 's/agentXConnectionPort=705.*$/agentXConnectionPort=1055/' /usr/cti/conf/tla-ng/snmp.config</Command>
+                        </Execute>-->
+                        <!--<Execute ExecutionOrder="70" UponError="Stop">
+                         <Command>
+                                if [ -f /usr/cti/conf/tla-ng/SEM_fields.config ]; then
+                                        Date=`date '+%d%m%Y%H%M'`
+                                        echo "WARN : /usr/cti/conf/tla-ng/SEM_fields.config already exists. Backup it as /usr/cti/conf/tla-ng/SEM_fields.config.${Date}"
+                                        /bin/cp -f /usr/cti/conf/tla-ng/SEM_fields.config /usr/cti/conf/tla-ng/SEM_fields.config.${Date}
+                                fi
+
+                                /bin/cp -f SEM_fields.config_new /usr/cti/conf/tla-ng/SEM_fields.config
+
+                        </Command>
+                       </Execute>-->
+                         <Execute ExecutionOrder="65" UponError="Stop">
+                         <Command>
+                                if [ -f /usr/cti/conf/tla-ng/IPGW_fields.config ]; then
+                                        Date=`date '+%d%m%Y%H%M'`
+                                        echo "WARN : /usr/cti/conf/tla-ng/IPGW_fields.config already exists. Backup it as /usr/cti/conf/tla-ng/IPGW_fields.config.${Date}"
+                                        /bin/cp -f /usr/cti/conf/tla-ng/IPGW_fields.config /usr/cti/conf/tla-ng/IPGW_fields.config.${Date}
+                                fi
+
+                                /bin/cp -f IPGW_fields.config /usr/cti/conf/tla-ng/IPGW_fields.config
+
+                        </Command>
+                        </Execute>
+                        <Execute ExecutionOrder="80" UponError="Stop">
+                         <Command>
+                                        /bin/cp -f TLA-NG /home/smsc/tla-ng/scripts/TLA-NG
+                                </Command>
+                </Execute>
+                       <!-- babysitter section
+                        <Execute ExecutionOrder="80" UponError="Stop">
+                                <Command>
+                                        if [ -f /usr/cti/conf/babysitter/ApplicationsTLA_NG.xml ]; then
+                                                Date=`date '+%d%m%Y%H%M'`
+                                                echo "WARN : /usr/cti/conf/babysitter/ApplicationsTLA_NG.xml already exists. Backup it as /usr/cti/conf/babysitter/ApplicationsTLA_NG.xml.${Date}"
+                                                /bin/cp -f /usr/cti/conf/babysitter/ApplicationsTLA_NG.xml /usr/cti/conf/babysitter/ApplicationsTLA_NG.xml.${Date}
+                                        fi
+
+                                </Command>
+                        </Execute>-->
+
+                        <!--<SetParams ExecutionOrder="85" UponError="Stop">
+                                <ExecutionGroup>TLA_PARAMS</ExecutionGroup>
+                        </SetParams>-->
+
+                      <Execute ExecutionOrder="90" UponError="Stop">
+                       <Command>
+                           if [ {UnitType} == "OMU_Group" ]; then
+                             echo "INFO: Replaced default trace files location when installtion TLA on OMU"
+                              Date=`date '+%d%m%Y%H%M'`
+                             /bin/cp -f /usr/cti/conf/tla-ng/common.config /usr/cti/conf/tla-ng/common.config.${Date}
+                             /bin/sed -i '/trace_type.0.location/d' /usr/cti/conf/tla-ng/common.config
+                             /bin/sed -i '/trace_type.0.filename_prefix/ a\trace_type.0.location=/data/omap_trace/PSU' /usr/cti/conf/tla-ng/common.config
+                             /bin/sed -i 's/trace_type.0.filename_prefix=msg_trace.log.header./trace_type.0.filename_prefix=msg_trace.log./' /usr/cti/conf/tla-ng/common.config
+                             /bin/sed -i '/trace_type.0.suspicious_files_location/d' /usr/cti/conf/tla-ng/common.config
+                             /bin/sed -i '/trace_type.0.location/ a\trace_type.0.suspicious_files_location=/data/omap_trace/PSU/suspected' /usr/cti/conf/tla-ng/common.config
+                             usermod -a -G ftm smsc
+                             usermod -a -G ftm tla_ng_user
+                             usermod -a -G sys tla_ng_user
+                             service babysitter reload
+                           fi
+                          </Command>
+                   </Execute>
+                     <!--<Execute ExecutionOrder="90" UponError="Stop">
+                        <Command>./Babysitter_config.sh {UnitType}</Command>
+                     </Execute>-->
+                     <!--<Execute ExecutionOrder="95" UponError="Continue">  
+                         <Command>cd /var/cti/logs/tla-ng/; chown smsc:sys debug.TLANG; chmod o+r debug.TLANG</Command>                 
+                     </Execute>-->
+                </Install>
+                <Upgrade>
+                  <Copy ExecutionOrder="10" Overwrite="true" UponError="Stop" ChmodFlags="+x">
+                                <Source>./*</Source>
+                        </Copy>
+                        <Execute ExecutionOrder="30" Timeout="30" UponError="Stop">
+                                <Command>/bin/sed -i -e 's/TLANG.db_password=.*$/TLANG.db_password={MWTraceDBPassword}/' /usr/cti/conf/tla-ng/db.config</Command>
+                        </Execute>
+                        <Execute ExecutionOrder="40" Timeout="30" UponError="Stop">
+                                <Command>/bin/sed -i -e 's/TLANG.db_user_name=.*$/TLANG.db_user_name={MWTraceDBUserName}/' /usr/cti/conf/tla-ng/db.config</Command>
+                        </Execute>
+                        <Execute ExecutionOrder="50" Timeout="30" UponError="Stop">
+                                <Command>/bin/sed -i -e 's/is_smsc_id_required=.*$/is_smsc_id_required=false/' /usr/cti/conf/tla-ng/db.config</Command>
+                        </Execute>
+                  <!--<Execute ExecutionOrder="60" Timeout="30" UponError="Stop">
+                                <Command>/bin/sed -i -e 's/product = MGW,CAU.*$/product = MGW,CAU,IMPA,SPL,VIMPA,ONS/' /usr/cti/conf/tla-ng/site.config</Command>
+                  </Execute>-->
+                        <!--<Execute ExecutionOrder="60" Timeout="30" UponError="Stop">
+                                <Command>/bin/sed -i -e 's/agentXConnectionPort=705.*$/agentXConnectionPort=1055/' /usr/cti/conf/tla-ng/snmp.config</Command>
+                        </Execute>-->
+                      <!--<Execute ExecutionOrder="70" UponError="Stop">
+                        <Command>
+                                if [ -f /usr/cti/conf/tla-ng/SEM_fields.config ]; then
+                                        Date=`date '+%d%m%Y%H%M'`
+                                        echo "WARN : /usr/cti/conf/tla-ng/SEM_fields.config already exists. Backup it as /usr/cti/conf/tla-ng/SEM_fields.config.${Date}"
+                                        /bin/cp -f /usr/cti/conf/tla-ng/SEM_fields.config /usr/cti/conf/tla-ng/SEM_fields.config.${Date}
+                                fi
+                                /bin/cp -f SEM_fields.config_new /usr/cti/conf/tla-ng/SEM_fields.config
+                        </Command>
+                      </Execute>-->
+                     <Execute ExecutionOrder="65" UponError="Stop">
+                         <Command>
+                                if [ -f /usr/cti/conf/tla-ng/IPGW_fields.config ]; then
+                                        Date=`date '+%d%m%Y%H%M'`
+                                        echo "WARN : /usr/cti/conf/tla-ng/IPGW_fields.config already exists. Backup it as /usr/cti/conf/tla-ng/IPGW_fields.config.${Date}"
+                                        /bin/cp -f /usr/cti/conf/tla-ng/IPGW_fields.config /usr/cti/conf/tla-ng/IPGW_fields.config.${Date}
+                                fi
+
+                                /bin/cp -f IPGW_fields.config /usr/cti/conf/tla-ng/IPGW_fields.config
+
+                        </Command>
+                        </Execute>
+                      <!-- babysitter section
+                        <Execute ExecutionOrder="80" UponError="Stop">
+                                <Command>
+                                        if [ -f /usr/cti/conf/babysitter/ApplicationsTLA_NG.xml ]; then
+                                                Date=`date '+%d%m%Y%H%M'`
+                                                echo "WARN : /usr/cti/conf/babysitter/ApplicationsTLA_NG.xml already exists. Backup it as /usr/cti/conf/babysitter/ApplicationsTLA_NG.xml.${Date}"
+                                                /bin/cp -f /usr/cti/conf/babysitter/ApplicationsTLA_NG.xml /usr/cti/conf/babysitter/ApplicationsTLA_NG.xml.${Date}
+                                        fi
+
+                                </Command>
+                         </Execute>-->
+
+                        <!--<SetParams ExecutionOrder="85" UponError="Stop">
+                                <ExecutionGroup>TLA_PARAMS</ExecutionGroup>
+                        </SetParams>-->
+                        <Execute ExecutionOrder="90" UponError="Stop">
+              <Command>
+                          if [ {UnitType} == "OMU_Group" ]; then
+                                  echo "INFO: Replaced default trace files location when installtion TLA on OMU"
+                  Date=`date '+%d%m%Y%H%M'`
+                  /bin/cp -f /usr/cti/conf/tla-ng/common.config /usr/cti/conf/tla-ng/common.config.${Date}
+                  /bin/sed -i '/trace_type.0.location/d' /usr/cti/conf/tla-ng/common.config
+                  /bin/sed -i '/trace_type.0.filename_prefix/ a\trace_type.0.location=/data/omap_trace/PSU' /usr/cti/conf/tla-ng/common.config
+                  /bin/sed -i 's/trace_type.0.filename_prefix=msg_trace.log.header./trace_type.0.filename_prefix=msg_trace.log./' /usr/cti/conf/tla-ng/common.config
+                  /bin/sed -i '/trace_type.0.suspicious_files_location/d' /usr/cti/conf/tla-ng/common.config
+                  /bin/sed -i '/trace_type.0.location/ a\trace_type.0.suspicious_files_location=/data/omap_trace/PSU/suspected' /usr/cti/conf/tla-ng/common.config
+                  usermod -a -G ftm smsc
+                  usermod -a -G ftm tla_ng_user
+                  usermod -a -G sys tla_ng_user
+                                  service babysitter reload
+                           fi
+                       </Command>
+             </Execute>
+                        <!--<Execute ExecutionOrder="90" UponError="Stop">
+                                <Command>./Babysitter_config.sh {UnitType}</Command>
+                        </Execute>-->
+                        <!--<Execute ExecutionOrder="95" UponError="Continue">  
+                           <Command>cd /var/cti/logs/tla-ng/; chown smsc:sys debug.TLANG; chmod o+r debug.TLANG</Command>                 
+                         </Execute>-->                   
+              </Upgrade>
+                <Parameters>
+                        <Parameter Name="MWTraceDBHOST" Level="System" Display="false" DisplayName="Middleware Trace DB Name">
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                        <MaxLength>255</MaxLength>
+                                </Restrictions>
+                                <Description>Middleware Trace DB Name</Description>
+                                <Value>MWTRACESDB</Value>
+                        </Parameter>
+                        <Parameter Name="MWTraceDBUserName" Level="System" Display="false" DisplayName="Middleware Trace DB User Name">
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                        <MaxLength>255</MaxLength>
+                                </Restrictions>
+                                <Description>Middleware Trace DB User Name</Description>
+                                <Value>mw_trace</Value>
+                        </Parameter>
+                        <Parameter Name="MWTraceDBPassword" Level="System" Display="false" DisplayName="Middleware Trace DB password">
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                        <MaxLength>255</MaxLength>
+                                </Restrictions>
+                                <Value>Mw71Trace9</Value>
+                                <Description>Middleware Trace DB Password</Description>
+                        </Parameter>
+                        <!--<Parameter Name="TLA_INST" Level="Unit" Display="false" Overwrite="true" ExecutionGroup="TLA_PARAMS">
+                         <Description>Sets TLA Instance Id</Description>
+                         <Restrictions>
+                                <Type>String</Type>
+                                <Mandatory>true</Mandatory>
+                         </Restrictions>
+                         <Value>[UnitGroup.xml://UnitGroup/Logical/Application[contains(@ApplicationName,'TLA_NG')]/UnitInstance[@UnitName="{HostName}"]/AppInstance/@InstanceName]</Value>
+                         <Files>
+                                <File ParameterPath="_TLA_INST_" Name="/usr/cti/conf/babysitter/ApplicationsTLA_NG.xml" Format="Text"></File>
+                         </Files>
+                         </Parameter>-->
+        </Parameters>
+        </Component>
+</SWIM>

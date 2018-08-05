@@ -1,0 +1,123 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="DNS_Client" Version="_VERSION-_BUILD">
+		<Install>
+
+			<Copy ChmodFlags="755" ExecutionOrder="10" UponError="Stop" Overwrite="true">
+				<Source>./dns_client_conf.sh</Source>
+			</Copy>
+
+			<Execute ExecutionOrder="30" UponError="Stop">
+				<Command>
+								if [ "{UnitType}" == "SEM_Group" ]; then
+									/usr/cti/apps/CSPbase/csp_networking.pl --action=set_alias --hostname=`hostname` --alias=`hostname`.{MTAsysDomainName}
+								fi
+				</Command>
+			</Execute>
+			
+			
+			<!--  named setup -->
+			<Copy ChmodFlags="644" ExecutionOrder="100" Overwrite="true">
+				<Source>./named.conf</Source>
+				<Target>/etc/</Target>
+			</Copy>
+			<Execute ExecutionOrder="105" UponError="Stop">
+				<Command>chown root:named /etc/named.conf</Command>
+			</Execute> 
+			<Copy ChmodFlags="740" ExecutionOrder="110" Overwrite="true">
+				<Source>./ApplicationsNamed.xml</Source>
+				<Target>/usr/cti/conf/babysitter/</Target>
+			</Copy>
+			<Execute ExecutionOrder="120" UponError="Stop">
+				<Command>chown bsuser:bsgroup /usr/cti/conf/babysitter/ApplicationsNamed.xml</Command>
+			</Execute>
+			<Execute ExecutionOrder="130" UponError="Stop">
+				<Command>
+								mkdir -p /var/log/named
+								chown named /var/log/named
+								chmod 750 /var/log/named
+				</Command>
+			</Execute>
+
+			<Execute ExecutionOrder="150" UponError="Continue">
+				<Command>chkconfig named --add ; chkconfig --level 3456 named on</Command>
+			</Execute>
+			
+			<Execute ExecutionOrder="200" UponError="Stop">
+				<Command>./dns_client_conf.sh {SEM_SYS_NAME} {MTAsysDomainName} {BALANCER_IPS} {BALANCER_ENABLED}</Command>
+			</Execute>
+			<Execute ExecutionOrder="201" UponError="Stop">
+				<Command>
+									if [ "{UnitType}" != "SEM_Group" ]; then
+										sed -i '/^domain.*/d' /etc/resolv.conf
+									fi
+				</Command>
+			</Execute>
+
+   		     <Execute ExecutionOrder="250" UponError="Continue">
+				<Command>service named restart</Command>
+			</Execute>			
+			
+			<Execute ExecutionOrder="300" UponError="Continue">
+				<Command>
+					  #waiting to finish previous babysitter restart
+					  while [ "`/sbin/MamCMD d |grep status:Starting`" ]; do 
+						echo "INFO: Babysitter Unit is currently initializing" &amp;&amp; sleep 1
+					  done				
+					
+					service babysitter reload
+					sleep 30
+				</Command>
+			</Execute>					
+	
+		</Install>
+			
+		<Upgrade>
+			<Copy ChmodFlags="755" ExecutionOrder="10" UponError="Stop" Overwrite="true">
+				<Source>./dns_client_conf.sh</Source>
+			</Copy>
+			<Execute ExecutionOrder="20" UponError="Stop">
+				<Command>./dns_client_conf.sh {SEM_SYS_NAME} {MTAsysDomainName} {BALANCER_IPS} {BALANCER_ENABLED}</Command>
+			</Execute>			
+		</Upgrade>
+
+		<Parameters>
+		
+			<Parameter Name="BALANCER_ENABLED" Level="System" Display="false">
+				<Description>Balancer enabled or not. If not /etc/hosts file used </Description>
+				<Value>true</Value>
+				<Restrictions>
+					<Mandatory>true</Mandatory>
+					<Type>Boolean</Type>
+				</Restrictions>
+			</Parameter>
+			
+			<Parameter Name="MTAsysDomainName" Level="UnitType" Display="false" >
+				<Value>[UnitGroup.xml://UnitGroup/Physical[@GroupName="{UnitType}"]/UnitInstance[1]/replace(replace(@Hostname,"^[^\.]+",""),"^\.","")]</Value>
+				<Description>System domain name as defined in /etc/resolv.conf(in domain line)</Description>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			
+			<Parameter Name="BALANCER_IPS" Level="UnitType" Display="false" >
+				<Description>List of BALANCER IPs. For multiple servers, use comma separated list. Note, for each zone, should be defined its own DNS servers. For example for SZ it will be OMU nodes</Description>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			
+			<Parameter Name="SEM_SYS_NAME" Level="UnitType" Display="false" >
+				<Value>[File=/var/cti/data/swim/systems/SystemList.xml://string-join((/string-join(/SystemList/SystemRoot/SystemRoot/SystemRoot[contains(@SystemName,"IPSMGW")]/concat(@SystemName, ".", @SystemDomain), ","),/string-join(/SystemList/SystemRoot/SystemRoot/SystemRoot[contains(@SystemName,"MVAS")]/concat(@SystemName, ".", @SystemDomain), ",")), ",")]</Value>
+				<Description>System  name and domain name as defined in SCDB, for example SEM-Site-1.comverse.com</Description>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>		
+			
+		</Parameters>
+		
+	</Component>
+</SWIM>

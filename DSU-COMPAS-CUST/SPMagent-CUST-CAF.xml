@@ -1,0 +1,121 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Name="SpmAgent-CUST" Platform="Linux" Version="_VERSION-_BUILD">
+
+		<Install>
+
+			<Execute ExecutionOrder="10" UponError="Stop" Timeout="180">
+			<Command>
+					PATH=$PATH:/opt/VRTS/bin
+					HOST=`hostname`
+					#if [ "`echo $HOST|egrep "\.*[aA1]$"`" ]; then
+						if [ "`hares -display sem-spm-agent-data -attribute NodeNICs|grep -v "^#"|sed 's/.*global\s*//'`" ]; then
+								echo "INFO: Deleting NodeNICs from sem-spm-agent-data cluster configuration"
+								haconf -makerw
+								AttrToDel=`hares -display sem-spm-agent-data -attribute NodeNICs|grep -v "^#"|sed 's/.*global\s*//'|awk '{print $1,$3}'`
+								hares -modify sem-spm-agent-data NodeNICs -delete ${AttrToDel}
+								haconf -dump -makero
+						else
+								echo "WARN: NodeNICs not found for sem-spm-agent-data. Nothing to delete"
+						fi
+					#else
+					#	echo "INFO: Secondary node, no need to remove NodeNICs from sem-spm-agent-data cluster configuration"
+					#fi
+				</Command>
+			</Execute>
+			
+			<Execute ExecutionOrder="30" UponError="Stop">
+				<Command>
+							/bin/cp -pf /usr/cti/apps/spmagent/bin/GslCachePersistency.ser /usr/cti/apps/compas/bin/GslCachePersistency.ser.orig.Profile1
+							/bin/cp -pf /usr/cti/apps/spmagent/bin/GslCachePersistency.txt /usr/cti/apps/compas/bin/GslCachePersistency.txt.orig.Profile1
+				</Command>
+			</Execute>
+			
+			<!-- Execute ExecutionOrder="40" UponError="Stop">
+				<Command>
+						for i in `grep -R thin: /usr/cti/conf/spmagent |grep "SERVICE_NAME=ODS)" |cut -d':' -f 1 |uniq`; do 
+							sed -i.`date +%m%d%y.%H%M%S` -e "s/SERVICE_NAME=ODS)/SERVICE_NAME={MiddleWareDBSID})/ig" $i
+						done
+				</Command>
+			</Execute -->
+			
+			<Copy ChmodFlags="755" ExecutionOrder="50" UponError="Stop" Overwrite="true">
+				<Source>./GslCachePersistency.*</Source>
+				<Target>/usr/cti/apps/spmagent/bin/</Target>
+			</Copy>
+			
+			<SetParams ExecutionOrder="55" UponError="Stop">
+				<ExecutionGroup>AnswerFile</ExecutionGroup>
+			</SetParams>
+			
+			<Copy ChmodFlags="+x" ExecutionOrder="60" UponError="Stop" Overwrite="true">
+				<Source>./spmagent_config.sh</Source>
+				<Target>/var/tmp/</Target>
+			</Copy>			
+			
+			<Execute ExecutionOrder="70" UponError="Stop" Timeout="60">
+				<Command>/var/tmp/spmagent_config.sh</Command>
+			</Execute>
+			
+			<Execute ExecutionOrder="100" UponError="Stop">
+				<Command>
+								cd /var/tmp
+								for f in spmagent_config.sh compas_config.sh; do
+									if [ -f $f ]; then
+										/bin/rm -f $f
+									fi
+								done
+				</Command>
+			</Execute>
+		</Install>
+		
+		
+		<Upgrade>
+			<!-- Assuming compas CAF updates profile definition files -->
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>/usr/cti/spmagent/bin/systemCustomizationTool.sh /usr/cti/conf/profiledefinition/SysParamCustomization_MW.xml</Command>
+			</Execute>
+			<Execute ExecutionOrder="20" UponError="Stop">
+				<Command>
+					HOST=`hostname`;
+					if [ "`/opt/VRTS/bin/hares -state sem-spm-agent-data|grep -w ONLINE|grep $HOST`" ]; then
+						echo "sem-spm-agent-data is up on this , restarting it"
+						/usr/cti/apps/swp/HA/ha_ControlCluster.pl --offline --resource sem-spm-agent-data --time 180 --host $HOST
+						/usr/cti/apps/swp/HA/ha_ControlCluster.pl --online --resource sem-spm-agent-data --time 180 --host $HOST
+					else
+						echo "sem-spm-agent-data is running on other node, no need to restart it"
+					fi
+				</Command>
+			</Execute>
+		</Upgrade>
+		
+		<Uninstall>
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>echo uninstall</Command>
+			</Execute>
+		</Uninstall>
+		
+		<Parameters>
+			<Parameter Name="MiddleWareDBSID" Level="System" Display="true" DisplayName="Middleware DB Service Name" ExecutionGroup="AnswerFile">
+			<Description>SMS DSU service name. Used by ComPAS and SpmAgent as service name for Oracle connectivity.</Description>
+			 <File Format="Text" Name="/usr/cti/conf/profiledefinition/SysParamCustomization_MW.xml"/>
+			 <ParameterPath>SEM_DB</ParameterPath>
+			  <Value>SEM_DB</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			 </Parameter>
+		 <Parameter Name="MiddleWareDBHOST" Level="System" Display="true" DisplayName="Middleware DB Name" ExecutionGroup="AnswerFile">
+       <File Format="Text" Name="/usr/cti/conf/profiledefinition/SysParamCustomization_MW.xml"/>
+			 <ParameterPath>MW_DB</ParameterPath>
+			 <Restrictions>
+        <Type>String</Type>
+        <Mandatory>true</Mandatory>      
+       </Restrictions>
+        <Description>Middleware DB Name</Description>
+        <Value>MW_DB</Value>
+      </Parameter>
+		</Parameters>		
+		
+	</Component>
+</SWIM>

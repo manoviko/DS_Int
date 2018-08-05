@@ -1,0 +1,117 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\UAF.xsd">
+	<UnitType Name="DSU-DB-Replication" Platform="Linux">
+	
+		<Dependencies>
+		
+			<Component Name="DB-Replication-Config" UnitName="*dsu*">
+				<DependsOn>
+					<Component UnitName="*dsu*" Name="DB-Replication-Infra"/>
+				</DependsOn>
+			</Component>
+			<Component Name="DB-Replication-Infra" UnitName="*dsu*">
+				<DependsOn>
+					<Component UnitName="*dsu*" Name="DB-Replication-HA"/>
+				</DependsOn>
+			</Component>
+			<Component Name="DB-Replication-HA" UnitName="*dsu*[^aA1]$">
+				<DependsOn>
+					<Component UnitName="*dsu*[aA1]$" Name="DB-Replication-HA"/>
+				</DependsOn>
+			</Component>			
+			
+		</Dependencies>
+		
+			
+		<Install>
+			<Component Name="DB-Replication-HA"	UponError="Stop" 	ExecutionOrder="10"	DisplayGroup="IPSMGW-DSU-REPLICATION"/>
+			<Component Name="DB-Replication-XMLs"	UponError="Stop" 	ExecutionOrder="20"	DisplayGroup="IPSMGW-DSU-REPLICATION"/>
+			<Component Name="DB-Replication-Infra"	UponError="Stop" 	ExecutionOrder="30"	DisplayGroup="IPSMGW-DSU-REPLICATION"/>
+			<!-- Component Name="DB-Replication-Config"	UponError="Stop" 	ExecutionOrder="40"	DisplayGroup="IPSMGW-DSU-REPLICATION"/ -->
+
+		</Install>
+		
+		<Uninstall>
+			<Component Name="DB-Replication-Config"	UponError="Stop" 	ExecutionOrder="10"	DisplayGroup="IPSMGW-DSU-REPLICATION"/>
+			<Component Name="DB-Replication-Infra"	UponError="Stop" 	ExecutionOrder="20"	DisplayGroup="IPSMGW-DSU-REPLICATION"/>
+			<Component Name="DB-Replication-HA"	UponError="Stop" 	ExecutionOrder="30"	DisplayGroup="IPSMGW-DSU-REPLICATION"/>
+		</Uninstall>
+		
+	
+	
+		<Parameters>
+			
+				<Parameter ComponentName="DB-Replication-Infra" Name="XML_FILE" Display="false" Overwrite="true">
+					<Value>/var/tmp/db-replication-infra.xml</Value>
+				</Parameter>
+				
+				<Parameter ComponentName="DB-Replication-Config" Name="XML_FILE" Display="false" Overwrite="true">
+					<Value>/var/tmp/db-replication-config.xml</Value>
+				</Parameter>
+				<Parameter ComponentName="DB-Replication-Config" Name="DB_NAME" Display="false" Overwrite="true">
+					<Value>sem_db</Value>
+				</Parameter>
+				<Parameter ComponentName="DB-Replication-Config" Name="REP_PWD" Display="false" Overwrite="true">
+					<Value>Zx6as7qw</Value>
+				</Parameter>
+                                <Parameter ComponentName="DB-Replication-Config" Name="UN_REP_PWD" Display="false" Overwrite="true">
+                                        <Value>Zx6as7qw</Value>
+                                </Parameter>
+				<Parameter ComponentName="DB-Replication-Config" Name="PARALLEL_DEGREE" Display="false" Overwrite="true"/>
+				<Parameter ComponentName="DB-Replication-Config" Name="IMPORT_TYPE" Display="false" Overwrite="true">				
+					<Value>NETWORK</Value>
+				</Parameter>
+				<Parameter ComponentName="DB-Replication-Config" Name="UN_DB_NAME" Display="false" Overwrite="true">
+					<Value>sem_db</Value>
+				</Parameter>
+				
+                <Parameter ComponentName="DB-Replication-XMLs" Name="REMOTE_REPLICATION_HOME" Display="false" Overwrite="true">
+                   <Value>/data/sem_db_replication</Value>
+                </Parameter>
+                <Parameter ComponentName="DB-Replication-XMLs" Name="REPLICATION_HOME" Display="false" Overwrite="true">
+                    <Value>/data/sem_db_replication</Value>
+                </Parameter>
+                <Parameter ComponentName="DB-Replication-HA" Name="ReplicationMount" Display="false" Overwrite="true">
+                   <Value>/data/sem_db_replication</Value>
+                </Parameter>
+                <Parameter ComponentName="DB-Replication-HA" Name="Group_Depends" Display="false" Overwrite="true">
+                   <Value>sem_db online local firm</Value>
+                </Parameter> 
+				<Parameter ComponentName="DB-Replication-HA" Name="Group_Name" Display="false" Overwrite="true">
+					<Value>sem_db-splex</Value>
+				</Parameter>
+				<Parameter ComponentName="DB-Replication-HA" Name="Resource_Name" Display="false" Overwrite="true">
+					<Value>sem-db-splex-mount</Value>
+				</Parameter>	                               
+                
+                <!--<Parameter ComponentName="DB-Replication-XMLs" Name="DYNAMIC_PORTS" Display="false" Overwrite="true">
+                   <Value>11000-11050</Value>
+                </Parameter>-->                
+                <Parameter ComponentName="DB-Replication-XMLs" Name="LOCAL_VIP" Display="false" Overwrite="true">
+                   <Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"MW_DB.")]/VUnitInstance/@VirtualIp]</Value>
+                </Parameter>
+                <Parameter ComponentName="DB-Replication-XMLs" Name="SPLEX_VIP" Display="false" Overwrite="true">
+                   <Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"MW_DB.")]/VUnitInstance/@VirtualIp]</Value>
+                </Parameter>                	
+                <Parameter ComponentName="DB-Replication-XMLs" Name="LOCAL_DB" Display="false" Overwrite="true">
+                   <Value>sem_db</Value>
+                </Parameter>                	
+                <Parameter ComponentName="DB-Replication-XMLs" Name="REMOTE_DB" Display="false" Overwrite="true">
+                   <Value>sem_db</Value>
+                </Parameter>	                			
+				<Parameter ComponentName="DB-Replication-XMLs" Name="TABLE_LIST" Display="false" Overwrite="true">
+					<Value>MW_COMPROF_OWNER.SUBSCRIBERS,MW_COMPROF_OWNER.USER_DEVICES,MW_OWNER.REGISTRAR_SESSIONS,MW_OWNER.MESSAGE_CORRELATION</Value>
+				</Parameter>
+				<Parameter ComponentName="DB-Replication-XMLs" Name="SEQUENCE_LIST" Display="true" Overwrite="true">
+					<Value>COMPAS_OWNER:ENTITY_INTERNAL_ID_SEQ:1000000</Value>
+				</Parameter>
+                <Parameter ComponentName="DB-Replication-XMLs" Name="REMOTE_MGR_PORT" Display="false" Overwrite="true">
+                   <Value>2100</Value>
+                </Parameter>				
+				
+		
+		
+		</Parameters>
+		
+
+	</UnitType>
+</SWIM>

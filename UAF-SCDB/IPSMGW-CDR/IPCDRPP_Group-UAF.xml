@@ -1,0 +1,219 @@
+<SWIM>
+	<UnitType Platform="Linux" Name="IPCDRPP_Group">
+
+		<Install>
+			<Component Name="CSP_Base_Linux" ExecutionOrder="10" UponError="Stop"/>
+			<Component Name="NYadmin" ExecutionOrder="20" UponError="Stop"/>
+            <Component Name="mVAS-IPSMGW-Networking-Customization" 	UponError="Stop" ExecutionOrder="25"/>
+			<Component Name="swp_jre_1.7-64" ExecutionOrder="90" UponError="Stop"/>
+            <Component Name="System_Kit" ExecutionOrder="91" UponError="Stop"/>
+            <Component Name="UPDATE-JAVA-HOME" UponError="Stop" ExecutionOrder="93"/>
+            <Component Name="swp_tomcat7_0"    UponError="Stop" ExecutionOrder="95"/>
+            <Component Name="mVAS-IPSMGW-Customization-OMU" UponError="Stop" ExecutionOrder="96"/>
+            <Component Name="swp-HA" ExecutionOrder="98" UponError="Stop"/>
+			<Component Name="Babysitter-IC" ExecutionOrder="102" UponError="Stop"/>
+            <Component Name="SNMP_CONFIG"  UponError="Stop"  ExecutionOrder="104"/>
+            <Component Name="SYSLOG_CONFIG" UponError="Stop" ExecutionOrder="106"/>
+            <Component Name="DNS_Client"    UponError="Stop" ExecutionOrder="108"/>
+            <Component Name="NTP_Client"    UponError="Stop" ExecutionOrder="110"/>
+            <Component Name="BABYSITTER-CUST" UponError="Stop" ExecutionOrder="112"/>
+	    <Component Name="ConverterTool" ExecutionOrder="114" UponError="Stop"/>
+            <Component Name="IPGW-Customization-CDRPP" UponError="Stop" ExecutionOrder="116"/>
+            <!--<Component Name="ConverterTool" ExecutionOrder="120" UponError="Stop"/>-->
+            <Component Name="AUDIT-CUST" UponError="Stop" ExecutionOrder="140"/>
+			<Component Name="DISABLE-SSH" UponError="Stop" ExecutionOrder="150"/>
+			<Component Name="SetSwimJreTomcat" ExecutionOrder="302" UponError="Stop"/>
+			<Component Name="Linux_AS6_Hkit" ExecutionOrder="305" UponError="Stop"/>
+            <Component Name="UPDATE-VERSION" UponError="Stop" ExecutionOrder="310"/>
+            <Component Name="Reboot-KIT" ExecutionOrder="320" UponError="Stop"/>
+		</Install>
+		<!--<Uninstall>
+                        <Component Name="SMSC-Security-Update" ExecutionOrder="3" UponError="Stop"/>
+			<Component Name="Linux_AS6_Hkit" ExecutionOrder="5" UponError="Stop"/>
+			<Component Name="swp-ipa-client" ExecutionOrder="10" UponError="Stop"/>
+			<Component Name="ConverterTool" ExecutionOrder="15" UponError="Stop"/>
+			<Component Name="Babysitter-IC" ExecutionOrder="20" UponError="Stop"/>
+			<Component Name="swp_jre_1.7-64" ExecutionOrder="30" UponError="Stop"/>
+			<Component Name="swp_tomcat7_0" ExecutionOrder="35" UponError="Stop"/>
+			<Component Name="swp-HA-SMSC" ExecutionOrder="40" UponError="Stop"/>
+			<Component Name="SMSC-CSP-Customization-CDRPP" ExecutionOrder="50" UponError="Stop"/>
+			<Component Name="SMSC-CSP-Customization" ExecutionOrder="60" UponError="Stop"/>
+			<Component Name="SMSC-Networking-Customization" ExecutionOrder="70" UponError="Stop"/>
+			<Component Name="SMSC-OS-Customization" ExecutionOrder="80" UponError="Stop"/>
+			<Component Name="SMSC-Integ-Utils" ExecutionOrder="90" UponError="Stop"/>
+			<Component Name="NYadmin" ExecutionOrder="95" UponError="Stop"/>
+			<Component Name="CSP_Base_Linux" ExecutionOrder="100" UponError="Stop"/>
+		</Uninstall>
+		<Upgrade>
+                        <Component Name="SMSC-Integ-Utils" ExecutionOrder="10" UponError="Stop"/>
+                        <Component Name="SMSC-CSP-Customization" ExecutionOrder="20" UponError="Stop"/>
+                        <Component Name="SMSC-CSP-Customization-CDRPP" ExecutionOrder="25" UponError="Stop"/>
+                        <Component Name="SMSC-Pre-Upgrade" ExecutionOrder="30" UponError="Stop"/>
+			<Component Name="CSP_Base_Linux" ExecutionOrder="40" UponError="Stop"/>
+                        <Component Name="NYadmin" ExecutionOrder="50" UponError="Stop"/>
+                        <Component Name="swp_jre_1.7-64" ExecutionOrder="60" UponError="Stop"/>
+                        <Component Name="swp_tomcat7_0" ExecutionOrder="70" UponError="Stop"/>
+                        <Component Name="swp-HA-SMSC" ExecutionOrder="75" UponError="Stop"/>
+                        <Component Name="ConverterTool" ExecutionOrder="80" UponError="Stop"/>
+                        <Component Name="SMSC-ConvTool-Customization" ExecutionOrder="90" UponError="Stop"/>
+                        <Component Name="Babysitter-IC" ExecutionOrder="100" UponError="Stop"/>
+                        <Component Name="SMSC-Post-Installation" ExecutionOrder="110" UponError="Stop"/>
+			<Component Name="POST_IPA_NTP_Client" ExecutionOrder="110" UponError="Stop"/>
+			<Component Name="swp-ipa-client" ExecutionOrder="130" UponError="Stop"/>
+                        <Component Name="SMSC-Post-Upgrade" ExecutionOrder="140" UponError="Stop"/>
+                        <Component Name="SMSC-Security-Update" ExecutionOrder="150" UponError="Stop"/>
+		</Upgrade>-->
+
+		<Parameters>
+			<!--CSP_Base_Linux Parameters-->
+			<Parameter ComponentName="CSP_Base_Linux" Name="Legacy_Cleanup" Display="false"/>
+			<Parameter ComponentName="CSP_Base_Linux" Name="Vmtools_only" Display="false"/>
+			<Parameter ComponentName="CSP_Base_Linux" Name="No_Vmtools" Display="false"/>
+														
+			<!--swp-HA Parameters-->
+			<Parameter ComponentName="swp-HA-SMSC" Name="IsOCS" Display="false"/>
+			<Parameter ComponentName="swp-HA-SMSC" Name="ClusterUUID" Display="false"/>
+			<Parameter ComponentName="swp-HA-SMSC" Name="HeartbeatNIC" Display="true">
+				<Value>eth1,eth0</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-HA" Name="NodeName" Display="true">
+				<Value>[UnitGroup.xml:/UnitGroup/Physical[@GroupName='IPCDRPP_Group']/UnitInstance/@UnitName]</Value>
+			</Parameter>
+			 <Parameter ComponentName="swp-HA" Name="ClusterID" Display="true">
+				 <Value>124</Value>	
+			</Parameter>
+								
+			<!--Babysitter-IC Parameters-->
+			<Parameter ComponentName="Babysitter-IC" Name="AgentXServiceName" Display="false"/>
+			<Parameter ComponentName="Babysitter-IC" Name="AgentXPortNumber" Display="false">
+				<Value>1055</Value>
+			</Parameter>
+			<Parameter ComponentName="Babysitter-IC" Name="JAVA_PATH" Display="false">
+				<Value>/usr/local/jre1-7/bin/java</Value>
+			</Parameter>
+			
+			<!--ConverterTool Parameters-->
+			<Parameter ComponentName="ConverterTool" Name="ConvTool_GROUP" Display="false"/>
+			<Parameter ComponentName="ConverterTool" Name="ConvTool_INSTANCE" Display="false"/>
+			<Parameter ComponentName="ConverterTool" Name="JAVA_HOME_DIRECTORY" Display="false"/>
+			<Parameter ComponentName="ConverterTool" Name="ConvTool_WATCHDOG" Display="false">
+				<Value>Veritas</Value>
+			</Parameter>
+                        <Parameter ComponentName="swp-HA" Display="false" Name="ClusterUUID"/>
+			<Parameter ComponentName="swp-HA" Display="false" Name="ClusterName">
+				<Value>IPSMGW_CDR_PP_CLUSTER</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-HA" Display="false" Name="IsRAC" Overwrite="true">
+				<Value>false</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-HA" Display="true" Name="HeartbeatNIC">
+				<Value>eth1,eth0</Value>
+			</Parameter>
+			
+			<Parameter ComponentName="swp-HA" Display="false" Name="NetappIP">
+        <Value>1.1.1.1</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-HA" Display="false" Name="NetappUser">
+        <Value>admin</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-HA" Display="false" Name="NetappPassword">
+        <Value>NONEPASSWORD</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-HA" Display="false" Name="admin_nic">
+        <Value>ADMIN_DEVICE</Value>
+			</Parameter>
+      <Parameter ComponentName="swp-HA" Display="false" Name="sz_nic">
+        <Value>SZ_DEVICE</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-HA" Display="false" Name="nfs_nic">
+        <Value>NFS_DEVICE</Value>
+			</Parameter>
+                 <Parameter ComponentName="mVAS-IPSMGW-Customization-OMU" Name="Notifier_MNIC" Display="false" Overwrite="true">
+				<Value>ADMIN_MNIC</Value>
+		</Parameter>
+		<Parameter ComponentName="mVAS-IPSMGW-Customization-OMU" Name="SyslogServer" Overwrite="true" Display="false">
+                                    <Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"SyslogServer.")]/VUnitInstance/@VirtualIp]</Value>
+                                    <!--<Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"SYSLOGSERVER.")]/VUnitInstance/@VirtualIp]</Value>-->
+                        </Parameter>
+                <Alias DisplayName="SNMP Manager IP" Display="false" Overwrite="true">
+                                <Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"SNMPMANAGER.")]/VUnitInstance/@VirtualIp]</Value>
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                        <Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+                                </Restrictions>
+                                <Parameter ComponentName="SNMP_CONFIG"                          Name="ICC_VIP" />
+                                <Parameter ComponentName="mVAS-IPSMGW-Customization-OMU" Name="SnmpManager"/>                           
+                        </Alias>
+                        
+                        <Alias DisplayName="NTP SERVER1" Display="false" Overwrite="true">
+                                <Value>[UnitGroup.xml://UnitGroup/Logical/Application[contains(@ApplicationName,"NTPSERVER1.")]/UnitInstance/@MngIp]</Value>
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                </Restrictions>
+                                <Parameter ComponentName="mVAS-IPSMGW-Customization-OMU" Name="NtpServer1"/>
+                                <Parameter ComponentName="NTP_Client" Name="NTP_SRV1"/>
+                        </Alias>
+                        <Alias DisplayName="NTP SERVER2" Display="false" Overwrite="true">
+                                <Value>[UnitGroup.xml://UnitGroup/Logical/Application[contains(@ApplicationName,"NTPSERVER2.")]/UnitInstance/@MngIp]</Value>
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                </Restrictions>
+                                <Parameter ComponentName="mVAS-IPSMGW-Customization-OMU" Name="NtpServer2"/>                                            
+                                <Parameter ComponentName="NTP_Client" Name="NTP_SRV2"/>
+                        </Alias> 
+                        <!--<Alias DisplayName="cdr mount point" Display="true" Overwrite="true">
+                                <Value>/data/ipsmgw_cdr</Value>
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                </Restrictions>-->
+                                <Parameter ComponentName="IPGW-Customization-CDRPP" Name="cdrs_local_dir" Display="false" Overwrite="true">
+                                  <Value>/data/ipsmgw_cdr</Value>
+                                </Parameter>
+                                <Parameter ComponentName="ConverterTool" Name="CDR_MOUNT_POINT" Display="false" Overwrite="true">
+                                    <Value>/data/ipsmgw_cdr</Value>
+                                </Parameter>
+                        <!--</Alias>-->
+		</Parameters>
+		<Dependencies>
+                        <!--<Component Name="swp-HA" UnitName="*ipsmgw-omu1[^a]$">
+                                <DependsOn>
+                                        <Component UnitName="*ipsmgw-omu1[a]$" Name="swp-HA"/>
+                                </DependsOn>
+                        </Component>-->
+                        <Component Name="swp-HA" UnitName="*1[^a]$">
+                                <DependsOn>
+                                        <Component UnitName="*1[a]$" Name="swp-HA"/>
+                                </DependsOn>
+                        </Component>
+			<Component Name="swp-HA-SMSC" UnitName="*cdrpp*[^aA1]$">
+				<DependsOn>
+					<Component Name="swp-HA-SMSC" UnitName="*cdrpp*[aA1]$"/>
+				</DependsOn>
+			</Component>
+                        <Component Name="ConverterTool" UnitName="*cdrpp*[aA1]$">
+                                <DependsOn>
+                                        <Component Name="swp-HA-SMSC" UnitName="*cdrpp*[^aA1]$"/>
+                                </DependsOn>
+                        </Component>
+			<Component Name="ConverterTool" UnitName="*cdrpp*[^aA1]$">
+				<DependsOn>
+					<Component Name="ConverterTool" UnitName="*cdrpp*[aA1]$"/>
+				</DependsOn>
+			</Component>
+                        <Component Name="SMSC-ConvTool-Customization" UnitName="*cdrpp*[aA1]$">
+                                <DependsOn>
+                                        <Component Name="ConverterTool" UnitName="*cdrpp*[^aA1]$"/>
+                                </DependsOn>
+                        </Component>
+                        <Component Name="SMSC-ConvTool-Customization" UnitName="*cdrpp*[^aA1]$">
+                                <DependsOn>
+                                        <Component Name="SMSC-ConvTool-Customization" UnitName="*cdrpp*[aA1]$"/>
+                                </DependsOn>
+                        </Component>
+		</Dependencies>
+	</UnitType>
+</SWIM>

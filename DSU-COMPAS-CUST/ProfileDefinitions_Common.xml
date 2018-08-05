@@ -1,0 +1,1572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Provisioning>
+   <ProfileDefinition HashCode='-694991947' LoadingPriority='1' Name='Common' Version='1.2.0.0'>
+      <Entities>
+         <Entity>
+            <Name>Subscriber</Name>
+            <DsvEntityName>SUB</DsvEntityName>
+            <KeyField>InternalSubscriberId</KeyField>
+            <LdapDefinition>
+               <ObjClasses>cnsAuthPersonal,cnsCommon,cnsCommonPersonal,cnsGreeting,cnsGreetingPersonal,cnsMailAccountPersonal,cnsNotif,cnsNotifPersonal,cnsOperational,cnsVxV,cnsVxvPersonal,inetOrgPerson,organizationalPerson,person,top</ObjClasses>
+               <ObjClassFilter>objectClass=cnsCommonPersonal</ObjClassFilter>
+               <Base>ou=subscribers</Base>
+               <KeyAttr>UID</KeyAttr>
+               <RDN>ou=subscribers</RDN>
+            </LdapDefinition>
+            <SqlDefinition>
+               <Tables>
+                  <Table>
+                     <Name>SUBSCRIBERS</Name>
+                     <Type>Main</Type>
+                     <Key>SUBSCRIBER_ID</Key>
+                  </Table>
+               </Tables>
+            </SqlDefinition>
+            <Fields>
+               <Field>
+                  <Name>InternalSubscriberId</Name>
+                  <DsvName>Uid</DsvName>
+                  <DbName>SUBSCRIBERS.SUBSCRIBER_ID</DbName>
+                  <DisplayName>Subscriber Internal Id</DisplayName>
+                  <Description>Defines the subscriber&apos;s internal id, for internal use.</Description>
+               </Field>
+               <Field>
+                  <Name>SubscriberDomainId</Name>
+                  <DsvName>cnsDomainID</DsvName>
+                  <DbName>SUBSCRIBERS.DOMAIN_ID</DbName>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <SystemDefaults/>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Subscriber Domain Id</DisplayName>
+                  <Description>Defines the subscriber&apos;s domain id, for internal use.</Description>
+               </Field>
+               <Field>
+                  <Name>SubscriberDomainName</Name>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>false</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Subscriber Domain Name</DisplayName>
+                  <Description>Defines the subscriber&apos;s domain.</Description>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <SystemDefaults/>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+               </Field>
+               <Field>
+                  <Name>SubscriberCosId</Name>
+                  <DsvName>cnsCosID</DsvName>
+                  <DbName>SUBSCRIBERS.COS_ID</DbName>
+                  <DisplayName>Subscriber COS Id</DisplayName>
+                  <Description>Defines the subscriber&apos;s COS id, for internal use.</Description>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <SystemDefaults/>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+               </Field>
+               <Field>
+                  <Name>SubscriberCosName</Name>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                  </XsdValidation>
+                  <DisplayName>Subscriber COS Name</DisplayName>
+                  <Description>Defines the subscriber&apos;s COS which determines the settings and preference of the applications.</Description>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults>
+                           <XsdValidation>
+                              <Nillable>true</Nillable>
+                           </XsdValidation>
+                        </DomainDefaults>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <Nillable>true</Nillable>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+               </Field>
+               <Field>
+                  <Name>ResourceGroupId</Name>
+                  <DsvName>cnsGslSetID</DsvName>
+                  <DbName>SUBSCRIBERS.GSL_SET_ID</DbName>
+                  <DisplayName>Resource Group Id</DisplayName>
+                  <Description>Defines the id of the resource group, for internal use.</Description>
+               </Field>
+               <Field>
+                  <Name>ResourceGroupName</Name>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>false</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Resource Group Name</DisplayName>
+                  <Description>Defines the name of the resource group.</Description>
+               </Field>
+               <Field>
+                  <Name>SystemName</Name>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>false</Nillable>
+                  </XsdValidation>
+                  <DisplayName>System Name</DisplayName>
+                  <Description>The system name.</Description>
+               </Field>
+               <Field>
+                  <Name>SubscriberName</Name>
+                  <DsvName>cn</DsvName>
+                  <DbName>SUBSCRIBERS.FULL_NAME</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                     <MinLength>1</MinLength>
+                  </XsdValidation>
+                  <DisplayName>Subscriber Name</DisplayName>
+                  <Description>Defines the subscriber&apos;s full name.</Description>
+               </Field>
+               <Field>
+                  <Name>TelephoneNumber</Name>
+                  <DsvName>telephoneNumber</DsvName>
+                  <DbName>SUBSCRIBERS.TELEPHONE_NUMBER</DbName>
+                  <XsdValidation>
+                     <Type>compas:TelephoneNumType</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Telephone Number</DisplayName>
+                  <Description>Defines the subscriber&apos;s MSISDN, which is the subscriber&apos;s login ID to the voicemail system.</Description>
+               </Field>
+               <Field>
+                  <Name>AlternateNotifEmail</Name>
+                  <DsvName>cnsAlternateNotifEmail</DsvName>
+                  <DbName>SUBSCRIBERS.ALT_NOTIF_EMAIL</DbName>
+                  <XsdValidation>
+                     <Type>compas:EmailAddressType</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Alternate Notification Email</DisplayName>
+                  <Description>Defines an alternate email address for notification.</Description>
+               </Field>
+               <Field>
+                  <Name>Timezone</Name>
+                  <DsvName>cnsTimezone</DsvName>
+                  <DbName>SUBSCRIBERS.TIMEZONE</DbName>
+                  <XsdValidation>
+                     <Type>xs:string</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel/>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <Nillable>false</Nillable>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Timezone</DisplayName>
+                  <Description>Defines the subscriber&apos;s time zone.</Description>
+               </Field>
+               <Field>
+                  <Name>GlobalLanguageId</Name>
+                  <DsvName>preferredLanguage</DsvName>
+                  <DbName>SUBSCRIBERS.PREFERRED_LANG</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel/>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <Nillable>false</Nillable>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Global Language ID</DisplayName>
+                  <Description>Defines the subscriber&apos;s language. This setting is stored in ISO string format (en-US) according to RFC 3066, as follows: ISO-639 two letter code; ISO-3166 two letter country code.</Description>
+               </Field>
+               <Field>
+                  <Name>InternetPassword</Name>
+                  <DsvName>cnsInternetPassword</DsvName>
+                  <DbName>SUBSCRIBERS.INTERNET_PWD</DbName>
+                  <XsdValidation>
+                     <Type>xs:string</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Internet Password</DisplayName>
+                  <Description>Defines the subscriber&apos;s Internet login password.</Description>
+               </Field>
+               <Field>
+                  <Name>InternetUsername</Name>
+                  <DsvName>cnsInternetUsername</DsvName>
+                  <DbName>SUBSCRIBERS.INTERNET_USERNAME</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Web Login Username</DisplayName>
+                  <Description>Defines the subscriber&apos;s Internet login name.</Description>
+               </Field>
+               <Field>
+                  <Name>InternetPwdChangeTime</Name>
+                  <DsvName>cnsInternetPwdChangeTime</DsvName>
+                  <DbName>SUBSCRIBERS.INTERNET_PWD_CHANGE_TIME</DbName>
+                  <XsdValidation>
+                     <Type>compas:TimeType</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Internet Password Change Time</DisplayName>
+                  <Description>Defines the subscriber&apos;s Internet password change time.</Description>
+               </Field>
+               <Field>
+                  <Name>InternetPwdFailureTime</Name>
+                  <DsvName>cnsInternetPwdFailureTime</DsvName>
+                  <DbName>SUBSCRIBERS.INTERNET_PWD_FAILURE_TIME</DbName>
+                  <XsdValidation>
+                     <Type>compas:TimeType</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Internet Password Failure Time</DisplayName>
+                  <Description>Defines the subscriber&apos;s Internet password failure time.</Description>
+               </Field>
+               <Field>
+                  <Name>InternetPwdFailureCounter</Name>
+                  <DsvName>cnsInternetPwdFailureCounter</DsvName>
+                  <DbName>SUBSCRIBERS.INTERNET_PWD_FAILURE_COUNTER</DbName>
+                  <XsdValidation>
+                     <Type>xs:nonNegativeInteger</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Internet Password Failure Counter</DisplayName>
+                  <Description>Defines the subscriber&apos;s Internet password failure counter.</Description>
+               </Field>
+               <Field>
+                  <Name>HSPassword</Name>
+                  <DsvName>cnsHSPassword</DsvName>
+                  <DbName>SUBSCRIBERS.HS_PASSWORD</DbName>
+                  <XsdValidation>
+                     <Type>xs:string</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Handset Password</DisplayName>
+                  <Description>Defines the subscriber&apos;s handset password.</Description>
+               </Field>
+               <Field>
+                  <Name>HSPwdChangeTime</Name>
+                  <DsvName>cnsHSPwdChangeTime</DsvName>
+                  <DbName>SUBSCRIBERS.HS_PWD_CHANGE_TIME</DbName>
+                  <XsdValidation>
+                     <Type>compas:TimeType</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Handset Password Change Time</DisplayName>
+                  <Description>Defines the subscriber&apos;s handset password change time.</Description>
+               </Field>
+               <Field>
+                  <Name>HSPwdFailureTime</Name>
+                  <DsvName>cnsHSPwdFailureTime</DsvName>
+                  <DbName>SUBSCRIBERS.HS_PWD_FAILURE_TIME</DbName>
+                  <XsdValidation>
+                     <Type>compas:TimeType</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Handset Password Failure Time</DisplayName>
+                  <Description>Defines the subscriber&apos;s handset password failure time.</Description>
+               </Field>
+               <Field>
+                  <Name>HSPwdFailureCounter</Name>
+                  <DsvName>cnsHSPwdFailureCounter</DsvName>
+                  <DbName>SUBSCRIBERS.HS_PWD_FAILURE_COUNTER</DbName>
+                  <XsdValidation>
+                     <Type>xs:nonNegativeInteger</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Handset Password Failure Counter</DisplayName>
+                  <Description>Defines the subscriber&apos;s handset password failure counter.</Description>
+               </Field>
+               <Field>
+                  <Name>CreateOriginator</Name>
+                  <DsvName>cnsCreateOriginator</DsvName>
+                  <DbName>SUBSCRIBERS.CREATE_ORIGINATOR</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Create Originator</DisplayName>
+                  <Description>The administrator or application that created the entity.</Description>
+               </Field>
+               <Field>
+                  <Name>LastModifyOriginator</Name>
+                  <DsvName>cnsLastModifyOriginator</DsvName>
+                  <DbName>SUBSCRIBERS.LAST_MODIFY_ORIGINATOR</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Last Modify Originator</DisplayName>
+                  <Description>The administrator or application that last modified the entity.</Description>
+               </Field>
+               <Field>
+                  <Name>CreateTimestamp</Name>
+                  <DsvName>createTimestamp</DsvName>
+                  <DbName>SUBSCRIBERS.CREATE_TIMESTAMP</DbName>
+                  <XsdValidation>
+                     <Type>compas:TimeType</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Create Timestamp</DisplayName>
+                  <Description>Defines the date and time at which the subscriber was created (GMT).</Description>
+               </Field>
+               <Field>
+                  <Name>ModifyTimestamp</Name>
+                  <DsvName>modifyTimestamp</DsvName>
+                  <DbName>SUBSCRIBERS.MODIFY_TIMESTAMP</DbName>
+                  <XsdValidation>
+                     <Type>compas:TimeType</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Modify Timestamp</DisplayName>
+                  <Description>Defines the date and time at which the subscriber was last modified (GMT).</Description>
+               </Field>
+               <Field>
+                  <Name>CountryCode</Name>
+                  <DsvName>cnsCountryCode</DsvName>
+                  <DbName>SUBSCRIBERS.COUNTRY_CODE</DbName>
+                  <XsdValidation>
+                     <Type>xs:string</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                     <MinLength>1</MinLength>
+                     <MaxLength>3</MaxLength>
+                     <Patterns>
+                        <Value>[0-9]*</Value>
+                     </Patterns>
+                  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <ServiceLevel>
+                           <XsdValidation>
+                              <MaxOcc>0</MaxOcc>
+                           </XsdValidation>
+                        </ServiceLevel>
+                        <DomainDefaults>
+                           <XsdValidation>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                        </DomainDefaults>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <Nillable>false</Nillable>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Country Code</DisplayName>
+                  <Description>Defines the international country code (1-3 digits).</Description>
+               </Field>
+               <Field>
+                  <Name>AllowedLanguages</Name>
+                  <DsvName>cnsLanguagesAllowed</DsvName>
+                  <MultiValueElementName>Value</MultiValueElementName>
+                  <DbName>SUBSCRIBERS.ALLOWED_LANG</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults>
+                           <XsdValidation>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                        </DomainDefaults>
+                        <ServiceLevel>
+                           <XsdValidation>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Allowed Languages</DisplayName>
+                  <Description>Defines the allowed languages.</Description>
+               </Field>
+               <Field>
+                  <Name>HandsetTypeAllowed</Name>
+                  <DsvName>cnsHandsetTypeAllowed</DsvName>
+                  <MultiValueElementName>Value</MultiValueElementName>
+                  <DbName>SUBSCRIBERS.HS_TYPES_ALLOWED</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <ServiceLevel>
+                           <XsdValidation>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                        </ServiceLevel>
+                        <DomainDefaults>
+                           <XsdValidation>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                        </DomainDefaults>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <Nillable>false</Nillable>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Allowed Handset Type</DisplayName>
+                  <Description>Defines a list of handset types supported for the subscriber.</Description>
+               </Field>
+               <Field>
+                  <Name>HandsetType</Name>
+                  <DsvName>cnsHandsetType</DsvName>
+                  <DbName>SUBSCRIBERS.HS_TYPE</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Handset Type</DisplayName>
+                  <Description>Defines the subscriber&apos;s handset type.</Description>
+               </Field>
+               <Field>
+                  <Name>BWListInUse</Name>
+                  <DsvName>cnsBWListInUse</DsvName>
+                  <DbName>SUBSCRIBERS.BW_LIST_IN_USE</DbName>
+                  <XsdValidation>
+                     <Type>xs:string</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                     <Lov>
+                        <Value>None</Value>
+                        <Value>Black</Value>
+                        <Value>White</Value>
+                        <Value>Both</Value>
+                     </Lov>
+                  </XsdValidation>
+                  <DisplayName>Black White List In Use</DisplayName>
+                  <Description>Defines the subscriber&apos;s black white list in use.</Description>
+               </Field>
+               <Field>
+                  <Name>EmailBlackList</Name>
+                  <DsvName>cnsEmailBlackList</DsvName>
+                  <MultiValueElementName>Value</MultiValueElementName>
+                  <DbName>SUBSCRIBERS.EMAIL_BLACK_LIST</DbName>
+                  <XsdValidation>
+                     <Type>compas:EmailAddressType</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Email Black List</DisplayName>
+                  <Description>Defines the subscriber&apos;s email black list.</Description>
+               </Field>
+               <Field>
+                  <Name>EmailWhiteList</Name>
+                  <DsvName>cnsEmailWhiteList</DsvName>
+                  <DbName>SUBSCRIBERS.EMAIL_WHITE_LIST</DbName>
+                  <MultiValueElementName>Value</MultiValueElementName>
+                  <XsdValidation>
+                     <Type>compas:EmailAddressType</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Email White List</DisplayName>
+                  <Description>Defines the subscriber&apos;s email white list.</Description>
+               </Field>
+               <Field>
+                  <Name>EmailDomainBlackList</Name>
+                  <DsvName>cnsEmailDomainBlackList</DsvName>
+                  <DbName>SUBSCRIBERS.EMAIL_DOMAIN_BLACK_LIST</DbName>
+                  <MultiValueElementName>Value</MultiValueElementName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Email Domain Black List</DisplayName>
+                  <Description>Defines the subscriber&apos;s email domain black list.</Description>
+               </Field>
+               <Field>
+                  <Name>EmailDomainWhiteList</Name>
+                  <DsvName>cnsEmailDomainWhiteList</DsvName>
+                  <DbName>SUBSCRIBERS.EMAIL_DOMAIN_WHITE_LIST</DbName>
+                  <MultiValueElementName>Value</MultiValueElementName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Email Domain White List</DisplayName>
+                  <Description>Defines the subscriber&apos;s email domain white list.</Description>
+               </Field>
+               <Field>
+                  <Name>MailAccountEmailAddress</Name>
+                  <DsvName>cnsMailAccountEmailAddress</DsvName>
+                  <DbName>SUBSCRIBERS.MA_EMAIL_ADDRESS</DbName>
+                  <XsdValidation>
+                     <Type>compas:EmailAddressType</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                  </XsdValidation>
+                  <DisplayName>Mail Account Email Address</DisplayName>
+                  <Description>Defines the subscriber&apos;s email address for this mail account.</Description>
+               </Field>
+               <Field>
+                  <Name>MailAccountUsername</Name>
+                  <DsvName>cnsMailAccountUsername</DsvName>
+                  <DbName>SUBSCRIBERS.MA_USERNAME</DbName>
+                  <XsdValidation>
+                     <Type>xs:string</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Patterns>
+                        <Value>([0-9]|[a-z]|[A-Z]|@|_|-|\.)+</Value>
+                     </Patterns>
+                  </XsdValidation>
+                  <DisplayName>Mail Account Username</DisplayName>
+                  <Description>Defines the subscriber&apos;s username for this mail account.</Description>
+               </Field>
+               <Field>
+                  <Name>WapId</Name>
+                  <DsvName>cnsWapId</DsvName>
+                  <DbName>SUBSCRIBERS.WAP_ID</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <MaxLength>50</MaxLength>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Wap Id</DisplayName>
+                  <Description>Defines the subscriber&apos;s wap id.</Description>
+               </Field>
+               <Field>
+                  <Name>HandsetIpAddr</Name>
+                  <DsvName>cnsHandsetIpAddr</DsvName>
+                  <DbName>SUBSCRIBERS.HS_IP_ADDR</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <MaxLength>23</MaxLength>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Handset IP Address</DisplayName>
+                  <Description>Defines the subscriber&apos;s handset IP address.</Description>
+               </Field>
+               <Field>
+                  <Name>BillingType</Name>
+                  <DsvName>cnsBillingType</DsvName>
+                  <DbName>SUBSCRIBERS.BILLING_TYPE</DbName>
+                  <XsdValidation>
+                     <Type>xs:string</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                     <Lov>
+                        <Value>PrePaid</Value>
+                        <Value>PostPaid</Value>
+                     </Lov>
+                  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel/>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <Nillable>false</Nillable>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Billing Type</DisplayName>
+                  <Description>Determines the subscriber type; either Prepaid or Postpaid.</Description>
+               </Field>
+               <Field>
+                  <Name>BWListEnabled</Name>
+                  <DsvName>cnsBWListEnabled</DsvName>
+                  <DbName>SUBSCRIBERS.BW_LIST_ENABLED</DbName>
+                  <XsdValidation>
+                     <Type>xs:boolean</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel/>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <Nillable>false</Nillable>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Black White List Enabled</DisplayName>
+                  <Description>Determines whether black and white list are enabled.</Description>
+               </Field>
+               <Field>
+                  <Name>MailAccountPassword</Name>
+                  <DsvName>cnsMailAccountPassword</DsvName>
+                  <DbName>SUBSCRIBERS.MA_PASSWORD</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>false</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Mail Account Password</DisplayName>
+                  <Description>Defines the subscriber&apos;s password for this mail account.</Description>
+               </Field>
+               <Field>
+                  <Name>BillingNumber</Name>
+                  <DsvName>cnsBillingNumber</DsvName>
+                  <DbName>SUBSCRIBERS.BILLING_NUMBER</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel/>
+                        <SystemDefaults/>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Billing Number</DisplayName>
+                  <Description>Defines the subscriber&apos;s billing number written to the CDR.</Description>
+               </Field>
+               <Field>
+                  <Name>PhoneBlackList</Name>
+                  <DsvName>cnsPhoneBlackList</DsvName>
+                  <DbName>SUBSCRIBERS.PHONE_BLACK_LIST</DbName>
+                  <MultiValueElementName>Value</MultiValueElementName>
+                  <XsdValidation>
+                     <Type>xs:string</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                     <Patterns>
+                        <Value>[0-9|+|?|*]{2,25}</Value>
+                     </Patterns>
+                  </XsdValidation>
+                  <DisplayName>Phone Black List</DisplayName>
+                  <Description>Defines the subscriber&apos;s phone black list.</Description>
+               </Field>
+               <Field>
+                  <Name>PhoneWhiteList</Name>
+                  <DsvName>cnsPhoneWhiteList</DsvName>
+                  <DbName>SUBSCRIBERS.PHONE_WHITE_LIST</DbName>
+                  <MultiValueElementName>Value</MultiValueElementName>
+                  <XsdValidation>
+                     <Type>xs:string</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                     <Patterns>
+                        <Value>[0-9|+|?|*]{2,25}</Value>
+                     </Patterns>
+                  </XsdValidation>
+                  <DisplayName>Phone White List</DisplayName>
+                  <Description>Defines the subscriber&apos;s phone white list.</Description>
+               </Field>
+               <Field>
+                  <Name>WebSelfProvEnabled</Name>
+                  <DsvName>cnsWebSelfProvEnabled</DsvName>
+                  <DbName>SUBSCRIBERS.WEB_SELF_PROV_ENABLED</DbName>
+                  <XsdValidation>
+                     <Type>xs:boolean</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel/>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <Nillable>false</Nillable>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Web Self Provisioning Enabled</DisplayName>
+                  <Description>Determines if Web self-provisioning is enabled.</Description>
+               </Field>
+               <Field>
+                  <Name>URI</Name>
+                  <DsvName>cnsUri</DsvName>
+                  <DbName>SUBSCRIBERS.URI</DbName>
+                  <XsdValidation>
+                     <Type>xs:string</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>URI</DisplayName>
+                  <Description>Defines the subscriber&apos;s URI.</Description>
+               </Field>
+               <Field>
+                  <Name>MobileIdentifier</Name>
+                  <DsvName>cnsMobileIdentifier</DsvName>
+                  <DbName>SUBSCRIBERS.MOBILE_IDENTIFIER</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <MaxLength>20</MaxLength>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Mobile Identifier</DisplayName>
+                  <Description>Defines the mobile identifier; either the IMSI number (GSL) or the MIN number (CDMA).</Description>
+               </Field>
+               <Field>
+                  <Name>ShortDialNumber</Name>
+                  <DsvName>ShortDialNumber</DsvName>
+                  <DbName>SUBSCRIBERS.SHORT_DIAL_NUMBER</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                     <MaxLength>10</MaxLength>
+                  </XsdValidation>
+                  <DisplayName>Short Dial Number</DisplayName>
+                  <Description>Defines the subscriber&apos;s Short Dial number.</Description>
+               </Field>
+               <Field>
+                  <Name>AdditionalIdsNumLimit</Name>
+                  <DsvName>cnsAdditionalIdNumLimit</DsvName>
+                  <DbName>SUBSCRIBERS.ADDITIONAL_ID_NUM_LIMIT</DbName>
+                  <XsdValidation>
+                     <Type>xs:nonNegativeInteger</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                     <MinVal>1</MinVal>
+                     <MaxVal>10</MaxVal>
+                  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel/>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <Nillable>false</Nillable>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Additional IDs Limit</DisplayName>
+                  <Description>Defines the maximum number of additional phone numbers allowed for the subscriber.</Description>
+               </Field>
+               <Field>
+                  <Name>Nickname</Name>
+                  <DsvName>Nickname</DsvName>
+                  <DbName>SUBSCRIBERS.NICKNAME</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Nick Name</DisplayName>
+                  <Description>Defines the subscriber&apos;s nick name.</Description>
+               </Field>
+               <Field>
+                  <Name>Gender</Name>
+                  <DsvName>Gender</DsvName>
+                  <DbName>SUBSCRIBERS.GENDER</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                     <Lov>
+                        <Value>Male</Value>
+                        <Value>Female</Value>
+                     </Lov>
+                  </XsdValidation>
+                  <DisplayName>Gender</DisplayName>
+                  <Description>Defines the subscriber&apos;s gender.</Description>
+               </Field>
+               <Field>
+                  <Name>DateOfBirth</Name>
+                  <DsvName>DateOfBirth</DsvName>
+                  <DbName>SUBSCRIBERS.DATE_OF_BIRTH</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Date Of Birth</DisplayName>
+                  <Description>Defines the subscriber&apos;s date of birth.</Description>
+               </Field>
+               <Field>
+                  <Name>Street</Name>
+                  <DsvName>Street</DsvName>
+                  <DbName>SUBSCRIBERS.STREET</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Street</DisplayName>
+                  <Description>Defines the subscriber&apos;s street.</Description>
+               </Field>
+               <Field>
+                  <Name>City</Name>
+                  <DsvName>City</DsvName>
+                  <DbName>SUBSCRIBERS.CITY</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>City</DisplayName>
+                  <Description>Defines the subscriber&apos;s city.</Description>
+               </Field>
+               <Field>
+                  <Name>Region</Name>
+                  <DsvName>Region</DsvName>
+                  <DbName>SUBSCRIBERS.REGION</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Region</DisplayName>
+                  <Description>Defines the subscriber&apos;s region.</Description>
+               </Field>
+               <Field>
+                  <Name>ZipCode</Name>
+                  <DsvName>ZipCode</DsvName>
+                  <DbName>SUBSCRIBERS.ZIP_CODE</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Zip Code</DisplayName>
+                  <Description>Defines the subscriber&apos;s zip code.</Description>
+               </Field>
+               <Field>
+                  <Name>State</Name>
+                  <DsvName>State</DsvName>
+                  <DbName>SUBSCRIBERS.STATE</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>State</DisplayName>
+                  <Description>Defines the subscriber&apos;s state.</Description>
+               </Field>
+               <Field>
+                  <Name>Country</Name>
+                  <DsvName>Country</DsvName>
+                  <DbName>SUBSCRIBERS.COUNTRY</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Country</DisplayName>
+                  <Description>Defines the subscriber&apos;s country.</Description>
+               </Field>
+               <Field>
+                  <Name>PostalBox</Name>
+                  <DsvName>PostalBox</DsvName>
+                  <DbName>SUBSCRIBERS.POSTAL_BOX</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Postal Box</DisplayName>
+                  <Description>Defines the subscriber&apos;s postal box.</Description>
+               </Field>
+               <Field>
+                  <Name>TuiPassword</Name>
+                  <DsvName>cnsTuiPassword</DsvName>
+                  <DbName>SUBSCRIBERS.TUI_PASSWORD</DbName>
+                  <XsdValidation>
+                     <Type>xs:string</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>TUI Password</DisplayName>
+                  <Description>Defines the subscriber&apos;s password for logging in to the system from the TUI.</Description>
+               </Field>
+               <Field>
+                  <Name>TuiPasswordChangedTime</Name>
+                  <DsvName>pwdChangedTime</DsvName>
+                  <DbName>SUBSCRIBERS.TUI_PWD_CHANGE_TIME</DbName>
+                  <XsdValidation>
+                     <Type>compas:TimeType</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>false</Nillable>
+                  </XsdValidation>
+                  <DisplayName>TUI Password Changed Time</DisplayName>
+                  <Description>The timestamp of the last time the subscriber&apos;s password was changed.</Description>
+               </Field>
+               <Field>
+                  <Name>AdditionalIdsEnabled</Name>
+                  <DsvName>cnsAdditionalIdEnabled</DsvName>
+                  <DbName>SUBSCRIBERS.ADDITIONAL_ID_ENABLED</DbName>
+                  <XsdValidation>
+                     <Type>xs:boolean</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel/>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <Nillable>false</Nillable>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Additional IDs Enabled</DisplayName>
+                  <Description>Determines if additional IDs are supported for the subscriber.</Description>
+               </Field>
+               <Field>
+                  <Name>HandsetLanguage</Name>
+                  <DsvName>cnsHandsetLanguage</DsvName>
+                  <DbName>SUBSCRIBERS.HANDSET_LANG</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel/>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <Nillable>false</Nillable>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Handset Language</DisplayName>
+                  <Description>Defines the subscriber&apos;s handset language. This setting is stored in ISO string format (en-US) according to RFC 3066, as follows: ISO-639 two letter code; ISO-3166 two letter country code.</Description>
+               </Field>
+               <Field>
+                  <Name>WeekendDays</Name>
+                  <DsvName>cnsWeekendDays</DsvName>
+                  <DbName>SUBSCRIBERS.WEEKEND_DAYS</DbName>
+                  <MultiValueElementName>Value</MultiValueElementName>
+                  <XsdValidation>
+                     <Type>xs:string</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                     <Lov>
+                        <Value>Fri</Value>
+                        <Value>Sat</Value>
+                        <Value>Sun</Value>
+                     </Lov>
+                  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel/>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <Nillable>false</Nillable>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Weekend Days</DisplayName>
+                  <Description>Defines the list of weekend days.</Description>
+               </Field>
+               <Field>
+                  <Name>NicknameEnabled</Name>
+                  <DsvName>cnsNicknameEnabled</DsvName>
+                  <DbName>SUBSCRIBERS.NICKNAME_ENABLED</DbName>
+                  <XsdValidation>
+                     <Type>xs:boolean</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel/>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <Nillable>false</Nillable>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Nickname Enabled</DisplayName>
+                  <Description>Determines if nickname is active for the subscriber.</Description>
+               </Field>
+               <Field>
+                  <Name>NicknameOn</Name>
+                  <DsvName>cnsNicknameOn</DsvName>
+                  <DbName>SUBSCRIBERS.NICKNAME_ON</DbName>
+                  <XsdValidation>
+                     <Type>xs:boolean</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel/>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <Nillable>false</Nillable>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Nickname On</DisplayName>
+                  <Description>Determines if nickname is on for the subscriber.</Description>
+               </Field>
+            </Fields>
+         </Entity>
+         <Entity>
+            <Name>Domain</Name>
+            <DsvEntityName>DOMAIN</DsvEntityName>
+            <KeyField>DomainName</KeyField>
+            <LdapDefinition>
+               <ObjClasses>cnsDomain,cnsOperational,top</ObjClasses>
+               <ObjClassFilter>objectClass=cnsDomain</ObjClassFilter>
+               <Base>ou=Domains,ou=configuration</Base>
+               <KeyAttr>cnsDomainID</KeyAttr>
+               <RDN>ou=Domains,ou=configuration</RDN>
+            </LdapDefinition>
+            <SqlDefinition>
+               <Tables>
+                  <Table>
+                     <Name>DOMAIN_PROFILE</Name>
+                     <Type>Main</Type>
+                     <Key>DOMAIN_ID</Key>
+                  </Table>
+               </Tables>
+            </SqlDefinition>
+            <Fields>
+               <Field>
+                  <Name>DomainName</Name>
+                  <DsvName>cnsDomainName</DsvName>
+                  <DbName>DOMAIN_PROFILE.DOMAIN_NAME</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>false</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Domain Name</DisplayName>
+                  <Description>Defines the name of the domain.</Description>
+               </Field>
+               <Field>
+                  <Name>DomainDescription</Name>
+                  <DsvName>cnsDescription</DsvName>
+                  <DbName>DOMAIN_PROFILE.DESCRIPTION</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Domain Description</DisplayName>
+                  <Description>Defines the description of the domain.</Description>
+               </Field>
+               <Field>
+                  <Name>CreateOriginator</Name>
+                  <DsvName>cnsCreateOriginator</DsvName>
+                  <DbName>DOMAIN_PROFILE.CREATE_ORIGINATOR</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Create Originator</DisplayName>
+                  <Description>Defines the originator who creates the domain.</Description>
+               </Field>
+               <Field>
+                  <Name>LastModifyOriginator</Name>
+                  <DsvName>cnsLastModifyOriginator</DsvName>
+                  <DbName>DOMAIN_PROFILE.LAST_MODIFY_ORIGINATOR</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Last Modify Originator</DisplayName>
+                  <Description>Defines the originator who modified last the domain.</Description>
+               </Field>
+               <Field>
+                  <Name>EmailDomain</Name>
+                  <DsvName>cnsEmailDomain</DsvName>
+                  <DbName>DOMAIN_PROFILE.EMAIL_DOMAIN</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Email Domain</DisplayName>
+                  <Description>The domain&apos;s email suffix.</Description>
+               </Field>
+               <Field>
+                  <Name>GlobalDomainQuota</Name>
+                  <DbName>DOMAIN_UTILIZATION.MAX_SUBSCRIBERS</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Global Domain Quota</DisplayName>
+                  <Description>The global domain quota.</Description>
+               </Field>               
+            </Fields>
+         </Entity>
+         <Entity>
+            <Name>COS</Name>
+            <DsvEntityName>COS</DsvEntityName>
+            <KeyField>CosName</KeyField>
+            <LdapDefinition>
+               <ObjClasses>cnsCos,cnsOperational,top</ObjClasses>
+               <ObjClassFilter>objectClass=cnsCos</ObjClassFilter>
+               <KeyAttr>cnsCosID</KeyAttr>
+               <RDN>ou=Coses</RDN>
+            </LdapDefinition>
+            <SqlDefinition>
+               <Tables>
+                  <Table>
+                     <Name>COS_PROFILE</Name>
+                     <Type>Main</Type>
+                     <Key>COS_ID</Key>
+                  </Table>
+                  <Table>
+                     <Name>COS</Name>
+                     <Type>MultiValue</Type>
+                     <Key>COS_ID</Key>
+                     <SecondaryKey>SERVICE_LEVEL_ID</SecondaryKey>
+                     <DeleteByTrigger>true</DeleteByTrigger>
+                  </Table>
+               </Tables>
+            </SqlDefinition>
+            <Fields>
+               <Field>
+                  <Name>CosName</Name>
+                  <DsvName>cnsCosName</DsvName>
+                  <DbName>COS_PROFILE.COS_NAME</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>false</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Cos Name</DisplayName>
+                  <Description>Defines the name of the cos.</Description>
+               </Field>
+               <Field>
+                  <Name>CosDescription</Name>
+                  <DsvName>cnsDescription</DsvName>
+                  <DbName>COS_PROFILE.DESCRIPTION</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Cos Description</DisplayName>
+                  <Description>Defines the description of the cos.</Description>
+               </Field>
+               <Field>
+                  <Name>CreateOriginator</Name>
+                  <DsvName>cnsCreateOriginator</DsvName>
+                  <DbName>COS_PROFILE.CREATE_ORIGINATOR</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Create Originator</DisplayName>
+                  <Description>Defines the originator who creates the cos.</Description>
+               </Field>
+               <Field>
+                  <Name>LastModifyOriginator</Name>
+                  <DsvName>cnsLastModifyOriginator</DsvName>
+                  <DbName>COS_PROFILE.LAST_MODIFY_ORIGINATOR</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Last Modify Originator</DisplayName>
+                  <Description>Defines the originator who modified last the cos.</Description>
+               </Field>
+            </Fields>
+            <Collections>
+               <Collection>
+                  <Name>ServiceLevels</Name>
+                  <CollectionElement>
+                     <Name>ServiceLevel</Name>
+                     <KeyField>ServiceName</KeyField>
+                     <Fields>
+                        <Field>
+                           <Name>ServiceName</Name>
+                           <XsdValidation>
+                              <Type>xs:string</Type>
+                              <MinOcc>1</MinOcc>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                           <DisplayName>Service Name</DisplayName>
+                           <Description>Determines the Service Name</Description>
+                        </Field>
+                        <Field>
+                           <Name>ServiceLevelName</Name>
+                           <XsdValidation>
+                              <Type>xs:string</Type>
+                              <MinOcc>1</MinOcc>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                           <DisplayName>ServiceLevelName</DisplayName>
+                           <Description>Determines the Service Level Name</Description>
+                        </Field>
+                     </Fields>
+                  </CollectionElement>
+               </Collection>
+            </Collections>
+         </Entity>
+         <Entity>
+            <Name>ServiceLevel</Name>
+            <DsvEntityName>SL</DsvEntityName>
+            <KeyField>ServiceLevelName</KeyField>
+            <LdapDefinition>
+               <ObjClasses>cnsCommon,cnsGreeting,cnsNotif,cnsOperational,cnsServiceLevel,cnsVxV,top</ObjClasses>
+               <ObjClassFilter>objectClass=cnsServiceLevel</ObjClassFilter>
+               <KeyAttr>cnsServiceLevelID</KeyAttr>
+            </LdapDefinition>
+            <SqlDefinition>
+               <Tables>
+                  <Table>
+                     <Name>SERVICE_LEVEL</Name>
+                     <Type>Main</Type>
+                     <Key>SERVICE_LEVEL_ID</Key>
+                  </Table>
+               </Tables>
+               <Filter>RESOLVED_LEVEL=2</Filter>
+            </SqlDefinition>
+            <Fields>
+               <Field>
+                  <Name>ServiceLevelName</Name>
+                  <DsvName>cnsServiceLevelName</DsvName>
+                  <DbName>SERVICE_LEVEL.SERVICE_LEVEL_NAME</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>false</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Service Level Name</DisplayName>
+                  <Description>Defines the name of the service level.</Description>
+               </Field>
+               <Field>
+                  <Name>ServiceLevelDescription</Name>
+                  <DsvName>cnsDescription</DsvName>
+                  <DbName>SERVICE_LEVEL.DESCRIPTION</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Service Level Description</DisplayName>
+                  <Description>Describes the service level.</Description>
+               </Field>
+               <Field>
+                  <Name>CreateOriginator</Name>
+                  <DsvName>cnsCreateOriginator</DsvName>
+                  <DbName>SERVICE_LEVEL.CREATE_ORIGINATOR</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Create Originator</DisplayName>
+                  <Description>Defines the originator who creates the service level.</Description>
+               </Field>
+               <Field>
+                  <Name>LastModifyOriginator</Name>
+                  <DsvName>cnsLastModifyOriginator</DsvName>
+                  <DbName>SERVICE_LEVEL.LAST_MODIFY_ORIGINATOR</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Last Modify Originator</DisplayName>
+                  <Description>Defines the originator who modified last the service level.</Description>
+               </Field>
+               <Field>
+                  <Name>CreateTimestamp</Name>
+                  <DsvName>createTimestamp</DsvName>
+                  <DbName>SERVICE_LEVEL.CREATE_TIMESTAMP</DbName>
+                  <DisplayName>Create time Stamp</DisplayName>
+                  <Description>Defines time stamp the service level was created.</Description>
+               </Field>
+               <Field>
+                  <Name>ModifyTimestamp</Name>
+                  <DsvName>modifyTimestamp</DsvName>
+                  <DbName>SERVICE_LEVEL.MODIFY_TIMESTAMP</DbName>
+                  <DisplayName>Modify Time Stamp</DisplayName>
+                  <Description>Defines time stamp the service level was modify.</Description>
+               </Field>
+            </Fields>
+         </Entity>
+         <Entity>
+            <Name>DomainDefaults</Name>
+            <DsvEntityName>PARAMS_DEFAULTS</DsvEntityName>
+            <LdapDefinition>
+               <ObjClasses>cnsCommon,cnsGreeting,cnsNotif,cnsOperational,cnsServiceParams,cnsVxV,top</ObjClasses>
+               <ObjClassFilter>objectclass=cnsServiceParams</ObjClassFilter>
+               <KeyAttr>cnsServiceParamsType</KeyAttr>
+            </LdapDefinition>
+            <SqlDefinition>
+               <Tables>
+                  <Table>
+                     <Name>VW_DOMAIN_DEFAULTS</Name>
+                     <Type>Main</Type>
+                     <Key>SERVICE_LEVEL_ID</Key>
+                  </Table>
+               </Tables>
+            </SqlDefinition>
+            <Fields>
+               <Field>
+                  <Name>CreateOriginator</Name>
+                  <DsvName>cnsCreateOriginator</DsvName>
+                  <DbName>VW_DOMAIN_DEFAULTS.CREATE_ORIGINATOR</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Create Originator</DisplayName>
+                  <Description>Defines the originator who creates the service level.</Description>
+               </Field>
+               <Field>
+                  <Name>LastModifyOriginator</Name>
+                  <DsvName>cnsLastModifyOriginator</DsvName>
+                  <DbName>VW_DOMAIN_DEFAULTS.LAST_MODIFY_ORIGINATOR</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Last Modify Originator</DisplayName>
+                  <Description>Defines the originator who modified last the service level.</Description>
+               </Field>
+               <Field>
+                  <Name>CreateTimestamp</Name>
+                  <DsvName>createTimestamp</DsvName>
+                  <DbName>VW_DOMAIN_DEFAULTS.CREATE_TIMESTAMP</DbName>
+                  <DisplayName>Create time Stamp</DisplayName>
+                  <Description>Defines time stamp the service level was created.</Description>
+               </Field>
+               <Field>
+                  <Name>ModifyTimestamp</Name>
+                  <DsvName>modifyTimestamp</DsvName>
+                  <DbName>VW_DOMAIN_DEFAULTS.MODIFY_TIMESTAMP</DbName>
+                  <DisplayName>Modify Time Stamp</DisplayName>
+                  <Description>Defines time stamp the service level was modify.</Description>
+               </Field>
+            </Fields>
+         </Entity>
+         <Entity>
+            <Name>SystemDefaults</Name>
+            <DsvEntityName>SYS_PARAMS</DsvEntityName>
+            <LdapDefinition>
+               <ObjClasses>cnsServiceParams,cnsCommon,cnsNotif,top,cnsGreeting,cnsVxV,cnsOperational</ObjClasses>
+               <ObjClassFilter>objectClass=cnsServiceParams</ObjClassFilter>
+               <KeyAttr>cnsServiceParamsType</KeyAttr>
+            </LdapDefinition>
+            <SqlDefinition>
+               <Tables>
+                  <Table>
+                     <Name>VW_SYSTEM_DEFAULTS</Name>
+                     <Type>Main</Type>
+                     <Key>SERVICE_LEVEL_ID</Key>
+                  </Table>
+               </Tables>
+            </SqlDefinition>
+            <Fields>
+               <Field>
+                  <Name>CreateOriginator</Name>
+                  <DsvName>cnsCreateOriginator</DsvName>
+                  <DbName>VW_SYSTEM_DEFAULTS.CREATE_ORIGINATOR</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Create Originator</DisplayName>
+                  <Description>Defines the originator who creates the service level.</Description>
+               </Field>
+               <Field>
+                  <Name>LastModifyOriginator</Name>
+                  <DsvName>cnsLastModifyOriginator</DsvName>
+                  <DbName>VW_SYSTEM_DEFAULTS.LAST_MODIFY_ORIGINATOR</DbName>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>0</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Last Modify Originator</DisplayName>
+                  <Description>Defines the originator who modified last the service level.</Description>
+               </Field>
+               <Field>
+                  <Name>CreateTimestamp</Name>
+                  <DsvName>createTimestamp</DsvName>
+                  <DbName>VW_SYSTEM_DEFAULTS.CREATE_TIMESTAMP</DbName>
+                  <DisplayName>Create time Stamp</DisplayName>
+                  <Description>Defines time stamp the service level was created.</Description>
+               </Field>
+               <Field>
+                  <Name>ModifyTimestamp</Name>
+                  <DsvName>modifyTimestamp</DsvName>
+                  <DbName>VW_SYSTEM_DEFAULTS.MODIFY_TIMESTAMP</DbName>
+                  <DisplayName>Modify Time Stamp</DisplayName>
+                  <Description>Defines time stamp the service level was modify.</Description>
+               </Field>
+            </Fields>
+         </Entity>
+      </Entities>
+   </ProfileDefinition>
+</Provisioning>

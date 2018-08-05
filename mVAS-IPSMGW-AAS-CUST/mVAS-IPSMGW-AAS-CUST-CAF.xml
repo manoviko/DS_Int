@@ -1,0 +1,91 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="mVAS-IPSMGW-AAS-CUST" Version="_VERSION-_BUILD" SequentialExecution="true">
+		<Install>
+			<!-- AAS customization part start: perform on both nodes -->
+
+			<!-- if both of AAS resources are down - abort! -->
+
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>
+				CMD=$(service babysitter status |grep AAS |awk '{print $2}')
+        if [ "$CMD" = "Up" ]; then
+           echo [INFO] - AAS is Up
+        else
+           echo [ERROR] - AAS is not up.
+           exit 1
+        fi
+				</Command>
+				
+			</Execute>
+
+			<Copy ChmodFlags="755" ExecutionOrder="20" Overwrite="true" UponError="Stop">
+				<Source>./IPSMGW_AAS_customization/*</Source>
+				<Target>/usr/cti/conf/AASInit/</Target>
+			</Copy>
+			
+			<Execute ExecutionOrder="40" UponError="Stop">
+				<Command>chown aas:aas /usr/cti/conf/AASInit/*</Command>
+			</Execute>
+			
+			<Execute ExecutionOrder="50" UponError="Stop">
+				<Command>cd /usr/cti/conf/AASInit; /usr/cti/apps/aas/bin/loadFilesIgnoreConflicts.sh -a</Command>
+			</Execute>
+			
+		</Install>
+		<Upgrade>
+			<Execute ExecutionOrder="10" UponError="Stop">
+					<Command>
+							if [ "`hostname |grep omu1a`" ]; then
+									cd /usr/cti/conf/AASInit; /usr/cti/apps/aas/bin/loadFilesIgnoreConflicts.sh -a;
+							else
+									echo "no need to run scripts on both nodes only on one"
+							fi
+					</Command>
+			</Execute>
+			<Copy ChmodFlags="750" ExecutionOrder="20" Overwrite="true" UponError="Stop">
+							<Source>./IPSMGW_AAS_customization/roles*</Source>
+							<Target>/usr/cti/conf/AASInit/</Target>
+			</Copy>
+			<Execute ExecutionOrder="30" UponError="Stop">
+					<Command>chown root:aas /usr/cti/conf/AASInit/*</Command>
+			</Execute>
+			<Execute ExecutionOrder="40" UponError="Stop">
+					<Command>
+							if [ "`hostname |grep omu1a`" ]; then
+									cd /usr/cti/conf/AASInit; /usr/cti/apps/aas/bin/loadFilesIgnoreConflicts.sh -a;
+							else
+									echo "no need to run scripts on both nodes only on one"
+							fi
+					</Command>
+			</Execute>
+		</Upgrade>
+		<Uninstall>
+			<Execute ExecutionOrder="10" UponError="Continue">
+				<Command>echo uninstall</Command>
+			</Execute>
+		</Uninstall>
+		
+		<!--<Parameters>
+			<Parameter Name="domainname" Level="UnitType" Display="true" Overwrite="true" DisplayName="Domain Name"  ExecutionGroup="Customization">
+				<Description>The Doamin , or MVNO to add to the domain xml </Description>
+				<File Name="/var/tmp/swim_input" Format="KeyValue"/>
+				<ParameterPath>domainname</ParameterPath>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			<Parameter Name="systemname" Level="UnitType" Display="true" Overwrite="true" DisplayName="System name" ExecutionGroup="Customization">
+				<Description>The system name fit to the domain name </Description>
+				<File Name="/var/tmp/swim_input" Format="KeyValue"/>
+				<ParameterPath>systemname</ParameterPath>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+		</Parameters>-->
+		
+
+	</Component>
+</SWIM>

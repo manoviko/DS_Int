@@ -1,0 +1,40 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="UPDATE-VERSION" Version="_VERSION-_BUILD">
+		<Install>
+		
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>
+								if [ "`grep ^IPSMGW /etc/.version`" ]; then
+								
+									sed -i 's/^\(IPSMGW.*\.\.\)[0-9].*/\1{ComponentVersion}/' /etc/.version
+									
+								else
+									
+									echo "IPSMGW......................{ComponentVersion}" &gt;&gt; /etc/.version
+						
+								fi
+				</Command>
+		</Execute>
+		
+			</Install>
+		
+		<Upgrade>
+
+		<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>
+								if [ "`grep ^IPSMGW /etc/.version`" ]; then
+								
+									sed -i 's/^\(IPSMGW.*\.\.\)[0-9].*/\1{ComponentVersion}/' /etc/.version
+									
+								else
+									
+									echo "IPSMGW......................{ComponentVersion}" &gt;&gt; /etc/.version
+						
+								fi
+				</Command>
+		</Execute>
+			
+		</Upgrade>
+
+	</Component>
+</SWIM>

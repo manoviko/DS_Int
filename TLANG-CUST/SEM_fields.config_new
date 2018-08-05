@@ -1,0 +1,2018 @@
+####################### SEM TRACE_INFO #######################
+MGW.tables = TRACE_INFO, TRACE_EVENTS
+
+MGW.TRACE_INFO.number_of_fields = 46
+
+MGW.TRACE_INFO.field.1.name = U_ID
+MGW.TRACE_INFO.field.1.tag_id = 105
+MGW.TRACE_INFO.field.1.tag_type = String
+MGW.TRACE_INFO.field.1.tag_name = U_ID
+
+MGW.TRACE_INFO.field.2.name = ISN
+MGW.TRACE_INFO.field.2.tag_id = 28
+MGW.TRACE_INFO.field.2.tag_type = UnsignedInt
+MGW.TRACE_INFO.field.2.tag_name = EIP_ATTR_SM_NO
+
+MGW.TRACE_INFO.field.3.name = ARRIVAL_DATE_AND_TIME
+MGW.TRACE_INFO.field.3.tag_id = 58
+MGW.TRACE_INFO.field.3.tag_type = String
+MGW.TRACE_INFO.field.3.tag_name = EIP_ATTR_ARRIVAL_DATE
+
+MGW.TRACE_INFO.field.4.name = DCS
+MGW.TRACE_INFO.field.4.tag_id = 119
+MGW.TRACE_INFO.field.4.tag_type = Integer
+MGW.TRACE_INFO.field.4.tag_name = EIP_ATTR_DATA_CODING_SCHEME
+
+MGW.TRACE_INFO.field.5.name = PRIORITY
+MGW.TRACE_INFO.field.5.tag_id = 24
+MGW.TRACE_INFO.field.5.tag_type = UnsignedInt
+MGW.TRACE_INFO.field.5.tag_name = EIP_ATTR_PRIORITY
+
+MGW.TRACE_INFO.field.6.name = CONFIRMATION_REQUEST_IND
+MGW.TRACE_INFO.field.6.tag_id = 57
+MGW.TRACE_INFO.field.6.tag_type = UnsignedShort
+MGW.TRACE_INFO.field.6.tag_name = EIP_ATTR_NOTIFY_SEND_SM
+
+MGW.TRACE_INFO.field.7.name = MESSAGE_LENGTH
+MGW.TRACE_INFO.field.7.tag_id = 80
+MGW.TRACE_INFO.field.7.tag_type = UnsignedInt
+MGW.TRACE_INFO.field.7.tag_name = EIP_ATTR_MESSAGE_LEN
+
+MGW.TRACE_INFO.field.8.name = LANGUAGE
+MGW.TRACE_INFO.field.8.tag_id = 3
+MGW.TRACE_INFO.field.8.tag_name = EIP_ATTR_LANG
+MGW.TRACE_INFO.field.8.tag_type = UnsignedShort
+
+MGW.TRACE_INFO.field.9.name = MESSAGE_REF
+MGW.TRACE_INFO.field.9.tag_id = 109
+MGW.TRACE_INFO.field.9.tag_type = String
+MGW.TRACE_INFO.field.9.tag_name = EIP_ATTR_MSG_REF
+
+MGW.TRACE_INFO.field.10.name = MESSAGE_TYPE
+MGW.TRACE_INFO.field.10.tag_id = 114
+MGW.TRACE_INFO.field.10.tag_type = UnsignedShort
+MGW.TRACE_INFO.field.10.tag_name = EIP_ATTR_SM_CLASS
+
+MGW.TRACE_INFO.field.11.name = FULL_SOURCE_ADDRESS
+MGW.TRACE_INFO.field.11.sibling	= 10003
+MGW.TRACE_INFO.field.11.tag_id = 55
+MGW.TRACE_INFO.field.11.tag_type = GAddress
+MGW.TRACE_INFO.field.11.tag_name = EIP_ATTR_SOURCE
+
+MGW.TRACE_INFO.field.12.name = FULL_TARGET_ADDRESS
+MGW.TRACE_INFO.field.12.sibling	= 10004
+MGW.TRACE_INFO.field.12.tag_id = 54
+MGW.TRACE_INFO.field.12.tag_type = GAddress
+MGW.TRACE_INFO.field.12.tag_name = EIP_ATTR_TARGET
+
+MGW.TRACE_INFO.field.13.name = SOURCE_EI_CLASS
+MGW.TRACE_INFO.field.13.suppress = true
+MGW.TRACE_INFO.field.13.tag_id = 125
+MGW.TRACE_INFO.field.13.tag_type = UnsignedInt
+MGW.TRACE_INFO.field.13.tag_name = EIP_ATTR_EI_CLASS_NUM
+
+MGW.TRACE_INFO.field.14.name = SOURCE_EI_GROUP
+MGW.TRACE_INFO.field.14.suppress = true
+MGW.TRACE_INFO.field.14.tag_id = 126
+MGW.TRACE_INFO.field.14.tag_type = UnsignedInt
+MGW.TRACE_INFO.field.14.tag_name = EIP_ATTR_EI_GROUP_NUM
+
+MGW.TRACE_INFO.field.15.name = VALIDITY_PERIOD
+MGW.TRACE_INFO.field.15.tag_id = 4
+MGW.TRACE_INFO.field.15.tag_type = Integer
+MGW.TRACE_INFO.field.15.tag_name = EIP_ATTR_VALIDITY_PERIOD
+
+MGW.TRACE_INFO.field.16.name = MESSAGE_TEXT_BIN
+MGW.TRACE_INFO.field.16.suppress = false
+MGW.TRACE_INFO.field.16.tag_id = 20
+MGW.TRACE_INFO.field.16.tag_type = String
+MGW.TRACE_INFO.field.16.tag_name = EIP_ATTR_SM_TEXT
+
+MGW.TRACE_INFO.field.17.name = SOURCE_EI_INSTANCE
+MGW.TRACE_INFO.field.17.tag_id = 50
+MGW.TRACE_INFO.field.17.tag_type = EiIdDataField
+MGW.TRACE_INFO.field.17.tag_name = EIP_ATTR_SOURCE_EI_ID
+
+MGW.TRACE_INFO.field.18.name = INCOMING_PROTOCOL
+MGW.TRACE_INFO.field.18.tag_id = 338
+MGW.TRACE_INFO.field.18.tag_type = String
+MGW.TRACE_INFO.field.18.tag_name = SOURCE_EI_PROTOCOL
+
+MGW.TRACE_INFO.field.19.name = TRACE_TYPE
+MGW.TRACE_INFO.field.19.tag_id = 801
+MGW.TRACE_INFO.field.19.tag_type = Integer
+MGW.TRACE_INFO.field.19.tag_name = TRACE_TYPE
+
+MGW.TRACE_INFO.field.20.name = SOURCE_TYPE
+MGW.TRACE_INFO.field.20.tag_id = 802
+MGW.TRACE_INFO.field.20.tag_type = Integer
+MGW.TRACE_INFO.field.20.tag_name = SOURCE_TYPE
+
+MGW.TRACE_INFO.field.21.name = NUM_OF_RECIPIENTS
+MGW.TRACE_INFO.field.21.tag_id = 806
+MGW.TRACE_INFO.field.21.tag_type = Integer
+MGW.TRACE_INFO.field.21.tag_name = NUM_OF_RECIPIENTS
+
+MGW.TRACE_INFO.field.22.name = READ_REPLY_REQUEST
+MGW.TRACE_INFO.field.22.tag_id = 804
+MGW.TRACE_INFO.field.22.tag_type = String
+MGW.TRACE_INFO.field.22.tag_name = READ_REPLY_REQUEST
+
+MGW.TRACE_INFO.field.23.name = SOURCE_APPLICATION_ID
+MGW.TRACE_INFO.field.23.tag_id = 809
+MGW.TRACE_INFO.field.23.tag_type = String
+MGW.TRACE_INFO.field.23.tag_name = SOURCE_APPLICATION_ID
+
+MGW.TRACE_INFO.field.24.name = OPERATOR_ID
+MGW.TRACE_INFO.field.24.tag_id = 807
+MGW.TRACE_INFO.field.24.tag_type = String
+MGW.TRACE_INFO.field.24.tag_name = OPERATOR_ID
+
+MGW.TRACE_INFO.field.25.name = SOURCE_ADDRESS
+MGW.TRACE_INFO.field.25.tag_id = 10003
+MGW.TRACE_INFO.field.25.tag_type = Address
+MGW.TRACE_INFO.field.25.tag_name = SOURCE_ADDRESS
+
+MGW.TRACE_INFO.field.26.name = TARGET_ADDRESS
+MGW.TRACE_INFO.field.26.tag_id = 10004
+MGW.TRACE_INFO.field.26.tag_type = Address
+MGW.TRACE_INFO.field.26.tag_name = TARGET_ADDRESS
+
+MGW.TRACE_INFO.field.27.name = USER_SESSION_ID
+MGW.TRACE_INFO.field.27.tag_id = 814
+MGW.TRACE_INFO.field.27.tag_type = String
+MGW.TRACE_INFO.field.27.tag_name = USER_SESSION_ID
+
+MGW.TRACE_INFO.field.28.name = HTTP_RESPONSE_STATUS
+MGW.TRACE_INFO.field.28.tag_id = 817
+MGW.TRACE_INFO.field.28.tag_type = Integer
+MGW.TRACE_INFO.field.28.tag_name = HTTP_RESPONSE_STATUS
+
+MGW.TRACE_INFO.field.29.name = SVC_ERROR
+MGW.TRACE_INFO.field.29.tag_id = 818
+MGW.TRACE_INFO.field.29.tag_type = String
+MGW.TRACE_INFO.field.29.tag_name = SVC_ERROR
+
+MGW.TRACE_INFO.field.30.name = SVC_TEXT
+MGW.TRACE_INFO.field.30.tag_id = 819
+MGW.TRACE_INFO.field.30.tag_type = String
+MGW.TRACE_INFO.field.30.tag_name = SVC_TEXT
+
+MGW.TRACE_INFO.field.31.name = VAS_APPLICATION_LIST
+MGW.TRACE_INFO.field.31.tag_id = 815
+MGW.TRACE_INFO.field.31.tag_type = String
+MGW.TRACE_INFO.field.31.tag_name = VAS_APPLICATION_LIST
+
+MGW.TRACE_INFO.field.32.name = OPERATION_DETAILED_INFO
+MGW.TRACE_INFO.field.32.tag_id = 816
+MGW.TRACE_INFO.field.32.tag_type = String
+MGW.TRACE_INFO.field.32.tag_name = OPERATION_DETAILED_INFO
+
+MGW.TRACE_INFO.field.33.name = SAR_MSG_REF_NUM
+MGW.TRACE_INFO.field.33.tag_id = 120
+MGW.TRACE_INFO.field.33.tag_type = Integer
+MGW.TRACE_INFO.field.33.tag_name = SAR_MSG_REF_NUM
+
+MGW.TRACE_INFO.field.34.name = SAR_TOTAL_SEGMENTS
+MGW.TRACE_INFO.field.34.tag_id = 121
+MGW.TRACE_INFO.field.34.tag_type = Integer
+MGW.TRACE_INFO.field.34.tag_name = SAR_TOTAL_SEGMENTS
+
+MGW.TRACE_INFO.field.35.name = SAR_SEGMENT_SEQNUM
+MGW.TRACE_INFO.field.35.tag_id = 122
+MGW.TRACE_INFO.field.35.tag_type = Integer
+MGW.TRACE_INFO.field.35.tag_name = SAR_SEGMENT_SEQNUM 
+
+MGW.TRACE_INFO.field.36.name = RCS_MESSAGE_ID
+MGW.TRACE_INFO.field.36.tag_id = 820
+MGW.TRACE_INFO.field.36.tag_type = String
+MGW.TRACE_INFO.field.36.tag_name = RCS_MESSAGE_ID 
+
+#MGW.TRACE_INFO.field.37.name = SOURCE_MESSAGE_SUBTYPE
+#MGW.TRACE_INFO.field.37.tag_id = 821
+#MGW.TRACE_INFO.field.37.tag_type = Integer
+#MGW.TRACE_INFO.field.37.tag_name = SOURCE_MESSAGE_SUBTYPE
+
+#MGW.TRACE_INFO.field.38.name = TARGET_MESSAGE_SUBTYPE
+#MGW.TRACE_INFO.field.38.tag_id = 822
+#MGW.TRACE_INFO.field.38.tag_type = Integer
+#MGW.TRACE_INFO.field.38.tag_name = TARGET_MESSAGE_SUBTYPE
+
+#MGW.TRACE_INFO.field.39.name = PUBLIC_GRUU
+MGW.TRACE_INFO.field.39.name = SOURCE_PUBLIC_GRUU
+MGW.TRACE_INFO.field.39.tag_id = 823
+MGW.TRACE_INFO.field.39.tag_type = String
+MGW.TRACE_INFO.field.39.tag_name = PUBLIC_GRUU
+
+#MGW.TRACE_INFO.field.40.name = SIP_INSTANCE
+MGW.TRACE_INFO.field.40.name = SOURCE_SIP_INSTANCE
+MGW.TRACE_INFO.field.40.tag_id = 824
+MGW.TRACE_INFO.field.40.tag_type = String
+MGW.TRACE_INFO.field.40.tag_name = SIP_INSTANCE
+
+MGW.TRACE_INFO.field.41.name = MESSAGE_DELIVERY_TYPE
+MGW.TRACE_INFO.field.41.tag_id = 825
+MGW.TRACE_INFO.field.41.tag_type = Integer
+MGW.TRACE_INFO.field.41.tag_name = MESSAGE_DELIVERY_TYPE
+
+MGW.TRACE_INFO.field.42.name = TARGET_PUBLIC_GRUU
+MGW.TRACE_INFO.field.42.tag_id = 826
+MGW.TRACE_INFO.field.42.tag_type = Integer
+MGW.TRACE_INFO.field.42.tag_name = TARGET_PUBLIC_GRUU
+
+MGW.TRACE_INFO.field.43.name = TARGET_SIP_INSTANCE
+MGW.TRACE_INFO.field.43.tag_id = 827
+MGW.TRACE_INFO.field.43.tag_type = String
+MGW.TRACE_INFO.field.43.tag_name = TARGET_SIP_INSTANCE
+
+MGW.TRACE_INFO.field.44.name = MESSAGE_STORE_UID
+MGW.TRACE_INFO.field.44.tag_id = 829
+MGW.TRACE_INFO.field.44.tag_type = String
+MGW.TRACE_INFO.field.44.tag_name = MESSAGE_STORE_UID
+
+MGW.TRACE_INFO.field.45.name = SESSION_MODE
+MGW.TRACE_INFO.field.45.tag_id = 831
+MGW.TRACE_INFO.field.45.tag_type = Integer
+MGW.TRACE_INFO.field.45.tag_name = SESSION_MODE
+
+MGW.TRACE_INFO.field.46.name = CONTENT_TYPE
+MGW.TRACE_INFO.field.46.tag_id = 832
+MGW.TRACE_INFO.field.46.tag_type = String
+MGW.TRACE_INFO.field.46.tag_name = CONTENT_TYPE
+
+
+####################### SEM TRACE_EVENTS #######################
+
+MGW.TRACE_EVENTS.number_of_fields = 17
+
+MGW.TRACE_EVENTS.field.1.name = U_ID
+MGW.TRACE_EVENTS.field.1.tag_id = 105
+MGW.TRACE_EVENTS.field.1.tag_type = String
+MGW.TRACE_EVENTS.field.1.tag_name = U_ID
+
+MGW.TRACE_EVENTS.field.2.name = EVENT_TYPE
+MGW.TRACE_EVENTS.field.2.tag_id = 123
+MGW.TRACE_EVENTS.field.2.tag_type = UnsignedShort
+MGW.TRACE_EVENTS.field.2.tag_name = EIP_ATTR_EVENT_TYPE
+
+MGW.TRACE_EVENTS.field.3.name = ARRIVAL_DATE_AND_TIME
+MGW.TRACE_EVENTS.field.3.tag_id = 58
+MGW.TRACE_EVENTS.field.3.tag_type = String
+MGW.TRACE_EVENTS.field.3.tag_name = EIP_ATTR_ARRIVAL_DATE
+
+MGW.TRACE_EVENTS.field.4.name = EVENT_DATE
+MGW.TRACE_EVENTS.field.4.tag_id = 34
+MGW.TRACE_EVENTS.field.4.tag_type = String
+MGW.TRACE_EVENTS.field.4.tag_name = EIP_ATTR_STATE_DATE_AND_TIME
+
+MGW.TRACE_EVENTS.field.5.name = UNIFIED_ERROR_ID
+MGW.TRACE_EVENTS.field.5.default_value = -1
+MGW.TRACE_EVENTS.field.5.tag_id = 813
+MGW.TRACE_EVENTS.field.5.tag_type = Integer
+MGW.TRACE_EVENTS.field.5.tag_name = UNIFIED_ERROR_ID
+
+MGW.TRACE_EVENTS.field.6.name =  SM_STATE
+MGW.TRACE_EVENTS.field.6.tag_id = 29
+MGW.TRACE_EVENTS.field.6.tag_type = UnsignedShort
+MGW.TRACE_EVENTS.field.6.tag_name = EIP_ATTR_SM_STATE
+
+MGW.TRACE_EVENTS.field.7.name = TARGET_EI_CLASS
+MGW.TRACE_EVENTS.field.7.suppress = true
+MGW.TRACE_EVENTS.field.7.tag_id =  1061
+MGW.TRACE_EVENTS.field.7.tag_type = UnsignedInt
+MGW.TRACE_EVENTS.field.7.tag_name = EIP_ATTR_TARGET_EI_CLASS
+
+MGW.TRACE_EVENTS.field.8.name =  TARGET_EI_GROUP
+MGW.TRACE_EVENTS.field.8.suppress = true
+MGW.TRACE_EVENTS.field.8.tag_id = 1062
+MGW.TRACE_EVENTS.field.8.tag_type = UnsignedInt
+MGW.TRACE_EVENTS.field.8.tag_name = EIP_ATTR_TARGET_EI_GROUP
+
+MGW.TRACE_EVENTS.field.9.name = TARGET_EI_INSTANCE
+MGW.TRACE_EVENTS.field.9.tag_id = 97
+MGW.TRACE_EVENTS.field.9.tag_type = EiIdDataField
+MGW.TRACE_EVENTS.field.9.tag_name = EIP_ATTR_TARGET_EI_ID
+
+MGW.TRACE_EVENTS.field.10.name = NOTIFICATION
+MGW.TRACE_EVENTS.field.10.tag_id = 57
+MGW.TRACE_EVENTS.field.10.tag_type = UnsignedShort
+MGW.TRACE_EVENTS.field.10.tag_name = EIP_ATTR_NOTIFY_SEND_SM
+
+MGW.TRACE_EVENTS.field.11.name = EVENT_SEQ
+MGW.TRACE_EVENTS.field.11.tag_id = 1030
+MGW.TRACE_EVENTS.field.11.tag_type = UnsignedInt
+MGW.TRACE_EVENTS.field.11.tag_name = EIP_ATTR_EVENT_NUM
+
+MGW.TRACE_EVENTS.field.12.name = ISN
+MGW.TRACE_EVENTS.field.12.tag_id = 28
+MGW.TRACE_EVENTS.field.12.tag_type = UnsignedInt
+MGW.TRACE_EVENTS.field.12.tag_name = EIP_ATTR_SM_NO
+
+MGW.TRACE_EVENTS.field.13.name = OUTGOING_PROTOCOL
+MGW.TRACE_EVENTS.field.13.tag_id = 339
+MGW.TRACE_EVENTS.field.13.tag_type = String
+MGW.TRACE_EVENTS.field.13.tag_name = OUTGOING_PROTOCOL
+
+MGW.TRACE_EVENTS.field.14.name = TARGET_TYPE
+MGW.TRACE_EVENTS.field.14.tag_id = 811
+MGW.TRACE_EVENTS.field.14.tag_type = Integer
+MGW.TRACE_EVENTS.field.14.tag_name = TARGET_TYPE
+
+MGW.TRACE_EVENTS.field.15.name = TARGET_APPLICATION_ID
+MGW.TRACE_EVENTS.field.15.tag_id = 812
+MGW.TRACE_EVENTS.field.15.tag_type = String
+MGW.TRACE_EVENTS.field.15.tag_name = TARGET_APPLICATION_ID
+
+MGW.TRACE_EVENTS.field.16.name = ADDITIONAL_ERROR_INFORMATION
+MGW.TRACE_EVENTS.field.16.tag_id = 808
+MGW.TRACE_EVENTS.field.16.tag_type = String
+MGW.TRACE_EVENTS.field.16.tag_name = ADDITIONAL_ERROR_INFORMATION
+
+MGW.TRACE_EVENTS.field.17.name =  INSTANCE_NUMBER
+MGW.TRACE_EVENTS.field.17.default_value = 1
+MGW.TRACE_EVENTS.field.17.tag_id = 10005
+MGW.TRACE_EVENTS.field.17.tag_type = Integer
+MGW.TRACE_EVENTS.field.17.tag_name = INSTANCE_NUMBER
+
+
+####################### SEM TRACE_INFO for CAU #######################
+
+CAU.tables = TRACE_INFO, TRACE_EVENTS
+
+CAU.TRACE_INFO.number_of_fields = 41
+
+CAU.TRACE_INFO.field.1.name = U_ID
+CAU.TRACE_INFO.field.1.tag_id = 105
+CAU.TRACE_INFO.field.1.tag_type = String
+CAU.TRACE_INFO.field.1.tag_name = U_ID
+
+CAU.TRACE_INFO.field.2.name = ISN
+CAU.TRACE_INFO.field.2.tag_id = 28
+CAU.TRACE_INFO.field.2.tag_type = UnsignedInt
+CAU.TRACE_INFO.field.2.tag_name = EIP_ATTR_SM_NO
+
+CAU.TRACE_INFO.field.3.name = ARRIVAL_DATE_AND_TIME
+CAU.TRACE_INFO.field.3.tag_id = 58
+CAU.TRACE_INFO.field.3.tag_type = String
+CAU.TRACE_INFO.field.3.tag_name = EIP_ATTR_ARRIVAL_DATE
+
+CAU.TRACE_INFO.field.4.name = DCS
+CAU.TRACE_INFO.field.4.tag_id = 119
+CAU.TRACE_INFO.field.4.tag_type = Integer
+CAU.TRACE_INFO.field.4.tag_name = EIP_ATTR_DATA_CODING_SCHEME
+
+CAU.TRACE_INFO.field.5.name = PRIORITY
+CAU.TRACE_INFO.field.5.tag_id = 24
+CAU.TRACE_INFO.field.5.tag_type = UnsignedInt
+CAU.TRACE_INFO.field.5.tag_name = EIP_ATTR_PRIORITY
+
+CAU.TRACE_INFO.field.6.name = CONFIRMATION_REQUEST_IND
+CAU.TRACE_INFO.field.6.tag_id = 57
+CAU.TRACE_INFO.field.6.tag_type = UnsignedShort
+CAU.TRACE_INFO.field.6.tag_name = EIP_ATTR_NOTIFY_SEND_SM
+
+CAU.TRACE_INFO.field.7.name = MESSAGE_LENGTH
+CAU.TRACE_INFO.field.7.tag_id = 80
+CAU.TRACE_INFO.field.7.tag_type = UnsignedInt
+CAU.TRACE_INFO.field.7.tag_name = EIP_ATTR_MESSAGE_LEN
+
+CAU.TRACE_INFO.field.8.name = LANGUAGE
+CAU.TRACE_INFO.field.8.tag_id = 3
+CAU.TRACE_INFO.field.8.tag_name = EIP_ATTR_LANG
+CAU.TRACE_INFO.field.8.tag_type = UnsignedShort
+
+CAU.TRACE_INFO.field.9.name = MESSAGE_REF
+CAU.TRACE_INFO.field.9.tag_id = 109
+CAU.TRACE_INFO.field.9.tag_type = String
+CAU.TRACE_INFO.field.9.tag_name = EIP_ATTR_MSG_REF
+
+CAU.TRACE_INFO.field.10.name = MESSAGE_TYPE
+CAU.TRACE_INFO.field.10.tag_id = 114
+CAU.TRACE_INFO.field.10.tag_type = UnsignedShort
+CAU.TRACE_INFO.field.10.tag_name = EIP_ATTR_SM_CLASS
+
+CAU.TRACE_INFO.field.11.name = FULL_SOURCE_ADDRESS
+CAU.TRACE_INFO.field.11.sibling	= 10003
+CAU.TRACE_INFO.field.11.tag_id = 55
+CAU.TRACE_INFO.field.11.tag_type = GAddress
+CAU.TRACE_INFO.field.11.tag_name = EIP_ATTR_SOURCE
+
+CAU.TRACE_INFO.field.12.name = FULL_TARGET_ADDRESS
+CAU.TRACE_INFO.field.12.sibling	= 10004
+CAU.TRACE_INFO.field.12.tag_id = 54
+CAU.TRACE_INFO.field.12.tag_type = GAddress
+CAU.TRACE_INFO.field.12.tag_name = EIP_ATTR_TARGET
+
+#CAU.TRACE_INFO.field.13.name = SOURCE_EI_CLASS
+#CAU.TRACE_INFO.field.13.suppress = true
+#CAU.TRACE_INFO.field.13.tag_id = 125
+#CAU.TRACE_INFO.field.13.tag_type = UnsignedInt
+#CAU.TRACE_INFO.field.13.tag_name = EIP_ATTR_EI_CLASS_NUM
+
+#CAU.TRACE_INFO.field.14.name = SOURCE_EI_GROUP
+#CAU.TRACE_INFO.field.14.suppress = true
+#CAU.TRACE_INFO.field.14.tag_id = 126
+#CAU.TRACE_INFO.field.14.tag_type = UnsignedInt
+#CAU.TRACE_INFO.field.14.tag_name = EIP_ATTR_EI_GROUP_NUM
+
+CAU.TRACE_INFO.field.15.name = VALIDITY_PERIOD
+CAU.TRACE_INFO.field.15.tag_id = 4
+CAU.TRACE_INFO.field.15.tag_type = Integer
+CAU.TRACE_INFO.field.15.tag_name = EIP_ATTR_VALIDITY_PERIOD
+
+CAU.TRACE_INFO.field.16.name = MESSAGE_TEXT_BIN
+CAU.TRACE_INFO.field.16.suppress = false
+CAU.TRACE_INFO.field.16.tag_id = 20
+CAU.TRACE_INFO.field.16.tag_type = String
+CAU.TRACE_INFO.field.16.tag_name = EIP_ATTR_SM_TEXT
+
+CAU.TRACE_INFO.field.17.name = SOURCE_EI_INSTANCE
+CAU.TRACE_INFO.field.17.tag_id = 50
+CAU.TRACE_INFO.field.17.tag_type = EiIdDataField
+CAU.TRACE_INFO.field.17.tag_name = EIP_ATTR_SOURCE_EI_ID
+
+CAU.TRACE_INFO.field.18.name = INCOMING_PROTOCOL
+CAU.TRACE_INFO.field.18.tag_id = 338
+CAU.TRACE_INFO.field.18.tag_type = String
+CAU.TRACE_INFO.field.18.tag_name = SOURCE_EI_PROTOCOL
+
+CAU.TRACE_INFO.field.19.name = TRACE_TYPE
+CAU.TRACE_INFO.field.19.tag_id = 801
+CAU.TRACE_INFO.field.19.tag_type = Integer
+CAU.TRACE_INFO.field.19.tag_name = TRACE_TYPE
+
+CAU.TRACE_INFO.field.20.name = SOURCE_TYPE
+CAU.TRACE_INFO.field.20.tag_id = 802
+CAU.TRACE_INFO.field.20.tag_type = Integer
+CAU.TRACE_INFO.field.20.tag_name = SOURCE_TYPE
+
+CAU.TRACE_INFO.field.21.name = NUM_OF_RECIPIENTS
+CAU.TRACE_INFO.field.21.tag_id = 806
+CAU.TRACE_INFO.field.21.tag_type = Integer
+CAU.TRACE_INFO.field.21.tag_name = NUM_OF_RECIPIENTS
+
+CAU.TRACE_INFO.field.22.name = READ_REPLY_REQUEST
+CAU.TRACE_INFO.field.22.tag_id = 804
+CAU.TRACE_INFO.field.22.tag_type = String
+CAU.TRACE_INFO.field.22.tag_name = READ_REPLY_REQUEST
+
+CAU.TRACE_INFO.field.23.name = SOURCE_APPLICATION_ID
+CAU.TRACE_INFO.field.23.tag_id = 809
+CAU.TRACE_INFO.field.23.tag_type = String
+CAU.TRACE_INFO.field.23.tag_name = SOURCE_APPLICATION_ID
+
+CAU.TRACE_INFO.field.24.name = OPERATOR_ID
+CAU.TRACE_INFO.field.24.tag_id = 807
+CAU.TRACE_INFO.field.24.tag_type = String
+CAU.TRACE_INFO.field.24.tag_name = OPERATOR_ID
+
+CAU.TRACE_INFO.field.25.name = SOURCE_ADDRESS
+CAU.TRACE_INFO.field.25.tag_id = 10003
+CAU.TRACE_INFO.field.25.tag_type = Address
+CAU.TRACE_INFO.field.25.tag_name = SOURCE_ADDRESS
+
+CAU.TRACE_INFO.field.26.name = TARGET_ADDRESS
+CAU.TRACE_INFO.field.26.tag_id = 10004
+CAU.TRACE_INFO.field.26.tag_type = Address
+CAU.TRACE_INFO.field.26.tag_name = TARGET_ADDRESS
+
+CAU.TRACE_INFO.field.27.name = USER_SESSION_ID
+CAU.TRACE_INFO.field.27.tag_id = 814
+CAU.TRACE_INFO.field.27.tag_type = String
+CAU.TRACE_INFO.field.27.tag_name = USER_SESSION_ID
+
+CAU.TRACE_INFO.field.28.name = HTTP_RESPONSE_STATUS
+CAU.TRACE_INFO.field.28.tag_id = 817
+CAU.TRACE_INFO.field.28.tag_type = Integer
+CAU.TRACE_INFO.field.28.tag_name = HTTP_RESPONSE_STATUS
+
+CAU.TRACE_INFO.field.29.name = SVC_ERROR
+CAU.TRACE_INFO.field.29.tag_id = 818
+CAU.TRACE_INFO.field.29.tag_type = String
+CAU.TRACE_INFO.field.29.tag_name = SVC_ERROR
+
+CAU.TRACE_INFO.field.30.name = SVC_TEXT
+CAU.TRACE_INFO.field.30.tag_id = 819
+CAU.TRACE_INFO.field.30.tag_type = String
+CAU.TRACE_INFO.field.30.tag_name = SVC_TEXT
+
+CAU.TRACE_INFO.field.31.name = VAS_APPLICATION_LIST
+CAU.TRACE_INFO.field.31.tag_id = 815
+CAU.TRACE_INFO.field.31.tag_type = String
+CAU.TRACE_INFO.field.31.tag_name = VAS_APPLICATION_LIST
+
+CAU.TRACE_INFO.field.32.name = OPERATION_DETAILED_INFO
+CAU.TRACE_INFO.field.32.tag_id = 816
+CAU.TRACE_INFO.field.32.tag_type = String
+CAU.TRACE_INFO.field.32.tag_name = OPERATION_DETAILED_INFO
+
+CAU.TRACE_INFO.field.33.name = SAR_MSG_REF_NUM
+CAU.TRACE_INFO.field.33.tag_id = 120
+CAU.TRACE_INFO.field.33.tag_type = Integer
+CAU.TRACE_INFO.field.33.tag_name = SAR_MSG_REF_NUM
+
+CAU.TRACE_INFO.field.34.name = SAR_TOTAL_SEGMENTS
+CAU.TRACE_INFO.field.34.tag_id = 121
+CAU.TRACE_INFO.field.34.tag_type = Integer
+CAU.TRACE_INFO.field.34.tag_name = SAR_TOTAL_SEGMENTS
+
+CAU.TRACE_INFO.field.35.name = SAR_SEGMENT_SEQNUM
+CAU.TRACE_INFO.field.35.tag_id = 122
+CAU.TRACE_INFO.field.35.tag_type = Integer
+CAU.TRACE_INFO.field.35.tag_name = SAR_SEGMENT_SEQNUM 
+
+CAU.TRACE_INFO.field.36.name = RCS_MESSAGE_ID
+CAU.TRACE_INFO.field.36.tag_id = 820
+CAU.TRACE_INFO.field.36.tag_type = String
+CAU.TRACE_INFO.field.36.tag_name = RCS_MESSAGE_ID 
+
+#CAU.TRACE_INFO.field.37.name = SOURCE_MESSAGE_SUBTYPE
+#CAU.TRACE_INFO.field.37.tag_id = 821
+#CAU.TRACE_INFO.field.37.tag_type = Integer
+#CAU.TRACE_INFO.field.37.tag_name = SOURCE_MESSAGE_SUBTYPE
+
+#CAU.TRACE_INFO.field.38.name = TARGET_MESSAGE_SUBTYPE
+#CAU.TRACE_INFO.field.38.tag_id = 822
+#CAU.TRACE_INFO.field.38.tag_type = Integer
+#CAU.TRACE_INFO.field.38.tag_name = TARGET_MESSAGE_SUBTYPE
+
+#CAU.TRACE_INFO.field.39.name = PUBLIC_GRUU
+CAU.TRACE_INFO.field.39.name = SOURCE_PUBLIC_GRUU 
+CAU.TRACE_INFO.field.39.tag_id = 823
+CAU.TRACE_INFO.field.39.tag_type = String
+CAU.TRACE_INFO.field.39.tag_name = PUBLIC_GRUU
+
+#CAU.TRACE_INFO.field.40.name = SIP_INSTANCE
+CAU.TRACE_INFO.field.40.name = SOURCE_SIP_INSTANCE
+CAU.TRACE_INFO.field.40.tag_id = 824
+CAU.TRACE_INFO.field.40.tag_type = String
+CAU.TRACE_INFO.field.40.tag_name = SIP_INSTANCE
+
+CAU.TRACE_INFO.field.41.name = MESSAGE_DELIVERY_TYPE
+CAU.TRACE_INFO.field.41.tag_id = 825
+CAU.TRACE_INFO.field.41.tag_type = Integer
+CAU.TRACE_INFO.field.41.tag_name = MESSAGE_DELIVERY_TYPE
+
+#CAU.TRACE_INFO.field.42.name = TARGET_PUBLIC_GRUU
+#CAU.TRACE_INFO.field.42.tag_id = 826
+#CAU.TRACE_INFO.field.42.tag_type = String
+#CAU.TRACE_INFO.field.42.tag_name = TARGET_PUBLIC_GRUU
+
+#CAU.TRACE_INFO.field.43.name = TARGET_SIP_INSTANCE
+#CAU.TRACE_INFO.field.43.tag_id = 827
+#CAU.TRACE_INFO.field.43.tag_type = String
+#CAU.TRACE_INFO.field.43.tag_name = TARGET_SIP_INSTANCE
+
+#CAU.TRACE_INFO.field.44.name = MESSAGE_STORE_UID
+#CAU.TRACE_INFO.field.44.tag_id = 829
+#CAU.TRACE_INFO.field.44.tag_type = String
+#CAU.TRACE_INFO.field.44.tag_name = MESSAGE_STORE_UID
+
+#CAU.TRACE_INFO.field.45.name = SESSION_MODE
+#CAU.TRACE_INFO.field.45.tag_id = 831
+#CAU.TRACE_INFO.field.45.tag_type = Integer
+#CAU.TRACE_INFO.field.45.tag_name = SESSION_MODE
+
+#CAU.TRACE_INFO.field.46.name = CONTENT_TYPE
+#CAU.TRACE_INFO.field.46.tag_id = 832
+#CAU.TRACE_INFO.field.46.tag_type = String
+#CAU.TRACE_INFO.field.46.tag_name = CONTENT_TYPE
+
+
+
+
+####################### SEM TRACE_EVENTS for CAU  #######################
+
+CAU.TRACE_EVENTS.number_of_fields = 17
+
+CAU.TRACE_EVENTS.field.1.name = U_ID
+CAU.TRACE_EVENTS.field.1.tag_id = 105
+CAU.TRACE_EVENTS.field.1.tag_type = String
+CAU.TRACE_EVENTS.field.1.tag_name = U_ID
+
+CAU.TRACE_EVENTS.field.2.name = EVENT_TYPE
+CAU.TRACE_EVENTS.field.2.tag_id = 123
+CAU.TRACE_EVENTS.field.2.tag_type = UnsignedShort
+CAU.TRACE_EVENTS.field.2.tag_name = EIP_ATTR_EVENT_TYPE
+
+CAU.TRACE_EVENTS.field.3.name = ARRIVAL_DATE_AND_TIME
+CAU.TRACE_EVENTS.field.3.tag_id = 58
+CAU.TRACE_EVENTS.field.3.tag_type = String
+CAU.TRACE_EVENTS.field.3.tag_name = EIP_ATTR_ARRIVAL_DATE
+
+CAU.TRACE_EVENTS.field.4.name = EVENT_DATE
+CAU.TRACE_EVENTS.field.4.tag_id = 34
+CAU.TRACE_EVENTS.field.4.tag_type = String
+CAU.TRACE_EVENTS.field.4.tag_name = EIP_ATTR_STATE_DATE_AND_TIME
+
+CAU.TRACE_EVENTS.field.5.name = UNIFIED_ERROR_ID
+CAU.TRACE_EVENTS.field.5.default_value = -1
+CAU.TRACE_EVENTS.field.5.tag_id = 813
+CAU.TRACE_EVENTS.field.5.tag_type = Integer
+CAU.TRACE_EVENTS.field.5.tag_name = UNIFIED_ERROR_ID
+
+CAU.TRACE_EVENTS.field.6.name =  SM_STATE
+CAU.TRACE_EVENTS.field.6.tag_id = 29
+CAU.TRACE_EVENTS.field.6.tag_type = UnsignedShort
+CAU.TRACE_EVENTS.field.6.tag_name = EIP_ATTR_SM_STATE
+
+CAU.TRACE_EVENTS.field.7.name = TARGET_EI_CLASS
+CAU.TRACE_EVENTS.field.7.suppress = true
+CAU.TRACE_EVENTS.field.7.tag_id =  1061
+CAU.TRACE_EVENTS.field.7.tag_type = UnsignedInt
+CAU.TRACE_EVENTS.field.7.tag_name = EIP_ATTR_TARGET_EI_CLASS
+
+CAU.TRACE_EVENTS.field.8.name =  TARGET_EI_GROUP
+CAU.TRACE_EVENTS.field.8.suppress = true
+CAU.TRACE_EVENTS.field.8.tag_id = 1062
+CAU.TRACE_EVENTS.field.8.tag_type = UnsignedInt
+CAU.TRACE_EVENTS.field.8.tag_name = EIP_ATTR_TARGET_EI_GROUP
+
+CAU.TRACE_EVENTS.field.9.name = TARGET_EI_INSTANCE
+CAU.TRACE_EVENTS.field.9.tag_id = 97
+CAU.TRACE_EVENTS.field.9.tag_type = EiIdDataField
+CAU.TRACE_EVENTS.field.9.tag_name = EIP_ATTR_TARGET_EI_ID
+
+CAU.TRACE_EVENTS.field.10.name = NOTIFICATION
+CAU.TRACE_EVENTS.field.10.tag_id = 57
+CAU.TRACE_EVENTS.field.10.tag_type = UnsignedShort
+CAU.TRACE_EVENTS.field.10.tag_name = EIP_ATTR_NOTIFY_SEND_SM
+
+CAU.TRACE_EVENTS.field.11.name = EVENT_SEQ
+CAU.TRACE_EVENTS.field.11.tag_id = 1030
+CAU.TRACE_EVENTS.field.11.tag_type = UnsignedInt
+CAU.TRACE_EVENTS.field.11.tag_name = EIP_ATTR_EVENT_NUM
+
+CAU.TRACE_EVENTS.field.12.name = ISN
+CAU.TRACE_EVENTS.field.12.tag_id = 28
+CAU.TRACE_EVENTS.field.12.tag_type = UnsignedInt
+CAU.TRACE_EVENTS.field.12.tag_name = EIP_ATTR_SM_NO
+
+CAU.TRACE_EVENTS.field.13.name = OUTGOING_PROTOCOL
+CAU.TRACE_EVENTS.field.13.tag_id = 339
+CAU.TRACE_EVENTS.field.13.tag_type = String
+CAU.TRACE_EVENTS.field.13.tag_name = OUTGOING_PROTOCOL
+
+CAU.TRACE_EVENTS.field.14.name = TARGET_TYPE
+CAU.TRACE_EVENTS.field.14.tag_id = 811
+CAU.TRACE_EVENTS.field.14.tag_type = Integer
+CAU.TRACE_EVENTS.field.14.tag_name = TARGET_TYPE
+
+CAU.TRACE_EVENTS.field.15.name = TARGET_APPLICATION_ID
+CAU.TRACE_EVENTS.field.15.tag_id = 812
+CAU.TRACE_EVENTS.field.15.tag_type = String
+CAU.TRACE_EVENTS.field.15.tag_name = TARGET_APPLICATION_ID
+
+CAU.TRACE_EVENTS.field.16.name = ADDITIONAL_ERROR_INFORMATION
+CAU.TRACE_EVENTS.field.16.tag_id = 808
+CAU.TRACE_EVENTS.field.16.tag_type = String
+CAU.TRACE_EVENTS.field.16.tag_name = ADDITIONAL_ERROR_INFORMATION
+
+CAU.TRACE_EVENTS.field.17.name =  INSTANCE_NUMBER
+CAU.TRACE_EVENTS.field.17.default_value = 1
+CAU.TRACE_EVENTS.field.17.tag_id = 10005
+CAU.TRACE_EVENTS.field.17.tag_type = Integer
+CAU.TRACE_EVENTS.field.17.tag_name = INSTANCE_NUMBER
+
+####################### SEM TRACE_INFO for SPL #######################
+
+SPL.tables = TRACE_INFO, TRACE_EVENTS
+
+SPL.TRACE_INFO.number_of_fields = 41
+
+SPL.TRACE_INFO.field.1.name = U_ID
+SPL.TRACE_INFO.field.1.tag_id = 105
+SPL.TRACE_INFO.field.1.tag_type = String
+SPL.TRACE_INFO.field.1.tag_name = U_ID
+
+SPL.TRACE_INFO.field.2.name = ISN
+SPL.TRACE_INFO.field.2.tag_id = 28
+SPL.TRACE_INFO.field.2.tag_type = UnsignedInt
+SPL.TRACE_INFO.field.2.tag_name = EIP_ATTR_SM_NO
+
+SPL.TRACE_INFO.field.3.name = ARRIVAL_DATE_AND_TIME
+SPL.TRACE_INFO.field.3.tag_id = 58
+SPL.TRACE_INFO.field.3.tag_type = String
+SPL.TRACE_INFO.field.3.tag_name = EIP_ATTR_ARRIVAL_DATE
+
+SPL.TRACE_INFO.field.4.name = DCS
+SPL.TRACE_INFO.field.4.tag_id = 119
+SPL.TRACE_INFO.field.4.tag_type = Integer
+SPL.TRACE_INFO.field.4.tag_name = EIP_ATTR_DATA_CODING_SCHEME
+
+SPL.TRACE_INFO.field.5.name = PRIORITY
+SPL.TRACE_INFO.field.5.tag_id = 24
+SPL.TRACE_INFO.field.5.tag_type = UnsignedInt
+SPL.TRACE_INFO.field.5.tag_name = EIP_ATTR_PRIORITY
+
+SPL.TRACE_INFO.field.6.name = CONFIRMATION_REQUEST_IND
+SPL.TRACE_INFO.field.6.tag_id = 57
+SPL.TRACE_INFO.field.6.tag_type = UnsignedShort
+SPL.TRACE_INFO.field.6.tag_name = EIP_ATTR_NOTIFY_SEND_SM
+
+SPL.TRACE_INFO.field.7.name = MESSAGE_LENGTH
+SPL.TRACE_INFO.field.7.tag_id = 80
+SPL.TRACE_INFO.field.7.tag_type = UnsignedInt
+SPL.TRACE_INFO.field.7.tag_name = EIP_ATTR_MESSAGE_LEN
+
+SPL.TRACE_INFO.field.8.name = LANGUAGE
+SPL.TRACE_INFO.field.8.tag_id = 3
+SPL.TRACE_INFO.field.8.tag_name = EIP_ATTR_LANG
+SPL.TRACE_INFO.field.8.tag_type = UnsignedShort
+
+SPL.TRACE_INFO.field.9.name = MESSAGE_REF
+SPL.TRACE_INFO.field.9.tag_id = 109
+SPL.TRACE_INFO.field.9.tag_type = String
+SPL.TRACE_INFO.field.9.tag_name = EIP_ATTR_MSG_REF
+
+SPL.TRACE_INFO.field.10.name = MESSAGE_TYPE
+SPL.TRACE_INFO.field.10.tag_id = 114
+SPL.TRACE_INFO.field.10.tag_type = UnsignedShort
+SPL.TRACE_INFO.field.10.tag_name = EIP_ATTR_SM_CLASS
+
+SPL.TRACE_INFO.field.11.name = FULL_SOURCE_ADDRESS
+SPL.TRACE_INFO.field.11.sibling	= 10003
+SPL.TRACE_INFO.field.11.tag_id = 55
+SPL.TRACE_INFO.field.11.tag_type = GAddress
+SPL.TRACE_INFO.field.11.tag_name = EIP_ATTR_SOURCE
+
+SPL.TRACE_INFO.field.12.name = FULL_TARGET_ADDRESS
+SPL.TRACE_INFO.field.12.sibling	= 10004
+SPL.TRACE_INFO.field.12.tag_id = 54
+SPL.TRACE_INFO.field.12.tag_type = GAddress
+SPL.TRACE_INFO.field.12.tag_name = EIP_ATTR_TARGET
+
+#SPL.TRACE_INFO.field.13.name = SOURCE_EI_CLASS
+#SPL.TRACE_INFO.field.13.suppress = true
+#SPL.TRACE_INFO.field.13.tag_id = 125
+#SPL.TRACE_INFO.field.13.tag_type = UnsignedInt
+#SPL.TRACE_INFO.field.13.tag_name = EIP_ATTR_EI_CLASS_NUM
+
+#SPL.TRACE_INFO.field.14.name = SOURCE_EI_GROUP
+#SPL.TRACE_INFO.field.14.suppress = true
+#SPL.TRACE_INFO.field.14.tag_id = 126
+#SPL.TRACE_INFO.field.14.tag_type = UnsignedInt
+#SPL.TRACE_INFO.field.14.tag_name = EIP_ATTR_EI_GROUP_NUM
+
+SPL.TRACE_INFO.field.15.name = VALIDITY_PERIOD
+SPL.TRACE_INFO.field.15.tag_id = 4
+SPL.TRACE_INFO.field.15.tag_type = Integer
+SPL.TRACE_INFO.field.15.tag_name = EIP_ATTR_VALIDITY_PERIOD
+
+SPL.TRACE_INFO.field.16.name = MESSAGE_TEXT_BIN
+SPL.TRACE_INFO.field.16.suppress = false
+SPL.TRACE_INFO.field.16.tag_id = 20
+SPL.TRACE_INFO.field.16.tag_type = String
+SPL.TRACE_INFO.field.16.tag_name = EIP_ATTR_SM_TEXT
+
+SPL.TRACE_INFO.field.17.name = SOURCE_EI_INSTANCE
+SPL.TRACE_INFO.field.17.tag_id = 50
+SPL.TRACE_INFO.field.17.tag_type = EiIdDataField
+SPL.TRACE_INFO.field.17.tag_name = EIP_ATTR_SOURCE_EI_ID
+
+SPL.TRACE_INFO.field.18.name = INCOMING_PROTOCOL
+SPL.TRACE_INFO.field.18.tag_id = 338
+SPL.TRACE_INFO.field.18.tag_type = String
+SPL.TRACE_INFO.field.18.tag_name = SOURCE_EI_PROTOCOL
+
+SPL.TRACE_INFO.field.19.name = TRACE_TYPE
+SPL.TRACE_INFO.field.19.tag_id = 801
+SPL.TRACE_INFO.field.19.tag_type = Integer
+SPL.TRACE_INFO.field.19.tag_name = TRACE_TYPE
+
+SPL.TRACE_INFO.field.20.name = SOURCE_TYPE
+SPL.TRACE_INFO.field.20.tag_id = 802
+SPL.TRACE_INFO.field.20.tag_type = Integer
+SPL.TRACE_INFO.field.20.tag_name = SOURCE_TYPE
+
+SPL.TRACE_INFO.field.21.name = NUM_OF_RECIPIENTS
+SPL.TRACE_INFO.field.21.tag_id = 806
+SPL.TRACE_INFO.field.21.tag_type = Integer
+SPL.TRACE_INFO.field.21.tag_name = NUM_OF_RECIPIENTS
+
+SPL.TRACE_INFO.field.22.name = READ_REPLY_REQUEST
+SPL.TRACE_INFO.field.22.tag_id = 804
+SPL.TRACE_INFO.field.22.tag_type = String
+SPL.TRACE_INFO.field.22.tag_name = READ_REPLY_REQUEST
+
+SPL.TRACE_INFO.field.23.name = SOURCE_APPLICATION_ID
+SPL.TRACE_INFO.field.23.tag_id = 809
+SPL.TRACE_INFO.field.23.tag_type = String
+SPL.TRACE_INFO.field.23.tag_name = SOURCE_APPLICATION_ID
+
+SPL.TRACE_INFO.field.24.name = OPERATOR_ID
+SPL.TRACE_INFO.field.24.tag_id = 807
+SPL.TRACE_INFO.field.24.tag_type = String
+SPL.TRACE_INFO.field.24.tag_name = OPERATOR_ID
+
+SPL.TRACE_INFO.field.25.name = SOURCE_ADDRESS
+SPL.TRACE_INFO.field.25.tag_id = 10003
+SPL.TRACE_INFO.field.25.tag_type = Address
+SPL.TRACE_INFO.field.25.tag_name = SOURCE_ADDRESS
+
+SPL.TRACE_INFO.field.26.name = TARGET_ADDRESS
+SPL.TRACE_INFO.field.26.tag_id = 10004
+SPL.TRACE_INFO.field.26.tag_type = Address
+SPL.TRACE_INFO.field.26.tag_name = TARGET_ADDRESS
+
+SPL.TRACE_INFO.field.27.name = USER_SESSION_ID
+SPL.TRACE_INFO.field.27.tag_id = 814
+SPL.TRACE_INFO.field.27.tag_type = String
+SPL.TRACE_INFO.field.27.tag_name = USER_SESSION_ID
+
+SPL.TRACE_INFO.field.28.name = HTTP_RESPONSE_STATUS
+SPL.TRACE_INFO.field.28.tag_id = 817
+SPL.TRACE_INFO.field.28.tag_type = Integer
+SPL.TRACE_INFO.field.28.tag_name = HTTP_RESPONSE_STATUS
+
+SPL.TRACE_INFO.field.29.name = SVC_ERROR
+SPL.TRACE_INFO.field.29.tag_id = 818
+SPL.TRACE_INFO.field.29.tag_type = String
+SPL.TRACE_INFO.field.29.tag_name = SVC_ERROR
+
+SPL.TRACE_INFO.field.30.name = SVC_TEXT
+SPL.TRACE_INFO.field.30.tag_id = 819
+SPL.TRACE_INFO.field.30.tag_type = String
+SPL.TRACE_INFO.field.30.tag_name = SVC_TEXT
+
+SPL.TRACE_INFO.field.31.name = VAS_APPLICATION_LIST
+SPL.TRACE_INFO.field.31.tag_id = 815
+SPL.TRACE_INFO.field.31.tag_type = String
+SPL.TRACE_INFO.field.31.tag_name = VAS_APPLICATION_LIST
+
+SPL.TRACE_INFO.field.32.name = OPERATION_DETAILED_INFO
+SPL.TRACE_INFO.field.32.tag_id = 816
+SPL.TRACE_INFO.field.32.tag_type = String
+SPL.TRACE_INFO.field.32.tag_name = OPERATION_DETAILED_INFO
+
+SPL.TRACE_INFO.field.33.name = SAR_MSG_REF_NUM
+SPL.TRACE_INFO.field.33.tag_id = 120
+SPL.TRACE_INFO.field.33.tag_type = Integer
+SPL.TRACE_INFO.field.33.tag_name = SAR_MSG_REF_NUM
+
+SPL.TRACE_INFO.field.34.name = SAR_TOTAL_SEGMENTS
+SPL.TRACE_INFO.field.34.tag_id = 121
+SPL.TRACE_INFO.field.34.tag_type = Integer
+SPL.TRACE_INFO.field.34.tag_name = SAR_TOTAL_SEGMENTS
+
+SPL.TRACE_INFO.field.35.name = SAR_SEGMENT_SEQNUM
+SPL.TRACE_INFO.field.35.tag_id = 122
+SPL.TRACE_INFO.field.35.tag_type = Integer
+SPL.TRACE_INFO.field.35.tag_name = SAR_SEGMENT_SEQNUM 
+
+SPL.TRACE_INFO.field.36.name = RCS_MESSAGE_ID
+SPL.TRACE_INFO.field.36.tag_id = 820
+SPL.TRACE_INFO.field.36.tag_type = String
+SPL.TRACE_INFO.field.36.tag_name = RCS_MESSAGE_ID 
+
+#SPL.TRACE_INFO.field.37.name = SOURCE_MESSAGE_SUBTYPE
+#SPL.TRACE_INFO.field.37.tag_id = 821
+#SPL.TRACE_INFO.field.37.tag_type = Integer
+#SPL.TRACE_INFO.field.37.tag_name = SOURCE_MESSAGE_SUBTYPE
+
+#SPL.TRACE_INFO.field.38.name = TARGET_MESSAGE_SUBTYPE
+#SPL.TRACE_INFO.field.38.tag_id = 822
+#SPL.TRACE_INFO.field.38.tag_type = Integer
+#SPL.TRACE_INFO.field.38.tag_name = TARGET_MESSAGE_SUBTYPE
+
+#SPL.TRACE_INFO.field.39.name = PUBLIC_GRUU
+SPL.TRACE_INFO.field.39.name = SOURCE_PUBLIC_GRUU 
+SPL.TRACE_INFO.field.39.tag_id = 823
+SPL.TRACE_INFO.field.39.tag_type = String
+SPL.TRACE_INFO.field.39.tag_name = PUBLIC_GRUU
+
+#SPL.TRACE_INFO.field.40.name = SIP_INSTANCE
+SPL.TRACE_INFO.field.40.name = SOURCE_SIP_INSTANCE
+SPL.TRACE_INFO.field.40.tag_id = 824
+SPL.TRACE_INFO.field.40.tag_type = String
+SPL.TRACE_INFO.field.40.tag_name = SIP_INSTANCE
+
+SPL.TRACE_INFO.field.41.name = MESSAGE_DELIVERY_TYPE
+SPL.TRACE_INFO.field.41.tag_id = 825
+SPL.TRACE_INFO.field.41.tag_type = Integer
+SPL.TRACE_INFO.field.41.tag_name = MESSAGE_DELIVERY_TYPE
+
+#SPL.TRACE_INFO.field.42.name = TARGET_PUBLIC_GRUU
+#SPL.TRACE_INFO.field.42.tag_id = 826
+#SPL.TRACE_INFO.field.42.tag_type = String
+#SPL.TRACE_INFO.field.42.tag_name = TARGET_PUBLIC_GRUU
+
+#SPL.TRACE_INFO.field.43.name = TARGET_SIP_INSTANCE
+#SPL.TRACE_INFO.field.43.tag_id = 827
+#SPL.TRACE_INFO.field.43.tag_type = String
+#SPL.TRACE_INFO.field.43.tag_name = TARGET_SIP_INSTANCE
+
+#SPL.TRACE_INFO.field.44.name = MESSAGE_STORE_UID
+#SPL.TRACE_INFO.field.44.tag_id = 829
+#SPL.TRACE_INFO.field.44.tag_type = String
+#SPL.TRACE_INFO.field.44.tag_name = MESSAGE_STORE_UID
+
+#SPL.TRACE_INFO.field.45.name = SESSION_MODE
+#SPL.TRACE_INFO.field.45.tag_id = 831
+#SPL.TRACE_INFO.field.45.tag_type = Integer
+#SPL.TRACE_INFO.field.45.tag_name = SESSION_MODE
+
+#SPL.TRACE_INFO.field.46.name = CONTENT_TYPE
+#SPL.TRACE_INFO.field.46.tag_id = 832
+#SPL.TRACE_INFO.field.46.tag_type = String
+#SPL.TRACE_INFO.field.46.tag_name = CONTENT_TYPE
+
+####################### SEM TRACE_EVENTS for SPL #######################
+
+SPL.TRACE_EVENTS.number_of_fields = 17
+
+SPL.TRACE_EVENTS.field.1.name = U_ID
+SPL.TRACE_EVENTS.field.1.tag_id = 105
+SPL.TRACE_EVENTS.field.1.tag_type = String
+SPL.TRACE_EVENTS.field.1.tag_name = U_ID
+
+SPL.TRACE_EVENTS.field.2.name = EVENT_TYPE
+SPL.TRACE_EVENTS.field.2.tag_id = 123
+SPL.TRACE_EVENTS.field.2.tag_type = UnsignedShort
+SPL.TRACE_EVENTS.field.2.tag_name = EIP_ATTR_EVENT_TYPE
+
+SPL.TRACE_EVENTS.field.3.name = ARRIVAL_DATE_AND_TIME
+SPL.TRACE_EVENTS.field.3.tag_id = 58
+SPL.TRACE_EVENTS.field.3.tag_type = String
+SPL.TRACE_EVENTS.field.3.tag_name = EIP_ATTR_ARRIVAL_DATE
+
+SPL.TRACE_EVENTS.field.4.name = EVENT_DATE
+SPL.TRACE_EVENTS.field.4.tag_id = 34
+SPL.TRACE_EVENTS.field.4.tag_type = String
+SPL.TRACE_EVENTS.field.4.tag_name = EIP_ATTR_STATE_DATE_AND_TIME
+
+SPL.TRACE_EVENTS.field.5.name = UNIFIED_ERROR_ID
+SPL.TRACE_EVENTS.field.5.default_value = -1
+SPL.TRACE_EVENTS.field.5.tag_id = 813
+SPL.TRACE_EVENTS.field.5.tag_type = Integer
+SPL.TRACE_EVENTS.field.5.tag_name = UNIFIED_ERROR_ID
+
+SPL.TRACE_EVENTS.field.6.name =  SM_STATE
+SPL.TRACE_EVENTS.field.6.tag_id = 29
+SPL.TRACE_EVENTS.field.6.tag_type = UnsignedShort
+SPL.TRACE_EVENTS.field.6.tag_name = EIP_ATTR_SM_STATE
+
+SPL.TRACE_EVENTS.field.7.name = TARGET_EI_CLASS
+SPL.TRACE_EVENTS.field.7.suppress = true
+SPL.TRACE_EVENTS.field.7.tag_id =  1061
+SPL.TRACE_EVENTS.field.7.tag_type = UnsignedInt
+SPL.TRACE_EVENTS.field.7.tag_name = EIP_ATTR_TARGET_EI_CLASS
+
+SPL.TRACE_EVENTS.field.8.name =  TARGET_EI_GROUP
+SPL.TRACE_EVENTS.field.8.suppress = true
+SPL.TRACE_EVENTS.field.8.tag_id = 1062
+SPL.TRACE_EVENTS.field.8.tag_type = UnsignedInt
+SPL.TRACE_EVENTS.field.8.tag_name = EIP_ATTR_TARGET_EI_GROUP
+
+SPL.TRACE_EVENTS.field.9.name = TARGET_EI_INSTANCE
+SPL.TRACE_EVENTS.field.9.tag_id = 97
+SPL.TRACE_EVENTS.field.9.tag_type = EiIdDataField
+SPL.TRACE_EVENTS.field.9.tag_name = EIP_ATTR_TARGET_EI_ID
+
+SPL.TRACE_EVENTS.field.10.name = NOTIFICATION
+SPL.TRACE_EVENTS.field.10.tag_id = 57
+SPL.TRACE_EVENTS.field.10.tag_type = UnsignedShort
+SPL.TRACE_EVENTS.field.10.tag_name = EIP_ATTR_NOTIFY_SEND_SM
+
+SPL.TRACE_EVENTS.field.11.name = EVENT_SEQ
+SPL.TRACE_EVENTS.field.11.tag_id = 1030
+SPL.TRACE_EVENTS.field.11.tag_type = UnsignedInt
+SPL.TRACE_EVENTS.field.11.tag_name = EIP_ATTR_EVENT_NUM
+
+SPL.TRACE_EVENTS.field.12.name = ISN
+SPL.TRACE_EVENTS.field.12.tag_id = 28
+SPL.TRACE_EVENTS.field.12.tag_type = UnsignedInt
+SPL.TRACE_EVENTS.field.12.tag_name = EIP_ATTR_SM_NO
+
+SPL.TRACE_EVENTS.field.13.name = OUTGOING_PROTOCOL
+SPL.TRACE_EVENTS.field.13.tag_id = 339
+SPL.TRACE_EVENTS.field.13.tag_type = String
+SPL.TRACE_EVENTS.field.13.tag_name = OUTGOING_PROTOCOL
+
+SPL.TRACE_EVENTS.field.14.name = TARGET_TYPE
+SPL.TRACE_EVENTS.field.14.tag_id = 811
+SPL.TRACE_EVENTS.field.14.tag_type = Integer
+SPL.TRACE_EVENTS.field.14.tag_name = TARGET_TYPE
+
+SPL.TRACE_EVENTS.field.15.name = TARGET_APPLICATION_ID
+SPL.TRACE_EVENTS.field.15.tag_id = 812
+SPL.TRACE_EVENTS.field.15.tag_type = String
+SPL.TRACE_EVENTS.field.15.tag_name = TARGET_APPLICATION_ID
+
+SPL.TRACE_EVENTS.field.16.name = ADDITIONAL_ERROR_INFORMATION
+SPL.TRACE_EVENTS.field.16.tag_id = 808
+SPL.TRACE_EVENTS.field.16.tag_type = String
+SPL.TRACE_EVENTS.field.16.tag_name = ADDITIONAL_ERROR_INFORMATION
+
+SPL.TRACE_EVENTS.field.17.name =  INSTANCE_NUMBER
+SPL.TRACE_EVENTS.field.17.default_value = 1
+SPL.TRACE_EVENTS.field.17.tag_id = 10005
+SPL.TRACE_EVENTS.field.17.tag_type = Integer
+SPL.TRACE_EVENTS.field.17.tag_name = INSTANCE_NUMBER
+
+####################### SEM TRACE_INFO for IMPA #######################
+
+IMPA.tables = TRACE_INFO, TRACE_EVENTS
+
+IMPA.TRACE_INFO.number_of_fields = 41
+
+IMPA.TRACE_INFO.field.1.name = U_ID
+IMPA.TRACE_INFO.field.1.tag_id = 105
+IMPA.TRACE_INFO.field.1.tag_type = String
+IMPA.TRACE_INFO.field.1.tag_name = U_ID
+
+IMPA.TRACE_INFO.field.2.name = ISN
+IMPA.TRACE_INFO.field.2.tag_id = 28
+IMPA.TRACE_INFO.field.2.tag_type = UnsignedInt
+IMPA.TRACE_INFO.field.2.tag_name = EIP_ATTR_SM_NO
+
+IMPA.TRACE_INFO.field.3.name = ARRIVAL_DATE_AND_TIME
+IMPA.TRACE_INFO.field.3.tag_id = 58
+IMPA.TRACE_INFO.field.3.tag_type = String
+IMPA.TRACE_INFO.field.3.tag_name = EIP_ATTR_ARRIVAL_DATE
+
+IMPA.TRACE_INFO.field.4.name = DCS
+IMPA.TRACE_INFO.field.4.tag_id = 119
+IMPA.TRACE_INFO.field.4.tag_type = Integer
+IMPA.TRACE_INFO.field.4.tag_name = EIP_ATTR_DATA_CODING_SCHEME
+
+IMPA.TRACE_INFO.field.5.name = PRIORITY
+IMPA.TRACE_INFO.field.5.tag_id = 24
+IMPA.TRACE_INFO.field.5.tag_type = UnsignedInt
+IMPA.TRACE_INFO.field.5.tag_name = EIP_ATTR_PRIORITY
+
+IMPA.TRACE_INFO.field.6.name = CONFIRMATION_REQUEST_IND
+IMPA.TRACE_INFO.field.6.tag_id = 57
+IMPA.TRACE_INFO.field.6.tag_type = UnsignedShort
+IMPA.TRACE_INFO.field.6.tag_name = EIP_ATTR_NOTIFY_SEND_SM
+
+IMPA.TRACE_INFO.field.7.name = MESSAGE_LENGTH
+IMPA.TRACE_INFO.field.7.tag_id = 80
+IMPA.TRACE_INFO.field.7.tag_type = UnsignedInt
+IMPA.TRACE_INFO.field.7.tag_name = EIP_ATTR_MESSAGE_LEN
+
+IMPA.TRACE_INFO.field.8.name = LANGUAGE
+IMPA.TRACE_INFO.field.8.tag_id = 3
+IMPA.TRACE_INFO.field.8.tag_name = EIP_ATTR_LANG
+IMPA.TRACE_INFO.field.8.tag_type = UnsignedShort
+
+IMPA.TRACE_INFO.field.9.name = MESSAGE_REF
+IMPA.TRACE_INFO.field.9.tag_id = 109
+IMPA.TRACE_INFO.field.9.tag_type = String
+IMPA.TRACE_INFO.field.9.tag_name = EIP_ATTR_MSG_REF
+
+IMPA.TRACE_INFO.field.10.name = MESSAGE_TYPE
+IMPA.TRACE_INFO.field.10.tag_id = 114
+IMPA.TRACE_INFO.field.10.tag_type = UnsignedShort
+IMPA.TRACE_INFO.field.10.tag_name = EIP_ATTR_SM_CLASS
+
+IMPA.TRACE_INFO.field.11.name = FULL_SOURCE_ADDRESS
+IMPA.TRACE_INFO.field.11.sibling	= 10003
+IMPA.TRACE_INFO.field.11.tag_id = 55
+IMPA.TRACE_INFO.field.11.tag_type = GAddress
+IMPA.TRACE_INFO.field.11.tag_name = EIP_ATTR_SOURCE
+
+IMPA.TRACE_INFO.field.12.name = FULL_TARGET_ADDRESS
+IMPA.TRACE_INFO.field.12.sibling	= 10004
+IMPA.TRACE_INFO.field.12.tag_id = 54
+IMPA.TRACE_INFO.field.12.tag_type = GAddress
+IMPA.TRACE_INFO.field.12.tag_name = EIP_ATTR_TARGET
+
+#IMPA.TRACE_INFO.field.13.name = SOURCE_EI_CLASS
+#IMPA.TRACE_INFO.field.13.suppress = true
+#IMPA.TRACE_INFO.field.13.tag_id = 125
+#IMPA.TRACE_INFO.field.13.tag_type = UnsignedInt
+#IMPA.TRACE_INFO.field.13.tag_name = EIP_ATTR_EI_CLASS_NUM
+
+#IMPA.TRACE_INFO.field.14.name = SOURCE_EI_GROUP
+#IMPA.TRACE_INFO.field.14.suppress = true
+#IMPA.TRACE_INFO.field.14.tag_id = 126
+#IMPA.TRACE_INFO.field.14.tag_type = UnsignedInt
+#IMPA.TRACE_INFO.field.14.tag_name = EIP_ATTR_EI_GROUP_NUM
+
+IMPA.TRACE_INFO.field.15.name = VALIDITY_PERIOD
+IMPA.TRACE_INFO.field.15.tag_id = 4
+IMPA.TRACE_INFO.field.15.tag_type = Integer
+IMPA.TRACE_INFO.field.15.tag_name = EIP_ATTR_VALIDITY_PERIOD
+
+IMPA.TRACE_INFO.field.16.name = MESSAGE_TEXT_BIN
+IMPA.TRACE_INFO.field.16.suppress = false
+IMPA.TRACE_INFO.field.16.tag_id = 20
+IMPA.TRACE_INFO.field.16.tag_type = String
+IMPA.TRACE_INFO.field.16.tag_name = EIP_ATTR_SM_TEXT
+
+IMPA.TRACE_INFO.field.17.name = SOURCE_EI_INSTANCE
+IMPA.TRACE_INFO.field.17.tag_id = 50
+IMPA.TRACE_INFO.field.17.tag_type = EiIdDataField
+IMPA.TRACE_INFO.field.17.tag_name = EIP_ATTR_SOURCE_EI_ID
+
+IMPA.TRACE_INFO.field.18.name = INCOMING_PROTOCOL
+IMPA.TRACE_INFO.field.18.tag_id = 338
+IMPA.TRACE_INFO.field.18.tag_type = String
+IMPA.TRACE_INFO.field.18.tag_name = SOURCE_EI_PROTOCOL
+
+IMPA.TRACE_INFO.field.19.name = TRACE_TYPE
+IMPA.TRACE_INFO.field.19.tag_id = 801
+IMPA.TRACE_INFO.field.19.tag_type = Integer
+IMPA.TRACE_INFO.field.19.tag_name = TRACE_TYPE
+
+IMPA.TRACE_INFO.field.20.name = SOURCE_TYPE
+IMPA.TRACE_INFO.field.20.tag_id = 802
+IMPA.TRACE_INFO.field.20.tag_type = Integer
+IMPA.TRACE_INFO.field.20.tag_name = SOURCE_TYPE
+
+IMPA.TRACE_INFO.field.21.name = NUM_OF_RECIPIENTS
+IMPA.TRACE_INFO.field.21.tag_id = 806
+IMPA.TRACE_INFO.field.21.tag_type = Integer
+IMPA.TRACE_INFO.field.21.tag_name = NUM_OF_RECIPIENTS
+
+IMPA.TRACE_INFO.field.22.name = READ_REPLY_REQUEST
+IMPA.TRACE_INFO.field.22.tag_id = 804
+IMPA.TRACE_INFO.field.22.tag_type = String
+IMPA.TRACE_INFO.field.22.tag_name = READ_REPLY_REQUEST
+
+IMPA.TRACE_INFO.field.23.name = SOURCE_APPLICATION_ID
+IMPA.TRACE_INFO.field.23.tag_id = 809
+IMPA.TRACE_INFO.field.23.tag_type = String
+IMPA.TRACE_INFO.field.23.tag_name = SOURCE_APPLICATION_ID
+
+IMPA.TRACE_INFO.field.24.name = OPERATOR_ID
+IMPA.TRACE_INFO.field.24.tag_id = 807
+IMPA.TRACE_INFO.field.24.tag_type = String
+IMPA.TRACE_INFO.field.24.tag_name = OPERATOR_ID
+
+IMPA.TRACE_INFO.field.25.name = SOURCE_ADDRESS
+IMPA.TRACE_INFO.field.25.tag_id = 10003
+IMPA.TRACE_INFO.field.25.tag_type = Address
+IMPA.TRACE_INFO.field.25.tag_name = SOURCE_ADDRESS
+
+IMPA.TRACE_INFO.field.26.name = TARGET_ADDRESS
+IMPA.TRACE_INFO.field.26.tag_id = 10004
+IMPA.TRACE_INFO.field.26.tag_type = Address
+IMPA.TRACE_INFO.field.26.tag_name = TARGET_ADDRESS
+
+IMPA.TRACE_INFO.field.27.name = USER_SESSION_ID
+IMPA.TRACE_INFO.field.27.tag_id = 814
+IMPA.TRACE_INFO.field.27.tag_type = String
+IMPA.TRACE_INFO.field.27.tag_name = USER_SESSION_ID
+
+IMPA.TRACE_INFO.field.28.name = HTTP_RESPONSE_STATUS
+IMPA.TRACE_INFO.field.28.tag_id = 817
+IMPA.TRACE_INFO.field.28.tag_type = Integer
+IMPA.TRACE_INFO.field.28.tag_name = HTTP_RESPONSE_STATUS
+
+IMPA.TRACE_INFO.field.29.name = SVC_ERROR
+IMPA.TRACE_INFO.field.29.tag_id = 818
+IMPA.TRACE_INFO.field.29.tag_type = String
+IMPA.TRACE_INFO.field.29.tag_name = SVC_ERROR
+
+IMPA.TRACE_INFO.field.30.name = SVC_TEXT
+IMPA.TRACE_INFO.field.30.tag_id = 819
+IMPA.TRACE_INFO.field.30.tag_type = String
+IMPA.TRACE_INFO.field.30.tag_name = SVC_TEXT
+
+IMPA.TRACE_INFO.field.31.name = VAS_APPLICATION_LIST
+IMPA.TRACE_INFO.field.31.tag_id = 815
+IMPA.TRACE_INFO.field.31.tag_type = String
+IMPA.TRACE_INFO.field.31.tag_name = VAS_APPLICATION_LIST
+
+IMPA.TRACE_INFO.field.32.name = OPERATION_DETAILED_INFO
+IMPA.TRACE_INFO.field.32.tag_id = 816
+IMPA.TRACE_INFO.field.32.tag_type = String
+IMPA.TRACE_INFO.field.32.tag_name = OPERATION_DETAILED_INFO
+
+IMPA.TRACE_INFO.field.33.name = SAR_MSG_REF_NUM
+IMPA.TRACE_INFO.field.33.tag_id = 120
+IMPA.TRACE_INFO.field.33.tag_type = Integer
+IMPA.TRACE_INFO.field.33.tag_name = SAR_MSG_REF_NUM
+
+IMPA.TRACE_INFO.field.34.name = SAR_TOTAL_SEGMENTS
+IMPA.TRACE_INFO.field.34.tag_id = 121
+IMPA.TRACE_INFO.field.34.tag_type = Integer
+IMPA.TRACE_INFO.field.34.tag_name = SAR_TOTAL_SEGMENTS
+
+IMPA.TRACE_INFO.field.35.name = SAR_SEGMENT_SEQNUM
+IMPA.TRACE_INFO.field.35.tag_id = 122
+IMPA.TRACE_INFO.field.35.tag_type = Integer
+IMPA.TRACE_INFO.field.35.tag_name = SAR_SEGMENT_SEQNUM 
+
+IMPA.TRACE_INFO.field.36.name = RCS_MESSAGE_ID
+IMPA.TRACE_INFO.field.36.tag_id = 820
+IMPA.TRACE_INFO.field.36.tag_type = String
+IMPA.TRACE_INFO.field.36.tag_name = RCS_MESSAGE_ID 
+
+#IMPA.TRACE_INFO.field.37.name = SOURCE_MESSAGE_SUBTYPE
+#IMPA.TRACE_INFO.field.37.tag_id = 821
+#IMPA.TRACE_INFO.field.37.tag_type = Integer
+#IMPA.TRACE_INFO.field.37.tag_name = SOURCE_MESSAGE_SUBTYPE
+
+#IMPA.TRACE_INFO.field.38.name = TARGET_MESSAGE_SUBTYPE
+#IMPA.TRACE_INFO.field.38.tag_id = 822
+#IMPA.TRACE_INFO.field.38.tag_type = Integer
+#IMPA.TRACE_INFO.field.38.tag_name = TARGET_MESSAGE_SUBTYPE
+
+#IMPA.TRACE_INFO.field.39.name = PUBLIC_GRUU
+IMPA.TRACE_INFO.field.39.name = SOURCE_PUBLIC_GRUU 
+IMPA.TRACE_INFO.field.39.tag_id = 823
+IMPA.TRACE_INFO.field.39.tag_type = String
+IMPA.TRACE_INFO.field.39.tag_name = PUBLIC_GRUU
+
+#IMPA.TRACE_INFO.field.40.name = SIP_INSTANCE
+IMPA.TRACE_INFO.field.40.name = SOURCE_SIP_INSTANCE
+IMPA.TRACE_INFO.field.40.tag_id = 824
+IMPA.TRACE_INFO.field.40.tag_type = String
+IMPA.TRACE_INFO.field.40.tag_name = SIP_INSTANCE
+
+IMPA.TRACE_INFO.field.41.name = MESSAGE_DELIVERY_TYPE
+IMPA.TRACE_INFO.field.41.tag_id = 825
+IMPA.TRACE_INFO.field.41.tag_type = Integer
+IMPA.TRACE_INFO.field.41.tag_name = MESSAGE_DELIVERY_TYPE
+
+#IMPA.TRACE_INFO.field.42.name = TARGET_PUBLIC_GRUU
+#IMPA.TRACE_INFO.field.42.tag_id = 826
+#IMPA.TRACE_INFO.field.42.tag_type = String
+#IMPA.TRACE_INFO.field.42.tag_name = TARGET_PUBLIC_GRUU
+
+#IMPA.TRACE_INFO.field.43.name = TARGET_SIP_INSTANCE
+#IMPA.TRACE_INFO.field.43.tag_id = 827
+#IMPA.TRACE_INFO.field.43.tag_type = String
+#IMPA.TRACE_INFO.field.43.tag_name = TARGET_SIP_INSTANCE
+
+#IMPA.TRACE_INFO.field.44.name = MESSAGE_STORE_UID
+#IMPA.TRACE_INFO.field.44.tag_id = 829
+#IMPA.TRACE_INFO.field.44.tag_type = String
+#IMPA.TRACE_INFO.field.44.tag_name = MESSAGE_STORE_UID
+
+#IMPA.TRACE_INFO.field.45.name = SESSION_MODE
+#IMPA.TRACE_INFO.field.45.tag_id = 831
+#IMPA.TRACE_INFO.field.45.tag_type = Integer
+#IMPA.TRACE_INFO.field.45.tag_name = SESSION_MODE
+
+#IMPA.TRACE_INFO.field.46.name = CONTENT_TYPE
+#IMPA.TRACE_INFO.field.46.tag_id = 832
+#IMPA.TRACE_INFO.field.46.tag_type = String
+#IMPA.TRACE_INFO.field.46.tag_name = CONTENT_TYPE
+
+####################### SEM TRACE_EVENTS for IMPA #######################
+
+IMPA.TRACE_EVENTS.number_of_fields = 17
+
+IMPA.TRACE_EVENTS.field.1.name = U_ID
+IMPA.TRACE_EVENTS.field.1.tag_id = 105
+IMPA.TRACE_EVENTS.field.1.tag_type = String
+IMPA.TRACE_EVENTS.field.1.tag_name = U_ID
+
+IMPA.TRACE_EVENTS.field.2.name = EVENT_TYPE
+IMPA.TRACE_EVENTS.field.2.tag_id = 123
+IMPA.TRACE_EVENTS.field.2.tag_type = UnsignedShort
+IMPA.TRACE_EVENTS.field.2.tag_name = EIP_ATTR_EVENT_TYPE
+
+IMPA.TRACE_EVENTS.field.3.name = ARRIVAL_DATE_AND_TIME
+IMPA.TRACE_EVENTS.field.3.tag_id = 58
+IMPA.TRACE_EVENTS.field.3.tag_type = String
+IMPA.TRACE_EVENTS.field.3.tag_name = EIP_ATTR_ARRIVAL_DATE
+
+IMPA.TRACE_EVENTS.field.4.name = EVENT_DATE
+IMPA.TRACE_EVENTS.field.4.tag_id = 34
+IMPA.TRACE_EVENTS.field.4.tag_type = String
+IMPA.TRACE_EVENTS.field.4.tag_name = EIP_ATTR_STATE_DATE_AND_TIME
+
+IMPA.TRACE_EVENTS.field.5.name = UNIFIED_ERROR_ID
+IMPA.TRACE_EVENTS.field.5.default_value = -1
+IMPA.TRACE_EVENTS.field.5.tag_id = 813
+IMPA.TRACE_EVENTS.field.5.tag_type = Integer
+IMPA.TRACE_EVENTS.field.5.tag_name = UNIFIED_ERROR_ID
+
+IMPA.TRACE_EVENTS.field.6.name =  SM_STATE
+IMPA.TRACE_EVENTS.field.6.tag_id = 29
+IMPA.TRACE_EVENTS.field.6.tag_type = UnsignedShort
+IMPA.TRACE_EVENTS.field.6.tag_name = EIP_ATTR_SM_STATE
+
+IMPA.TRACE_EVENTS.field.7.name = TARGET_EI_CLASS
+IMPA.TRACE_EVENTS.field.7.suppress = true
+IMPA.TRACE_EVENTS.field.7.tag_id =  1061
+IMPA.TRACE_EVENTS.field.7.tag_type = UnsignedInt
+IMPA.TRACE_EVENTS.field.7.tag_name = EIP_ATTR_TARGET_EI_CLASS
+
+IMPA.TRACE_EVENTS.field.8.name =  TARGET_EI_GROUP
+IMPA.TRACE_EVENTS.field.8.suppress = true
+IMPA.TRACE_EVENTS.field.8.tag_id = 1062
+IMPA.TRACE_EVENTS.field.8.tag_type = UnsignedInt
+IMPA.TRACE_EVENTS.field.8.tag_name = EIP_ATTR_TARGET_EI_GROUP
+
+IMPA.TRACE_EVENTS.field.9.name = TARGET_EI_INSTANCE
+IMPA.TRACE_EVENTS.field.9.tag_id = 97
+IMPA.TRACE_EVENTS.field.9.tag_type = EiIdDataField
+IMPA.TRACE_EVENTS.field.9.tag_name = EIP_ATTR_TARGET_EI_ID
+
+IMPA.TRACE_EVENTS.field.10.name = NOTIFICATION
+IMPA.TRACE_EVENTS.field.10.tag_id = 57
+IMPA.TRACE_EVENTS.field.10.tag_type = UnsignedShort
+IMPA.TRACE_EVENTS.field.10.tag_name = EIP_ATTR_NOTIFY_SEND_SM
+
+IMPA.TRACE_EVENTS.field.11.name = EVENT_SEQ
+IMPA.TRACE_EVENTS.field.11.tag_id = 1030
+IMPA.TRACE_EVENTS.field.11.tag_type = UnsignedInt
+IMPA.TRACE_EVENTS.field.11.tag_name = EIP_ATTR_EVENT_NUM
+
+IMPA.TRACE_EVENTS.field.12.name = ISN
+IMPA.TRACE_EVENTS.field.12.tag_id = 28
+IMPA.TRACE_EVENTS.field.12.tag_type = UnsignedInt
+IMPA.TRACE_EVENTS.field.12.tag_name = EIP_ATTR_SM_NO
+
+IMPA.TRACE_EVENTS.field.13.name = OUTGOING_PROTOCOL
+IMPA.TRACE_EVENTS.field.13.tag_id = 339
+IMPA.TRACE_EVENTS.field.13.tag_type = String
+IMPA.TRACE_EVENTS.field.13.tag_name = OUTGOING_PROTOCOL
+
+IMPA.TRACE_EVENTS.field.14.name = TARGET_TYPE
+IMPA.TRACE_EVENTS.field.14.tag_id = 811
+IMPA.TRACE_EVENTS.field.14.tag_type = Integer
+IMPA.TRACE_EVENTS.field.14.tag_name = TARGET_TYPE
+
+IMPA.TRACE_EVENTS.field.15.name = TARGET_APPLICATION_ID
+IMPA.TRACE_EVENTS.field.15.tag_id = 812
+IMPA.TRACE_EVENTS.field.15.tag_type = String
+IMPA.TRACE_EVENTS.field.15.tag_name = TARGET_APPLICATION_ID
+
+IMPA.TRACE_EVENTS.field.16.name = ADDITIONAL_ERROR_INFORMATION
+IMPA.TRACE_EVENTS.field.16.tag_id = 808
+IMPA.TRACE_EVENTS.field.16.tag_type = String
+IMPA.TRACE_EVENTS.field.16.tag_name = ADDITIONAL_ERROR_INFORMATION
+
+IMPA.TRACE_EVENTS.field.17.name =  INSTANCE_NUMBER
+IMPA.TRACE_EVENTS.field.17.default_value = 1
+IMPA.TRACE_EVENTS.field.17.tag_id = 10005
+IMPA.TRACE_EVENTS.field.17.tag_type = Integer
+IMPA.TRACE_EVENTS.field.17.tag_name = INSTANCE_NUMBER
+####################### SEM TRACE_INFO for ONS #######################
+
+ONS.tables = TRACE_INFO, TRACE_EVENTS
+
+ONS.TRACE_INFO.number_of_fields = 41
+
+ONS.TRACE_INFO.field.1.name = U_ID
+ONS.TRACE_INFO.field.1.tag_id = 105
+ONS.TRACE_INFO.field.1.tag_type = String
+ONS.TRACE_INFO.field.1.tag_name = U_ID
+
+ONS.TRACE_INFO.field.2.name = ISN
+ONS.TRACE_INFO.field.2.tag_id = 28
+ONS.TRACE_INFO.field.2.tag_type = UnsignedInt
+ONS.TRACE_INFO.field.2.tag_name = EIP_ATTR_SM_NO
+
+ONS.TRACE_INFO.field.3.name = ARRIVAL_DATE_AND_TIME
+ONS.TRACE_INFO.field.3.tag_id = 58
+ONS.TRACE_INFO.field.3.tag_type = String
+ONS.TRACE_INFO.field.3.tag_name = EIP_ATTR_ARRIVAL_DATE
+
+ONS.TRACE_INFO.field.4.name = DCS
+ONS.TRACE_INFO.field.4.tag_id = 119
+ONS.TRACE_INFO.field.4.tag_type = Integer
+ONS.TRACE_INFO.field.4.tag_name = EIP_ATTR_DATA_CODING_SCHEME
+
+ONS.TRACE_INFO.field.5.name = PRIORITY
+ONS.TRACE_INFO.field.5.tag_id = 24
+ONS.TRACE_INFO.field.5.tag_type = UnsignedInt
+ONS.TRACE_INFO.field.5.tag_name = EIP_ATTR_PRIORITY
+
+ONS.TRACE_INFO.field.6.name = CONFIRMATION_REQUEST_IND
+ONS.TRACE_INFO.field.6.tag_id = 57
+ONS.TRACE_INFO.field.6.tag_type = UnsignedShort
+ONS.TRACE_INFO.field.6.tag_name = EIP_ATTR_NOTIFY_SEND_SM
+
+ONS.TRACE_INFO.field.7.name = MESSAGE_LENGTH
+ONS.TRACE_INFO.field.7.tag_id = 80
+ONS.TRACE_INFO.field.7.tag_type = UnsignedInt
+ONS.TRACE_INFO.field.7.tag_name = EIP_ATTR_MESSAGE_LEN
+
+ONS.TRACE_INFO.field.8.name = LANGUAGE
+ONS.TRACE_INFO.field.8.tag_id = 3
+ONS.TRACE_INFO.field.8.tag_name = EIP_ATTR_LANG
+ONS.TRACE_INFO.field.8.tag_type = UnsignedShort
+
+ONS.TRACE_INFO.field.9.name = MESSAGE_REF
+ONS.TRACE_INFO.field.9.tag_id = 109
+ONS.TRACE_INFO.field.9.tag_type = String
+ONS.TRACE_INFO.field.9.tag_name = EIP_ATTR_MSG_REF
+
+ONS.TRACE_INFO.field.10.name = MESSAGE_TYPE
+ONS.TRACE_INFO.field.10.tag_id = 114
+ONS.TRACE_INFO.field.10.tag_type = UnsignedShort
+ONS.TRACE_INFO.field.10.tag_name = EIP_ATTR_SM_CLASS
+
+ONS.TRACE_INFO.field.11.name = FULL_SOURCE_ADDRESS
+ONS.TRACE_INFO.field.11.sibling	= 10003
+ONS.TRACE_INFO.field.11.tag_id = 55
+ONS.TRACE_INFO.field.11.tag_type = GAddress
+ONS.TRACE_INFO.field.11.tag_name = EIP_ATTR_SOURCE
+
+ONS.TRACE_INFO.field.12.name = FULL_TARGET_ADDRESS
+ONS.TRACE_INFO.field.12.sibling	= 10004
+ONS.TRACE_INFO.field.12.tag_id = 54
+ONS.TRACE_INFO.field.12.tag_type = GAddress
+ONS.TRACE_INFO.field.12.tag_name = EIP_ATTR_TARGET
+
+#ONS.TRACE_INFO.field.13.name = SOURCE_EI_CLASS
+#ONS.TRACE_INFO.field.13.suppress = true
+#ONS.TRACE_INFO.field.13.tag_id = 125
+#ONS.TRACE_INFO.field.13.tag_type = UnsignedInt
+#ONS.TRACE_INFO.field.13.tag_name = EIP_ATTR_EI_CLASS_NUM
+
+#ONS.TRACE_INFO.field.14.name = SOURCE_EI_GROUP
+#ONS.TRACE_INFO.field.14.suppress = true
+#ONS.TRACE_INFO.field.14.tag_id = 126
+#ONS.TRACE_INFO.field.14.tag_type = UnsignedInt
+#ONS.TRACE_INFO.field.14.tag_name = EIP_ATTR_EI_GROUP_NUM
+
+ONS.TRACE_INFO.field.15.name = VALIDITY_PERIOD
+ONS.TRACE_INFO.field.15.tag_id = 4
+ONS.TRACE_INFO.field.15.tag_type = Integer
+ONS.TRACE_INFO.field.15.tag_name = EIP_ATTR_VALIDITY_PERIOD
+
+ONS.TRACE_INFO.field.16.name = MESSAGE_TEXT_BIN
+ONS.TRACE_INFO.field.16.suppress = false
+ONS.TRACE_INFO.field.16.tag_id = 20
+ONS.TRACE_INFO.field.16.tag_type = String
+ONS.TRACE_INFO.field.16.tag_name = EIP_ATTR_SM_TEXT
+
+ONS.TRACE_INFO.field.17.name = SOURCE_EI_INSTANCE
+ONS.TRACE_INFO.field.17.tag_id = 50
+ONS.TRACE_INFO.field.17.tag_type = EiIdDataField
+ONS.TRACE_INFO.field.17.tag_name = EIP_ATTR_SOURCE_EI_ID
+
+ONS.TRACE_INFO.field.18.name = INCOMING_PROTOCOL
+ONS.TRACE_INFO.field.18.tag_id = 338
+ONS.TRACE_INFO.field.18.tag_type = String
+ONS.TRACE_INFO.field.18.tag_name = SOURCE_EI_PROTOCOL
+
+ONS.TRACE_INFO.field.19.name = TRACE_TYPE
+ONS.TRACE_INFO.field.19.tag_id = 801
+ONS.TRACE_INFO.field.19.tag_type = Integer
+ONS.TRACE_INFO.field.19.tag_name = TRACE_TYPE
+
+ONS.TRACE_INFO.field.20.name = SOURCE_TYPE
+ONS.TRACE_INFO.field.20.tag_id = 802
+ONS.TRACE_INFO.field.20.tag_type = Integer
+ONS.TRACE_INFO.field.20.tag_name = SOURCE_TYPE
+
+ONS.TRACE_INFO.field.21.name = NUM_OF_RECIPIENTS
+ONS.TRACE_INFO.field.21.tag_id = 806
+ONS.TRACE_INFO.field.21.tag_type = Integer
+ONS.TRACE_INFO.field.21.tag_name = NUM_OF_RECIPIENTS
+
+ONS.TRACE_INFO.field.22.name = READ_REPLY_REQUEST
+ONS.TRACE_INFO.field.22.tag_id = 804
+ONS.TRACE_INFO.field.22.tag_type = String
+ONS.TRACE_INFO.field.22.tag_name = READ_REPLY_REQUEST
+
+ONS.TRACE_INFO.field.23.name = SOURCE_APPLICATION_ID
+ONS.TRACE_INFO.field.23.tag_id = 809
+ONS.TRACE_INFO.field.23.tag_type = String
+ONS.TRACE_INFO.field.23.tag_name = SOURCE_APPLICATION_ID
+
+ONS.TRACE_INFO.field.24.name = OPERATOR_ID
+ONS.TRACE_INFO.field.24.tag_id = 807
+ONS.TRACE_INFO.field.24.tag_type = String
+ONS.TRACE_INFO.field.24.tag_name = OPERATOR_ID
+
+ONS.TRACE_INFO.field.25.name = SOURCE_ADDRESS
+ONS.TRACE_INFO.field.25.tag_id = 10003
+ONS.TRACE_INFO.field.25.tag_type = Address
+ONS.TRACE_INFO.field.25.tag_name = SOURCE_ADDRESS
+
+ONS.TRACE_INFO.field.26.name = TARGET_ADDRESS
+ONS.TRACE_INFO.field.26.tag_id = 10004
+ONS.TRACE_INFO.field.26.tag_type = Address
+ONS.TRACE_INFO.field.26.tag_name = TARGET_ADDRESS
+
+ONS.TRACE_INFO.field.27.name = USER_SESSION_ID
+ONS.TRACE_INFO.field.27.tag_id = 814
+ONS.TRACE_INFO.field.27.tag_type = String
+ONS.TRACE_INFO.field.27.tag_name = USER_SESSION_ID
+
+ONS.TRACE_INFO.field.28.name = HTTP_RESPONSE_STATUS
+ONS.TRACE_INFO.field.28.tag_id = 817
+ONS.TRACE_INFO.field.28.tag_type = Integer
+ONS.TRACE_INFO.field.28.tag_name = HTTP_RESPONSE_STATUS
+
+ONS.TRACE_INFO.field.29.name = SVC_ERROR
+ONS.TRACE_INFO.field.29.tag_id = 818
+ONS.TRACE_INFO.field.29.tag_type = String
+ONS.TRACE_INFO.field.29.tag_name = SVC_ERROR
+
+ONS.TRACE_INFO.field.30.name = SVC_TEXT
+ONS.TRACE_INFO.field.30.tag_id = 819
+ONS.TRACE_INFO.field.30.tag_type = String
+ONS.TRACE_INFO.field.30.tag_name = SVC_TEXT
+
+ONS.TRACE_INFO.field.31.name = VAS_APPLICATION_LIST
+ONS.TRACE_INFO.field.31.tag_id = 815
+ONS.TRACE_INFO.field.31.tag_type = String
+ONS.TRACE_INFO.field.31.tag_name = VAS_APPLICATION_LIST
+
+ONS.TRACE_INFO.field.32.name = OPERATION_DETAILED_INFO
+ONS.TRACE_INFO.field.32.tag_id = 816
+ONS.TRACE_INFO.field.32.tag_type = String
+ONS.TRACE_INFO.field.32.tag_name = OPERATION_DETAILED_INFO
+
+ONS.TRACE_INFO.field.33.name = SAR_MSG_REF_NUM
+ONS.TRACE_INFO.field.33.tag_id = 120
+ONS.TRACE_INFO.field.33.tag_type = Integer
+ONS.TRACE_INFO.field.33.tag_name = SAR_MSG_REF_NUM
+
+ONS.TRACE_INFO.field.34.name = SAR_TOTAL_SEGMENTS
+ONS.TRACE_INFO.field.34.tag_id = 121
+ONS.TRACE_INFO.field.34.tag_type = Integer
+ONS.TRACE_INFO.field.34.tag_name = SAR_TOTAL_SEGMENTS
+
+ONS.TRACE_INFO.field.35.name = SAR_SEGMENT_SEQNUM
+ONS.TRACE_INFO.field.35.tag_id = 122
+ONS.TRACE_INFO.field.35.tag_type = Integer
+ONS.TRACE_INFO.field.35.tag_name = SAR_SEGMENT_SEQNUM 
+
+ONS.TRACE_INFO.field.36.name = RCS_MESSAGE_ID
+ONS.TRACE_INFO.field.36.tag_id = 820
+ONS.TRACE_INFO.field.36.tag_type = String
+ONS.TRACE_INFO.field.36.tag_name = RCS_MESSAGE_ID 
+
+#ONS.TRACE_INFO.field.37.name = SOURCE_MESSAGE_SUBTYPE
+#ONS.TRACE_INFO.field.37.tag_id = 821
+#ONS.TRACE_INFO.field.37.tag_type = Integer
+#ONS.TRACE_INFO.field.37.tag_name = SOURCE_MESSAGE_SUBTYPE
+
+#ONS.TRACE_INFO.field.38.name = TARGET_MESSAGE_SUBTYPE
+#ONS.TRACE_INFO.field.38.tag_id = 822
+#ONS.TRACE_INFO.field.38.tag_type = Integer
+#ONS.TRACE_INFO.field.38.tag_name = TARGET_MESSAGE_SUBTYPE
+
+#ONS.TRACE_INFO.field.39.name = PUBLIC_GRUU
+ONS.TRACE_INFO.field.39.name = SOURCE_PUBLIC_GRUU 
+ONS.TRACE_INFO.field.39.tag_id = 823
+ONS.TRACE_INFO.field.39.tag_type = String
+ONS.TRACE_INFO.field.39.tag_name = PUBLIC_GRUU
+
+#ONS.TRACE_INFO.field.40.name = SIP_INSTANCE
+ONS.TRACE_INFO.field.40.name = SOURCE_SIP_INSTANCE
+ONS.TRACE_INFO.field.40.tag_id = 824
+ONS.TRACE_INFO.field.40.tag_type = String
+ONS.TRACE_INFO.field.40.tag_name = SIP_INSTANCE
+
+ONS.TRACE_INFO.field.41.name = MESSAGE_DELIVERY_TYPE
+ONS.TRACE_INFO.field.41.tag_id = 825
+ONS.TRACE_INFO.field.41.tag_type = Integer
+ONS.TRACE_INFO.field.41.tag_name = MESSAGE_DELIVERY_TYPE
+
+#ONS.TRACE_INFO.field.42.name = TARGET_PUBLIC_GRUU
+#ONS.TRACE_INFO.field.42.tag_id = 826
+#ONS.TRACE_INFO.field.42.tag_type = String
+#ONS.TRACE_INFO.field.42.tag_name = TARGET_PUBLIC_GRUU
+
+#ONS.TRACE_INFO.field.43.name = TARGET_SIP_INSTANCE
+#ONS.TRACE_INFO.field.43.tag_id = 827
+#ONS.TRACE_INFO.field.43.tag_type = String
+#ONS.TRACE_INFO.field.43.tag_name = TARGET_SIP_INSTANCE
+
+#ONS.TRACE_INFO.field.44.name = MESSAGE_STORE_UID
+#ONS.TRACE_INFO.field.44.tag_id = 829
+#ONS.TRACE_INFO.field.44.tag_type = String
+#ONS.TRACE_INFO.field.44.tag_name = MESSAGE_STORE_UID
+
+#ONS.TRACE_INFO.field.45.name = SESSION_MODE
+#ONS.TRACE_INFO.field.45.tag_id = 831
+#ONS.TRACE_INFO.field.45.tag_type = Integer
+#ONS.TRACE_INFO.field.45.tag_name = SESSION_MODE
+
+#ONS.TRACE_INFO.field.46.name = CONTENT_TYPE
+#ONS.TRACE_INFO.field.46.tag_id = 832
+#ONS.TRACE_INFO.field.46.tag_type = String
+#ONS.TRACE_INFO.field.46.tag_name = CONTENT_TYPE
+
+####################### SEM TRACE_EVENTS for ONS #######################
+
+ONS.TRACE_EVENTS.number_of_fields = 17
+
+ONS.TRACE_EVENTS.field.1.name = U_ID
+ONS.TRACE_EVENTS.field.1.tag_id = 105
+ONS.TRACE_EVENTS.field.1.tag_type = String
+ONS.TRACE_EVENTS.field.1.tag_name = U_ID
+
+ONS.TRACE_EVENTS.field.2.name = EVENT_TYPE
+ONS.TRACE_EVENTS.field.2.tag_id = 123
+ONS.TRACE_EVENTS.field.2.tag_type = UnsignedShort
+ONS.TRACE_EVENTS.field.2.tag_name = EIP_ATTR_EVENT_TYPE
+
+ONS.TRACE_EVENTS.field.3.name = ARRIVAL_DATE_AND_TIME
+ONS.TRACE_EVENTS.field.3.tag_id = 58
+ONS.TRACE_EVENTS.field.3.tag_type = String
+ONS.TRACE_EVENTS.field.3.tag_name = EIP_ATTR_ARRIVAL_DATE
+
+ONS.TRACE_EVENTS.field.4.name = EVENT_DATE
+ONS.TRACE_EVENTS.field.4.tag_id = 34
+ONS.TRACE_EVENTS.field.4.tag_type = String
+ONS.TRACE_EVENTS.field.4.tag_name = EIP_ATTR_STATE_DATE_AND_TIME
+
+ONS.TRACE_EVENTS.field.5.name = UNIFIED_ERROR_ID
+ONS.TRACE_EVENTS.field.5.default_value = -1
+ONS.TRACE_EVENTS.field.5.tag_id = 813
+ONS.TRACE_EVENTS.field.5.tag_type = Integer
+ONS.TRACE_EVENTS.field.5.tag_name = UNIFIED_ERROR_ID
+
+ONS.TRACE_EVENTS.field.6.name =  SM_STATE
+ONS.TRACE_EVENTS.field.6.tag_id = 29
+ONS.TRACE_EVENTS.field.6.tag_type = UnsignedShort
+ONS.TRACE_EVENTS.field.6.tag_name = EIP_ATTR_SM_STATE
+
+ONS.TRACE_EVENTS.field.7.name = TARGET_EI_CLASS
+ONS.TRACE_EVENTS.field.7.suppress = true
+ONS.TRACE_EVENTS.field.7.tag_id =  1061
+ONS.TRACE_EVENTS.field.7.tag_type = UnsignedInt
+ONS.TRACE_EVENTS.field.7.tag_name = EIP_ATTR_TARGET_EI_CLASS
+
+ONS.TRACE_EVENTS.field.8.name =  TARGET_EI_GROUP
+ONS.TRACE_EVENTS.field.8.suppress = true
+ONS.TRACE_EVENTS.field.8.tag_id = 1062
+ONS.TRACE_EVENTS.field.8.tag_type = UnsignedInt
+ONS.TRACE_EVENTS.field.8.tag_name = EIP_ATTR_TARGET_EI_GROUP
+
+ONS.TRACE_EVENTS.field.9.name = TARGET_EI_INSTANCE
+ONS.TRACE_EVENTS.field.9.tag_id = 97
+ONS.TRACE_EVENTS.field.9.tag_type = EiIdDataField
+ONS.TRACE_EVENTS.field.9.tag_name = EIP_ATTR_TARGET_EI_ID
+
+ONS.TRACE_EVENTS.field.10.name = NOTIFICATION
+ONS.TRACE_EVENTS.field.10.tag_id = 57
+ONS.TRACE_EVENTS.field.10.tag_type = UnsignedShort
+ONS.TRACE_EVENTS.field.10.tag_name = EIP_ATTR_NOTIFY_SEND_SM
+
+ONS.TRACE_EVENTS.field.11.name = EVENT_SEQ
+ONS.TRACE_EVENTS.field.11.tag_id = 1030
+ONS.TRACE_EVENTS.field.11.tag_type = UnsignedInt
+ONS.TRACE_EVENTS.field.11.tag_name = EIP_ATTR_EVENT_NUM
+
+ONS.TRACE_EVENTS.field.12.name = ISN
+ONS.TRACE_EVENTS.field.12.tag_id = 28
+ONS.TRACE_EVENTS.field.12.tag_type = UnsignedInt
+ONS.TRACE_EVENTS.field.12.tag_name = EIP_ATTR_SM_NO
+
+ONS.TRACE_EVENTS.field.13.name = OUTGOING_PROTOCOL
+ONS.TRACE_EVENTS.field.13.tag_id = 339
+ONS.TRACE_EVENTS.field.13.tag_type = String
+ONS.TRACE_EVENTS.field.13.tag_name = OUTGOING_PROTOCOL
+
+ONS.TRACE_EVENTS.field.14.name = TARGET_TYPE
+ONS.TRACE_EVENTS.field.14.tag_id = 811
+ONS.TRACE_EVENTS.field.14.tag_type = Integer
+ONS.TRACE_EVENTS.field.14.tag_name = TARGET_TYPE
+
+ONS.TRACE_EVENTS.field.15.name = TARGET_APPLICATION_ID
+ONS.TRACE_EVENTS.field.15.tag_id = 812
+ONS.TRACE_EVENTS.field.15.tag_type = String
+ONS.TRACE_EVENTS.field.15.tag_name = TARGET_APPLICATION_ID
+
+ONS.TRACE_EVENTS.field.16.name = ADDITIONAL_ERROR_INFORMATION
+ONS.TRACE_EVENTS.field.16.tag_id = 808
+ONS.TRACE_EVENTS.field.16.tag_type = String
+ONS.TRACE_EVENTS.field.16.tag_name = ADDITIONAL_ERROR_INFORMATION
+
+ONS.TRACE_EVENTS.field.17.name =  INSTANCE_NUMBER
+ONS.TRACE_EVENTS.field.17.default_value = 1
+ONS.TRACE_EVENTS.field.17.tag_id = 10005
+ONS.TRACE_EVENTS.field.17.tag_type = Integer
+ONS.TRACE_EVENTS.field.17.tag_name = INSTANCE_NUMBER
+
+####################### SEM TRACE_INFO for VIMPA #######################
+
+VIMPA.tables = TRACE_INFO, TRACE_EVENTS
+
+VIMPA.TRACE_INFO.number_of_fields = 41
+
+VIMPA.TRACE_INFO.field.1.name = U_ID
+VIMPA.TRACE_INFO.field.1.tag_id = 105
+VIMPA.TRACE_INFO.field.1.tag_type = String
+VIMPA.TRACE_INFO.field.1.tag_name = U_ID
+
+VIMPA.TRACE_INFO.field.2.name = ISN
+VIMPA.TRACE_INFO.field.2.tag_id = 28
+VIMPA.TRACE_INFO.field.2.tag_type = UnsignedInt
+VIMPA.TRACE_INFO.field.2.tag_name = EIP_ATTR_SM_NO
+
+VIMPA.TRACE_INFO.field.3.name = ARRIVAL_DATE_AND_TIME
+VIMPA.TRACE_INFO.field.3.tag_id = 58
+VIMPA.TRACE_INFO.field.3.tag_type = String
+VIMPA.TRACE_INFO.field.3.tag_name = EIP_ATTR_ARRIVAL_DATE
+
+VIMPA.TRACE_INFO.field.4.name = DCS
+VIMPA.TRACE_INFO.field.4.tag_id = 119
+VIMPA.TRACE_INFO.field.4.tag_type = Integer
+VIMPA.TRACE_INFO.field.4.tag_name = EIP_ATTR_DATA_CODING_SCHEME
+
+VIMPA.TRACE_INFO.field.5.name = PRIORITY
+VIMPA.TRACE_INFO.field.5.tag_id = 24
+VIMPA.TRACE_INFO.field.5.tag_type = UnsignedInt
+VIMPA.TRACE_INFO.field.5.tag_name = EIP_ATTR_PRIORITY
+
+VIMPA.TRACE_INFO.field.6.name = CONFIRMATION_REQUEST_IND
+VIMPA.TRACE_INFO.field.6.tag_id = 57
+VIMPA.TRACE_INFO.field.6.tag_type = UnsignedShort
+VIMPA.TRACE_INFO.field.6.tag_name = EIP_ATTR_NOTIFY_SEND_SM
+
+VIMPA.TRACE_INFO.field.7.name = MESSAGE_LENGTH
+VIMPA.TRACE_INFO.field.7.tag_id = 80
+VIMPA.TRACE_INFO.field.7.tag_type = UnsignedInt
+VIMPA.TRACE_INFO.field.7.tag_name = EIP_ATTR_MESSAGE_LEN
+
+VIMPA.TRACE_INFO.field.8.name = LANGUAGE
+VIMPA.TRACE_INFO.field.8.tag_id = 3
+VIMPA.TRACE_INFO.field.8.tag_name = EIP_ATTR_LANG
+VIMPA.TRACE_INFO.field.8.tag_type = UnsignedShort
+
+VIMPA.TRACE_INFO.field.9.name = MESSAGE_REF
+VIMPA.TRACE_INFO.field.9.tag_id = 109
+VIMPA.TRACE_INFO.field.9.tag_type = String
+VIMPA.TRACE_INFO.field.9.tag_name = EIP_ATTR_MSG_REF
+
+VIMPA.TRACE_INFO.field.10.name = MESSAGE_TYPE
+VIMPA.TRACE_INFO.field.10.tag_id = 114
+VIMPA.TRACE_INFO.field.10.tag_type = UnsignedShort
+VIMPA.TRACE_INFO.field.10.tag_name = EIP_ATTR_SM_CLASS
+
+VIMPA.TRACE_INFO.field.11.name = FULL_SOURCE_ADDRESS
+VIMPA.TRACE_INFO.field.11.sibling	= 10003
+VIMPA.TRACE_INFO.field.11.tag_id = 55
+VIMPA.TRACE_INFO.field.11.tag_type = GAddress
+VIMPA.TRACE_INFO.field.11.tag_name = EIP_ATTR_SOURCE
+
+VIMPA.TRACE_INFO.field.12.name = FULL_TARGET_ADDRESS
+VIMPA.TRACE_INFO.field.12.sibling	= 10004
+VIMPA.TRACE_INFO.field.12.tag_id = 54
+VIMPA.TRACE_INFO.field.12.tag_type = GAddress
+VIMPA.TRACE_INFO.field.12.tag_name = EIP_ATTR_TARGET
+
+#VIMPA.TRACE_INFO.field.13.name = SOURCE_EI_CLASS
+#VIMPA.TRACE_INFO.field.13.suppress = true
+#VIMPA.TRACE_INFO.field.13.tag_id = 125
+#VIMPA.TRACE_INFO.field.13.tag_type = UnsignedInt
+#VIMPA.TRACE_INFO.field.13.tag_name = EIP_ATTR_EI_CLASS_NUM
+
+#VIMPA.TRACE_INFO.field.14.name = SOURCE_EI_GROUP
+#VIMPA.TRACE_INFO.field.14.suppress = true
+#VIMPA.TRACE_INFO.field.14.tag_id = 126
+#VIMPA.TRACE_INFO.field.14.tag_type = UnsignedInt
+#VIMPA.TRACE_INFO.field.14.tag_name = EIP_ATTR_EI_GROUP_NUM
+
+VIMPA.TRACE_INFO.field.15.name = VALIDITY_PERIOD
+VIMPA.TRACE_INFO.field.15.tag_id = 4
+VIMPA.TRACE_INFO.field.15.tag_type = Integer
+VIMPA.TRACE_INFO.field.15.tag_name = EIP_ATTR_VALIDITY_PERIOD
+
+VIMPA.TRACE_INFO.field.16.name = MESSAGE_TEXT_BIN
+VIMPA.TRACE_INFO.field.16.suppress = false
+VIMPA.TRACE_INFO.field.16.tag_id = 20
+VIMPA.TRACE_INFO.field.16.tag_type = String
+VIMPA.TRACE_INFO.field.16.tag_name = EIP_ATTR_SM_TEXT
+
+VIMPA.TRACE_INFO.field.17.name = SOURCE_EI_INSTANCE
+VIMPA.TRACE_INFO.field.17.tag_id = 50
+VIMPA.TRACE_INFO.field.17.tag_type = EiIdDataField
+VIMPA.TRACE_INFO.field.17.tag_name = EIP_ATTR_SOURCE_EI_ID
+
+VIMPA.TRACE_INFO.field.18.name = INCOMING_PROTOCOL
+VIMPA.TRACE_INFO.field.18.tag_id = 338
+VIMPA.TRACE_INFO.field.18.tag_type = String
+VIMPA.TRACE_INFO.field.18.tag_name = SOURCE_EI_PROTOCOL
+
+VIMPA.TRACE_INFO.field.19.name = TRACE_TYPE
+VIMPA.TRACE_INFO.field.19.tag_id = 801
+VIMPA.TRACE_INFO.field.19.tag_type = Integer
+VIMPA.TRACE_INFO.field.19.tag_name = TRACE_TYPE
+
+VIMPA.TRACE_INFO.field.20.name = SOURCE_TYPE
+VIMPA.TRACE_INFO.field.20.tag_id = 802
+VIMPA.TRACE_INFO.field.20.tag_type = Integer
+VIMPA.TRACE_INFO.field.20.tag_name = SOURCE_TYPE
+
+VIMPA.TRACE_INFO.field.21.name = NUM_OF_RECIPIENTS
+VIMPA.TRACE_INFO.field.21.tag_id = 806
+VIMPA.TRACE_INFO.field.21.tag_type = Integer
+VIMPA.TRACE_INFO.field.21.tag_name = NUM_OF_RECIPIENTS
+
+VIMPA.TRACE_INFO.field.22.name = READ_REPLY_REQUEST
+VIMPA.TRACE_INFO.field.22.tag_id = 804
+VIMPA.TRACE_INFO.field.22.tag_type = String
+VIMPA.TRACE_INFO.field.22.tag_name = READ_REPLY_REQUEST
+
+VIMPA.TRACE_INFO.field.23.name = SOURCE_APPLICATION_ID
+VIMPA.TRACE_INFO.field.23.tag_id = 809
+VIMPA.TRACE_INFO.field.23.tag_type = String
+VIMPA.TRACE_INFO.field.23.tag_name = SOURCE_APPLICATION_ID
+
+VIMPA.TRACE_INFO.field.24.name = OPERATOR_ID
+VIMPA.TRACE_INFO.field.24.tag_id = 807
+VIMPA.TRACE_INFO.field.24.tag_type = String
+VIMPA.TRACE_INFO.field.24.tag_name = OPERATOR_ID
+
+VIMPA.TRACE_INFO.field.25.name = SOURCE_ADDRESS
+VIMPA.TRACE_INFO.field.25.tag_id = 10003
+VIMPA.TRACE_INFO.field.25.tag_type = Address
+VIMPA.TRACE_INFO.field.25.tag_name = SOURCE_ADDRESS
+
+VIMPA.TRACE_INFO.field.26.name = TARGET_ADDRESS
+VIMPA.TRACE_INFO.field.26.tag_id = 10004
+VIMPA.TRACE_INFO.field.26.tag_type = Address
+VIMPA.TRACE_INFO.field.26.tag_name = TARGET_ADDRESS
+
+VIMPA.TRACE_INFO.field.27.name = USER_SESSION_ID
+VIMPA.TRACE_INFO.field.27.tag_id = 814
+VIMPA.TRACE_INFO.field.27.tag_type = String
+VIMPA.TRACE_INFO.field.27.tag_name = USER_SESSION_ID
+
+VIMPA.TRACE_INFO.field.28.name = HTTP_RESPONSE_STATUS
+VIMPA.TRACE_INFO.field.28.tag_id = 817
+VIMPA.TRACE_INFO.field.28.tag_type = Integer
+VIMPA.TRACE_INFO.field.28.tag_name = HTTP_RESPONSE_STATUS
+
+VIMPA.TRACE_INFO.field.29.name = SVC_ERROR
+VIMPA.TRACE_INFO.field.29.tag_id = 818
+VIMPA.TRACE_INFO.field.29.tag_type = String
+VIMPA.TRACE_INFO.field.29.tag_name = SVC_ERROR
+
+VIMPA.TRACE_INFO.field.30.name = SVC_TEXT
+VIMPA.TRACE_INFO.field.30.tag_id = 819
+VIMPA.TRACE_INFO.field.30.tag_type = String
+VIMPA.TRACE_INFO.field.30.tag_name = SVC_TEXT
+
+VIMPA.TRACE_INFO.field.31.name = VAS_APPLICATION_LIST
+VIMPA.TRACE_INFO.field.31.tag_id = 815
+VIMPA.TRACE_INFO.field.31.tag_type = String
+VIMPA.TRACE_INFO.field.31.tag_name = VAS_APPLICATION_LIST
+
+VIMPA.TRACE_INFO.field.32.name = OPERATION_DETAILED_INFO
+VIMPA.TRACE_INFO.field.32.tag_id = 816
+VIMPA.TRACE_INFO.field.32.tag_type = String
+VIMPA.TRACE_INFO.field.32.tag_name = OPERATION_DETAILED_INFO
+
+VIMPA.TRACE_INFO.field.33.name = SAR_MSG_REF_NUM
+VIMPA.TRACE_INFO.field.33.tag_id = 120
+VIMPA.TRACE_INFO.field.33.tag_type = Integer
+VIMPA.TRACE_INFO.field.33.tag_name = SAR_MSG_REF_NUM
+
+VIMPA.TRACE_INFO.field.34.name = SAR_TOTAL_SEGMENTS
+VIMPA.TRACE_INFO.field.34.tag_id = 121
+VIMPA.TRACE_INFO.field.34.tag_type = Integer
+VIMPA.TRACE_INFO.field.34.tag_name = SAR_TOTAL_SEGMENTS
+
+VIMPA.TRACE_INFO.field.35.name = SAR_SEGMENT_SEQNUM
+VIMPA.TRACE_INFO.field.35.tag_id = 122
+VIMPA.TRACE_INFO.field.35.tag_type = Integer
+VIMPA.TRACE_INFO.field.35.tag_name = SAR_SEGMENT_SEQNUM 
+
+VIMPA.TRACE_INFO.field.36.name = RCS_MESSAGE_ID
+VIMPA.TRACE_INFO.field.36.tag_id = 820
+VIMPA.TRACE_INFO.field.36.tag_type = String
+VIMPA.TRACE_INFO.field.36.tag_name = RCS_MESSAGE_ID 
+
+#VIMPA.TRACE_INFO.field.37.name = SOURCE_MESSAGE_SUBTYPE
+#VIMPA.TRACE_INFO.field.37.tag_id = 821
+#VIMPA.TRACE_INFO.field.37.tag_type = Integer
+#VIMPA.TRACE_INFO.field.37.tag_name = SOURCE_MESSAGE_SUBTYPE
+
+#VIMPA.TRACE_INFO.field.38.name = TARGET_MESSAGE_SUBTYPE
+#VIMPA.TRACE_INFO.field.38.tag_id = 822
+#VIMPA.TRACE_INFO.field.38.tag_type = Integer
+#VIMPA.TRACE_INFO.field.38.tag_name = TARGET_MESSAGE_SUBTYPE
+
+#VIMPA.TRACE_INFO.field.39.name = PUBLIC_GRUU
+VIMPA.TRACE_INFO.field.39.name = SOURCE_PUBLIC_GRUU 
+VIMPA.TRACE_INFO.field.39.tag_id = 823
+VIMPA.TRACE_INFO.field.39.tag_type = String
+VIMPA.TRACE_INFO.field.39.tag_name = PUBLIC_GRUU
+
+#VIMPA.TRACE_INFO.field.40.name = SIP_INSTANCE
+VIMPA.TRACE_INFO.field.40.name = SOURCE_SIP_INSTANCE
+VIMPA.TRACE_INFO.field.40.tag_id = 824
+VIMPA.TRACE_INFO.field.40.tag_type = String
+VIMPA.TRACE_INFO.field.40.tag_name = SIP_INSTANCE
+
+VIMPA.TRACE_INFO.field.41.name = MESSAGE_DELIVERY_TYPE
+VIMPA.TRACE_INFO.field.41.tag_id = 825
+VIMPA.TRACE_INFO.field.41.tag_type = Integer
+VIMPA.TRACE_INFO.field.41.tag_name = MESSAGE_DELIVERY_TYPE
+
+#VIMPA.TRACE_INFO.field.42.name = TARGET_PUBLIC_GRUU
+#VIMPA.TRACE_INFO.field.42.tag_id = 826
+#VIMPA.TRACE_INFO.field.42.tag_type = String
+#VIMPA.TRACE_INFO.field.42.tag_name = TARGET_PUBLIC_GRUU
+
+#VIMPA.TRACE_INFO.field.43.name = TARGET_SIP_INSTANCE
+#VIMPA.TRACE_INFO.field.43.tag_id = 827
+#VIMPA.TRACE_INFO.field.43.tag_type = String
+#VIMPA.TRACE_INFO.field.43.tag_name = TARGET_SIP_INSTANCE
+
+#VIMPA.TRACE_INFO.field.44.name = MESSAGE_STORE_UID
+#VIMPA.TRACE_INFO.field.44.tag_id = 829
+#VIMPA.TRACE_INFO.field.44.tag_type = String
+#VIMPA.TRACE_INFO.field.44.tag_name = MESSAGE_STORE_UID
+
+#VIMPA.TRACE_INFO.field.45.name = SESSION_MODE
+#VIMPA.TRACE_INFO.field.45.tag_id = 831
+#VIMPA.TRACE_INFO.field.45.tag_type = Integer
+#VIMPA.TRACE_INFO.field.45.tag_name = SESSION_MODE
+
+#VIMPA.TRACE_INFO.field.46.name = CONTENT_TYPE
+#VIMPA.TRACE_INFO.field.46.tag_id = 832
+#VIMPA.TRACE_INFO.field.46.tag_type = String
+#VIMPA.TRACE_INFO.field.46.tag_name = CONTENT_TYPE
+
+####################### SEM TRACE_EVENTS for VIMPA #######################
+
+VIMPA.TRACE_EVENTS.number_of_fields = 17
+
+VIMPA.TRACE_EVENTS.field.1.name = U_ID
+VIMPA.TRACE_EVENTS.field.1.tag_id = 105
+VIMPA.TRACE_EVENTS.field.1.tag_type = String
+VIMPA.TRACE_EVENTS.field.1.tag_name = U_ID
+
+VIMPA.TRACE_EVENTS.field.2.name = EVENT_TYPE
+VIMPA.TRACE_EVENTS.field.2.tag_id = 123
+VIMPA.TRACE_EVENTS.field.2.tag_type = UnsignedShort
+VIMPA.TRACE_EVENTS.field.2.tag_name = EIP_ATTR_EVENT_TYPE
+
+VIMPA.TRACE_EVENTS.field.3.name = ARRIVAL_DATE_AND_TIME
+VIMPA.TRACE_EVENTS.field.3.tag_id = 58
+VIMPA.TRACE_EVENTS.field.3.tag_type = String
+VIMPA.TRACE_EVENTS.field.3.tag_name = EIP_ATTR_ARRIVAL_DATE
+
+VIMPA.TRACE_EVENTS.field.4.name = EVENT_DATE
+VIMPA.TRACE_EVENTS.field.4.tag_id = 34
+VIMPA.TRACE_EVENTS.field.4.tag_type = String
+VIMPA.TRACE_EVENTS.field.4.tag_name = EIP_ATTR_STATE_DATE_AND_TIME
+
+VIMPA.TRACE_EVENTS.field.5.name = UNIFIED_ERROR_ID
+VIMPA.TRACE_EVENTS.field.5.default_value = -1
+VIMPA.TRACE_EVENTS.field.5.tag_id = 813
+VIMPA.TRACE_EVENTS.field.5.tag_type = Integer
+VIMPA.TRACE_EVENTS.field.5.tag_name = UNIFIED_ERROR_ID
+
+VIMPA.TRACE_EVENTS.field.6.name =  SM_STATE
+VIMPA.TRACE_EVENTS.field.6.tag_id = 29
+VIMPA.TRACE_EVENTS.field.6.tag_type = UnsignedShort
+VIMPA.TRACE_EVENTS.field.6.tag_name = EIP_ATTR_SM_STATE
+
+VIMPA.TRACE_EVENTS.field.7.name = TARGET_EI_CLASS
+VIMPA.TRACE_EVENTS.field.7.suppress = true
+VIMPA.TRACE_EVENTS.field.7.tag_id =  1061
+VIMPA.TRACE_EVENTS.field.7.tag_type = UnsignedInt
+VIMPA.TRACE_EVENTS.field.7.tag_name = EIP_ATTR_TARGET_EI_CLASS
+
+VIMPA.TRACE_EVENTS.field.8.name =  TARGET_EI_GROUP
+VIMPA.TRACE_EVENTS.field.8.suppress = true
+VIMPA.TRACE_EVENTS.field.8.tag_id = 1062
+VIMPA.TRACE_EVENTS.field.8.tag_type = UnsignedInt
+VIMPA.TRACE_EVENTS.field.8.tag_name = EIP_ATTR_TARGET_EI_GROUP
+
+VIMPA.TRACE_EVENTS.field.9.name = TARGET_EI_INSTANCE
+VIMPA.TRACE_EVENTS.field.9.tag_id = 97
+VIMPA.TRACE_EVENTS.field.9.tag_type = EiIdDataField
+VIMPA.TRACE_EVENTS.field.9.tag_name = EIP_ATTR_TARGET_EI_ID
+
+VIMPA.TRACE_EVENTS.field.10.name = NOTIFICATION
+VIMPA.TRACE_EVENTS.field.10.tag_id = 57
+VIMPA.TRACE_EVENTS.field.10.tag_type = UnsignedShort
+VIMPA.TRACE_EVENTS.field.10.tag_name = EIP_ATTR_NOTIFY_SEND_SM
+
+VIMPA.TRACE_EVENTS.field.11.name = EVENT_SEQ
+VIMPA.TRACE_EVENTS.field.11.tag_id = 1030
+VIMPA.TRACE_EVENTS.field.11.tag_type = UnsignedInt
+VIMPA.TRACE_EVENTS.field.11.tag_name = EIP_ATTR_EVENT_NUM
+
+VIMPA.TRACE_EVENTS.field.12.name = ISN
+VIMPA.TRACE_EVENTS.field.12.tag_id = 28
+VIMPA.TRACE_EVENTS.field.12.tag_type = UnsignedInt
+VIMPA.TRACE_EVENTS.field.12.tag_name = EIP_ATTR_SM_NO
+
+VIMPA.TRACE_EVENTS.field.13.name = OUTGOING_PROTOCOL
+VIMPA.TRACE_EVENTS.field.13.tag_id = 339
+VIMPA.TRACE_EVENTS.field.13.tag_type = String
+VIMPA.TRACE_EVENTS.field.13.tag_name = OUTGOING_PROTOCOL
+
+VIMPA.TRACE_EVENTS.field.14.name = TARGET_TYPE
+VIMPA.TRACE_EVENTS.field.14.tag_id = 811
+VIMPA.TRACE_EVENTS.field.14.tag_type = Integer
+VIMPA.TRACE_EVENTS.field.14.tag_name = TARGET_TYPE
+
+VIMPA.TRACE_EVENTS.field.15.name = TARGET_APPLICATION_ID
+VIMPA.TRACE_EVENTS.field.15.tag_id = 812
+VIMPA.TRACE_EVENTS.field.15.tag_type = String
+VIMPA.TRACE_EVENTS.field.15.tag_name = TARGET_APPLICATION_ID
+
+VIMPA.TRACE_EVENTS.field.16.name = ADDITIONAL_ERROR_INFORMATION
+VIMPA.TRACE_EVENTS.field.16.tag_id = 808
+VIMPA.TRACE_EVENTS.field.16.tag_type = String
+VIMPA.TRACE_EVENTS.field.16.tag_name = ADDITIONAL_ERROR_INFORMATION
+
+VIMPA.TRACE_EVENTS.field.17.name =  INSTANCE_NUMBER
+VIMPA.TRACE_EVENTS.field.17.default_value = 1
+VIMPA.TRACE_EVENTS.field.17.tag_id = 10005
+VIMPA.TRACE_EVENTS.field.17.tag_type = Integer
+VIMPA.TRACE_EVENTS.field.17.tag_name = INSTANCE_NUMBER

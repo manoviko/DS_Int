@@ -1,0 +1,13 @@
+<SWIM>
+	<Component Platform="Linux" Name="Reboot-KIT-omu1b" Version="6.4.0.0-04.0">
+
+	<!-- this is the special kit for omu1b reboot -->
+		<Install>
+			<Execute ExecutionOrder="1" UponError="Stop">
+				<Command>reboot; exit 0</Command>
+			</Execute>
+		</Install>
+		
+
+	</Component>
+</SWIM>

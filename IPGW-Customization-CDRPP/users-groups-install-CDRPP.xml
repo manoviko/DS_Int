@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CSPbase>
+  <configuration>
+        <default>
+                <home>/home</home>
+                <shell>/bin/bash</shell>
+        </default>
+		<param>
+                <command>csp_groupadd</command>
+                <options>-g 44003</options>
+                <name>cdr_stats</name>
+        </param>
+		<param>
+                <command>csp_grpaddusr</command>
+                <options>ftm</options>
+                <name>cdr_stats</name>
+        </param>
+		<param>
+                <command>csp_grpaddusr</command>
+                <options>asntool</options>
+                <name>ftm</name>
+        </param>
+		<param>
+                <command>csp_grpaddusr</command>
+                <options>asntool</options>
+                <name>cdr_stats</name>
+        </param>
+  </configuration>
+</CSPbase>
+

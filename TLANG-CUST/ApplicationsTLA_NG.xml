@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<MAMDATA>
+    <Applications>
+     <ROW Name="TLA_NG-TLA_INST_" PhaseNumber="1" PauseAfterCreate="10000" MemWarningLevel="4500000" MemTerminateLevel="5120000">
+        <LINUX Executable="TLA-NG" CommandLine="*/usr/cti/apps/tla-ng*" LaunchingScript="/usr/cti/apps/tla-ng/scripts/external_starter" TerminationScript="/usr/cti/apps/tla-ng/scripts/Stop_tla_ng" TerminationScriptTimeout="20000"/>
+             <MonitorByCMD/>
+                        <Tester>
+                                <Type>http</Type>
+                                <!--<url>http://localhost:55500/axis/healthcheck.jsp</url>-->
+								<url>http://localhost:55500/monitor/MonitoringServlet</url>
+                                <PostInformation/>
+                                <ResponseCode>200</ResponseCode>
+                                <WarningLevel>2</WarningLevel>
+                                <TerminationLevel>4</TerminationLevel>
+                                <Interval>60</Interval>
+                                <ReadTimeout>20</ReadTimeout>
+                                <RecoveryTimeAfterProcessStarting>60</RecoveryTimeAfterProcessStarting>
+                        </Tester>
+       </ROW>
+     </Applications>
+     <AppInUnitType>
+        <ALL>
+           <TLA_NG-TLA_INST_/>
+         </ALL>
+     </AppInUnitType>
+</MAMDATA>

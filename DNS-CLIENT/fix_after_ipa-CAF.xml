@@ -1,0 +1,51 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="fix_after_ipa" Version="_VERSION-_BUILD">
+
+		<Install>
+		
+			<!-- This is fix for OCS Manager node -->
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>
+									domain=`hostname --domain`
+									vip=cdm-management-vip
+									hostname=`hostname --short`
+									hostname_fqdn=`hostname --fqdn`
+									hostname_ip=`hostname --ip-address`
+									vip_fqdn=${vip}.${domain}
+
+									if [[ "$hostname" =~ "cdm1" ]] &amp;&amp; [[ ! -f /etc/llttab ]]; then
+
+										egrep "^$hostname_ip\s+$hostname_fqdn" /etc/hosts
+										if [ $? -eq 0 ]; then
+											echo "-I- Adding $vip_fqdn to /etc/hosts"
+											sed -i.post_ipa -e 's/'$hostname_fqdn'/'$vip_fqdn' '$hostname_fqdn'/' /etc/hosts
+										fi
+									fi
+				</Command>
+			</Execute>
+		
+			<!-- in future releases ipa installation will not touch resolv.conf -->
+			<Execute ExecutionOrder="20" UponError="Stop">
+				<Command>
+									if [ -f /etc/resolv.conf.ipa ]; then
+										echo "-I- restoring resolv.conf from resolv.conf.ipa as a temporary workaround for ipa client installation"
+										/bin/cp -f /etc/resolv.conf.ipa /etc/resolv.conf
+									fi
+				</Command>
+			</Execute>
+			
+			<!-- sometimes ntp gets into rejected state -->
+			<Execute ExecutionOrder="30" UponError="Continue">
+				<Command>service ntpd restart</Command>
+			</Execute>
+			
+		</Install>
+		
+		<Uninstall>
+			<Execute ExecutionOrder="1" UponError="Stop">
+				<Command>echo</Command>
+			</Execute>
+		</Uninstall>
+		
+	</Component>
+</SWIM>

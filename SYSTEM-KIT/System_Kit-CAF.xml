@@ -1,0 +1,105 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="System_Kit" Version="_VERSION-_BUILD">
+		<Install>
+
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>
+									RHEL_REL=`/usr/cti/apps/CSPbase/csp_scanner.pl --os_release`
+									
+									if [[ $RHEL_REL =~ "5\." ]]; then
+									
+										grep -P '^\s*options\s+ipv6\s+disable=1\s*$' /etc/modprobe.conf
+										if [ $? -ne 0 ]; then
+											sed -i '/alias ipv6 off/ a\options ipv6 disable=1' /etc/modprobe.conf
+											echo "INFO: added ipv6 additional option to /etc/modprobe.conf"
+										fi
+									elif [[ $RHEL_REL =~ "6\." ]]; then
+											
+										if [[ ! -f /etc/modprobe.d/csp-base.conf || ! "`grep -P "^options\s+ipv6\s+disable=1" /etc/modprobe.d/csp-base.conf`" ]]; then
+											echo "INFO: disable ipv6 module in /etc/modprobe.d/csp-base.conf"
+											echo "options ipv6 disable=1" &gt;&gt; /etc/modprobe.d/csp-base.conf
+										fi
+									fi
+				</Command>
+		</Execute>
+		
+		<Execute ExecutionOrder="20" UponError="Stop">
+			<Command>sed -i 's/NETWORKING_IPV6=yes/NETWORKING_IPV6=no/' /etc/sysconfig/network</Command>
+		</Execute>
+		
+		<!-- make sure abrt is configured properly -->
+		<Execute ExecutionOrder="30" UponError="Stop">
+			<Command>
+				if [ -x /etc/init.d/abrtd ]; then
+					/bin/sed -i.CSP-Base 's/^\(DumpLocation\s*=\s*.*\)\s*# Changed by CSP-Base/\1/' /etc/abrt/abrt.conf
+					[ -d /var/cti/cores\ #\ Changed\ by\ CSP-Base ] &amp;&amp; /bin/rm -rf /var/cti/cores\ #\ Changed\ by\ CSP-Base
+					
+					chkconfig abrtd --level 345 on
+					chkconfig abrt-ccpp --level 345 on
+					
+					service abrtd restart
+					service abrt-ccpp restart
+				fi
+			</Command>
+		</Execute>
+		
+			<Execute ExecutionOrder="40" UponError="Stop">
+				<Command>#if [ -f /usr/java/jre1.7/lib/security/java.security ]; then 
+										 /bin/sed -i 's/#networkaddress.cache.ttl=-1/networkaddress.cache.ttl=0/' /usr/java/jre1.7/lib/security/java.security
+										 echo "INFO: Updated networkaddress.cache.ttl in /usr/java/jre1.7/lib/security/java.security to be 0"
+									#fi
+				</Command>
+		</Execute>		
+		
+		 <Copy ExecutionOrder="45" Overwrite="true" ChmodFlags="+x" UponError="Stop">
+				<Source>./create_ftm_permissions.sh</Source>
+			</Copy>		
+         <Execute ExecutionOrder="50" UponError="Stop">
+				<Command>./create_ftm_permissions.sh</Command>
+		 </Execute>
+		 
+		 <!-- Remove ipv6 ::1 from /etc/hosts(cause sca not to start when ipv6 disable) -->
+		 
+		 <Execute ExecutionOrder="60" UponError="Stop">
+      <Command>perl -pi -e "s,^::1.*\n$,," /etc/hosts</Command>
+		 </Execute>
+		 
+		</Install>
+		
+		<Upgrade>
+
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>#if [ -f /usr/java/jre1.7/lib/security/java.security ]; then 
+										 /bin/sed -i 's/#networkaddress.cache.ttl=-1/networkaddress.cache.ttl=0/' /usr/java/jre1.7/lib/security/java.security
+										 echo "INFO: Updated networkaddress.cache.ttl in /usr/java/jre1.7/lib/security/java.security to be 0"
+									#fi
+				</Command>
+		     </Execute>
+		     
+		<!-- make sure abrt is configured properly -->
+		<Execute ExecutionOrder="30" UponError="Stop">
+			<Command>
+				if [ -x /etc/init.d/abrtd ]; then
+					/bin/sed -i.CSP-Base 's/^\(DumpLocation\s*=\s*.*\)\s*# Changed by CSP-Base/\1/' /etc/abrt/abrt.conf
+					[ -d /var/cti/cores\ #\ Changed\ by\ CSP-Base ] &amp;&amp; /bin/rm -rf /var/cti/cores\ #\ Changed\ by\ CSP-Base
+					
+					chkconfig abrtd --level 345 on
+					chkconfig abrt-ccpp --level 345 on
+					
+					service abrtd restart
+					service abrt-ccpp start
+				fi
+			</Command>
+		</Execute>	
+			     
+		 <Copy ExecutionOrder="45" Overwrite="true" ChmodFlags="+x" UponError="Stop">
+				<Source>./create_ftm_permissions.sh</Source>
+			</Copy>		
+         <Execute ExecutionOrder="50" UponError="Stop">
+				<Command>./create_ftm_permissions.sh</Command>
+		 </Execute>
+		 
+		</Upgrade>
+
+	</Component>
+</SWIM>

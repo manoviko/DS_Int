@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Provisioning>
+	<ProfileDefinition HashCode="-508689875" LoadingPriority="2" Name="Content" Version="1.0.0.7">
+		<Entities>
+			 <Entity>
+            <Name>Subscriber</Name>
+            <DsvEntityName>SUB</DsvEntityName>
+              <Fields>
+               <Field>
+                  <Name>ContentProfileId</Name>
+                  <DsvName>contentProfileId</DsvName>
+                  <DbName>SUBSCRIBERS.CONTENT_PROFILE_ID</DbName>
+                  <XsdValidation>
+                     <Type>xs:integer</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                     <MinVal>0</MinVal>
+                  </XsdValidation>
+                  <DisplayName>Content Profile Id</DisplayName>
+                  <Description>Defines the content profile id.</Description>
+               </Field>
+               <Field>
+                  <Name>ContentProfileName</Name>
+                  <XsdValidation>
+                     <Type>compas:SecuredString</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>Content Profile Name</DisplayName>
+                  <Description>Defines the content profile name.</Description>
+               </Field>               
+</Fields> 
+           
+         </Entity>
+         <Entity>
+				<Name>ContentCategory</Name>
+				<DsvEntityName>CONTENT_CATEGORY</DsvEntityName>
+				<KeyField>CategoryID</KeyField>
+				<SqlDefinition>
+					<Tables>
+						<Table>
+							<Name>CONTENT_CATEGORY</Name>
+							<Type>Main</Type>
+							<Key>CONTENT_CATEGORY_ID</Key>
+						</Table>
+					</Tables>
+				</SqlDefinition>
+				<Fields>
+					<Field>
+						<Name>CategoryName</Name>
+						<DsvName>cnsCategoryName</DsvName>
+						<DbName>CONTENT_CATEGORY.CONTENT_CATEGORY_NAME</DbName>
+						<XsdValidation>
+							<Type>compas:SecuredString</Type>
+							<MinOcc>0</MinOcc>
+							<MaxOcc>1</MaxOcc>
+							<Nillable>false</Nillable>
+						</XsdValidation>
+						<DisplayName>A provider name</DisplayName>
+						<Description>Provider Name</Description>
+					</Field>
+					<Field>
+						<Name>CategoryID</Name>
+						<DsvName>cnsCategoryID</DsvName>
+						<DbName>CONTENT_CATEGORY.CONTENT_CATEGORY_ID</DbName>
+						<XsdValidation>
+							<Nillable>false</Nillable>
+							<Type>xs:nonNegativeInteger</Type>
+							<MinOcc>0</MinOcc>
+							<MaxOcc>1</MaxOcc>
+						</XsdValidation>
+						<DisplayName>Provider ID</DisplayName>
+						<Description>The Provider ID</Description>
+					</Field>
+				</Fields>
+			</Entity>
+			<Entity>
+				<Name>ContentProfile</Name>
+				<DsvEntityName>CONTENT_PROFILE</DsvEntityName>
+				<KeyField>ProfileID</KeyField>
+				<SqlDefinition>
+					<Tables>
+						<Table>
+							<Name>CONTENT_PROFILE</Name>
+							<Type>Main</Type>
+							<Key>CONTENT_PROFILE_ID</Key>
+						</Table>
+					</Tables>
+				</SqlDefinition>
+				<Fields>
+					<Field>
+						<Name>ProfileName</Name>
+						<DsvName>cnsProfileName</DsvName>
+						<DbName>CONTENT_PROFILE.CONTENT_PROFILE_NAME</DbName>
+						<XsdValidation>
+							<Type>compas:SecuredString</Type>
+							<MinOcc>0</MinOcc>
+							<MaxOcc>1</MaxOcc>
+							<Nillable>false</Nillable>
+						</XsdValidation>
+						<DisplayName>A provider name</DisplayName>
+						<Description>Provider Name</Description>
+					</Field>
+					<Field>
+						<Name>ProfileID</Name>
+						<DsvName>cnsProfileID</DsvName>
+						<DbName>CONTENT_PROFILE.CONTENT_PROFILE_ID</DbName>
+						<XsdValidation>
+							<Nillable>false</Nillable>
+							<Type>xs:nonNegativeInteger</Type>
+							<MinOcc>0</MinOcc>
+							<MaxOcc>0</MaxOcc>
+						</XsdValidation>
+						<DisplayName>Provider ID</DisplayName>
+						<Description>The Provider ID</Description>
+					</Field>
+				</Fields>
+					<Collections>
+					<Collection>
+						<Name>ContentCategories</Name>
+						<CollectionElement>
+							<Name>ContentCategory</Name>
+							<DsvEntityName>CONTENT_PROFILE_CATEGORIES</DsvEntityName>
+							<KeyField>CategoryID</KeyField>
+                     <SqlDefinition>
+                        <Tables>
+                           <Table>
+                              <Name>CONTENT_PROFILE_CATEGORIES</Name>
+                              <Type>Main</Type>
+                              <Key>CONTENT_CATEGORY_ID</Key>
+                           </Table>
+                        </Tables>
+                       <NaturalJoins>
+                           <Join>
+                              <TableName>CONTENT_PROFILE</TableName>
+                              <DsvEntityName>CONTENT_PROFILE</DsvEntityName>
+                           </Join>
+                        </NaturalJoins>
+                        <ForeignKey>
+                           <DsvName>cnsProfileID</DsvName>
+                           <DbName>CONTENT_PROFILE_CATEGORIES.CONTENT_PROFILE_ID</DbName>
+                        </ForeignKey>                        
+                     </SqlDefinition>
+ 							<Fields>
+								<Field>
+									<Name>CategoryID</Name>
+									<DsvName>cnsCategoryID</DsvName>
+									<DbName>CONTENT_PROFILE_CATEGORIES.CONTENT_CATEGORY_ID</DbName>
+									<XsdValidation>
+										<Type>xs:integer</Type>
+										<MinOcc>0</MinOcc>
+										<MaxOcc>1</MaxOcc>
+										<Nillable>false</Nillable>
+									</XsdValidation>
+									<DisplayName>ID</DisplayName>
+									<Description>Defines the ID type for an additional ID entry.</Description>
+								</Field>
+								<Field>
+									<Name>CategoryName</Name>
+									<XsdValidation>
+										<MinOcc>0</MinOcc>
+										<MaxOcc>1</MaxOcc>
+										<Nillable>false</Nillable>
+									</XsdValidation>
+									<DisplayName>Telephone Number</DisplayName>
+									<Description>Defines the telephone number for an additional ID entry.</Description>
+								</Field>
+							</Fields>
+						</CollectionElement>
+					</Collection>
+					</Collections>
+			</Entity>
+		</Entities>
+	</ProfileDefinition>
+</Provisioning>

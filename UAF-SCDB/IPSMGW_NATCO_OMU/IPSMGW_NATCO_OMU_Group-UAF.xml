@@ -1,0 +1,14 @@
+
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\UAF.xsd">
+
+	<UnitType Platform="Linux" Name="Shared_OMU_Group">
+	
+		<Install>
+			<Component Name="IPSMGW-Balancer-Customization" 			ExecutionOrder="20" 	UponError="Stop" 	DisplayGroup="IPSMGW_NATCO_OMU"/>
+			<Component Name="IPSMGW-SCDB-Customization" 				ExecutionOrder="30" 	UponError="Stop" 	DisplayGroup="IPSMGW_NATCO_OMU"/>	
+			<Component Name="IPSMGW-FTM-Customization" 				ExecutionOrder="40" 	UponError="Stop" 	DisplayGroup="IPSMGW_NATCO_OMU"/>
+		</Install>
+
+	</UnitType>
+
+</SWIM>

@@ -1,0 +1,47 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="SWIM-Secure" Version="_VERSION-_BUILD">
+		<Install>
+
+			<Copy ChmodFlags="755" ExecutionOrder="10" UponError="Stop" Overwrite="true">
+				<Source>./*.sh</Source>
+			</Copy>
+
+			<Execute ExecutionOrder="20" UponError="Stop">
+				<Command>./swim_secure.sh {OMU_IPS}</Command>
+			</Execute>
+			
+			<Execute ExecutionOrder="30" UponError="Stop">
+				<Command>./swimagent_post.sh</Command>
+			</Execute>
+			
+		</Install>
+			
+		<Upgrade>
+		
+			<Copy ChmodFlags="755" ExecutionOrder="10" UponError="Stop" Overwrite="true">
+				<Source>./*.sh</Source>
+			</Copy>		
+			
+			<Execute ExecutionOrder="30" UponError="Stop">
+				<Command>./swimagent_post.sh</Command>
+			</Execute>
+			
+		</Upgrade>
+
+		<Parameters>
+				
+			<Parameter Name="OMU_IPS" Level="System" Display="false"  >
+				<Description>OMU Admin IP list, separated by comma</Description>
+				<!--<Value>[UnitGroup.xml://string-join(/UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance/Connection[@Type='Management']/@IP,',')]</Value>-->
+				<Value>[UnitGroup.xml://string-join(/UnitGroup/Physical[contains(@GroupName,"Shared_OMU_Group")]/UnitInstance/Connection[@Type='Admin']/@IP,',')]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			
+	
+		</Parameters>
+		
+	</Component>
+</SWIM>

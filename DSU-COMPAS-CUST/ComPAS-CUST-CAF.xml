@@ -1,0 +1,124 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\WORK\SWIM_1.1.1.0_1_xsd\CAF.xsd">
+	<Component Name="ComPAS-CUST" Platform="Linux" Version="_VERSION-_BUILD">
+		<Install>
+			
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>mkdir -p /usr/cti/conf/profiledefinition</Command>
+			</Execute>
+			
+			<Copy ExecutionOrder="20" Overwrite="true" UponError="Stop">
+				<Source>./ProfileDefinitions*</Source>
+				<Target>/usr/cti/conf/profiledefinition/</Target>
+			</Copy>
+			
+			<Copy ExecutionOrder="30" UponError="Stop" Overwrite="true">
+				<Source>./SysParamCustomization_MW.xml</Source>
+				<Target>/usr/cti/conf/profiledefinition/</Target>
+			</Copy>
+			
+			<Execute ExecutionOrder="90" UponError="Stop">
+				<Command>
+									/bin/cp -pf /usr/cti/apps/compas/bin/GslCachePersistency.ser /usr/cti/apps/compas/bin/GslCachePersistency.ser.orig.Profile1
+									/bin/cp -pf /usr/cti/apps/compas/bin/GslCachePersistency.txt /usr/cti/apps/compas/bin/GslCachePersistency.txt.orig.Profile1
+				</Command>
+			</Execute>
+			
+			<Copy ExecutionOrder="100" UponError="Stop" Overwrite="true">
+				<Source>./GslCachePersistency.*</Source>
+				<Target>/usr/cti/apps/compas/bin/</Target>
+			</Copy>
+			
+			<!-- Execute ExecutionOrder="110" UponError="Stop">
+				<Command>
+							for i in `grep -R thin: /usr/cti/conf/compas |grep "SERVICE_NAME=ODS)" |cut -d':' -f 1 |uniq`; do 
+								sed -i.`date +%m%d%y.%H%M%S` -e "s/SERVICE_NAME=ODS)/SERVICE_NAME={MiddleWareDBSID})/ig" $i;
+							done
+				</Command>
+			</Execute -->
+			<SetParams ExecutionOrder="120" UponError="Stop">
+				<ExecutionGroup>AnswerFile</ExecutionGroup>
+			</SetParams>
+			
+			<Copy ChmodFlags="+x" ExecutionOrder="150" UponError="Stop" Overwrite="true">
+				<Source>./compas_config.sh</Source>
+				<Target>/var/tmp/</Target>
+			</Copy>
+
+			<Execute ExecutionOrder="160" UponError="Stop" Timeout="60">
+				<Command>/var/tmp/compas_config.sh</Command>
+			</Execute>
+			
+		
+			<Execute ExecutionOrder="210" UponError="Stop">
+				<Command>/bin/rm -f /var/tmp/compas_config.sh</Command>
+			</Execute>
+		</Install>
+		
+		<Upgrade>
+		
+			<Copy ExecutionOrder="10" Overwrite="true" UponError="Stop">
+				<Source>./ProfileDefinitions*</Source>
+				<Target>/usr/cti/conf/profiledefinition/</Target>
+			</Copy>
+		
+			<Copy ExecutionOrder="30" UponError="Stop" Overwrite="true">
+				<Source>./SysParamCustomization_MW.xml</Source>
+				<Target>/usr/cti/conf/profiledefinition/</Target>
+			</Copy>
+			
+			<Execute ExecutionOrder="40" UponError="Stop">
+				<Command>chmod -R 755 /usr/cti/conf/profiledefinition</Command>
+			</Execute>		
+			
+			<Execute ExecutionOrder="50" UponError="Stop">
+				<Command>/usr/cti/compas/bin/systemCustomizationTool.sh /usr/cti/conf/profiledefinition/SysParamCustomization_MW.xml</Command>
+			</Execute>
+					
+			<Execute ExecutionOrder="60" UponError="Stop">
+				<Command>	
+						HOST=`hostname`;
+						if [ "`/opt/VRTS/bin/hares -state compas-app|grep -w ONLINE`" ]; then
+							echo "ComPAS is up, restarting it"
+							/usr/cti/apps/swp/HA/ha_ControlCluster.pl --offline --resource compas-app --time 180 --host $HOST
+							/usr/cti/apps/swp/HA/ha_ControlCluster.pl --online --resource compas-app --time 180 --host $HOST
+						else
+							echo "ComPAS is down, starting it"
+							/usr/cti/apps/swp/HA/ha_ControlCluster.pl --online --resource compas-app --time 180 --host $HOST
+						fi
+				</Command>
+			</Execute>
+			
+		</Upgrade>
+
+		<Uninstall>
+			<Execute ExecutionOrder="30" UponError="Stop">
+				<Command>echo uninstall</Command>
+			</Execute>
+
+		</Uninstall>
+	
+		<Parameters>
+			<!--<Parameter Name="MiddleWareDBSID" Level="System" Display="true">-->
+			<Parameter Name="MiddleWareDBSID" Level="System" Display="true" DisplayName="Middleware DB Service Name" ExecutionGroup="AnswerFile">
+			<Description>SMS DSU service name. Used by ComPAS and SpmAgent as service name for Oracle connectivity.</Description>
+			 <File Format="Text" Name="/usr/cti/conf/profiledefinition/SysParamCustomization_MW.xml"/>
+			 <ParameterPath>SEM_DB</ParameterPath>
+			  <Value>SEM_DB</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			 </Parameter>
+		 <Parameter Name="MiddleWareDBHOST" Level="System" Display="true" DisplayName="Middleware DB Name" ExecutionGroup="AnswerFile">
+       <File Format="Text" Name="/usr/cti/conf/profiledefinition/SysParamCustomization_MW.xml"/>
+			 <ParameterPath>MW_DB</ParameterPath>
+			 <Restrictions>
+        <Type>String</Type>
+        <Mandatory>true</Mandatory>      
+       </Restrictions>
+        <Description>Middleware DB Name</Description>
+        <Value>MW_DB</Value>
+      </Parameter>
+		</Parameters>
+	</Component>
+</SWIM>

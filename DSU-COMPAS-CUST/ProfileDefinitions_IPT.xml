@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Provisioning>
+    <ProfileDefinition LoadingPriority="5" Name="IPT" Version="5.0.0.0-03">
+        <Entities>
+             <Entity>
+            <Name>Subscriber</Name>
+            <DsvEntityName>SUB</DsvEntityName>
+             <Fields>
+                 <Field>
+                  <Name>InternetPasswordTemp</Name>
+                  <DsvName>cnsInternetPasswordTemp</DsvName>
+                  <DbName>SUBSCRIBERS.INTERNET_PWD_TEMP</DbName>
+                  <XsdValidation>
+                     <Type>xs:string</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                  </XsdValidation>
+                  <DisplayName>InternetPasswordTemp</DisplayName>
+                  <Description>Defines the subscriber&apos;s temporary internet password.</Description>
+                 </Field>
+             </Fields>
+             </Entity>
+        </Entities>
+    </ProfileDefinition>
+</Provisioning>

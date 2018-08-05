@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 rel. 3 sp1 (http://www.altova.com) by Tamar (comverse) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="DsvEntityName" type="xs:string"/>
+    <xs:element name="DsvName" type="xs:string"/>
+    <xs:element name="DbName">
+        <xs:annotation>
+            <xs:documentation>The DataBase field name as it in Jdsv.xml file.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="DefaultValueUponInsert" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="DataSourceType" type="xs:string"/>
+    <xs:element name="Type">
+        <xs:annotation>
+            <xs:documentation>The type of the field in the XSD files.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="xs:string"/>
+                <xs:enumeration value="xs:integer"/>
+                <xs:enumeration value="xs:boolean"/>
+                <xs:enumeration value="compas:SecuredString"/>
+                <xs:enumeration value="compas:TelephoneNumType"/>
+                <xs:enumeration value="compas:TimeType"/>
+                <xs:enumeration value="compas:EmailAddressType"/>
+                <xs:enumeration value="compas:DomainType"/>
+                <xs:enumeration value="compas:StandardGreetingType"/>
+                <xs:enumeration value="xs:nonNegativeInteger"/>
+                <xs:enumeration value="xs:positiveInteger"/>
+                <xs:enumeration value="xs:long"/>
+                <xs:enumeration value="compas:HourTimeType"/>
+                <xs:enumeration value="xs:date"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="MultiValueElementName" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>If this node is given, the filed is multi-value. The value of this node indicates the multi-valuer element (the element that provided more than one)</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="MaxOcc" type="xs:integer">
+        <xs:annotation>
+            <xs:documentation>The maximum number of time this field can appear in the request.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="MinOcc" type="xs:integer">
+        <xs:annotation>
+            <xs:documentation>The minimum number of time this field can appear in the request.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="MinVal" type="xs:integer">
+        <xs:annotation>
+            <xs:documentation>The min value of integer field in the request.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="MaxVal" type="xs:integer">
+        <xs:annotation>
+            <xs:documentation>The maximum value of integer field in the request.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="MaxLength" type="xs:integer">
+        <xs:annotation>
+            <xs:documentation>The maximum length of String type field in the request.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="MinLength" type="xs:integer">
+        <xs:annotation>
+            <xs:documentation>The minimum length of String type field in the request.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="Nillable" type="xs:boolean">
+        <xs:annotation>
+            <xs:documentation>Can the request contain this field with xsi:nil </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="Patterns">
+        <xs:annotation>
+            <xs:documentation>Set the allowed patterns for a string field.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Value" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Lov">
+        <xs:annotation>
+            <xs:documentation>Set the specific available value for Enum field.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Value" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="XsdValidation">
+        <xs:annotation>
+            <xs:documentation>Holds the restriction on the field in this level</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="Type" minOccurs="0"/>
+                <xs:element ref="MinVal" minOccurs="0"/>
+                <xs:element ref="MaxVal" minOccurs="0"/>
+                <xs:element ref="MaxLength" minOccurs="0"/>
+                <xs:element ref="MinLength" minOccurs="0"/>
+                <xs:element ref="MinOcc" minOccurs="0"/>
+                <xs:element ref="MaxOcc" minOccurs="0"/>
+                <xs:element ref="Nillable" minOccurs="0"/>
+                <xs:element ref="Patterns" minOccurs="0"/>
+                <xs:element ref="Lov" minOccurs="0"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Field">
+        <xs:annotation>
+            <xs:documentation>Holds all the needed definitions for new field</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="Name" type="xs:string"/>
+                <xs:element name="DisplayName" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>The display name in the WSA</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Description" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Description of the field</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="SubGroupName" type="xs:string" minOccurs="0"/>
+                <xs:element ref="DsvName" minOccurs="0"/>
+                <xs:element ref="DbName" minOccurs="0"/>
+                <xs:element ref="MultiValueElementName" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Is this field MultyiValue. (Effect on contract.xml and XSD files)</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="XsdValidation" minOccurs="0"/>
+                <xs:element name="SubscriberBehavioralInfo" minOccurs="0">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="ServiceName" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>The Service name in the DynamicServicesDefinition.xml file this field belong to.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="ResolvedLevels" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="DomainDefaults" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>restriction in the xsdSchema-DomainDefaults.xsd file</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element ref="XsdValidation" minOccurs="0"/>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="ServiceLevel" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>restriction in the xsdSchema-ServiceLevel.xsd file</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element ref="XsdValidation" minOccurs="0"/>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="SystemDefaults" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>restriction in the xsdSchema-SystemDefaults.xsd file</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element ref="XsdValidation" minOccurs="0"/>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="DataSourceType" minOccurs="0"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="LdapDefinition">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="ObjClasses" type="xs:string" minOccurs="0"/>
+                <xs:element name="ObjClassFilter" type="xs:string" minOccurs="0"/>
+                <xs:element name="Base" type="xs:string" minOccurs="0"/>
+                <xs:element name="KeyAttr" type="xs:string" minOccurs="0"/>
+                <xs:element name="RDN" type="xs:string" minOccurs="0"/>
+                <xs:element name="BaseFromScope" type="xs:string" minOccurs="0"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SqlDefinition">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="Tables">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Table" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="Name" type="xs:string"/>
+                                        <xs:element name="Type">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:enumeration value="Main"/>
+                                                    <xs:enumeration value="MultiValue"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Key" type="xs:string"/>
+                                        <xs:element name="SecondaryKey" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="DeleteByTrigger" type="xs:boolean" minOccurs="0"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="NaturalJoins" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Join" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="TableName" type="xs:string"/>
+                                        <xs:element name="DsvEntityName" type="xs:string"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Filter" type="xs:string" minOccurs="0"/>
+                <xs:element name="ForeignKey" minOccurs="0">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element ref="DsvName"/>
+                            <xs:element ref="DbName"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Defaults" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Default" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="ColumnName" type="xs:string"/>
+                                        <xs:element name="Value" type="xs:string"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Provisioning">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ProfileDefinition">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Entities">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Entity" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Name" type="xs:string"/>
+                                                    <xs:element ref="DsvEntityName" minOccurs="0"/>
+                                                    <xs:element name="KeyField" type="xs:string" minOccurs="0"/>
+                                                    <xs:element ref="LdapDefinition" minOccurs="0"/>
+                                                    <xs:element ref="SqlDefinition" minOccurs="0"/>
+                                                    <xs:element name="Fields" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element ref="Field" minOccurs="0" maxOccurs="unbounded"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="Collections" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="Collection" minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:all>
+                                                                            <xs:element name="Name" type="xs:string">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>The name of the collection</xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:element>
+                                                                            <xs:element name="CollectionElement">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element name="Name" type="xs:string">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>The name of collection element inside the collection</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:element>
+                                                                                        <xs:element name="DisplayName" type="xs:string" minOccurs="0">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>The display name of the collection</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:element>
+                                                                                        <xs:element ref="DsvEntityName" minOccurs="0"/>
+                                                                                        <xs:element name="KeyField" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>The name of the field inside the collection element the will be the identifier field for the CollectionElement</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:element>
+                                                                                        <xs:element ref="LdapDefinition" minOccurs="0"/>
+                                                                                        <xs:element ref="SqlDefinition" minOccurs="0"/>
+                                                                                        <xs:element name="Fields">
+                                                                                            <xs:complexType>
+                                                                                                <xs:sequence>
+                                                                                                    <xs:element ref="Field" maxOccurs="unbounded"/>
+                                                                                                </xs:sequence>
+                                                                                            </xs:complexType>
+                                                                                        </xs:element>
+                                                                                    </xs:sequence>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:all>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="Name" type="xs:string" use="required"/>
+                        <xs:attribute name="Version" type="xs:string" use="required"/>
+                        <xs:attribute name="HashCode" type="xs:string" use="optional"/>
+                        <xs:attribute name="LoadingPriority" type="xs:integer" use="optional"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,90 @@
+<SWIM>
+        <Component Platform="Linux" Name="OMAP-HA" Version="_VERSION-_BUILD">
+        <Install>
+            <Execute ExecutionOrder="3" UponError="Stop" Timeout="30">
+				<Command>/bin/mkdir -p /usr/cti/conf/IPGW-OMU/</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+
+			<Copy ExecutionOrder="5" UponError="Stop" Overwrite="true" Timeout="30" > 
+				<Source>./ha_setupSG_sms.xml</Source>
+				<Target>/usr/cti/conf/IPGW-OMU/</Target>
+			</Copy>
+
+            <SetParams ExecutionOrder="10" UponError="Stop">
+                      <ExecutionGroup>SetParam</ExecutionGroup>
+            </SetParams>
+
+
+                        <!--<Execute ExecutionOrder="20" UponError="Stop">
+                                <Command>cp -p /usr/cti/conf/integration/smsc/OMU/HA/ha_setupSG_sms.xml </Command>
+                                <ExpectedExitCode>0</ExpectedExitCode>
+                        </Execute> -->
+            <Execute ExecutionOrder="30" UponError="Stop">
+                    <Command>/usr/cti/apps/CSPbase/csp_networking.pl --action=set_host --hostname="sms-omap-general-vip" --ip={SMS-OMAP-GENERAL-VIP} </Command>
+            </Execute> 
+            <Execute ExecutionOrder="40" UponError="Continue">
+                    <Command>/usr/cti/apps/swp/HA/ha_config.pl --file /usr/cti/conf/IPGW-OMU/ha_setupSG_sms.xml</Command>
+            </Execute>
+
+         </Install>
+                        <Uninstall>
+                        <Execute ExecutionOrder="10" Timeout="20" UponError="Stop">
+                                <Command>echo "Dummy uninstall"</Command>
+                                <ExpectedExitCode>0</ExpectedExitCode>
+                        </Execute>
+                </Uninstall>
+
+                <Parameters>
+                <!-- Parameters for ha_setupSG.xml -->
+                        <Parameter Name="SMS-OMAP-GENERAL-VIP_DEVICE" Level="UnitType" Display="true" ExecutionGroup="SetParam">
+                                <Description>The network device which is running sms-omap-general-vip (default: SZ_MNIC)</Description>
+                                <File Format="Text" Name="/usr/cti/conf/IPGW-OMU/ha_setupSG_sms.xml"/>
+                                <ParameterPath>__SMSC_OMAP_DEVICE__</ParameterPath>
+                                <Restrictions>
+                                        <Type>Enum</Type>
+                                        <Enum>
+                                                <Item Value="NFS_MNIC"/>
+                                                <Item Value="SZ_MNIC"/>
+                                                <Item Value="ADMIN_MNIC"/>
+                                        </Enum>
+                                </Restrictions>
+                                <Value>ADMIN_MNIC</Value>
+                        </Parameter> 
+
+                        <Parameter Name="SMS-OMAP-GENERAL-VIP_NETMASK" Level="UnitType" Display="true" ExecutionGroup="SetParam">
+                                <Description>NetMask of sms-omap-general-vip (default: 255.255.255.0)</Description>
+                                <File Format="Text" Name="/usr/cti/conf/IPGW-OMU/ha_setupSG_sms.xml"/>
+                                <ParameterPath>__LOCAL_SZ_NETMASK__</ParameterPath>
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+                                        <Mandatory>true</Mandatory>
+                                </Restrictions>
+                                <Value>255.255.255.0</Value>
+                        </Parameter>
+
+                        <Parameter Name="SMS-OMAP-GENERAL-VIP" Level="System" Display="true" ExecutionGroup="SetParam">
+                                <Description>VIP for sms-omap-general-vip</Description>
+                                <File Format="Text" Name="/usr/cti/conf/IPGW-OMU/ha_setupSG_sms.xml"/>
+                                <ParameterPath>__SMS-OMAP-GENERAL-VIP__</ParameterPath>
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+                                        <Mandatory>true</Mandatory>
+                                </Restrictions>
+                                <Value>[File=UnitGroup.xml:/UnitGroup/Virtual/Vapplication[@ApplicationLabel='OMAP']/VUnitInstance/@VirtualIp]</Value>
+                        </Parameter>
+
+                         <!--  <Parameter Name="SMS-OMAP-GENERAL-VIP1" Level="System" Display="true" ExecutionGroup="SetParam">
+                                <Description>VIP for sms-omap-general-vip</Description>
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+                                        <Mandatory>true</Mandatory>
+                                </Restrictions>
+                                <Value>[File=UnitGroup.xml:/UnitGroup/Virtual/Vapplication[@ApplicationLabel='OMAP']/VUnitInstance/@VirtualIp]</Value>
+                        </Parameter>-->
+                </Parameters>
+        </Component>
+</SWIM>

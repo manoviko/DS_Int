@@ -1,0 +1,15 @@
+<swpHA>
+	<configuration>
+
+	<group>
+			<name>sem_spm</name>
+			<attribute>
+				<AutoStart>1</AutoStart>
+				<Parallel>1</Parallel>
+        <AutoStartPolicy>Order</AutoStartPolicy>
+        <FailOverPolicy>Priority</FailOverPolicy>
+			</attribute>
+		</group>		
+
+	</configuration>
+</swpHA>

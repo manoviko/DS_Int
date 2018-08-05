@@ -1,0 +1,15 @@
+<OSSP>
+	<!-- Updated 10 May 2016    -->
+	<Menu ServiceName="IPSMGW" ProductName="IPSMGW" DisplayOrder="2">
+		<Category Name="Administration" DisplayOrder="1">
+			<SubCategory Name="Administration">
+				<SSOLink Name="Administration Tools" DisplayOrder="1">
+					<Description>Enables you to perform system diagnostics using the OMAP GUI tool</Description>
+					<URL>https://OMAP:8006/panel/login.jsp</URL>
+					<Privilege>Administration___omapLogin</Privilege>
+					<ApplicationName>SMS</ApplicationName>
+				</SSOLink>	
+			</SubCategory>
+		</Category>
+	</Menu>
+</OSSP>

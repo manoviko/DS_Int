@@ -1,0 +1,24 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="FILE-CLEANUP-CUST" Version="_VERSION-_BUILD">
+	
+		<Install>
+			 <Copy ExecutionOrder="10" ChmodFlags="+x" Overwrite="true" UponError="Stop">
+				 <Source>./file_cleanup.sh</Source>
+			 </Copy>
+		     <Execute ExecutionOrder="20" UponError="Stop">
+				<Command>./file_cleanup.sh {UnitType}</Command>
+		     </Execute> 
+		</Install>			
+
+		<Upgrade>
+			 <Copy ExecutionOrder="10" ChmodFlags="+x" Overwrite="true" UponError="Stop">
+				 <Source>./file_cleanup.sh</Source>
+			 </Copy>
+		     <Execute ExecutionOrder="20" UponError="Stop">
+				<Command>./file_cleanup.sh {UnitType}</Command>
+		     </Execute> 		
+		</Upgrade>
+
+	</Component>
+	</SWIM>
+

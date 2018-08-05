@@ -1,0 +1,40 @@
+<SWIM>
+	<Component Platform="Linux" Name="DSU-COMPAS-XMLs" Version="_VERSION-_BUILD">
+		<Install>
+
+      <Copy ExecutionOrder="10" UponError="Stop" Overwrite="true" Timeout="180">
+              <Source>./*</Source>
+      </Copy>
+                        
+			<Execute ExecutionOrder="20" UponError="Stop" Timeout="30">
+				<Command>/bin/mkdir -p /usr/cti/conf/IPGW-DSU/</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+		
+			<!--Veritas Cluster part-->
+
+			<Copy ExecutionOrder="30" UponError="Stop" Overwrite="true" Timeout="180"> 
+				<Source>./ha_setup*.xml</Source>
+				<Target>/usr/cti/conf/IPGW-DSU/</Target>
+			</Copy>
+			
+			<Execute ExecutionOrder="40" UponError="Stop">
+        <Command>export SWP_HA_DEBUG=1; /usr/cti/apps/swp/HA/ha_config.pl --file /usr/cti/conf/IPGW-DSU/ha_setupSPM.xml --noonline</Command>
+      </Execute>  
+
+
+		</Install>		
+
+		<Uninstall>
+
+			<Execute ExecutionOrder="100" UponError="Stop" Timeout="30">
+                <Command>/bin/rm -rf /usr/cti/conf/IPGW-DSU/</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+
+		</Uninstall>
+
+		
+	</Component>
+
+</SWIM>

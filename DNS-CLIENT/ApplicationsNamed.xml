@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<MAMDATA>
+<Applications>
+  <ROW Name="named" PhaseNumber="1" MemWarningLevel="655350" MemTerminateLevel="750000" CheckVirtualMemory="1">
+        <LINUX Excecutable="/usr/sbin/named" CommandLine="-u named -t /var/named/chroot" LaunchingScript="service named start" TerminationScript="service named stop" TerminationScriptTimeout="10000"></LINUX>
+        <DaemonProcess/>
+        <Alarm ID="1890" Severity="2"> </Alarm>
+  </ROW>
+</Applications>
+<AppInUnitType>
+        <ALL>
+                <named/>
+        </ALL>
+</AppInUnitType>
+</MAMDATA>
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Provisioning>
+	<ProfileDefinition HashCode="-508689875" LoadingPriority="10" Name="Hbase" Version="5.1.0.0">
+		<Entities>
+			 <Entity>
+				<Name>Domain</Name>
+				<!-- DsvEntityName>DOMAIN</DsvEntityName -->
+				<!-- KeyField>DomainName</KeyField -->
+				<Fields>
+				  <Field FieldToBeRemoved="true">
+				  <Name>EmailDomain</Name>
+				   <!-- DsvName>cnsEmailDomain</DsvName>
+					<DbName>DOMAIN_PROFILE.EMAIL_DOMAIN</DbName>
+					<XsdValidation>
+                        <Type>compas:SecuredString</Type>
+                        <MinOcc>0</MinOcc>
+                        <MaxOcc>1</MaxOcc>
+                        <Nillable>true</Nillable>
+					</XsdValidation>
+					<DisplayName>Email Domain</DisplayName>
+					<Description>The domain&apos;s email suffix.</Description -->         
+          </Field>
+
+ 
+				</Fields>		 
+			</Entity>
+		</Entities>
+	</ProfileDefinition>
+</Provisioning>

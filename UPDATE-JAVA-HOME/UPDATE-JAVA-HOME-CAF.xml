@@ -1,0 +1,46 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\WORK\SWIM\1.5.1.0-01\CAF.xsd">
+	<Component Platform="Linux" Name="UPDATE-JAVA-HOME" Version="_VERSION-_BUILD">
+
+		<Install>
+		
+		<Copy ExecutionOrder="10" ChmodFlags="+x" Overwrite="true" UponError="Stop">
+			<Source>./update_java_home.sh</Source>
+		</Copy>
+		
+			<Execute ExecutionOrder="20" UponError="Stop">
+				<Command>./update_java_home.sh {JAVA_HOME}</Command>
+		</Execute>
+		
+		</Install>
+		
+		<Uninstall>
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>test -L /usr/local/java &amp;&amp; unlink /usr/local/java</Command>
+			</Execute>
+		</Uninstall>
+		
+		<Upgrade>
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>
+								if [ {UnitType} == "PSU_Group" ] &amp;&amp; [ -f /usr/cti/balancer/create_balancer_conf.sh ]; then
+									sed -i 's/jre1.6/jre1.7/g' /usr/cti/balancer/create_balancer_conf.sh
+									echo "INFO: Replaced jre1.6 to jre1.7 for /usr/cti/balancer/create_balancer_conf.sh"
+									sed -i 's/jre1.6/jre1.7/g' /usr/cti/conf/babysitter/ApplicationsBalancerLINUX.xml
+									echo "INFO: Replaced jre1.6 to jre1.7 for /usr/cti/conf/babysitter/ApplicationsBalancerLINUX.xml"
+								fi
+				</Command>
+			</Execute>
+		</Upgrade>
+		
+		<Parameters>
+			<Parameter Name="JAVA_HOME" Level="UnitType" Display="true" Overwrite="true" DisplayName="JAVA_HOME">
+			<Description>creates link /usr/local/java to JAVA_HOME</Description>
+			<Value>/usr/java/jre1.7</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+		</Parameters>
+	</Component>
+</SWIM>

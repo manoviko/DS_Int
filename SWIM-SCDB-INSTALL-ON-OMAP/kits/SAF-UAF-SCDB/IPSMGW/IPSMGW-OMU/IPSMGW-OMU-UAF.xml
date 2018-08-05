@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\UAF.xsd">
+	<UnitType Platform="Linux" Name="SEM-OMU">
+
+		<Install>
+			
+			<Component Name="scdb_customization_sem" 	ExecutionOrder="5" UponError="Stop" DisplayGroup="SEM-OMU"/>
+			<Component Name="DNS_Client" 						ExecutionOrder="6" UponError="Stop" DisplayGroup="SEM-OMU"/>
+			<Component Name="balancer_configuration_sem" ExecutionOrder="7" UponError="Stop" DisplayGroup="SEM-OMU"/>
+			
+			<Component Name="SEM-UTILS"							ExecutionOrder="8"  UponError="Stop"	DisplayGroup="SEM-OMU"/>
+			<Component Name="SEM-OMU-XMLs" 					ExecutionOrder="10" UponError="Stop" 	DisplayGroup="SEM-OMU"/>
+
+			<Component Name="SEM-HA" 			ExecutionOrder="40" UponError="Stop" 			DisplayGroup="SEM-OMU"/>
+			
+            <Component Name="ComPAS" 			ExecutionOrder="50" UponError="Stop" 			DisplayGroup="SEM-OMU"/>
+            <Component Name="SpmAgent" 		ExecutionOrder="60" UponError="Stop" 			DisplayGroup="SEM-OMU"/>
+   			<Component Name="WSA" 				ExecutionOrder="70" UponError="Stop" 			DisplayGroup="SEM-OMU"/>
+   			
+   			<Component Name="RegistrarTool"				ExecutionOrder="75"	UponError="Stop"		DisplayGroup="SEM-OMU"/>
+
+   			<!--    CUSTs -->
+  		  <Component Name="create_sbuser"     ExecutionOrder="82" UponError="Stop" 			DisplayGroup="SEM-OMU"/>
+		  <Component Name="SEM-SiteBook" 	ExecutionOrder="87" UponError="Stop"			DisplayGroup="SEM-OMU"/>		  
+		  
+		  <Component Name="SEM-FTM-CUST" 						ExecutionOrder="95"  UponError="Stop" DisplayGroup="SEM-OMU"/>
+		  <Component Name="ComPAS-CUST" 	ExecutionOrder="150" UponError="Stop" 			DisplayGroup="SEM-OMU"/>
+		  <Component Name="SpmAgent-CUST" ExecutionOrder="160" UponError="Stop"			DisplayGroup="SEM-OMU"/>
+		  <Component Name="WSA-CUST" 		ExecutionOrder="170" UponError="Stop"			DisplayGroup="SEM-OMU"/>
+		  <!-- Component Name="PGW-CUST" 		ExecutionOrder="180" UponError="Stop"			DisplayGroup="SEM-OMU"/ -->
+		 
+		  <Component Name="SEM-ossp_menu" ExecutionOrder="210" UponError="Stop"		DisplayGroup="SEM-OMU"/>
+		  <Component Name="SEM-AAS-CUST" ExecutionOrder="220" UponError="Stop"			DisplayGroup="SEM-OMU"/>
+		  <!-- Component Name="create_cdrs_dir_structure"  ExecutionOrder="230"  UponError="Stop" DisplayGroup="SEM-OMU"/ --> 
+		  
+		    <Component Name="MW_TRACE_DB_INSTALL_LINUX" 	ExecutionOrder="240" UponError="Stop" DisplayGroup="SEM-OMU"/>
+		    <!-- Component Name="Oracle12-Patches" 				UponError="Stop" 		ExecutionOrder="250"	DisplayGroup="SEM-OMU"/>	
+		   <Component Name="Oracle12-Patches-TRACE_DB" 				UponError="Stop" 		ExecutionOrder="260"	DisplayGroup="SEM-OMU"/ -->		  
+		  
+		  <Component Name="SEM-OMAPCOMMON-CUST"			ExecutionOrder="305" UponError="Stop" DisplayGroup="SEM-OMU"/>		  
+		  <Component Name="SEM-OMU-POST" 							ExecutionOrder="310" UponError="Stop" DisplayGroup="SEM-OMU"/>
+		  <Component Name="OMU-DSU-POST" 				UponError="Stop" 		ExecutionOrder="315"	DisplayGroup="SEM-OMU"/>	
+		  <Component Name="CREATE-SEMUS"							ExecutionOrder="320" UponError="Stop"	DisplayGroup="SEM-OMU"/>
+	
+		   <Component Name="BABYSITTER-CUST"						ExecutionOrder="327" UponError="Stop" DisplayGroup="SEM-OMU"/>
+		   <Component Name="FILE-CLEANUP-CUST"						ExecutionOrder="345" UponError="Stop" DisplayGroup="SEM-OMU"/>
+		   <!--<Component Name="SEM-TRACENG-CUST"						ExecutionOrder="350" UponError="Stop" DisplayGroup="SEM-OMU"/>-->
+		   <!-- Component Name="TRACE2CSV-CUST"						ExecutionOrder="328" UponError="Stop" DisplayGroup="SEM-OMU"/ -->			   
+
+		  <!-- Component Name="swp-unit-recovery" 							ExecutionOrder="330" UponError="Stop" DisplayGroup="SEM-OMU">
+			  	<OnlyOn>
+					<UnitName>.*[aA1]$</UnitName>
+				</OnlyOn>
+			</Component -->
+		  
+		  <!-- Component Name="Unit-Recovery-CUST"						ExecutionOrder="340" UponError="Stop" DisplayGroup="SEM-OMU"/ --> 		  
+		  
+  	       <Component Name="Linux_AS6_Hkit"								ExecutionOrder="500" UponError="Stop" DisplayGroup="SEM-OMU"/>
+		    <Component Name="SWIM-Secure"								ExecutionOrder="510" UponError="Stop" DisplayGroup="SEM-OMU"/>
+		   <Component Name="UPDATE-VERSION" 						 ExecutionOrder="520" UponError="Stop" DisplayGroup="SEM-OMU"/>
+		    <Component Name="SetSwimJreTomcat" 						ExecutionOrder="530" UponError="Stop" DisplayGroup="DSU"/>
+
+		</Install>
+		
+		<Upgrade>
+		
+			<Component Name="balancer_configuration_sem" 			ExecutionOrder="30" UponError="Stop" 			DisplayGroup="SEM-OMU"/>
+            <Component Name="SpmAgent" 									ExecutionOrder="40" UponError="Stop" 			DisplayGroup="SEM-OMU"/>		  
+            <Component Name="ComPAS" 										ExecutionOrder="50" UponError="Stop" 			DisplayGroup="SEM-OMU"/>			
+   			<!-- Component Name="RegistrarTool"								ExecutionOrder="70"	UponError="Stop"			DisplayGroup="SEM-OMU"/ -->
+			<Component Name="MW_TRACE_DB_INSTALL_LINUX"  ExecutionOrder="80" UponError="Stop" 			DisplayGroup="SEM-OMU"/>
+			
+		  <Component Name="SEM-OMAPCOMMON-CUST"			ExecutionOrder="90" UponError="Stop" DisplayGroup="SEM-OMU"/>
+		  
+		  <Component Name="ComPAS-CUST" 	                            ExecutionOrder="150" UponError="Stop" DisplayGroup="SEM-OMU"/>
+		  <Component Name="SpmAgent-CUST"                               ExecutionOrder="160" UponError="Stop" DisplayGroup="SEM-OMU"/>
+		  <Component Name="WSA-CUST" 									ExecutionOrder="170" UponError="Stop"	DisplayGroup="SEM-OMU"/>
+		  <!--<Component Name="PGW-CUST" 									ExecutionOrder="180" UponError="Stop" DisplayGroup="SEM-OMU"/>-->
+		  <!--<Component Name="SEM-AAS-CUST"                            	ExecutionOrder="220" UponError="Stop" DisplayGroup="SEM-OMU"/>-->	
+		  <Component Name="SEM-FTM-CUST" 					         	ExecutionOrder="290"  UponError="Stop" DisplayGroup="SEM-OMU"/>	
+          <Component Name="OMU-DSU-POST" 				                UponError="Stop"  	ExecutionOrder="315"	DisplayGroup="SEM-OMU"/>		  
+   	      <Component Name="FILE-CLEANUP-CUST"							ExecutionOrder="345" UponError="Stop" DisplayGroup="SEM-OMU"/>	
+		  <!--<Component Name="SEM-TRACENG-CUST"						ExecutionOrder="350" UponError="Stop" DisplayGroup="SEM-OMU"/>-->
+   	      <Component Name="SWIM-Secure"									ExecutionOrder="360" UponError="Stop" DisplayGroup="SEM-OMU"/>
+   	      <Component Name="UPDATE-VERSION" 						 	ExecutionOrder="400" UponError="Stop" DisplayGroup="SEM-OMU"/>  			
+			
+		</Upgrade>
+		
+		<Uninstall>
+		
+			<Component Name="Linux_AS6_Hkit"							ExecutionOrder="10" UponError="Stop" DisplayGroup="SEM-OMU"/>
+		  <Component Name="CREATE-SEMUS"							ExecutionOrder="20" UponError="Stop"	DisplayGroup="SEM-OMU"/>
+
+		  <Component Name="RegistrarTool"									ExecutionOrder="60"	UponError="Stop"		DisplayGroup="SEM-OMU"/>	
+   			<Component Name="WSA" 											ExecutionOrder="70" UponError="Stop" 			DisplayGroup="SEM-OMU"/>
+            <Component Name="SEM-FTM-CUST"                                                        ExecutionOrder="75"  UponError="Stop" DisplayGroup="SEM-OMU"/>			  
+            <Component Name="SpmAgent" 									ExecutionOrder="80" UponError="Stop" 			DisplayGroup="SEM-OMU"/>		  
+            <Component Name="ComPAS" 										ExecutionOrder="90" UponError="Stop" 			DisplayGroup="SEM-OMU"/>	
+			<Component Name="SEM-UTILS"									ExecutionOrder="100"  UponError="Stop"	DisplayGroup="SEM-OMU"/>            	  					  	  			
+			<Component Name="MW_TRACE_DB_INSTALL_LINUX"  ExecutionOrder="110" UponError="Stop" DisplayGroup="SEM-OMU"/>
+
+	   			
+		</Uninstall>
+		
+		<Parameters>
+		
+			<Parameter ComponentName="SEM-OMU-XMLs" Name="SPM_AGENT_VIP_DEVICE" Display="false" Overwrite="true">
+				<Value>ADMIN_MNIC</Value>
+			</Parameter>		
+		
+			<!-- Parameter ComponentName="Oracle12-Patches-TRACE_DB" Name="DB_NAME" Display="false" Overwrite="true">
+				<Value>ODS</Value>
+			</Parameter>
+			<Parameter ComponentName="Oracle12-Patches" Name="DB_NAME" Display="false" Overwrite="true">
+				<Value>omap_db</Value>
+			</Parameter -->			
+		
+			<Parameter ComponentName="SEM-AAS-CUST" Name="systemname" Display="false" Overwrite="true">
+				<Value>sys100</Value>
+			</Parameter>
+			<Parameter ComponentName="SEM-AAS-CUST" Name="domainname" Display="false" Overwrite="true">
+				<Value>[File=/var/cti/data/swim/systems/SystemList.xml://SystemList/SystemRoot/@SystemDomain]</Value>
+			</Parameter>			
+		
+                   		
+			<!--          COMPAS   -->
+			<Parameter ComponentName="ComPAS" Name="BIND_TO_IP" Display="false" />
+			<Parameter ComponentName="ComPAS" Name="KEY_STORE_FILE" Display="false" />
+			<Parameter ComponentName="ComPAS" Name="KEY_STORE_PASS" Display="false" />
+			<Parameter ComponentName="ComPAS" Name="CLUSTER_RESOURCE_GROUP" Overwrite="true" Display="false">
+				<Value>sem_spm</Value>
+			</Parameter>			
+			<Parameter ComponentName="ComPAS" Name="CRITICAL_RESOURCE" Overwrite="true" Display="false">
+				<Value>0</Value>
+			</Parameter>							
+			<Parameter ComponentName="ComPAS" Name="SKIP_HA_REGISTRATION" Overwrite="true" Display="false">
+				<Value>0</Value>
+			</Parameter>	
+			<Parameter ComponentName="ComPAS" Name="ACTIVITY_LOG_DIR" Display="false" />
+				
+
+			<!--       SPM Agent   -->
+			<!--   BATCH_HOME_DIR parameter is initialized in SAF -->
+			<Parameter ComponentName="SpmAgent" Name="BIND_TO_IP" Display="false" />
+			<Parameter ComponentName="SpmAgent" Name="KEY_STORE_FILE" Display="false" />
+			<Parameter ComponentName="SpmAgent" Name="KEY_STORE_PASS" Display="false" />
+			<Parameter ComponentName="SpmAgent" Name="CLUSTER_RESOURCE_GROUP" Overwrite="true" Display="false">
+				<Value>sem_spm_agent</Value>
+			</Parameter>
+			<Parameter ComponentName="SpmAgent" Name="CRITICAL_RESOURCE" Overwrite="true" Display="false">
+				<Value>1</Value>
+			</Parameter>
+			<Parameter ComponentName="SpmAgent" Name="SKIP_HA_REGISTRATION" Overwrite="true" Display="false">
+				<Value>0</Value>
+			</Parameter>												
+		
+			<!--           WSA            -->
+			<Parameter ComponentName="WSA" Name="CRITICAL_RESOURCE" Overwrite="true" Display="false">
+				<Value>0</Value>
+			</Parameter>	
+			<Parameter ComponentName="WSA" Name="RESOURCE_DEPENDENCIES" Overwrite="true" Display="false">
+				<Value>none</Value>
+			</Parameter>	
+			<Parameter ComponentName="WSA" Name="MONITORING_TYPE" Overwrite="true" Display="false">
+				<Value>Cluster</Value>
+			</Parameter>	
+			<Parameter ComponentName="WSA" Name="cos-provider" Overwrite="true" Display="false">
+				<Value>JDBC</Value>
+			</Parameter>	
+			<Parameter ComponentName="WSA" Name="GslApi-GslEnabled" Overwrite="true" Display="false">
+				<Value>false</Value>
+			</Parameter>	
+			<!-- JDBC string will be set in WSA CUST -->
+			<Parameter ComponentName="WSA" Name="jdbc-url" Display="false" />
+			
+			<!-- Parameter ComponentName="Unit-Recovery-CUST" Name="HostImageBackup" Display="true" Overwrite="true" -->
+				<!-- first occurrence of sem server will be used for hot image backup -->
+				<!-- Value>[UnitGroup.xml://UnitGroup/Physical[@GroupName="OMU_Group"]/UnitInstance[1]/replace(@Hostname,"\..*","")]</Value -->
+			<!-- /Parameter -->
+			<!-- Parameter ComponentName="Unit-Recovery-CUST" Name="BCUnitType" Display="true" Overwrite="true">
+				<Value>DSU</Value>
+			</Parameter -->	
+			
+			<Parameter ComponentName="balancer_configuration_sem" Name="BALANCER_TYPE" Display="false" Overwrite="true">	
+				<Value>SZ</Value>
+			</Parameter>		
+			<Parameter ComponentName="balancer_configuration_sem" Name="CUST_DNS_SERVER" Display="false" Overwrite="true">	
+			</Parameter>
+			<Parameter ComponentName="balancer_configuration_sem" Name="Deployment_Mode" Display="false" Overwrite="true">
+				<Value>RCS</Value>
+			</Parameter>						
+			
+			<Parameter ComponentName="DNS_Client" Name="BALANCER_IPS"	 Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml://string-join(/UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance/Connection[@Type="Data"]/@IP,',')]</Value>
+			</Parameter>	
+			
+			<!-- Registrar parameters --> 
+			<Parameter ComponentName="RegistrarTool" Name="DATABASE_NAME" Display="false" Overwrite="true">
+				<Value>sem_db</Value>
+			</Parameter>
+			<Parameter ComponentName="RegistrarTool" Name="USER_NAME" Display="false" Overwrite="true">
+				<Value>mw</Value>
+			</Parameter>
+			<Parameter ComponentName="RegistrarTool" Name="USER_PASSWORD" Display="false" Overwrite="true">
+				<Value>6E7utat0</Value>
+			</Parameter>
+			<Parameter ComponentName="RegistrarTool" Name="DB_HOST" Display="false" Overwrite="true">
+				<Value>mw_db</Value>
+			</Parameter>							
+			
+		</Parameters>
+		
+		<Dependencies>
+			<Component Name="SEM-HA" UnitName="*omu*[^aA1]$">
+				<DependsOn>
+					<Component UnitName="*omu*[aA1]$" Name="ComPAS"/>
+				</DependsOn>
+			</Component>
+			<Component Name="SpmAgent" UnitName="*omu*">
+				<DependsOn>
+					<Component UnitName="*omu*" Name="ComPAS"/>
+				</DependsOn>
+			</Component>
+			<Component Name="SpmAgent-CUST" UnitName="*omu*[^aA1]$">
+				<DependsOn>
+					<Component UnitName="*omu*[aA1]$" Name="SpmAgent-CUST"/>
+				</DependsOn>
+			</Component>
+			<Component Name="DNS_Client" UnitName="*omu*">
+				<DependsOn>
+					<Component UnitName="*omu*" Name="scdb_customization_sem"></Component>
+				</DependsOn>
+			</Component>
+			<Component Name="scdb_customization_sem" UnitName="*omu*[^aA1]$">
+				<DependsOn>
+					<Component UnitName="*omu*[aA1]$" Name="scdb_customization_sem"></Component>
+				</DependsOn>
+			</Component>
+			<!-- moved sitebook dependancy one step since sometimes sitebook initialization takes longer than expected -->
+			<Component Name="SEM-SiteBook" UnitName="*omu*[^aA1]$">
+				<DependsOn>
+					<!-- Component UnitName="*omu*[aA1]$" Name="SEM-SiteBook"></Component -->
+					<Component UnitName="*omu*[aA1]$" Name="ComPAS-CUST"></Component>
+				</DependsOn>
+			</Component>	
+			<!-- Component Name="Oracle12-Patches" UnitName="*omu*">
+				<DependsOn>
+                   <Component UnitName="*omu*" Name="MW_TRACE_DB_INSTALL_LINUX"/>
+                 </DependsOn>
+            </Component> 
+			<Component Name="Oracle12-Patches-TRACE_DB" UnitName="*omu*">
+				<DependsOn>
+                   <Component UnitName="*omu*" Name="MW_TRACE_DB_INSTALL_LINUX"/>
+                 </DependsOn>
+            </Component -->                			
+							
+		</Dependencies>
+		
+	</UnitType>	
+		
+</SWIM>

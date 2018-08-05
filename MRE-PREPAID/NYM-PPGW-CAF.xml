@@ -1,0 +1,45 @@
+<SWIM>
+	<Component Platform="Linux" Name="NYM-PPGW" Version="_VERSION-_BUILD">
+		<Install>
+			<Copy ChmodFlags="+x" ExecutionOrder="1" UponError="Stop">
+				<Source>./*{ComponentName}</Source>
+			</Copy>
+			<Execute ExecutionOrder="2" UponError="Stop">
+				<Command>PATH=$PATH:/usr/local/bin; ./*{ComponentName}</Command>
+			</Execute>
+		</Install>
+		<Uninstall>
+                        <Execute ExecutionOrder="1" UponError="Stop">
+<Command>ver=`echo {ComponentVersion}|cut -d - -f 1`; comp=`rpm -qa | grep {ComponentName} | grep $ver`;[ -z $comp ] &amp;&amp; exit 0 || rpm -e $comp </Command>
+			</Execute>
+                        <Execute ExecutionOrder="2" UponError="Stop">
+                                <Command>rm -rf /var/lib/rpm/pkgadd/lock</Command>
+                        </Execute>	
+		</Uninstall>		
+		<Upgrade>
+                        <Copy ChmodFlags="+x" ExecutionOrder="1" UponError="Stop">
+                                 <Source>./*{ComponentName}</Source>
+                        </Copy>
+                        <Execute ExecutionOrder="2" UponError="Stop">
+                                 <Command>cp -p /var/tmp/upgrade.sh .</Command>
+                        </Execute>
+                        <Execute ExecutionOrder="3" UponError="Stop">
+                                <Command>./upgrade.sh {ComponentName} {ComponentVersion}</Command>
+                                <ExpectedExitCode>0</ExpectedExitCode>
+                                <ExpectedExitCode>1</ExpectedExitCode>
+                                <ExpectedExitCode>2</ExpectedExitCode>
+                        </Execute>
+                        <Execute ExecutionOrder="4" UponError="Stop">
+                                <Command>rm -f upgrade.sh</Command>
+                        </Execute>		
+		</Upgrade>
+		<Rollback>
+			<Execute ExecutionOrder="1" UponError="Stop">
+<Command>ver=`echo {ComponentVersion}|cut -d - -f 1`; comp=`rpm -qa | grep {ComponentName} | grep $ver`;[ -z $comp ] &amp;&amp; exit 0 || rpm -e $comp </Command>
+			</Execute>
+			<Execute ExecutionOrder="2" UponError="Stop">
+				<Command>rm -rf /var/lib/rpm/pkgadd/lock</Command>
+			</Execute>
+		</Rollback>
+	</Component>
+</SWIM>

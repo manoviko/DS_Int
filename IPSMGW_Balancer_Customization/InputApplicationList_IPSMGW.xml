@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSpy v2007 (http://www.altova.com) by gavraha (Comvers) -->
+<InputApplicationList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+         <Application ApplicationName="SEM-SPM" Network="Data" TTL="0" PollingIntervalCounter="1" NumFailuresBeforeStatus="1">
+                <ConnectivityCheck Type="Port">
+                        <Port PortNumber="51449">
+                                <Greeting GreatingEnabled="No"/>
+                        </Port>
+                </ConnectivityCheck>
+        </Application>     
+      
+</InputApplicationList>

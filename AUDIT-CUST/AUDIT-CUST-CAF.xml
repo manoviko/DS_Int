@@ -1,0 +1,31 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="AUDIT-CUST" Version="_VERSION-_BUILD">
+	
+		<Install>
+			 <Copy ExecutionOrder="10" ChmodFlags="+x" Overwrite="true" UponError="Stop">
+				 <Source>./audit_conf.sh</Source>
+			 </Copy>
+		     <Execute ExecutionOrder="20" UponError="Stop">
+				<Command>./audit_conf.sh {UnitType}</Command>
+		     </Execute>
+                     <Execute ExecutionOrder="30" UponError="Continue">
+				<Command>
+				   service auditd restart
+                                </Command>			
+			</Execute>
+		</Install>			
+		<Upgrade>
+			 <Copy ExecutionOrder="10" ChmodFlags="+x" Overwrite="true" UponError="Stop">
+				 <Source>./audit_conf.sh</Source>
+			 </Copy>
+		     <Execute ExecutionOrder="20" UponError="Stop">
+				<Command>./audit_conf.sh {UnitType}</Command>
+		     </Execute> 
+                     <Execute ExecutionOrder="30" UponError="Continue">
+                     <Command>
+                       service auditd restart                                                                                                                                                                            </Command>		
+                    </Execute>	
+	       </Upgrade>
+	</Component>
+	</SWIM>
+

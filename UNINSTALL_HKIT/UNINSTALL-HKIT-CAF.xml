@@ -1,0 +1,36 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.5.1.0-01\CAF.xsd">
+	<Component Platform="Linux" Name="UNINSTALL-HKIT" Version="_VERSION-_BUILD">
+
+		<Install>
+			<Execute ExecutionOrder="1" UponError="Stop" Timeout="1080000">
+				<Command>rpm -q Sec_LinuxAS6.0_H-KIT
+								  if [ $? -eq 0 ]; then
+									  rpm -e Sec_LinuxAS6.0_H-KIT
+								   fi
+				</Command>
+			</Execute>
+			
+			<UpdateInventory ExecutionOrder="2" UponError="Continue">
+				<ComponentName>Linux_AS6_Hkit</ComponentName>
+				<Operation>Uninstall</Operation>
+			</UpdateInventory>				
+		</Install>
+		
+		<Uninstall>
+			<Execute ExecutionOrder="1" UponError="Stop" Timeout="1080000">
+				<Command>rpm -q Sec_LinuxAS6.0_H-KIT
+								  if [ $? -eq 0 ]; then
+									  rpm -e Sec_LinuxAS6.0_H-KIT
+								   fi
+				</Command>
+			</Execute>
+			
+			<UpdateInventory ExecutionOrder="2" UponError="Continue">
+				<ComponentName>Linux_AS6_Hkit</ComponentName>
+				<Operation>Uninstall</Operation>
+			</UpdateInventory>				
+		</Uninstall>	
+		
+	</Component>
+		
+</SWIM>

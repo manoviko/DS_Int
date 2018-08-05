@@ -1,0 +1,38 @@
+<SWIM>
+	<Component Name="PreUpgradeOrRollback" Version="_VERSION-_BUILD" Platform="Linux">
+		<Install>
+								
+					<Copy Overwrite="true" ChmodFlags="+x" ExecutionOrder="10" UponError="Stop">
+						<Source>./*</Source>
+						<Target>/var/tmp/</Target>
+					</Copy>                        
+
+					<!--Stop monitor\OMNI + backups-->
+					<Execute UponError="Continue" ExecutionOrder="30" Timeout="120">
+						   <Command>/var/tmp/prepareForUpgrade.sh</Command>
+					</Execute>
+					<Execute UponError="Stop" ExecutionOrder="40">
+						<Command>sleep 60</Command>
+					</Execute>                        
+
+		</Install>
+		
+		<Upgrade>
+		
+					<Copy Overwrite="true" ChmodFlags="+x" ExecutionOrder="10" UponError="Stop">
+						<Source>./*</Source>
+						<Target>/var/tmp/</Target>
+					</Copy>                        
+
+					<!--Stop monitor\OMNI + backups-->
+					<Execute UponError="Continue" ExecutionOrder="30" Timeout="120">
+						   <Command>/var/tmp/prepareForUpgrade.sh</Command>
+					</Execute>
+					<Execute UponError="Stop" ExecutionOrder="40">
+						<Command>sleep 60</Command>
+					</Execute>                     
+					
+		</Upgrade>	
+			
+	</Component>
+</SWIM>

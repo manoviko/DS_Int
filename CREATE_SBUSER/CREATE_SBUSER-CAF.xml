@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SWIM>
+	<Component Name="CREATE_SBUSER" Version="_VERSION-_BUILD" Platform="Linux">
+		<Install>
+      <Execute ExecutionOrder="10" Timeout="20" UponError="Stop">
+				<Command>mkdir -p /usr/cti/conf/integration</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			<Copy ExecutionOrder="20" UponError="Stop" Overwrite="true" ChmodFlags="+x">
+				<Source>./users-groups-install.xml</Source>
+				<Target>/usr/cti/conf/integration/</Target>
+			</Copy>
+			<Copy ExecutionOrder="30" UponError="Stop" Overwrite="true" ChmodFlags="+x">
+				<Source>./sbuser-sudoers.py</Source>
+				<Target>/usr/cti/conf/integration/</Target>
+			</Copy>
+
+			<Execute ExecutionOrder="40" Timeout="20" UponError="Stop">
+				<Command>/usr/cti/apps/CSPbase/csp_parse_ugp.pl --file /usr/cti/conf/integration/users-groups-install.xml</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			<Execute ExecutionOrder="50" Timeout="20" UponError="Stop">
+				<Command>/usr/cti/conf/integration/sbuser-sudoers.py -o install</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			<Copy ExecutionOrder="60" ChmodFlags="+x" Overwrite="true" UponError="Stop">
+				 <Source>./ssh_key_based_auth.sh</Source>
+			 </Copy>
+			 <Copy ChmodFlags="+x" ExecutionOrder="65" Overwrite="true" UponError="Stop">
+				<Source>./id_rsa.pub</Source>
+				<Target>/var/tmp/</Target>
+			</Copy>
+		     <Execute ExecutionOrder="70" UponError="Stop">
+				<Command>./ssh_key_based_auth.sh</Command>
+		     </Execute>
+		</Install>
+		<Upgrade>
+         <Execute ExecutionOrder="10" Timeout="20" UponError="Stop">
+				<Command>mkdir -p /usr/cti/conf/integration</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			<Copy ExecutionOrder="20" UponError="Stop" Overwrite="true" ChmodFlags="+x">
+				<Source>./users-groups-install.xml</Source>
+				<Target>/usr/cti/conf/integration/</Target>
+			</Copy>
+			<Copy ExecutionOrder="30" UponError="Stop" Overwrite="true" ChmodFlags="+x">
+				<Source>./sbuser-sudoers.py</Source>
+				<Target>/usr/cti/conf/integration/</Target>
+			</Copy>
+
+			<Execute ExecutionOrder="40" Timeout="20" UponError="Stop">
+				<Command>/usr/cti/apps/CSPbase/csp_parse_ugp.pl --file /usr/cti/conf/integration/users-groups-install.xml</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			<Execute ExecutionOrder="50" Timeout="20" UponError="Stop">
+				<Command>/usr/cti/conf/integration/sbuser-sudoers.py -o install</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			<Copy ExecutionOrder="60" ChmodFlags="+x" Overwrite="true" UponError="Stop">
+				 <Source>./ssh_key_based_auth.sh</Source>
+			 </Copy>
+			 <Copy ChmodFlags="+x" ExecutionOrder="65" Overwrite="true" UponError="Stop">
+				<Source>./id_rsa.pub</Source>
+				<Target>/var/tmp/</Target>
+			</Copy>
+		     <Execute ExecutionOrder="70" UponError="Stop">
+				<Command>./ssh_key_based_auth.sh</Command>
+		     </Execute>
+		  </Upgrade>
+		<Uninstall/>
+			
+	</Component>
+</SWIM>

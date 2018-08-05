@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+        <Component Name="IPGW-ossp_menu" Version="_VERSION-_BUILD" Platform="Linux">
+
+                <Install>
+                       <Copy ChmodFlags="755" ExecutionOrder="10" Overwrite="true" UponError="Stop">
+                                <Source>./ossp_customization_sem_kit/menu_IPSMGW.xml</Source>
+                                <Target>/usr/cti/conf/ossp-menu/</Target>
+                        </Copy>
+
+                        <Execute ExecutionOrder="20" UponError="Stop">
+                                <Command>chmod 755 /usr/cti/conf/ossp-menu/menu_IPSMGW.xml</Command>
+                        </Execute>
+
+                        <Execute ExecutionOrder="30" UponError="Stop">
+                          <Command>chown ossp /usr/cti/conf/ossp-menu/menu_IPSMGW.xml</Command>
+                        </Execute>
+
+                        <!--<Execute ExecutionOrder="50" UponError="Stop">
+                          <Command>su - ossp -s /bin/bash -c /usr/cti/apps/ossp/bin/restart.sh<Command>
+                          <ExpectedExitCode>0</ExpectedExitCode>
+                        </Execute>-->
+						<Execute ExecutionOrder="40" UponError="Stop">
+			            	<Command>su - ossp -s /bin/bash -c /usr/cti/apps/ossp/bin/restart.sh</Command>
+			            </Execute>
+
+                 </Install>
+                 <Upgrade>
+
+                        <Copy ChmodFlags="755" ExecutionOrder="10" Overwrite="true" UponError="Stop">
+                                <Source>./ossp_customization_sem_kit/menu_IPSMGW.xml</Source>
+                                <Target>/usr/cti/conf/ossp-menu/</Target>
+                        </Copy>
+
+                        <Execute ExecutionOrder="40" UponError="Stop">
+                                <Command>chmod 755 /usr/cti/conf/ossp-menu/menu_IPSMGW.xml</Command>
+                        </Execute>
+
+                        <Execute ExecutionOrder="50" UponError="Stop">
+                                <Command>/usr/cti/apps/ossp/bin/rootRestart.sh</Command>
+                                <ExpectedExitCode>0</ExpectedExitCode>
+
+                        </Execute>
+                   </Upgrade>
+
+                <Uninstall>
+
+                        <Execute ExecutionOrder="10" UponError="Continue">
+                                <Command>rm -f /usr/cti/conf/ossp-menu/menu*_IPSMGW.xml</Command>
+                        </Execute>
+
+                </Uninstall>
+        </Component>
+</SWIM>
+

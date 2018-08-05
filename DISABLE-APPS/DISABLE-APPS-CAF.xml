@@ -1,0 +1,28 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="DISABLE-APPS" Version="_VERSION-_BUILD">
+		<Install>
+			<!-- Disable Marimba -->
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>if [ -f /usr/cti/conf/babysitter/ApplicationsMarimba.xml ]; then
+									mv /usr/cti/conf/babysitter/ApplicationsMarimba.xml  /usr/cti/conf/babysitter/ApplicationsMarimba.xml.dis
+								   fi
+				</Command>
+			</Execute>
+			<Execute ExecutionOrder="20" UponError="Continue">
+				<Command>service marimba stop</Command>
+			</Execute>
+			<Execute ExecutionOrder="30" UponError="Stop">
+				<Command>cd /etc/rc3.d/; if [ -f S99marimba ]; then mv S99marimba disbaled_S99marimba;fi</Command>
+			</Execute>
+			<!-- /Disable Marimba -->
+			<!-- Disable Octopus -->
+			<Execute ExecutionOrder="40" UponError="Continue">
+				<Command>service octopus stop</Command>
+			</Execute>
+			<Execute ExecutionOrder="50" UponError="Stop">
+				<Command>cd /etc/rc3.d/; if [ -f S80octopus ]; then mv S80octopus disbaled_S80octopus;fi</Command>
+			</Execute>
+			<!-- /Disable Octopus -->
+		</Install>
+	</Component>
+</SWIM>

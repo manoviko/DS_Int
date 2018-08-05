@@ -1,0 +1,96 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="mVAS-IPSMGW-Customization-APP" Version="_VERSION-_BUILD">
+		<Install>
+
+			<Copy ExecutionOrder="10" Overwrite="true" UponError="Stop">
+				<Source>./APP</Source>
+				<Target>/tmp</Target>
+			</Copy>
+			<Copy ExecutionOrder="20" Overwrite="true"  ChmodFlags="755" UponError="Stop">
+				<Source>./scripts</Source>
+			</Copy>
+			
+			<SetParams ExecutionOrder="50" UponError="Stop">
+				<ExecutionGroup>SetParam</ExecutionGroup>
+			</SetParams>
+			
+			<Execute ExecutionOrder="80" UponError="Stop">
+					<Command>/usr/cti/apps/CSPbase/csp_networking.pl --file /tmp/APP/networking.xml</Command>
+					<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			
+		</Install>
+		
+		<Parameters>
+		
+			<!-- Parameters for networking.xml -->
+			<Parameter Name="SnmpManager" Level="System" Display="true" ExecutionGroup="SetParam">
+				<Description>SnmpManager VIP</Description>
+				<File Format="Text" Name="/tmp/APP/networking.xml"/>
+				<ParameterPath>__snmpManager__</ParameterPath>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			
+			<Parameter Name="NtpServer1" Level="System" Display="true" ExecutionGroup="SetParam">
+				<Description>NtpServer1 IP</Description>
+				<File Format="Text" Name="/tmp/APP/networking.xml"/>
+				<ParameterPath>__NtpServer1__</ParameterPath>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>		
+			
+			<Parameter Name="NtpServer2" Level="System" Display="true" ExecutionGroup="SetParam">
+				<Description>NtpServer2 IP</Description>
+				<File Format="Text" Name="/tmp/APP/networking.xml"/>
+				<ParameterPath>__NtpServer2__</ParameterPath>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			
+			<Parameter Name="SnmpManagerPA1" Level="System" Display="true" ExecutionGroup="SetParam">
+				<Description>SnmpManagerPA1 IP</Description>
+				<File Format="Text" Name="/tmp/APP/networking.xml"/>
+				<ParameterPath>__snmpManagerPA1__</ParameterPath>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			
+			<Parameter Name="SnmpManagerPA2" Level="System" Display="true" ExecutionGroup="SetParam">
+				<Description>SnmpManagerPA2 IP</Description>
+				<File Format="Text" Name="/tmp/APP/networking.xml"/>
+				<ParameterPath>__snmpManagerPA2__</ParameterPath>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			
+			<Parameter Name="SyslogServer" Level="System" Display="true" ExecutionGroup="SetParam">
+				<Description>SyslogServer VIP</Description>
+				<Files>
+					<File Format="Text" Name="/tmp/APP/networking.xml" ParameterPath="__SyslogServer__"/>
+				</Files>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			
+		</Parameters>
+	</Component>
+</SWIM>

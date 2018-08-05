@@ -1,0 +1,297 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.5.3.0-03\UAF.xsd">
+	<UnitType Name="COMPONENTS" Platform="Linux">
+		<Install>
+			<Component Name="OMU-XMLs" ExecutionOrder="10" UponError="Stop" DisplayGroup="COMPONENTS"/>
+ 			<Component Name="OMU-HA" ExecutionOrder="40" UponError="Stop" DisplayGroup="COMPONENTS"/>
+			<Component Name="OMU-DB-Creation" ExecutionOrder="50" UponError="Stop" DisplayGroup="COMPONENTS"/>
+			
+			<Component Name="swp-DBWatch"		ExecutionOrder="54"	UponError="Stop"          DisplayGroup="COMPONENTS"/>
+			<Component Name="swp-DBWatch_config_add"   ExecutionOrder="55"	UponError="Stop"	DisplayGroup="COMPONENTS"/>		
+			
+			<Component Name="Babysitter-IC" ExecutionOrder="60" UponError="Stop" DisplayGroup="COMPONENTS"/>
+			<Component Name="PRE-SWP-SYSLOG" ExecutionOrder="65" UponError="Stop" DisplayGroup="COMPONENTS">
+				<OnlyOn>
+					<UnitName>.*[aA1]$</UnitName>
+				</OnlyOn>
+			</Component>			
+			<Component Name="swp-Central-rsyslog-server" ExecutionOrder="70" UponError="Stop" DisplayGroup="COMPONENTS"/>
+			<Component Name="balancer" ExecutionOrder="80" UponError="Stop" DisplayGroup="COMPONENTS"/>
+			<Component Name="ccmng-manager-db" ExecutionOrder="90" UponError="Stop" DisplayGroup="COMPONENTS">
+				<OnlyOn>
+					<UnitName>.*[aA1]$</UnitName>
+				</OnlyOn>
+			</Component>
+			<Component Name="ccmng-manager-appl" ExecutionOrder="100" UponError="Stop" DisplayGroup="COMPONENTS"/>
+			<Component Name="ccmng-agent" ExecutionOrder="110" UponError="Stop" DisplayGroup="COMPONENTS"/>
+			<Component Name="FTM-Schema" ExecutionOrder="112" UponError="Stop" DisplayGroup="COMPONENTS"/>   			
+		
+			<Component Name="AAS-DB" ExecutionOrder="120" UponError="Stop" DisplayGroup="COMPONENTS"/>
+	        <Component Name="AAS" ExecutionOrder="130" UponError="Stop" DisplayGroup="COMPONENTS"/>
+	        <Component Name="Site-Book-DB" ExecutionOrder="135" UponError="Stop" DisplayGroup="COMPONENTS"/>
+			<Component Name="Site-Book-Server" ExecutionOrder="140" UponError="Stop" DisplayGroup="COMPONENTS"/>
+			<Component Name="SEM-REMOVE-SCDB" ExecutionOrder="145" UponError="Stop" DisplayGroup="COMPONENTS">
+			  	<OnlyOn>
+					<UnitName>.*[aA1]$</UnitName>
+				</OnlyOn>
+			</Component>			
+			<Component Name="SCDB" ExecutionOrder="150" UponError="Stop" DisplayGroup="COMPONENTS"/>
+            <Component Name="OSSP-NG" ExecutionOrder="170" UponError="Stop" DisplayGroup="COMPONENTS"/>
+            <!-- Component Name="PGW" ExecutionOrder="210" UponError="Stop" DisplayGroup="COMPONENTS"/>
+             <Component Name="PgwAgent" ExecutionOrder="220" UponError="Stop" DisplayGroup="COMPONENTS"/ -->
+			<Component Name="CDRM" ExecutionOrder="230" UponError="Stop" DisplayGroup="COMPONENTS"/>
+							
+		</Install>
+		
+         <Upgrade>
+			 <Component Name="balancer" ExecutionOrder="80" UponError="Stop" DisplayGroup="COMPONENTS"/>
+			<!-- Component Name="FTM-Schema" ExecutionOrder="112" UponError="Stop" DisplayGroup="COMPONENTS"/ -->   	
+			<Component Name="SCDB" ExecutionOrder="115" UponError="Stop" DisplayGroup="COMPONENTS"/>					
+            <!-- Component Name="PGW" ExecutionOrder="210" UponError="Stop" DisplayGroup="COMPONENTS"/>
+             <Component Name="PgwAgent" ExecutionOrder="220" UponError="Stop" DisplayGroup="COMPONENTS"/ -->	
+             <Component Name="AAS-DB" ExecutionOrder="230" UponError="Stop" DisplayGroup="COMPONENTS"/>
+              <Component Name="AAS" ExecutionOrder="235" UponError="Stop" DisplayGroup="COMPONENTS"/>		
+         </Upgrade>
+         
+         <Uninstall>
+			<Component Name="swp-DBWatch_config_remove"	ExecutionOrder="65"	UponError="Stop"    DisplayGroup="COMPONENTS"/>    
+			<Component Name="swp-DBWatch"		ExecutionOrder="66"		UponError="Stop"	DisplayGroup="COMPONENTS"/>   
+			<Component Name="FTM-Schema" ExecutionOrder="112" UponError="Stop" DisplayGroup="COMPONENTS"/>   			
+			<Component Name="Site-Book-Server" ExecutionOrder="140" UponError="Stop" DisplayGroup="COMPONENTS"/>
+			<Component Name="OSSP-NG" ExecutionOrder="150" UponError="Stop" DisplayGroup="COMPONENTS"/>
+            <!-- Component Name="PGW" 			ExecutionOrder="200" UponError="Stop" DisplayGroup="COMPONENTS"/>
+             <Component Name="PgwAgent" 	ExecutionOrder="300" UponError="Stop" DisplayGroup="COMPONENTS"/ -->         
+         </Uninstall>
+         
+		<Parameters>
+		
+			<Parameter ComponentName="Oracle12-Patches" Name="DB_NAME" Display="false" Overwrite="true">
+				<Value>omap_db</Value>
+			</Parameter>			
+		
+			<Parameter ComponentName="OMU-XMLs" Name="OMAP-DB_VIP_DEVICE" Display="false" Overwrite="true">
+				<Value>SZ_MNIC</Value>
+			</Parameter>
+		
+			<!-- =============   DB Watch ADD=================-->
+			<Parameter ComponentName="swp-DBWatch_config_add" Name="DBNAME_ADD" Display="false" Overwrite="true">
+				<Value>omap_db</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-DBWatch_config_add" Name="NEWTNS" Display="false" Overwrite="true">
+				<Value>tnsname</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-DBWatch_config_add" Name="TNSNAME" Display="false" Overwrite="true">
+				<Value>omap_db</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-DBWatch_config_add" Name="TNSHOST" Display="false" Overwrite="true">
+				<Value>omap_db-ora-vip</Value>
+			</Parameter>
+			
+			<!-- =============   DB Watch Remove =================-->		
+			<Parameter ComponentName="swp-DBWatch_config_remove" Name="DBNAME_REMOVE" Display="false" Overwrite="true">
+				<Value>omap_db</Value>
+			</Parameter>			
+			
+		<!--Oracle-DB-Creation Parameters-->
+			<Parameter ComponentName="OMU-DB-Creation" Name="XML_Location" Display="false">
+                                <Value>/usr/cti/conf/OMU/Oracle-DB-Creation.xml</Value>
+                        </Parameter>
+                        
+			<!--OMU-HA Parameters-->
+			<Parameter ComponentName="OMU-HA" Name="XML_Location" Display="false">
+                                <Value>/usr/cti/conf/OMU/ha_setupSG.xml</Value>
+                        </Parameter>
+
+			<!--Site-Book-Server Parameters-->
+                        <Parameter ComponentName="Site-Book-Server" Name="BABYSITTER_LOCATION" Display="false">
+                                <Value>none</Value>
+                        </Parameter>
+                        <Parameter ComponentName="Site-Book-Server" Name="CCM_REGISTER" Display="false">
+                                <Value>true</Value>
+                        </Parameter>
+                        <Parameter ComponentName="Site-Book-Server" Name="Is_Critical_Resource" Display="false">
+                                <Value>1</Value>
+                        </Parameter>
+                        <Parameter ComponentName="Site-Book-Server" Name="UNIT_TYPE" Display="false">
+                                <Value>DSU5</Value>
+                        </Parameter>
+                        <Parameter ComponentName="Site-Book-DB" Name="ORACLE_DBF_FILE_NAME" Display="false"/>
+                        <Parameter ComponentName="Site-Book-Server" Name="Recursive_Scan_Enabled" Display="false">
+							<Value>false</Value>
+						</Parameter>
+						<Parameter ComponentName="Site-Book-DB" Name="DB_USERNAME" Display="false"/>
+						<Parameter ComponentName="Site-Book-Server" Name="DB_USERNAME" Display="false"/>
+						<Parameter ComponentName="Site-Book-DB" Name="DB_PASSWORD" Display="false"/>
+						<Parameter ComponentName="Site-Book-Server" Name="DB_PASSWORD" Display="false"/>
+						<Parameter ComponentName="Site-Book-DB" Name="TBS_MAX_SIZE" Display="false"/>
+                   
+
+                        <!--SCDB Parameters-->
+                        <Parameter ComponentName="SCDB" Name="Is_Critical_Resource" Display="false">
+                                <Value>1</Value>
+                        </Parameter>
+			<Parameter ComponentName="SCDB" Name="Resource_Dependencies" Display="false">
+                                <Value>None</Value>
+                        </Parameter>
+
+					<!--PgwAgent Parameters-->
+                        <!-- Parameter ComponentName="PgwAgent" Name="BATCH_HOME_DIR" Display="false">
+                                <Value>/usr/cti/apps/omap_maint/pgw/</Value>
+                        </Parameter>
+                        <Parameter ComponentName="PgwAgent" Name="CRITICAL_RESOURCE" Display="false">
+                                <Value>1</Value>
+                        </Parameter>
+                        <Parameter ComponentName="PgwAgent" Name="SKIP_HA_REGISTRATION" Display="false">
+                                <Value>0</Value>
+                        </Parameter -->
+
+                        <!--PGW Parameters-->
+                        <!-- Parameter ComponentName="PGW" Name="ACTIVITY_LOG_DIR" Display="false"/>
+                        <Parameter ComponentName="PGW" Name="CRITICAL_RESOURCE" Display="false">
+                                <Value>0</Value>
+                        </Parameter>
+                        <Parameter ComponentName="PGW" Name="BIND_TO_IP" Display="false"/>
+                        <Parameter ComponentName="PGW" Name="SKIP_HA_REGISTRATION" Display="false">
+                                <Value>0</Value>
+                        </Parameter -->
+
+                        <!--OSSP-NG Parameters-->
+                        <Parameter ComponentName="OSSP-NG" Name="IS_CRITICAL_RESOURCE" Display="false">
+                                <Value>FALSE</Value>
+                        </Parameter>
+                        <Parameter ComponentName="OSSP-NG" Name="BIND_TO_IP" Display="false"/>
+
+                        <!--ccmng-manager-db Parameters-->
+                        <Parameter ComponentName="ccmng-manager-db" Name="ORACLE_HOME" Display="false">
+                                <Value>/oracle/product/v12.1.0/</Value>
+                        </Parameter>
+
+                        <!--ccmng-manager-appl Parameters-->
+                        <Parameter ComponentName="ccmng-manager-appl" Name="CCM.RESOURCE_DEPENDENCIES" Display="false"/>
+                        <Parameter ComponentName="ccmng-manager-appl" Name="CCM.EXPORT_FOLDER_PATH" Display="false">
+                                <Value>/usr/cti/apps/omap_maint/ccm/export-import/</Value>
+                        </Parameter>
+                        <Parameter ComponentName="ccmng-manager-appl" Name="CCM.IS_CRITICAL_RESOURCE" Display="false">
+                                <Value>1</Value>
+                        </Parameter>
+                        <Parameter ComponentName="ccmng-manager-appl" Name="CCM.CLUSTER_REGISTER_REQUIRED" Display="false">
+                                <Value>true</Value>
+                        </Parameter>
+
+                        <!--Babysitter-IC Parameters-->
+                        <!-- Parameter ComponentName="Babysitter-IC" Name="AgentXPortNumber" Display="false">
+                                <Value>705</Value>
+                        </Parameter -->
+                        <Parameter ComponentName="Babysitter-IC" Name="JAVA_PATH" Display="false">
+                                <Value>/usr/java/jre1.7/bin/java</Value>
+                        </Parameter>
+						<Parameter ComponentName="Babysitter-IC" Name="AgentXServiceName" Display="false">
+                                <Value>Dummy</Value>
+                        </Parameter>
+						 <Parameter ComponentName="Babysitter-IC" Name="AgentXPortNumber" Display="false">
+							 <Value>1055</Value>
+						</Parameter>                         
+
+			<!--AAS Parameters-->
+                        <Parameter ComponentName="AAS" Name="BIND_TO_IP" Display="false"/>
+                        <Parameter ComponentName="AAS" Name="IS_CRITICAL_RESOURCE" Display="false">
+                                <Value>TRUE</Value>
+                        </Parameter>
+                        <Parameter ComponentName="AAS" Name="SYSTEM_MAPPING" Display="false">
+                                <Value>SCDB</Value>
+                        </Parameter>
+
+			<!--CDRM Parameters-->
+			<Parameter ComponentName="CDRM" Name="CdrMountPoint" Display="false">
+                                <Value>/data/cdr/</Value>
+                        </Parameter>
+
+			<!--balancer Parameters-->
+			<Parameter ComponentName="balancer" Name="Second MZ unit IP" Display="false"/>
+			<Parameter ComponentName="balancer" Name="Second DMZ unit IP" Display="false"/>
+			<Parameter ComponentName="balancer" Name="First DMZ unit IP" Display="false"/>
+			<Parameter ComponentName="balancer" Name="First MZ unit IP" Display="false"/>	
+										
+			<Parameter ComponentName="balancer" Name="BalancerType" Display="false"/>
+			<Parameter ComponentName="balancer" Name="EnableMultipleSite" Display="false"/>
+			<Parameter ComponentName="balancer" Name="NormalBalancerList" Display="false"/>
+			<Parameter ComponentName="balancer" Name="ProxyBalancerList" Display="false"/>
+			<Parameter ComponentName="balancer" Name="Localhost_Priority" Display="false">
+				<Value>1</Value>
+			</Parameter>
+			<Parameter ComponentName="balancer" Name="PollingInterval" Display="false">
+				<Value>10</Value>
+			</Parameter>
+			<Parameter ComponentName="balancer" Name="INTERNAL_IP" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Physical/UnitInstance[contains(@Hostname,"{HostName}")]/Connection[@Type="Data"]/@IP]</Value>
+			</Parameter>						
+			
+			<!--omap-common-app Parameters-->
+			<!--<Parameter ComponentName="omap-common-app" Name="DB_TYPE" Display="false">
+                                <Value>A/S</Value>
+                        </Parameter>-->
+
+		</Parameters>
+
+		<Dependencies>
+            
+			<Component Name="OMU-HA" UnitName="*omu*[^aA1]$">
+                                <DependsOn>
+                                        <Component UnitName="*omu*[aA1]$" Name="OMU-HA"/>
+                                </DependsOn>
+                        </Component>
+			<Component Name="OMU-DB-Creation" UnitName="*omu*">
+                                <DependsOn>
+                                        <Component UnitName="*omu*" Name="OMU-HA"/>
+                                </DependsOn>
+                        </Component>
+                        <Component Name="OMU-DB-Creation" UnitName="*omu*[^aA1]$">
+                                <DependsOn>
+                                        <Component UnitName="*omu*[aA1]$" Name="OMU-DB-Creation"/>
+                                </DependsOn>
+                        </Component>
+			<Component UnitName="*omu*" Name="swp-DBWatch_config_add">
+				<DependsOn>
+					<Component UnitName="*omu*" Name="OMU-DB-Creation"></Component>
+				</DependsOn>
+			</Component>			                        
+			<Component Name="ccmng-manager-db" UnitName="*omu*">
+				<DependsOn>
+                                        <Component UnitName="*omu*" Name="OMU-DB-Creation"/>
+                                </DependsOn>
+                        </Component>
+          <Component Name="swp-Central-rsyslog-server" UnitName="*omu*">
+			  <DependsOn>
+				  <Component UnitName="*omu*[aA1]$" Name="PRE-SWP-SYSLOG"/>
+				</DependsOn>
+			</Component>                        
+			<Component Name="swp-Central-rsyslog-server" UnitName="*omu*[^aA1]$">
+				<DependsOn>
+                                        <Component UnitName="*omu*[aA1]$" Name="swp-Central-rsyslog-server"/>
+                                </DependsOn>
+                        </Component>
+			<Component Name="AAS" UnitName="*omu*">
+				<DependsOn>
+                                        <Component UnitName="*omu*" Name="AAS-DB"/>
+                                </DependsOn>
+                        </Component> 
+			<Component Name="AAS" UnitName="*omu*[^aA1]$">
+				<DependsOn>
+                                        <Component UnitName="*omu*[aA1]$" Name="AAS"/>
+                                </DependsOn>
+                        </Component>
+			<Component Name="Site-Book-DB" UnitName="*omu*">
+				<DependsOn>
+                                        <Component UnitName="*omu*" Name="AAS"/>
+                                </DependsOn>
+                        </Component>                                                   
+			<Component Name="Site-Book-Server" UnitName="*omu*">
+				<DependsOn>
+                                        <Component UnitName="*omu*" Name="Site-Book-DB"/>
+                                </DependsOn>
+                        </Component> 
+                        
+                      
+ 
+		</Dependencies>
+	</UnitType>
+</SWIM>

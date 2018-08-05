@@ -1,0 +1,132 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="DB-Replication-HA" Version="_VERSION-_BUILD" SequentialExecution="true">
+	
+		<Install>
+			
+			<Copy ExecutionOrder="10" Overwrite="true" UponError="Stop">
+				<Source>./ha_setupReplication.xml</Source>
+				<Target>/var/tmp/</Target>
+			</Copy>
+	
+			<SetParams ExecutionOrder="20" UponError="Continue">
+                <ExecutionGroup>AnswerFile</ExecutionGroup>
+            </SetParams>
+			
+			<Execute ExecutionOrder="30" UponError="Stop">
+                <Command>perl -ne '`mkdir -p $1` if /\s+&lt;MountPoint&gt;\"(.*)\"&lt;\/MountPoint&gt;$/'  /var/tmp/ha_setupReplication.xml</Command>
+            </Execute> 		
+            
+			<Execute ExecutionOrder="40" UponError="Stop">
+                <Command>
+									HOSTNAME=`hostname`
+									GROUP_NAME=`perl -ne 'print $1 if /&lt;depend&gt;(\w+)\s+/' /var/tmp/ha_setupReplication.xml`
+									
+									echo "INFO: db name is $GROUP_NAME"
+									if [ "`/opt/VRTS/bin/hagrp -state ${GROUP_NAME}|egrep "PARTIAL|ONLINE"|grep ${HOSTNAME}`" ]; then
+										echo "INFO: $GROUP_NAME is active on this node"
+										export SWP_HA_DEBUG=1; /usr/cti/apps/swp/HA/ha_config.pl --file /var/tmp/ha_setupReplication.xml
+									else
+										echo "INFO: $GROUP_NAME is not active on this node"
+										export SWP_HA_DEBUG=1; /usr/cti/apps/swp/HA/ha_config.pl --file /var/tmp/ha_setupReplication.xml --noonline
+									fi
+                </Command>
+             </Execute>
+             
+             <Execute ExecutionOrder="50" UponError="Stop">
+				<Command>
+									if [ "`mount |grep {ReplicationMount}`" ]; then
+										chown oracle:dba {ReplicationMount}
+									fi
+				</Command>
+			</Execute>
+              
+		</Install>  
+		
+		
+		<Uninstall>
+		
+			<Copy ExecutionOrder="10" Overwrite="true" UponError="Stop">
+				<Source>./ha_setupReplication.xml</Source>
+				<Target>/var/tmp/</Target>
+			</Copy>
+	
+			<SetParams ExecutionOrder="20" UponError="Continue">
+                <ExecutionGroup>AnswerFile</ExecutionGroup>
+            </SetParams>
+            
+			<Execute ExecutionOrder="40" UponError="Stop">
+                <Command>export SWP_HA_DEBUG=1; /usr/cti/apps/swp/HA/ha_config.pl --delete --file /var/tmp/ha_setupReplication.xml</Command>
+             </Execute>            		
+		
+		
+		</Uninstall>          	
+		
+
+			<Parameters>
+			
+			<Parameter Display="true" DisplayName="DB Replication filer IP" ExecutionGroup="AnswerFile" Level="UnitType" Name="ReplicationVolumeIP" >
+				<Description>IP address of Oracle Replication volume</Description>
+				<File Format="Text" Name="/var/tmp/ha_setupReplication.xml"/>
+				<ParameterPath>__oracle_replication_volume_ip__</ParameterPath>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Value></Value>
+			</Parameter>
+			<Parameter Display="true" DisplayName="Full path to Oracle Replication vol" ExecutionGroup="AnswerFile" Level="UnitType" Name="ReplicationVolume_FP" Overwrite="true">
+				<Description>Full path of Oracle Replication volume (e.g. /T002/ipgw_db_replication)</Description>
+				<File Format="Text" Name="/var/tmp/ha_setupReplication.xml"/>
+				<ParameterPath>__full_path_to_oracle_replication__</ParameterPath>
+				<Value>/T002/ipsm_db_replication</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+					<MinLength>3</MinLength>
+				</Restrictions>
+			</Parameter>
+			<Parameter Display="false" DisplayName="Mount dir for Oracle Replication vol" ExecutionGroup="AnswerFile" Level="UnitType" Name="ReplicationMount" Overwrite="true">
+				<Description>Mount dir for Oracle Replication vol</Description>
+				<File Format="Text" Name="/var/tmp/ha_setupReplication.xml"/>
+				<ParameterPath>__full_path_to_mount_replication__</ParameterPath>
+				<Value>/data/sem_db_replication</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			
+			<Parameter Display="false" DisplayName="Group_Name" ExecutionGroup="AnswerFile" Level="UnitType"	 Name="Group_Name"	Overwrite="true"	>
+				<Description>Group Name in Cluster configuration</Description>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<File Name="/var/tmp/ha_setupReplication.xml" Format="XML" ParameterPath="/swpHA/configuration/group/name"></File>
+				<Value>sem_db-splex</Value>
+			</Parameter>	
+			<Parameter Display="false" DisplayName="Resource_Name" ExecutionGroup="AnswerFile" Level="UnitType"	 Name="Resource_Name"	Overwrite="true"	>
+				<Description>Resource Name in Cluster configuration</Description>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<File Name="/var/tmp/ha_setupReplication.xml" Format="XML" ParameterPath="/swpHA/configuration/group/resource/name"></File>
+				<Value>sem-db-splex-mount</Value>
+			</Parameter>
+			<Parameter Display="false" DisplayName="Group_Depends" ExecutionGroup="AnswerFile" Level="UnitType"	 Name="Group_Depends"	Overwrite="true"	>
+				<Description>Group Dependancy in Cluster configuration</Description>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<File Name="/var/tmp/ha_setupReplication.xml" Format="XML" ParameterPath="/swpHA/configuration/group/depend"></File>
+				<Value>sem_db online local firm</Value>
+			</Parameter>							
+			
+			</Parameters>
+
+		
+	</Component>
+</SWIM>

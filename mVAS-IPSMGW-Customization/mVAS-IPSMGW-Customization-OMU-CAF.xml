@@ -1,0 +1,131 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="mVAS-IPSMGW-Customization-OMU" Version="_VERSION-_BUILD">
+		<Install>
+
+			<Copy ExecutionOrder="10" Overwrite="true" UponError="Stop">
+				<Source>./OMU</Source>
+			</Copy>
+			<Copy ExecutionOrder="20" Overwrite="true"  ChmodFlags="755" UponError="Stop">
+				<Source>./scripts</Source>
+			</Copy>
+			
+			<Execute ExecutionOrder="30" UponError="Stop">
+				<Command>mkdir -p /usr/cti/conf/sem_omu/</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+		
+			<Execute ExecutionOrder="40" UponError="Stop">
+				<Command>find ./OMU ! -name "Oracle-DB-Creation*.xml" -type f -exec /bin/cp {} /usr/cti/conf/sem_omu/ \;</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+		
+			<SetParams ExecutionOrder="50" UponError="Stop">
+				<ExecutionGroup>SetParam</ExecutionGroup>
+			</SetParams>
+			
+			<Execute ExecutionOrder="60" UponError="Stop">
+					<Command>mkdir -p /usr/cti/conf/swp/HA &amp;&amp; /bin/cp -f /usr/cti/conf/sem_omu/ha_defaultSG.xml /usr/cti/conf/swp/HA/</Command>
+					<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			
+			<Execute ExecutionOrder="70" UponError="Stop">
+					<Command>./scripts/add_NIC_resources_to_HA_XML.pl</Command>
+					<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			
+			<Execute ExecutionOrder="80" UponError="Stop">
+					<Command>/usr/cti/apps/CSPbase/csp_networking.pl --file /usr/cti/conf/sem_omu/networking.xml</Command>
+					<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			
+		</Install>
+		
+		<Parameters>
+		
+			<!-- Parameters for networking.xml -->
+			<Parameter Name="SnmpManager" Level="System" Display="true" ExecutionGroup="SetParam">
+				<Description>SnmpManager VIP</Description>
+				<File Format="Text" Name="/usr/cti/conf/sem_omu/networking.xml"/>
+				<ParameterPath>__snmpManager__</ParameterPath>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			
+			<Parameter Name="NtpServer1" Level="System" Display="true" ExecutionGroup="SetParam">
+				<Description>NtpServer1 IP</Description>
+				<File Format="Text" Name="/usr/cti/conf/sem_omu/networking.xml"/>
+				<ParameterPath>__NtpServer1__</ParameterPath>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>		
+			
+			<Parameter Name="NtpServer2" Level="System" Display="true" ExecutionGroup="SetParam">
+				<Description>NtpServer2 IP</Description>
+				<File Format="Text" Name="/usr/cti/conf/sem_omu/networking.xml"/>
+				<ParameterPath>__NtpServer2__</ParameterPath>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			
+			<Parameter Name="SnmpManagerPA1" Level="System" Display="true" ExecutionGroup="SetParam">
+				<Description>SnmpManagerPA1 IP</Description>
+				<File Format="Text" Name="/usr/cti/conf/sem_omu/networking.xml"/>
+				<ParameterPath>__snmpManagerPA1__</ParameterPath>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			
+			<Parameter Name="SnmpManagerPA2" Level="System" Display="true" ExecutionGroup="SetParam">
+				<Description>SnmpManagerPA2 IP</Description>
+				<File Format="Text" Name="/usr/cti/conf/sem_omu/networking.xml"/>
+				<ParameterPath>__snmpManagerPA2__</ParameterPath>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			
+			<Parameter Name="SyslogServer" Level="System" Display="true" ExecutionGroup="SetParam">
+				<Description>SyslogServer VIP</Description>
+				<Files>
+					<File Format="Text" Name="/usr/cti/conf/sem_omu/networking.xml" ParameterPath="__SyslogServer__"/>
+				</Files>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+			
+			<!-- Parameters for ha_defaultSG.xml -->
+			<Parameter Name="Notifier_MNIC" Level="UnitType" Display="true" ExecutionGroup="SetParam">
+				<Description>The network device which is used by the VERITAS Notifier. The Notifier is responsible for sending snmp alarms from VERITAS. If alarms should be sent through the SZ network, then enter value "SZ_MNIC". If alarms should be sent through teh Admin network, then enter value "ADMIN_MNIC", etc' (default: SZ_MNIC)</Description>
+				<File Format="Text" Name="/usr/cti/conf/sem_omu/ha_defaultSG.xml"/>
+				<ParameterPath>__DEVICE__</ParameterPath>
+				<Restrictions>
+					<Type>Enum</Type>
+					<Enum>
+						<Item Value="SZ_MNIC"/>
+						<Item Value="NFS_MNIC"/>
+						<Item Value="ADMIN_MNIC"/>
+					</Enum>
+				</Restrictions>
+				<Value>SZ_MNIC</Value>
+			</Parameter> 
+			
+		</Parameters>
+	</Component>
+</SWIM>

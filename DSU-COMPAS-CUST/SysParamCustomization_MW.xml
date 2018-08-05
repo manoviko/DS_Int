@@ -1,0 +1,343 @@
+<Configuration>
+
+   <Parameters>
+   
+     <Component Name='GslApi'>
+         <Group Name='General'>
+            <Parameter Name='GslEnabled'>
+              <Value>
+                <Item Value="false"/>
+              </Value>
+            </Parameter>
+            <Parameter Name='ProfileHostnameToOverrideGsl'>
+             <Value>
+               <Item Value="MW_DB"/>
+             </Value>
+            </Parameter>
+        </Group>
+        <Group Name='JdbcPrimaryGsl'>
+			<Parameter Name='DataBaseUrl'>
+               <Value>
+                 <Item Value='jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(LOAD_BALANCE=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=MW_DB)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=SEM_DB)))'/>
+               </Value>
+             </Parameter>
+         </Group>    
+         <Group Name='JdbcSecondaryGsl'>				
+			 <Parameter Name='DataBaseUrl'>
+               <Value>
+                  <Item Value='jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(LOAD_BALANCE=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=MW_DB)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=SEM_DB)))'/>
+               </Value>
+			 </Parameter>
+         </Group>
+      </Component>
+
+      <Component Name='Common'>
+		 <Group Name='AuthLogics'>
+			<Parameter Name='InternetPasswordEncryptionMethod'>
+				<Value>
+					  <Item Value="AES"/>
+				</Value>
+			 </Parameter>
+			 <Parameter Name='InternetPasswordIvParameter'>
+				 <Value>
+					  <Item Value="1234567890123456"/>
+				</Value>
+			 </Parameter>
+			 <Parameter Name='InternetPasswordMode'>
+				 <Value>
+					  <Item Value="CBC"/>
+				</Value>
+			 </Parameter>
+			 <Parameter Name='InternetPasswordPadding'>
+				 <Value>
+					  <Item Value="PKCS5Padding"/>
+				</Value>
+			 </Parameter>
+			 <Parameter Name='InternetPasswordSecretKey'>
+				<Value>
+					  <Item Value="7opPxN4SOfXQS2YFkeHDvhcGkTZqUfll"/>
+				</Value>
+			 </Parameter>
+		 </Group>
+		 <Group Name='General'>
+		    <Parameter Name="PaPluginsList">
+              <Value>
+				 <Item Value='InternetPwdSpecialLogics'/>
+                <Item Value="AuthLogics"/>
+                <Item Value='MWLogics'/>
+              </Value>
+           </Parameter>
+		    <Parameter Name="UniqueDbConstraint">
+               <Value>
+                  <Item Key='MW_COMPROF_OWNER.SUBSCRIBERS_PK' Value='InternalSubscriberId'/>
+                  <Item Key='MW_COMPROF_OWNER.SUBS_INTERNET_USERNAME_IX' Value='InternetUsername'/>
+                  <Item Key='MW_COMPROF_OWNER.SUBS_MMS_ADDRESS_IX' Value='MmsAddress'/>
+                  <Item Key='MW_COMPROF_OWNER.SUBS_TELEPHONE_NUMBER_IX' Value='TelephoneNumber'/>
+               </Value>				
+		     </Parameter>                 
+          </Group>    
+		<!-- DR-0-187-822 -->
+		<Group Name='RequestPasswordLogic'>
+			<Parameter Name='RequestPasswordIvParameter'>
+               <Value>
+                  <Item Value='1234567890123456'/>
+               </Value>				
+			</Parameter>
+			<Parameter Name='RequestPasswordMode'>
+               <Value>
+                  <Item Value='CBC'/>
+               </Value>				
+			</Parameter>
+			<Parameter Name='RequestPasswordPadding'>
+               <Value>
+                  <Item Value='PKCS5Padding'/>
+               </Value>			
+			</Parameter>
+			<Parameter Name='RequestPasswordSecretKey'>
+               <Value>
+                  <Item Value='7opPxN4SOfXQS2YFkeHDvhcGkTZqUfll'/>
+               </Value>				
+			</Parameter>
+		</Group>
+		<Group Name="FieldsLogic">
+			<Parameter Name="InternetPasswordMinLength">
+					<Value>
+						<Item Value="8"/>
+					</Value>			
+			</Parameter>
+			<Parameter Name="InternetPasswordMaxLength">
+					<Value>
+						<Item Value="16"/>
+					</Value>			
+			</Parameter>
+			<Parameter Name="InternetPasswordMinNumOfDigits">			
+					<Value>
+						<Item Value="1"/>
+					</Value>				
+			</Parameter>
+			<Parameter Name="InternetPasswordMinNumOfLetters">
+					<Value>
+						<Item Value="1"/>
+					</Value>				
+			</Parameter>
+			<Parameter Name="AddDomainSuffixToDefaultInternetUsername">
+					<Value>
+						<Item Value="false"/>
+					</Value>			
+			</Parameter>
+			
+			
+		</Group>
+	  </Component>
+	 
+	   <Component Name='Shared'>
+		   <!--Group Name="Monitoring">
+				<Parameter Name="AgentXConnectionPort">
+					 <Value>
+						<Item Value="705"/>
+					  </Value>
+				 </Parameter>
+			</Group-->
+		   <Group Name='ProvisioningLogic'>
+			   <Parameter Name='ServiceNamesCoupledToCos'>
+				   <Value>
+					   <Item Value='MAS' />
+				   </Value>
+				</Parameter>  
+		   </Group>
+		   <Group Name='XdsvHandling'>
+				 <Parameter Name='DefaultUser'>			   
+				   <Value>
+						<Item Value='MW_SPM_APP_USER'/>
+					  </Value>					 
+				</Parameter>  				 
+		   </Group>		   
+		   <Group Name='JdbcAuth'>
+			   <Parameter Name='DataBaseUrl'>
+				   <Value>
+					  <Item Value='jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=MW_DB)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=SEM_DB)))'/>
+				   </Value>
+				</Parameter>				   
+			</Group>
+		   <Group Name='JdbcOdsCompas'>
+			   <Parameter Name='DataBaseUrl'>
+				   <Value>
+					  <Item Value='jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(LOAD_BALANCE=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=MW_DB)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=SEM_DB)))'/>
+				   </Value>		   
+			   </Parameter>
+		   </Group>
+		   <Group Name='JdbcPag'>
+			   <Parameter Name='DataBaseUrl'>
+				   <Value>
+					  <Item Value='jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(LOAD_BALANCE=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=MW_DB)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=SEM_DB)))'/>
+				   </Value>		   
+			   </Parameter>
+			</Group>		   		   
+			<Group Name='JdbcEtsiItcp'>
+				<Parameter Name='DataBaseUrl'>
+				   <Value>
+					  <Item Value='jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(LOAD_BALANCE=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=MW_DB)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=SEM_DB)))'/>
+				   </Value>					
+			   </Parameter>
+			</Group>
+			<Group Name='ProvisioningLogic'>
+				 <Parameter Name='InternetPasswordDefaultSource'>
+					 <Value>
+						<Item Value="Random"/>
+					</Value>
+				  </Parameter>					
+			</Group>
+			<Group Name='SpmAgent'>
+				<Parameter Name='SpmAgentHost'>
+					 <Value>
+						<Item Value="SEM_SpmAgent"/>
+					</Value>					
+				</Parameter>
+			</Group>					   
+	  </Component>
+
+	  <Component Name="Jdsv">
+        <Group Name='GlobalDefinitions'>
+			<Parameter Name='DbDateFormat'>
+				<Value>
+					<Item Value='yyyy-MM-dd HH:mm:ss'/>
+				</Value>
+			</Parameter>
+		</Group>	  
+        <Group Name="DB">
+            <Parameter Name="ConnectionUser">
+				<Value>
+                     <Item Value="MW_SPM_APP_USER"/>
+                   </Value>
+                </Parameter>
+                <Parameter Name="ConnectionUrlFormat">
+                 <Value>
+                        <Item Value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(LOAD_BALANCE=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=####)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=SEM_DB)))"/>
+                 </Value>                     
+                </Parameter>    
+                <Parameter Name="ConnectionHost">
+                        <Value>
+							 <Item Value="MW_DB"/>
+                        </Value>                                        
+                </Parameter> 
+        </Group>
+        <Group Name="DefaultSqlDataSource">
+			<Parameter Name="ConnectionUser">
+				<Value>
+                     <Item Value="MW_SPM_APP_USER"/>
+                   </Value>
+             </Parameter>
+             <Parameter Name='ConnectionUrlFormat'>
+               <Value>
+                  <Item Value='jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(LOAD_BALANCE=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=####)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=SEM_DB)))'/>
+               </Value>				 
+             </Parameter> 
+            <Parameter Name='ConnectionHost'>
+               <Value>
+                  <Item Value='MW_DB'/>
+               </Value>				
+             </Parameter>                                         	
+			</Group>
+			<Group Name="DS">
+				<Parameter Name="ConnectionUser">
+                    <Value>
+						<Item Value="MW_SPM_APP_USER"/>
+					</Value>
+                </Parameter>
+			</Group>
+			<Group Name="DefaultLdapDataSource">
+				<Parameter Name="ConnectionUser">
+                    <Value>
+						<Item Value="MW_SPM_APP_USER"/>
+					</Value>
+                </Parameter>
+               </Group>					
+        </Component>	  
+        
+	  <Component Name='Cpe'>
+		  <Group Name='General'>
+			  <Parameter Name='AddCreateOrModifyInfo'>
+               <Value>
+                  <Item Value='true'/>
+               </Value>				  
+			  </Parameter>
+			  <Parameter Name='UsersListForRetrieveFieldsOnCreate'>
+				  	<Value>
+						<Item Value="MW_SPM_APP_USER"/>
+					</Value>
+			  </Parameter>
+			  <Parameter Name='UsersListForRetrieveFieldsOnModify'>
+				  	<Value>
+						<Item Value="MW_SPM_APP_USER"/>
+					</Value>
+			  </Parameter>			  
+			  <Parameter Name="RetrieveFieldsOnCreate">			  
+					<Value>
+						<Item Value='SystemName'/>
+						<Item Value="ResourceGroupName"/>
+						<Item Value='InternetPassword'/>
+						<Item Value='InternetPwdChangeTime'/>
+					</Value>				  
+			  </Parameter>
+			  <Parameter Name="RetrieveFieldsOnModify">
+				  <Value>
+					  <Item Value='InternetPassword'/>
+				  </Value>
+			  </Parameter>
+		  </Group>
+ 
+		  <Group Name='ComponentsList'>
+            <Parameter Name='ProductComponents'>
+              <Value>
+                <Item Key="ContentCategory" Value="1"/>
+                <Item Key="ContentProfile" Value="1"/>
+             </Value>
+        </Parameter>
+      </Group>
+	  </Component>
+
+	  <Component Name='SpmAgent'>
+		<Group Name='General'>		  
+		  <Parameter Name='GslSecondaryURL'>
+               <Value>
+                  <Item Value='jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(LOAD_BALANCE=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=MW_DB)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=SEM_DB)))'/>			  
+				</Value>
+		  </Parameter>
+		  <Parameter Name='CompasHttpName'>
+			  <Value>
+                  <Item Value='PGW'/>
+               </Value>			  
+			</Parameter>
+			<Parameter Name='CompasHttpPort'>               
+               <Value>
+                  <Item Value='52101'/>
+               </Value>
+			</Parameter>
+			<Parameter Name='CompasProvisioningPath'>
+               <Value>
+                  <Item Value='/compas/ProvisionServlet'/>
+               </Value>
+			</Parameter> 
+		 </Group>
+		<Group Name='Batch'> 
+		 <Parameter Name='NumOfParallelLineProcessing'>
+               <Value>
+                  <Item Value='15'/>
+               </Value>
+            </Parameter>	
+         </Group>	 
+	   </Component>
+	  	   
+		<Component Name='LocalSettings'>	  	   
+		   <Group Name='General'>
+			<Parameter Name='CompasUserName'>
+               <Value>
+                  <Item Value='MW_SPM_APP_USER'/>
+               </Value>			
+			</Parameter>
+		 </Group>			
+	   </Component>		
+		
+	</Parameters>
+</Configuration>
+

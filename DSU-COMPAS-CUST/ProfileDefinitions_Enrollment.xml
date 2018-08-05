@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Provisioning>
+    <ProfileDefinition HashCode="-508689875" LoadingPriority="2" Name="Enrollment" Version="5.0.0.0-03">
+        <Entities>
+             <Entity>
+            <Name>Subscriber</Name>
+            <DsvEntityName>SUB</DsvEntityName>
+             <Fields>
+                 <Field>
+                      <Name>MailboxBlocked</Name>
+                            <DsvName>CnsMailboxBlocked</DsvName>
+                          <DbName>SUBSCRIBERS.MAILBOX_BLOCKED</DbName>
+                          <XsdValidation>
+                             <Type>xs:boolean</Type>
+                             <MinOcc>0</MinOcc>
+                             <MaxOcc>1</MaxOcc>
+                             <Nillable>true</Nillable>
+                          </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>General</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel/>
+                        <SystemDefaults>
+                           <XsdValidation>
+                              <Nillable>false</Nillable>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>Mailbox Blocked</DisplayName>
+                  <Description>Determines if the subscriber&apos;s mailbox is administratively locked.</Description>
+               </Field>
+    <!-- SemSendSMSEnabled -->
+            <Field>
+                <Name>SemSendSMSEnabled</Name>
+                <DsvName>CnsSemSendSMSEnabled</DsvName>
+                <DbName>SUBSCRIBERS.SEM_SEND_SMS_ENABLED</DbName>
+                <XsdValidation>
+                <Type>xs:boolean</Type>
+                <MinOcc>0</MinOcc>
+                <MaxOcc>1</MaxOcc>
+                <Nillable>true</Nillable>
+                </XsdValidation>
+                        <DisplayName>Send SMS Enabled</DisplayName>
+                        <Description>Determines if the subscriber can send SMS</Description>
+                </Field>
+
+    <!-- SemSendMMSEnabled -->
+            <Field>
+                <Name>SemSendMMSEnabled</Name>
+                <DsvName>CnsSemSendMMSEnabled</DsvName>
+                <DbName>SUBSCRIBERS.SEM_SEND_MMS_ENABLED</DbName>
+                <XsdValidation>
+                <Type>xs:boolean</Type>
+                <MinOcc>0</MinOcc>
+                <MaxOcc>1</MaxOcc>
+                <Nillable>true</Nillable>
+                </XsdValidation>
+                        <DisplayName>Send MMS Enabled</DisplayName>
+                        <Description>Determines if the subscriber can send MMS</Description>
+                </Field>
+
+    <!-- SemSendVMSEnabled -->
+            <Field>
+                <Name>SemSendVMSEnabled</Name>
+                <DsvName>CnsSemSendVMSEnabled</DsvName>
+                <DbName>SUBSCRIBERS.SEM_SEND_VMS_ENABLED</DbName>
+                <XsdValidation>
+                <Type>xs:boolean</Type>
+                <MinOcc>0</MinOcc>
+                <MaxOcc>1</MaxOcc>
+                <Nillable>true</Nillable>
+                </XsdValidation>
+                        <DisplayName>Send VMS Enabled</DisplayName>
+                        <Description>Determines if the subscriber can send VMS</Description>
+                </Field>
+
+    <!-- SemSendIMEnabled -->
+            <Field>
+                <Name>SemSendIMEnabled</Name>
+                <DsvName>CnsSemSendIMEnabled</DsvName>
+                <DbName>SUBSCRIBERS.SEM_SEND_IM_ENABLED</DbName>
+                <XsdValidation>
+                <Type>xs:boolean</Type>
+                <MinOcc>0</MinOcc>
+                <MaxOcc>1</MaxOcc>
+                <Nillable>true</Nillable>
+                </XsdValidation>
+                        <DisplayName>Send IM Enabled</DisplayName>
+                        <Description>Determines if the subscriber can send IM</Description>
+                </Field>
+
+    <!-- SemReceiveSMSEnabled-->
+            <Field>
+                <Name>SemReceiveSMSEnabled</Name>
+                <DsvName>CnsSemReceiveSMSEnabled</DsvName>
+                <DbName>SUBSCRIBERS.SEM_RECEIVE_SMS_ENABLED</DbName>
+                <XsdValidation>
+                <Type>xs:boolean</Type>
+                <MinOcc>0</MinOcc>
+                <MaxOcc>1</MaxOcc>
+                <Nillable>true</Nillable>
+                </XsdValidation>
+                        <DisplayName>Receive SMS Enabled</DisplayName>
+                        <Description>Determines if the subscriber can receive SMS</Description>
+                </Field>
+
+    <!-- SemReceiveMMSEnabled-->
+            <Field>
+                <Name>SemReceiveMMSEnabled</Name>
+                <DsvName>CnsSemReceiveMMSEnabled</DsvName>
+                <DbName>SUBSCRIBERS.SEM_RECEIVE_MMS_ENABLED</DbName>
+                <XsdValidation>
+                <Type>xs:boolean</Type>
+                <MinOcc>0</MinOcc>
+                <MaxOcc>1</MaxOcc>
+                <Nillable>true</Nillable>
+                </XsdValidation>
+                        <DisplayName>Receive MMS Enabled</DisplayName>
+                        <Description>Determines if the subscriber can receive MMS</Description>
+                </Field>
+
+    <!-- SemReceiveVMSEnabled-->
+            <Field>
+                <Name>SemReceiveVMSEnabled</Name>
+                <DsvName>CnsSemReceiveVMSEnabled</DsvName>
+                <DbName>SUBSCRIBERS.SEM_RECEIVE_VMS_ENABLED</DbName>
+                <XsdValidation>
+                <Type>xs:boolean</Type>
+                <MinOcc>0</MinOcc>
+                <MaxOcc>1</MaxOcc>
+                <Nillable>true</Nillable>
+                </XsdValidation>
+                        <DisplayName>Receive VMS Enabled</DisplayName>
+                        <Description>Determines if the subscriber can receive VMS</Description>
+                </Field>
+
+    <!-- SemReceiveIMEnabled-->
+            <Field>
+                <Name>SemReceiveIMEnabled</Name>
+                <DsvName>CnsSemReceiveIMEnabled</DsvName>
+                <DbName>SUBSCRIBERS.SEM_RECEIVE_IM_ENABLED</DbName>
+                <XsdValidation>
+                <Type>xs:boolean</Type>
+                <MinOcc>0</MinOcc>
+                <MaxOcc>1</MaxOcc>
+                <Nillable>true</Nillable>
+                </XsdValidation>
+                        <DisplayName>Receive IM Enabled</DisplayName>
+                        <Description>Determines if the subscriber can receive IM</Description>
+                </Field>
+                
+    <!-- SemReceiveIMEnabled-->
+            <Field>
+                <Name>PreferredLang</Name>
+                <DsvName>CnsPreferredLang</DsvName>
+                <DbName>SUBSCRIBERS.PREFERRED_LANG</DbName>
+                <XsdValidation>
+					<Type>xs:string</Type>
+					<MinOcc>0</MinOcc>
+					<MaxOcc>1</MaxOcc>
+					<Nillable>true</Nillable>
+                </XsdValidation>
+                        <DisplayName>Preferred Language</DisplayName>
+                        <Description>Determines preferred language for subscriber</Description>
+                </Field>                
+
+        <!-- Field>
+                  <Name>TransactionalCharging</Name>
+                  <DsvName>TransactionalCharging</DsvName>
+                  <DbName>SUBSCRIBERS.TRANSACTIONAL_CHARGING</DbName>
+                  <XsdValidation>
+                     <Type>xs:integer</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                     <MinVal>0</MinVal>
+                  </XsdValidation>
+                  <DisplayName>TransactionalCharging</DisplayName>
+                  <Description>Transactional Charging</Description>
+               </Field -->
+               <!--Field>
+                  <Name>RequestOriginator</Name>
+                  <DsvName>RequestOriginator</DsvName>
+                  <DbName>SUBSCRIBERS.REQUEST_ORIGINATOR</DbName>
+                  <XsdValidation>
+                     <Type>xs:integer</Type>
+                     <MinOcc>0</MinOcc>
+                     <MaxOcc>1</MaxOcc>
+                     <Nillable>true</Nillable>
+                     <MinVal>0</MinVal>
+                  </XsdValidation>
+                  <DisplayName>RequestOriginator</DisplayName>
+                  <Description>Request Originator</Description>
+               </Field-->
+              </Fields>
+              <!-- Collections>
+               <Collection>
+                  <Name>ApplicationEnrollments</Name>
+                  <CollectionElement>
+                     <Name>ApplicationEnrollment</Name>
+                     <DsvEntityName>APPLICATION_ENROLL</DsvEntityName>
+                     <KeyField>Id</KeyField>
+                     <SqlDefinition>
+                        <Tables>
+                           <Table>
+                              <Name>APPLICATION_ENROLL</Name>
+                              <Type>Main</Type>
+                              <Key>APPLICATION_ID</Key>
+                           </Table>
+                        </Tables>
+                        <NaturalJoins>
+                           <Join>
+                              <TableName>SUBSCRIBERS</TableName>
+                              <DsvEntityName>SUB</DsvEntityName>
+                           </Join>
+                        </NaturalJoins>
+                        <ForeignKey>
+                           <DsvName>Uid</DsvName>
+                           <DbName>APPLICATION_ENROLL.SUBSCRIBER_ID</DbName>
+                        </ForeignKey>
+                     </SqlDefinition>
+                    <Fields>
+                        <Field>
+                           <Name>Id</Name>
+                           <DsvName>ApplicationApplicationID</DsvName>
+                           <DbName>APPLICATION_ENROLL.APPLICATION_ID</DbName>
+                           <XsdValidation>
+                              <Type>xs:integer</Type>
+                              <MinOcc>0</MinOcc>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                           <DisplayName>ApplicationApplicationID</DisplayName>
+                           <Description>Application Application id</Description>
+                        </Field>
+            <Field>
+                           <Name>EnrollmentStatus</Name>
+                           <DsvName>EnrollmentStatus</DsvName>
+                           <DbName>APPLICATION_ENROLL.ENROLLMENT_STATUS</DbName>
+                           <XsdValidation>
+                    <Type>xs:string</Type>
+                             <MinOcc>0</MinOcc>
+                           <MaxOcc>1</MaxOcc>
+                             <Nillable>true</Nillable>
+                           <MinLength>1</MinLength>
+                             <MaxLength>1</MaxLength>
+                           <Patterns>
+                                    <Value>[AC]</Value>
+                             </Patterns>
+                           </XsdValidation>
+                           <DisplayName>EnrollmentStatus</DisplayName>
+                           <Description>Enrollment status</Description>
+                       </Field>
+            
+            <Field>
+                           <Name>ApplicationPackageEnrollId</Name>
+                           <DsvName>ApplicationPackageEnrollId</DsvName>
+                           <DbName>APPLICATION_ENROLL.APPLICATION_PACKAGE_ENROLL_ID</DbName>
+                           <XsdValidation>
+                              <Type>xs:integer</Type>
+                              <MinOcc>0</MinOcc>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                           <DisplayName>ApplicationPackageEnrollId</DisplayName>
+                           <Description>ApplicationPackageEnrollId</Description>
+                        </Field>
+            
+                        <Field>
+                           <Name>EnrollmentDate</Name>
+                           <DsvName>EnrollmentDate</DsvName>
+                           <DbName>APPLICATION_ENROLL.ENROLLMENT_DATE</DbName>
+                           <XsdValidation>
+                              <Type>compas:TimeType</Type>
+                              <MinOcc>0</MinOcc>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                           <DisplayName>EnrollmentDate</DisplayName>
+                           <Description>Enrollment date</Description>
+                        </Field>
+                        <Field>
+                           <Name>ExpirationDate</Name>
+                           <DsvName>ExpirationDate</DsvName>
+                           <DbName>APPLICATION_ENROLL.EXPIRATION_DATE</DbName>
+                           <XsdValidation>
+                              <Type>compas:TimeType</Type>
+                              <MinOcc>0</MinOcc>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                           <DisplayName>ExpirationDate</DisplayName>
+                           <Description>Expiration Date</Description>
+                        </Field>
+                        <Field>
+                           <Name>ManualCancelDate</Name>
+                           <DsvName>ManualCancelDate</DsvName>
+                           <DbName>APPLICATION_ENROLL.MANUAL_CANCEL_DATE</DbName>
+                           <XsdValidation>
+                              <Type>compas:TimeType</Type>
+                              <MinOcc>0</MinOcc>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                           <DisplayName>ManualCancelDate</DisplayName>
+                           <Description>Manual Cancel Date</Description>
+                        </Field>
+                        <Field>
+                           <Name>RenewalCounter</Name>
+                           <DsvName>RenewalCounter</DsvName>
+                           <DbName>APPLICATION_ENROLL.RENEWAL_COUNTER</DbName>
+                           <XsdValidation>
+                              <Type>xs:integer</Type>
+                              <MinOcc>0</MinOcc>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                           <DisplayName>RenewalCounter</DisplayName>
+                           <Description>RenewalCounter</Description>
+                        </Field>
+                        <Field>
+                           <Name>LastRenewalAttemptDate</Name>
+                           <DsvName>LastRenewalAttemptDate</DsvName>
+                           <DbName>APPLICATION_ENROLL.LAST_RENEWAL_ATTEMPT_DATE</DbName>
+                           <XsdValidation>
+                              <Type>compas:TimeType</Type>
+                              <MinOcc>0</MinOcc>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                           <DisplayName>LastRenewalAttemptDate</DisplayName>
+                           <Description>LastRenewalAttemptDate</Description>
+                        </Field>
+            <Field>
+                           <Name>SmsEnrolled</Name>
+                           <DsvName>SmsEnrolled</DsvName>
+                           <DbName>APPLICATION_ENROLL.SMS_ENROLLED</DbName>
+                           <XsdValidation>
+                              <Type>xs:boolean</Type>
+                              <MinOcc>0</MinOcc>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                           <DisplayName>SmsEnrolled</DisplayName>
+                           <Description>SmsEnrolled</Description>
+                        </Field>
+            <Field>
+                           <Name>MmsEnrolled</Name>
+                           <DsvName>MmsEnrolled</DsvName>
+                           <DbName>APPLICATION_ENROLL.MMS_ENROLLED</DbName>
+                           <XsdValidation>
+                              <Type>xs:boolean</Type>
+                              <MinOcc>0</MinOcc>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                           <DisplayName>MmsEnrolled</DisplayName>
+                           <Description>MmsEnrolled</Description>
+                        </Field>
+            <Field>
+                           <Name>VmsEnrolled</Name>
+                           <DsvName>VmsEnrolled</DsvName>
+                           <DbName>APPLICATION_ENROLL.VMS_ENROLLED</DbName>
+                           <XsdValidation>
+                              <Type>xs:boolean</Type>
+                              <MinOcc>0</MinOcc>
+                              <MaxOcc>1</MaxOcc>
+                           </XsdValidation>
+                           <DisplayName>VmsEnrolled</DisplayName>
+                           <Description>VmsEnrolled</Description>
+                        </Field>
+                       </Fields>
+                       </CollectionElement>
+                      </Collection>
+				</Collections -->
+			</Entity>
+			<Entity>
+                     <Name>ApplicationPackageProfile</Name>
+                     <DsvEntityName>APPLICATION_PACKAGE_PROFILE</DsvEntityName>
+                     <KeyField>ApplicationPackageID</KeyField>
+                     <SqlDefinition>
+                        <Tables>
+                           <Table>
+                              <Name>APPLICATION_PACKAGE_PROFILE</Name>
+                              <Type>Main</Type>
+                              <Key>APPLICATION_PACKAGE_ID</Key>
+                           </Table>
+                        </Tables>
+                     </SqlDefinition>
+                     <Fields>
+                        <Field>
+                           <Name>ApplicationPackageID</Name>
+                           <DsvName>CnsAppPackageID</DsvName>
+                           <DbName>APPLICATION_PACKAGE_PROFILE.APPLICATION_PACKAGE_ID</DbName>
+                           <XsdValidation>
+							<Nillable>false</Nillable>
+                              <Type>xs:nonNegativeInteger</Type>
+                              <MinOcc>0</MinOcc>
+                              <MaxOcc>0</MaxOcc>
+                              </XsdValidation>
+							<SubscriberBehavioralInfo> 
+								<ServiceName>General</ServiceName> 
+								<ResolvedLevels> 
+									<SystemDefaults /> 
+								</ResolvedLevels> 
+							</SubscriberBehavioralInfo> 
+							<DisplayName>ApplicationPackageID</DisplayName> 
+							<Description>The ApplicationPackage ID</Description> 
+						</Field> 
+						<Field> 
+							<Name>ApplicationPackageName</Name> 
+							<DbName>APPLICATION_PACKAGE_PROFILE.NAME</DbName> 
+							<DsvName>cnsAppPackageName</DsvName>					
+							<XsdValidation> 
+								<Type>xs:string</Type> 
+								<MinOcc>0</MinOcc> 
+								<MaxOcc>1</MaxOcc> 
+							</XsdValidation> 
+							<DisplayName>ApplicationPackageName</DisplayName> 
+							<Description>Application Package Name</Description> 
+						</Field> 
+					<Field> 
+						<Name>Suspended</Name> 
+						<DbName>APPLICATION_PACKAGE_PROFILE.SUSPENDED</DbName> 
+						<DsvName>cnsSuspended</DsvName>                                 
+						<XsdValidation> 
+                            <Type>xs:string</Type> 
+                            <MinOcc>0</MinOcc> 
+                            <MaxOcc>1</MaxOcc> 
+						</XsdValidation> 
+						<DisplayName>Suspended</DisplayName> 
+						<Description>Suspended</Description> 
+				</Field>						
+				</Fields>
+			</Entity>
+		</Entities>
+	</ProfileDefinition>
+</Provisioning>

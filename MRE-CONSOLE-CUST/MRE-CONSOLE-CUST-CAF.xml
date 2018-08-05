@@ -1,0 +1,68 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="MRE-CONSOLE-CUST" Version="_VERSION-_BUILD">
+		<Install>
+		
+			<Copy ChmodFlags="+x" ExecutionOrder="10" Overwrite="true" UponError="Stop">
+				<Source>./set_mre_console_details.sh</Source>
+			</Copy>
+			<Execute ExecutionOrder="20" UponError="Stop">
+				<Command>./set_mre_console_details.sh {MiddleWareDBHOST} {MiddleWareDBSID} {MiddleWareDBUserName} "{MiddleWareDBPassword}" {MRE_CONSOLE_INSTANCE}</Command>
+			</Execute>
+			
+		</Install>
+		
+		<Upgrade>
+			<Copy ChmodFlags="+x" ExecutionOrder="120" Overwrite="true" UponError="Stop">
+				<Source>./set_mre_console_details.sh</Source>
+			</Copy>
+			<Execute ExecutionOrder="130" UponError="Stop">
+				<Command>./set_mre_console_details.sh {MiddleWareDBHOST} {MiddleWareDBSID} {MiddleWareDBUserName} "{MiddleWareDBPassword}" {MRE_CONSOLE_INSTANCE}</Command>
+			</Execute>	
+			
+		</Upgrade>
+		
+		<Parameters>
+			<Parameter Name="MiddleWareDBUserName" Level="System" Display="false">
+				<Value>mw</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+			</Parameter>
+            <Parameter Name="MiddleWareDBPassword" Level="System" Display="true" DisplayName="Middleware DB password">
+                <Restrictions>
+                    <Type>String</Type>
+                    <Mandatory>true</Mandatory>
+                    <MaxLength>255</MaxLength>
+                </Restrictions>
+                <Value>AZdZhkzS4zPflwd\/NI7ZAQ==</Value>
+                <Description>Middleware DB Password</Description>
+            </Parameter>			
+			<Parameter Name="MiddleWareDBSID" Level="System" Display="true" DisplayName="Middleware DB Service Name">
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+					<MaxLength>255</MaxLength>
+				</Restrictions>
+				<Description>Middleware DB Service Name</Description>
+				<Value>SEM_DB</Value>
+			</Parameter>
+			<Parameter Name="MiddleWareDBHOST" Level="System" Display="false" DisplayName="Middleware DB Name">
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+					<MaxLength>255</MaxLength>
+				</Restrictions>
+				<Description>Middleware DB Name</Description>
+				<Value>MW_DB</Value>
+			</Parameter>
+			<Parameter Name="MRE_CONSOLE_INSTANCE" Level="Unit" Display="true" DisplayName="MRE_CONSOLE INSTANCE ID">
+				<Description>Used to configure MRE_CONSOLE config files</Description>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^([1-9])\.([1-9])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+			</Parameter>
+		</Parameters>
+	</Component>
+</SWIM>

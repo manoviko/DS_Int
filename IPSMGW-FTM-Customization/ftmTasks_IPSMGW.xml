@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File-Transfer-Configuration GET_THREADS="3" UPDATEINTERVAL="PT0H02M00S" SupportIPv6="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ftmTasks.xsd">
+
+    <!--STATS correct farm name if needed-->
+         <Transfer>
+                <Connection>
+                        <HostOrGroupName>IPGW_cluster</HostOrGroupName>
+                        <Port>22</Port>
+                        <Transport type="SecureFTP" />
+                </Connection>
+                <Operation type="GET">
+                        <StartTime>2014-01-05T09:00:00</StartTime>
+                        <RepeatInterval>PT0H02M</RepeatInterval>
+                        <!--<UserName>smsc</UserName>-->
+						<UserName>ftm</UserName>
+                        <!--<Password>DUTY0/xRv7VKYwWoD1ALVg==</Password>-->
+						<Password>mwwzKS4njTQJY38khGjo8Q==</Password>
+                        <FileSpecification>
+                                <LocalPath>/data/files/stat/IPSMGW</LocalPath>
+                                <RemotePath>/var/cti/smsc/site/trace/stats/</RemotePath>
+                                <!--<Include>^((?!\.done).)*$</Include>-->
+								<Include>.+\.stat\..+[0-9]$</Include>
+                                <!--<Source action="Rename" suffix=".done" />-->
+                                <Source action="Delete" />
+                                <!--<Destination action="Keep" />-->
+								<Destination action="Rename" suffix=".start"/>
+                                <IfExist action="Skip" />
+                                <ZIPCompression>N</ZIPCompression>
+                        </FileSpecification>
+                </Operation>
+                <Errors>
+                        <Login>
+                                <RetryInterval>PT0H0M25S</RetryInterval>
+                                <MaxRetry>3</MaxRetry>
+                                <Alarm enable="Y" />
+                        </Login>
+                        <FileTransfer>
+                                <Timeout>PT0H0M15S</Timeout>
+                                <RetryInterval>PT0H0M15S</RetryInterval>
+                                <MaxRetry>2</MaxRetry>
+                                <Alarm enable="Y" />
+                        </FileTransfer>
+                        <NoActivity>
+                                <MaxIntervals>50</MaxIntervals>
+                                <Alarm enable="Y" />
+                        </NoActivity>
+                        <TrnsNotDone>
+                                <Alarm enable="Y" />
+                        </TrnsNotDone>
+                </Errors>
+        </Transfer>
+		 <Transfer>
+                <Connection>
+                        <HostOrGroupName>IPGW_cluster</HostOrGroupName>
+                        <Port>22</Port>
+                        <Transport type="SecureFTP" />
+                </Connection>
+                <Operation type="GET">
+                        <StartTime>2014-01-05T09:00:00</StartTime>
+                        <RepeatInterval>PT0H02M</RepeatInterval>
+                        <!--<UserName>smsc</UserName>-->
+						<UserName>ftm</UserName>
+                        <!--<Password>DUTY0/xRv7VKYwWoD1ALVg==</Password>-->
+						<Password>mwwzKS4njTQJY38khGjo8Q==</Password>
+                        <FileSpecification>
+                                <!--<LocalPath>/data/omap_stats/IPGW</LocalPath>-->
+								<LocalPath>/data/files/stat/IPSMGW</LocalPath>
+                                <RemotePath>/var/cti/smsc/site/trace/stats/</RemotePath>
+                                <!--<Include>^((?!\.done).)*$</Include>-->
+                                <!--<Include>stats.IPGW.*</Include>-->
+								<Include>stats.IPGW.*.xml</Include>
+                                <!--<Source action="Rename" suffix=".done" />-->
+                                <Source action="Delete" />
+                                <!--<Destination action="Keep" />-->
+								<Destination action="Rename" suffix=".start"/>
+                                <IfExist action="Skip" />
+                                <ZIPCompression>N</ZIPCompression>
+                        </FileSpecification>
+                </Operation>
+                <Errors>
+                        <Login>
+                                <RetryInterval>PT0H0M25S</RetryInterval>
+                                <MaxRetry>3</MaxRetry>
+                                <Alarm enable="Y" />
+                        </Login>
+                        <FileTransfer>
+                                <Timeout>PT0H0M15S</Timeout>
+                                <RetryInterval>PT0H0M15S</RetryInterval>
+                                <MaxRetry>2</MaxRetry>
+                                <Alarm enable="Y" />
+                        </FileTransfer>
+                        <NoActivity>
+                                <MaxIntervals>50</MaxIntervals>
+                                <Alarm enable="Y" />
+                        </NoActivity>
+                        <TrnsNotDone>
+                                <Alarm enable="Y" />
+                        </TrnsNotDone>
+                </Errors>
+        </Transfer>
+	<!--CDRS-->
+    <!-- CDRs task added verify farm and path correct for stf06-->
+	<Transfer>
+		<Connection>
+		  <HostOrGroupName>IPGW_cluster</HostOrGroupName>
+			<Port>22</Port>
+			<Transport type="SecureFTP" />
+		</Connection>
+		<Operation type="GET">
+			<StartTime>2014-01-05T09:00:00</StartTime>
+			<RepeatInterval>PT0H02M</RepeatInterval>
+		             	<!--<UserName>smsc</UserName>-->
+						<UserName>ftm</UserName>
+                        <!--<Password>DUTY0/xRv7VKYwWoD1ALVg==</Password>-->
+						<Password>mwwzKS4njTQJY38khGjo8Q==</Password>
+			<FileSpecification>
+					<!--<LocalPath>/data/ipgw_cdr/IPSMGW/input/</LocalPath>-->
+					<LocalPath>/data/cdrs/IPSMGW/input</LocalPath>
+					<RemotePath>/var/cti/smsc/site/trace/cdr</RemotePath>
+					<Include>^((?!\.current).)*$</Include>
+                    <Source action="Delete"/>
+					<!--<Destination action="Keep"/>-->
+					<!--<Destination action="Rename" suffix=".start"/>-->
+					<Destination action="Rename" suffix=".done" />
+					<IfExist action="Skip" />
+					<ZIPCompression>N</ZIPCompression>
+			</FileSpecification>
+		</Operation>
+		<Errors>
+				<Login>
+					<RetryInterval>PT0H0M15S</RetryInterval>
+					<MaxRetry>2</MaxRetry>
+					<Alarm enable="Y" />
+				</Login>
+				<FileTransfer>
+					<Timeout>PT0H0M05S</Timeout>
+					<RetryInterval>PT0H0M05S</RetryInterval>
+					<MaxRetry>2</MaxRetry>
+					<Alarm enable="Y" />
+				</FileTransfer>
+				<NoActivity>
+					<MaxIntervals>50</MaxIntervals>
+					<Alarm enable="Y" />
+				</NoActivity>
+				<TrnsNotDone>
+					<Alarm enable="Y" />
+				</TrnsNotDone>
+		</Errors>
+	</Transfer>
+	<Transfer>
+		<Connection>
+		  <HostOrGroupName>IPGW_cluster</HostOrGroupName>
+			<Port>22</Port>
+			<Transport type="SecureFTP" />
+		</Connection>
+		<Operation type="GET">
+			<StartTime>2014-01-05T09:00:00</StartTime>
+			<RepeatInterval>PT0H02M</RepeatInterval>
+			<!--<UserName>smsc</UserName>-->
+			<UserName>ftm</UserName>
+            <!--<Password>DUTY0/xRv7VKYwWoD1ALVg==</Password>-->
+			<Password>mwwzKS4njTQJY38khGjo8Q==</Password>
+			<FileSpecification>
+					<LocalPath>/data/files/traces/IPSMGW</LocalPath>
+					<RemotePath>/var/cti/smsc/site/trace/IPGW/header/</RemotePath>
+					<Include>^((?!\.current).)*$</Include>
+                    <Source action="Delete"/>
+					<!--<Destination action="Keep" />-->
+					<Destination action="Rename" suffix=".start"/>
+					<!--<Destination action="Rename" suffix=".done" />-->
+					<IfExist action="Skip" />
+					<ZIPCompression>N</ZIPCompression>
+			</FileSpecification>
+		</Operation>
+		<Errors>
+				<Login>
+					<RetryInterval>PT0H0M15S</RetryInterval>
+					<MaxRetry>2</MaxRetry>
+					<Alarm enable="Y" />
+				</Login>
+				<FileTransfer>
+					<Timeout>PT0H0M05S</Timeout>
+					<RetryInterval>PT0H0M05S</RetryInterval>
+					<MaxRetry>2</MaxRetry>
+					<Alarm enable="Y" />
+				</FileTransfer>
+				<NoActivity>
+					<MaxIntervals>50</MaxIntervals>
+					<Alarm enable="Y" />
+				</NoActivity>
+				<TrnsNotDone>
+					<Alarm enable="Y" />
+				</TrnsNotDone>
+		</Errors>
+	</Transfer>
+	<Transfer>
+		<Connection>
+		  <HostOrGroupName>IPGW_cluster</HostOrGroupName>
+			<Port>22</Port>
+			<Transport type="SecureFTP" />
+		</Connection>
+		<Operation type="GET">
+			 <StartTime>2014-01-05T09:00:00</StartTime>
+			 <RepeatInterval>PT0H02M</RepeatInterval>
+			 <!--<UserName>smsc</UserName>-->
+			 <UserName>ftm</UserName>
+             <!--<Password>DUTY0/xRv7VKYwWoD1ALVg==</Password>-->
+			 <Password>mwwzKS4njTQJY38khGjo8Q==</Password>
+			<FileSpecification>
+					<LocalPath>/data/files/traces/IPSMGW</LocalPath>
+					<RemotePath>/var/cti/smsc/site/trace/IPGW/event/</RemotePath>
+					<Include>^((?!\.current).)*$</Include>
+                    <Source action="Delete"/>
+					<!--<Destination action="Keep" />-->
+					<Destination action="Rename" suffix=".start"/>
+					<!--<Destination action="Rename" suffix=".done" />-->
+					<IfExist action="Skip" />
+					<ZIPCompression>N</ZIPCompression>
+			</FileSpecification>
+		</Operation>
+		<Errors>
+				<Login>
+					<RetryInterval>PT0H0M15S</RetryInterval>
+					<MaxRetry>2</MaxRetry>
+					<Alarm enable="Y" />
+				</Login>
+				<FileTransfer>
+					<Timeout>PT0H0M05S</Timeout>
+					<RetryInterval>PT0H0M05S</RetryInterval>
+					<MaxRetry>2</MaxRetry>
+					<Alarm enable="Y" />
+				</FileTransfer>
+				<NoActivity>
+					<MaxIntervals>50</MaxIntervals>
+					<Alarm enable="Y" />
+				</NoActivity>
+				<TrnsNotDone>
+					<Alarm enable="Y" />
+				</TrnsNotDone>
+		</Errors>
+	</Transfer>
+	 <Transfer>
+                <Connection>
+                        <HostOrGroupName>MAP_cluster</HostOrGroupName>
+                        <Port>22</Port>
+                        <Transport type="SecureFTP" />
+                </Connection>
+                <Operation type="GET">
+                        <StartTime>2014-01-05T09:00:00</StartTime>
+                        <RepeatInterval>PT0H02M</RepeatInterval>
+                        <!--<UserName>smsc</UserName>-->
+						<UserName>ftm</UserName>
+                        <!--<Password>DUTY0/xRv7VKYwWoD1ALVg==</Password>-->
+						<Password>mwwzKS4njTQJY38khGjo8Q==</Password>
+                        <FileSpecification>
+                                <!--<LocalPath>/data/omap_stats/MAP/</LocalPath>-->
+								<LocalPath>/data/files/stat/IPSMGW/</LocalPath>
+                                <RemotePath>/var/cti/smsc/site/trace/MAP/stats/</RemotePath>
+                                <!--<Include>^((?!\.done).)*$</Include>-->
+                                                                <!-- Include>.+\.stat\..+[0-9]$</Include -->
+                                <Include>stats.MAP.*</Include>
+                                <!--<Source action="Rename" suffix=".done" />-->
+                                <Source action="Delete" />
+                                <!--<Destination action="Keep" />-->
+								<Destination action="Rename" suffix=".start"/>
+                                <IfExist action="Skip" />
+                                <ZIPCompression>N</ZIPCompression>
+                        </FileSpecification>
+                </Operation>
+                <Errors>
+                        <Login>
+                                <RetryInterval>PT0H0M25S</RetryInterval>
+                                <MaxRetry>3</MaxRetry>
+                                <Alarm enable="Y" />
+                        </Login>
+                        <FileTransfer>
+                                <Timeout>PT0H0M15S</Timeout>
+                                <RetryInterval>PT0H0M15S</RetryInterval>
+                                <MaxRetry>2</MaxRetry>
+                                <Alarm enable="Y" />
+                        </FileTransfer>
+                        <NoActivity>
+                                <MaxIntervals>50</MaxIntervals>
+                                <Alarm enable="Y" />
+                        </NoActivity>
+                        <TrnsNotDone>
+                                <Alarm enable="Y" />
+                        </TrnsNotDone>
+                </Errors>
+        </Transfer>
+</File-Transfer-Configuration>

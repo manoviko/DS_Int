@@ -1,0 +1,49 @@
+<SWIM>
+    <Component Platform="Linux" Name="MIDDLEWARE-SRV" Version="_VERSION-_BUILD">
+        <Install>
+            <Copy ChmodFlags="+x" ExecutionOrder="10" UponError="Stop">
+                <Source>./{ComponentName}</Source>
+            </Copy>
+            <Execute ExecutionOrder="20" UponError="Stop">
+                <Command>PATH=$PATH:/usr/local/bin; ./{ComponentName}</Command>
+            </Execute>
+        </Install>
+        <Upgrade>
+            <Copy ChmodFlags="+x" ExecutionOrder="10" UponError="Stop">
+                <Source>./{ComponentName}</Source>
+            </Copy>
+            <Execute ExecutionOrder="50" UponError="Stop">
+				  <Command>cp -p /var/tmp/upgrade.sh .</Command>
+			</Execute>            
+			<Execute ExecutionOrder="55" UponError="Stop">
+			    <Command>./upgrade.sh {ComponentName} {ComponentVersion}</Command>
+				 <ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+		    <Execute ExecutionOrder="60" UponError="Stop">
+			    <Command>rm -f upgrade.sh</Command>
+			</Execute>
+        </Upgrade>
+        <Uninstall>
+            <Execute ExecutionOrder="1" Timeout="60" UponError="Stop">
+                <Command>su - smsc -c "stopm"</Command>
+            </Execute>
+            <Execute ExecutionOrder="2" UponError="Stop">
+                <Command>comp=`rpm -qa|grep {ComponentName}|sed 's/\.Linux.x86_64//'` ; [ -z "$comp" ] &amp;&amp; exit 0 || rpm -e $comp</Command>
+            </Execute>
+            <Execute ExecutionOrder="3" UponError="Stop">
+                <Command>rm -rf /var/lib/rpm/pkgadd/lock</Command>
+            </Execute>
+        </Uninstall>
+        <Rollback>
+            <Execute ExecutionOrder="1" Timeout="60" UponError="Stop">
+                <Command>su - smsc -c "stopm"</Command>
+            </Execute>
+            <Execute ExecutionOrder="2" UponError="Stop">
+                <Command>comp=`rpm -qa --last|grep {ComponentName}|head -1|cut -d' ' -f1` ; [ -z "$comp" ] &amp;&amp; exit 0 || rpm -e $comp</Command>
+            </Execute>
+            <Execute ExecutionOrder="3" UponError="Stop">
+                <Command>rm -rf /var/lib/rpm/pkgadd/lock</Command>
+            </Execute>
+        </Rollback>
+    </Component>
+</SWIM>

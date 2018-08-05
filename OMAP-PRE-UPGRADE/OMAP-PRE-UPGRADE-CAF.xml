@@ -1,0 +1,47 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.5.1.0-01\CAF.xsd">
+	<Component Platform="Linux" Name="OMAP-PRE-UPGRADE" Version="_VERSION-_BUILD">		
+		<!-- Install and Upgrade section should be the same -->
+		
+		<Install>
+			
+			<Copy Overwrite="true" ChmodFlags="+x" ExecutionOrder="10" UponError="Stop">
+				<Source>./upgrade.sh</Source>
+				<Target>/var/tmp/</Target>
+			</Copy> 
+		
+		<!--Stopping omap before install/upgrade-->
+			<Execute ExecutionOrder="20" UponError="Stop">
+				<Command>
+						if [ {UnitType} == "Shared_OMU_Group" ]; then
+                                                        echo "stop the omap processes and before run the installer"
+                                                       /opt/VRTS/bin/hagrp -offline sms_omap_general -any
+						fi
+				</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>	
+					
+		</Install>
+		
+		<Upgrade>
+		
+			<Copy Overwrite="true" ChmodFlags="+x" ExecutionOrder="10" UponError="Stop">
+				<Source>./upgrade.sh</Source>
+				<Target>/var/tmp/</Target>
+			</Copy> 	
+			
+			<!--Stopping omap before install/upgrade-->
+			<Execute ExecutionOrder="20" UponError="Stop">
+				<Command>
+                                    if [ {UnitType} == "Shared_OMU_Group" ]; then
+                                                        echo "stop the omap processes and before omap upgrade"
+                                                       /opt/VRTS/bin/hagrp -offline sms_omap_general -any
+                                                fi
+				</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>	
+		</Upgrade>
+		
+	</Component>
+	
+</SWIM>
+

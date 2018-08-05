@@ -1,0 +1,384 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\DSMYDATA\WORK\SWIM\1.4.1.0-02\UAF.xsd">
+	<UnitType Name="DSU_Group" Platform="Linux">
+	
+		<Dependencies>
+		
+			<Component Name="Oracle-SW" UnitName="*dsu*">
+				<DependsOn>
+					<Component UnitName="*dsu*" Name="swp-NW-sync"/>
+				</DependsOn>
+			</Component>
+			<Component Name="swp-HA" UnitName="*[^aA1]$">
+				<DependsOn>
+					<Component UnitName="*dsu*[aA1]$" Name="swp-HA"/>
+				</DependsOn>
+			</Component>
+			<Component Name="swp-HA" UnitName="*dsu*">
+				<DependsOn>
+					<Component UnitName="*dsu*" Name="swp-NW-sync"/>
+				</DependsOn>
+			</Component>
+			<Component Name="Oracle-DB-Creation" UnitName="*dsu*[^aA1]$">
+				<DependsOn>
+					<Component UnitName="*dsu*[aA1]$" Name="Oracle-DB-Creation"/>
+				</DependsOn>
+			</Component>			
+			<!-- Component Name="update-SPM-Agent" UnitName="*dsu*[^aA1]$" >
+				<DependsOn>
+					<Component UnitName="*dsu*[aA1]$" Name="update-SPM-Agent"></Component>
+				</DependsOn>
+			</Component -->
+			<Component UnitName="*dsu*" Name="ProvCompasDBSchema">
+				<DependsOn>
+					<Component UnitName="*dsu*" Name="Oracle-DB-Creation"/>
+				</DependsOn>
+			</Component>			
+			<Component UnitName="*dsu*" Name="swp-DBWatch_config_add">
+				<DependsOn>
+					<Component UnitName="*dsu*" Name="Oracle-DB-Creation"/>
+				</DependsOn>
+			</Component>		
+			<!-- Component UnitName="*dsu*" Name="Oracle12-Patches">
+				<DependsOn>
+					<Component UnitName="*dsu*" Name="MW_DB_INSTALL"></Component>
+				</DependsOn>
+			</Component -->				
+
+		</Dependencies>
+		
+			
+		<Install>
+			<Component Name="CSP_Base_Linux"					UponError="Stop" 		ExecutionOrder="10"		DisplayGroup="SEM-DSU"/>
+			<!-- Component Name="swp-csp-Services-Linux"				UponError="Stop"		ExecutionOrder="15"  DisplayGroup="SEM-DSU"/ -->
+			<Component Name="mVAS-IPSMGW-Networking-Customization" 					UponError="Stop" 		ExecutionOrder="20" 		DisplayGroup="SEM-DSU"/>
+			<Component Name="swp_jre_1.7-64" 						UponError="Stop" 		ExecutionOrder="30"	DisplayGroup="SEM-DSU"/>
+			<Component Name="System_Kit" 							UponError="Stop" 		ExecutionOrder="35"	DisplayGroup="SEM-DSU"/>
+			<Component Name="UPDATE-JAVA-HOME" 			UponError="Stop" 		ExecutionOrder="40"	DisplayGroup="SEM-DSU"/>		
+			<Component Name="swp_tomcat7_0-RHEL6" 		UponError="Stop" 		ExecutionOrder="50" 	DisplayGroup="SEM-DSU"/>
+			<Component Name="mVAS-IPSMGW-Customization-DSU" 					UponError="Stop" 		ExecutionOrder="70"		DisplayGroup="SEM-DSU"/>
+			<Component Name="swp-NW-sync" 						UponError="Stop" 		ExecutionOrder="115"		DisplayGroup="SEM-DSU"/>
+			<Component Name="swp-HA" 								UponError="Stop" 		ExecutionOrder="120"		DisplayGroup="SEM-DSU"/>
+			<Component Name="DSU-COMPAS-XMLs" 			UponError="Stop" 		ExecutionOrder="130"		DisplayGroup="SEM-DSU"/>
+			<Component Name="Oracle-SW" 							UponError="Stop" 		ExecutionOrder="150"	DisplayGroup="SEM-DSU"/>
+			<Component Name="Oracle-Infra" 							UponError="Stop" 		ExecutionOrder="160"	DisplayGroup="SEM-DSU"/>
+			<Component Name="Oracle-DB-Creation" 				UponError="Stop" 		ExecutionOrder="170"	DisplayGroup="SEM-DSU"/>
+			<!-- Component Name="Oracle_PSU" 				UponError="Stop" 		ExecutionOrder="180"	DisplayGroup="SEM-DSU"/ -->
+			<Component Name="swp-DBWatch"						UponError="Stop"      ExecutionOrder="190"    DisplayGroup="SEM-DSU"/>
+			<Component Name="swp-DBWatch_config_add" 	UponError="Stop"		ExecutionOrder="200"	DisplayGroup="SEM-DSU"/>
+			<Component Name="Babysitter-IC" 						UponError="Stop" 		ExecutionOrder="210"	DisplayGroup="SEM-DSU"/>
+			<Component Name="ccmng-agent" 						UponError="Stop" 		ExecutionOrder="220"	DisplayGroup="SEM-DSU"/>
+			<Component Name="SNMP_CONFIG"					UponError="Stop"		ExecutionOrder="240"	DisplayGroup="SEM-DSU"/>
+			<Component Name="SYSLOG_CONFIG"				UponError="Stop" 		ExecutionOrder="250"	DisplayGroup="SEM-DSU"/>
+			<Component Name="DNS_Client"  							UponError="Stop" 		ExecutionOrder="260" 	DisplayGroup="SEM-DSU"/>
+		 	<Component Name="DISABLE-APPS" 					UponError="Stop" 		ExecutionOrder="270"	DisplayGroup="SEM-DSU"/>
+			<Component Name="NTP_Client"  							UponError="Stop" 		ExecutionOrder="280"	DisplayGroup="SEM-DSU"/>
+			<Component Name="BABYSITTER-CUST"				UponError="Stop"		ExecutionOrder="290"  	DisplayGroup="SEM-DSU"/>
+							  			
+			<!--			Compas DB schema for SEM 		-->
+			<Component Name="ProvCompasDBSchema" 		UponError="Stop" 		ExecutionOrder="300"	DisplayGroup="SEM-DSU"/>
+			<Component Name="ProvComProfDBSchema" 		UponError="Stop" 		ExecutionOrder="310"	DisplayGroup="SEM-DSU"/>
+			<Component Name="ProvDBPrivileges" 					UponError="Stop" 		ExecutionOrder="320"	DisplayGroup="SEM-DSU"/>
+			<Component Name="ProvGslDBSchema" 				UponError="Stop" 		ExecutionOrder="330"	DisplayGroup="SEM-DSU"/>
+			<!-- 			MW SEM schema	 						-->
+			<Component Name="MW_DB_INSTALL" 				UponError="Stop" 		ExecutionOrder="340"	DisplayGroup="SEM-DSU"/>
+			<!-- Component Name="Oracle12-Patches" 				UponError="Stop" 		ExecutionOrder="350"	DisplayGroup="SEM-DSU"/ -->
+						
+			<Component Name="create_sbuser" 						UponError="Stop" 		ExecutionOrder="370"	DisplayGroup="SEM-DSU"/>
+			<Component Name="CREATE-SEMUS"					UponError="Stop"		ExecutionOrder="380"	DisplayGroup="SEM-DSU"/>
+			<Component Name="DISABLE-SSH"               UponError="Stop" 		ExecutionOrder="390"	DisplayGroup="SEM-DSU"/>
+      <Component Name="OMU-DSU-POST" 				UponError="Stop" 		ExecutionOrder="400"	DisplayGroup="SEM-DSU"/>
+      <Component Name="ComPAS" 				UponError="Stop" 		ExecutionOrder="405"	DisplayGroup="SEM-DSU"/>
+      <Component Name="ComPAS-CUST" 				UponError="Stop" 		ExecutionOrder="406"	DisplayGroup="SEM-DSU"/>
+			<Component Name="Linux_AS6_Hkit" 					UponError="Stop" 		ExecutionOrder="410"	DisplayGroup="SEM-DSU"/>
+   		<Component Name="SWIM-Secure"						UponError="Stop" 		ExecutionOrder="420"  DisplayGroup="SEM-DSU"/>	
+			<Component Name="SetSwimJreTomcat" 				UponError="Stop" 		ExecutionOrder="500"  DisplayGroup="SEM-DSU"/>
+			<Component Name="UPDATE-VERSION"				 UponError="Stop"		ExecutionOrder="510"  DisplayGroup="SEM-DSU"/>
+		
+		</Install>
+		
+		<Uninstall>
+			<Component Name="Linux_AS6_Hkit" 					UponError="Stop" 		ExecutionOrder="10"		DisplayGroup="SEM-DSU"/>
+			<Component Name="ComPAS-CUST" 				UponError="Stop" 		ExecutionOrder="11"	DisplayGroup="SEM-DSU"/>
+			<Component Name="ComPAS" 				UponError="Stop" 		ExecutionOrder="12"	DisplayGroup="SEM-DSU"/>
+			<Component Name="CREATE-SEMUS"					UponError="Stop"		ExecutionOrder="15"		DisplayGroup="SEM-DSU"/>
+
+			<!-- 			MW SEM schema 						-->
+			<!-- Component Name="Oracle12-Patches" 				UponError="Stop" 		ExecutionOrder="15"	DisplayGroup="SEM-DSU"/ -->			
+			<Component Name="MW_DB_INSTALL" 				UponError="Stop" 		ExecutionOrder="20"		DisplayGroup="SEM-DSU"/>
+			<!-- 			Compas DB schema for SEM 		-->
+			<Component Name="ProvGslDBSchema" 				UponError="Stop" 		ExecutionOrder="30"		DisplayGroup="SEM-DSU"/>
+			<Component Name="ProvDBPrivileges" 					UponError="Stop" 		ExecutionOrder="40"		DisplayGroup="SEM-DSU"/>
+			<Component Name="ProvComProfDBSchema" 		UponError="Stop" 		ExecutionOrder="50"		DisplayGroup="SEM-DSU"/>
+			<Component Name="ProvCompasDBSchema" 		UponError="Stop" 		ExecutionOrder="60"		DisplayGroup="SEM-DSU"/>
+			
+			<Component Name="swp-DBWatch_config_remove"		UponError="Stop"      ExecutionOrder="65"      DisplayGroup="SEM-DSU"/>
+			<Component Name="swp-DBWatch"						UponError="Stop"		ExecutionOrder="66"		DisplayGroup="SEM-DSU"/>
+			<!-- Component Name="Oracle_PSU" 				UponError="Stop" 		ExecutionOrder="70"		DisplayGroup="SEM-DSU"/ -->
+			<Component Name="Oracle-DB-Creation" 				UponError="Stop" 		ExecutionOrder="80"		DisplayGroup="SEM-DSU"/>
+			<Component Name="Oracle-Infra" 							UponError="Stop" 		ExecutionOrder="90"		DisplayGroup="SEM-DSU"/>
+			<Component Name="Oracle-SW" 							UponError="Stop" 		ExecutionOrder="100"	DisplayGroup="SEM-DSU"/>
+			
+			<Component Name="swp-HA" 								UponError="Stop" 		ExecutionOrder="110"	DisplayGroup="SEM-DSU"/>
+
+			<Component Name="ccmng-agent" 						UponError="Stop" 		ExecutionOrder="160"	DisplayGroup="SEM-DSU"/>
+			<Component Name="Babysitter-IC" 						UponError="Stop" 		ExecutionOrder="170"	DisplayGroup="SEM-DSU"/>
+			<Component Name="swp_tomcat6_0-RHEL6" 					UponError="Stop" 		ExecutionOrder="180" 	DisplayGroup="SEM-DSU"/>
+			<Component Name="swp_jre_1.7-64" 							UponError="Stop" 		ExecutionOrder="190"	DisplayGroup="SEM-DSU"/>
+			<!-- Component Name="swp-csp-Services-Linux"				UponError="Stop"		ExecutionOrder="195"  DisplayGroup="SEM-DSU"/ -->			
+			<Component Name="swp-NW-sync" 						UponError="Stop" 		ExecutionOrder="200"	DisplayGroup="SEM-DSU"/>
+		</Uninstall>
+		
+		<Upgrade>
+			<!-- Component Name="swp-csp-Services-Linux"				UponError="Stop"		ExecutionOrder="30"  DisplayGroup="SEM-DSU"/ -->
+            <Component Name="CSP_Base_Linux"                ExecutionOrder="50"   UponError="Stop"  DisplayGroup="SEM-DSU"/>			
+			<!-- Component Name="swp-DBWatch"				UponError="Stop"      ExecutionOrder="50"      DisplayGroup="SEM-DSU"/ -->		
+			<!-- 			MW SEM schema 			-->
+			<Component Name="MW_DB_INSTALL" 				UponError="Stop" 		ExecutionOrder="100"	DisplayGroup="SEM-DSU"/>
+			<Component Name="OMU-DSU-POST" 				UponError="Stop" 		ExecutionOrder="110"	DisplayGroup="SEM-DSU"/>
+			<!--Component Name="ccmng-agent" 						UponError="Stop" 		ExecutionOrder="105"/	DisplayGroup="SEM-DSU"-->
+			<Component Name="System_Kit" 							UponError="Stop" 		ExecutionOrder="120"	DisplayGroup="SEM-DSU"/>
+			<Component Name="ComPAS" 				UponError="Stop" 		ExecutionOrder="130"	DisplayGroup="SEM-DSU"/>
+      <Component Name="ComPAS-CUST" 				UponError="Stop" 		ExecutionOrder="140"	DisplayGroup="SEM-DSU"/>
+			<Component Name="UPDATE-VERSION"				 UponError="Stop"		ExecutionOrder="500"  DisplayGroup="SEM-DSU"/>						
+		</Upgrade>
+		
+		<Rollback>
+			<Component Name="MW_DB_INSTALL" 				UponError="Stop" 		ExecutionOrder="10"		DisplayGroup="SEM-DSU"/>
+		</Rollback>
+
+		<Parameters>
+		
+            <!--Babysitter-IC Parameters-->
+              <Parameter ComponentName="Babysitter-IC" Name="AgentXPortNumber" Display="false">
+                <Value>1055</Value>
+             </Parameter>
+             		
+			<!--Aliasses Start-->
+			<Alias Display="false" DisplayName="OCS">
+				<Value>false</Value>
+				<Restrictions>
+					<Type>Boolean</Type>
+				</Restrictions>
+				<Parameter ComponentName="swp-HA" Name="IsOCS"/>
+				<Parameter ComponentName="Oracle-SW" Name="IS_OCS"/>
+			</Alias>
+			
+			
+			<Parameter ComponentName="DNS_Client" Name="BALANCER_IPS"	 Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml://string-join(/UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance/Connection[@Type="Data"]/@IP,',')]</Value>
+			</Parameter>	
+			
+			<!-- Compas schema -->
+			<Parameter ComponentName="ProvCompasDBSchema" Name="DB_NAME" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="ProvComProfDBSchema" Name="DB_NAME" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="ProvDBPrivileges" Name="DB_NAME" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="ProvGslDBSchema" Name="DB_NAME" Display="false" Overwrite="true"/>
+			
+			<!-- =============   DB Watch ADD=================-->
+			<Parameter ComponentName="swp-DBWatch_config_add" Name="DBNAME_ADD" Display="false" Overwrite="true">
+				<Value>sem_db</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-DBWatch_config_add" Name="NEWTNS" Display="false" Overwrite="true">
+				<Value>tnsname</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-DBWatch_config_add" Name="TNSNAME" Display="false" Overwrite="true">
+				<Value>sem_db</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-DBWatch_config_add" Name="TNSHOST" Display="false" Overwrite="true">
+				<Value>sem_db-ora-vip</Value>
+			</Parameter>
+			
+			<!-- =============   DB Watch Remove =================-->		
+			<Parameter ComponentName="swp-DBWatch_config_remove" Name="DBNAME_REMOVE" Display="false" Overwrite="true">
+				<Value>sem_db</Value>
+			</Parameter>	
+			
+			<!-- Parameter ComponentName="Oracle12-Patches" Name="DB_NAME" Display="false" Overwrite="true">
+				<Value>sem_db</Value>
+			</Parameter -->			
+			
+						
+				
+			<!-- =============	MW DB Parameters ============= -->
+			
+			<Parameter ComponentName="MW_DB_INSTALL" Name="MW_SID" Display="false" Overwrite="true">
+				<Value>sem_db</Value>
+			</Parameter>
+			<Parameter ComponentName="MW_DB_INSTALL" Name="MW_COMPROF_USER" Display="false"/>
+			<Parameter ComponentName="MW_DB_INSTALL" Name="MW_USER" Display="false"/>
+			<Parameter ComponentName="MW_DB_INSTALL" Name="MW_APP_USER" Display="false"/>
+			<Parameter ComponentName="MW_DB_INSTALL" Name="MW_SPM_APP_USER" Display="false"/>
+			<Parameter ComponentName="MW_DB_INSTALL" Name="MW_PC_APP_USER" Display="false"/>
+			<Parameter ComponentName="MW_DB_INSTALL" Name="MW_WSA_APP_USER" Display="false"/>
+			<Parameter ComponentName="MW_DB_INSTALL" Name="ONS" Display="false"/>
+			<Parameter ComponentName="MW_DB_INSTALL" Name="TEMP_TBS" Display="false"/>
+			<Parameter ComponentName="MW_DB_INSTALL" Name="DBA_ADMIN" Display="false"/>
+			<Parameter ComponentName="MW_DB_INSTALL" Name="HOME_DIR" Display="false" Overwrite="true">
+				<Value>/data/sem_db_data/sem_db/dbf</Value>
+			</Parameter>
+			<Parameter ComponentName="MW_DB_INSTALL" Name="ORACLE_HOME" Display="false" Overwrite="true">
+				<Value>/oracle/product/v12.1.0</Value>
+			</Parameter>
+			<Parameter ComponentName="MW_DB_INSTALL" Name="BATCHWRITEDIR" Display="false" Overwrite="true">
+				<Value>/data/sem-spm-agent-data</Value>
+			</Parameter>
+			<Parameter ComponentName="MW_DB_INSTALL" Name="SILO_INST" Display="false"/>
+			
+			<Parameter ComponentName="swp-HA" Display="false" Name="ClusterUUID"/>
+			<Parameter ComponentName="swp-HA" Display="false" Name="ClusterName">
+				<Value>IPGW_DSU</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-HA" Display="false" Name="IsRAC" Overwrite="true">
+				<Value>false</Value>
+			</Parameter>
+			<Parameter ComponentName="swp-HA" Display="true" Name="HeartbeatNIC">
+				<Value>eth1,eth0</Value>
+			</Parameter>
+
+			<Parameter ComponentName="Oracle-DB-Creation" Name="XML_Location" Overwrite="true" Display="false">
+				<Value>/usr/cti/conf/sem_dsu/Oracle-DB-Creation.xml</Value>
+			</Parameter>
+			
+			<Alias DisplayName="Oracle configuration type" Display="false" Overwrite="true">
+				<Value>Single-instance</Value>
+				<Restrictions>
+					<Type>String</Type>
+				</Restrictions>
+				<Parameter ComponentName="Oracle-SW"	 		Name="ORACLE_INSTALLATION_TYPE"/>
+			</Alias>
+
+			<Parameter ComponentName="Oracle-SW" Name="ORACLE_SW_DIR" Display="false"/>
+			<Parameter ComponentName="Oracle-SW" Name="SW_INSTALL_TYPE" Display="false"/>
+			<Parameter ComponentName="Oracle-SW" Name="IS_DNFS" Overwrite="true" Display="false">
+				<Value>true</Value>
+			</Parameter>
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="ORACLE_CRS_DIR"/>
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="CSS_DIAGWAIT"/>
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="CSS_DISKTIMEOUT"/> 
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="CSS_MISSCOUNT"/>
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="LOCAL_PUBLIC_IP"/>
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="LOCAL_PUBLIC_NETMASK"/>
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="LOCAL_VIRTUAL_IP"/>
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="LOCAL_PRIVATE_IP"/>
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="LOCAL_PRIVATE_NETMASK"/>
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="SCAN_IP"/>
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="NETMASK"/>
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="HSBN_NICS"/>
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="HEARTBEAT_NICS"/>
+			<Parameter ComponentName="Oracle-SW" Display="false" Name="REMOTE_NODE_NAME"/>
+			
+			<!-- Parameter ComponentName="Oracle_PSU" Display="true" Name="instance_number">
+				<Value/>
+			</Parameter -->
+			
+			<!-- Parameter ComponentName="mVAS-IPSMGW-Networking-Customization" Name="NIC_1" Display="true" Overwrite="true">
+				<Value>eth0</Value>
+			</Parameter>
+			<Parameter ComponentName="mVAS-IPSMGW-Networking-Customization" Name="NIC_2" Display="true" Overwrite="true">
+				<Value>eth1</Value>
+			</Parameter>	
+			<Parameter ComponentName="mVAS-IPSMGW-Networking-Customization" Name="NIC_3" Display="true" Overwrite="true">
+				<Value>eth2</Value>
+			</Parameter>	
+			<Parameter ComponentName="mVAS-IPSMGW-Networking-Customization" Name="DEVICE_1" Display="true" Overwrite="true">
+				<Value>ADMIN_DEVICE</Value>
+			</Parameter>
+			<Parameter ComponentName="mVAS-IPSMGW-Networking-Customization" Name="DEVICE_2" Display="true" Overwrite="true">
+				<Value>SZ_DEVICE</Value>
+			</Parameter>	
+			<Parameter ComponentName="mVAS-IPSMGW-Networking-Customization" Name="DEVICE_3" Display="true" Overwrite="true">
+				<Value>NFS_DEVICE</Value>
+			</Parameter -->
+			
+			<Parameter ComponentName="mVAS-IPSMGW-Customization-DSU" Name="DSU-DB_VIP_DEVICE" Display="false" Overwrite="true">
+				<Value>SZ_MNIC</Value>
+			</Parameter>	
+			<Parameter ComponentName="mVAS-IPSMGW-Customization-DSU" Name="Notifier_MNIC" Display="false" Overwrite="true">
+				<Value>ADMIN_MNIC</Value>
+			</Parameter>		
+			<Parameter ComponentName="mVAS-IPSMGW-Customization-DSU" Name="SyslogServer" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"SyslogServer.")]/VUnitInstance/@VirtualIp]</Value>
+			</Parameter>
+			<Parameter ComponentName="mVAS-IPSMGW-Customization-DSU" Name="SnmpManagerPA1" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[contains(@GroupName,"SMU")]/UnitInstance[contains(@Hostname,"1a")]/Connection[@Type="Management"]/@IP]</Value>
+			</Parameter>
+			<Parameter ComponentName="mVAS-IPSMGW-Customization-DSU" Name="SnmpManagerPA2" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[contains(@GroupName,"SMU")]/UnitInstance[contains(@Hostname,"1b")]/Connection[@Type="Management"]/@IP]</Value>
+			</Parameter>	
+			
+			<!-- =============     CCM Agent        ============= -->
+			<Parameter ComponentName="ccmng-agent" 				Name="CCM.JAVA_HOME_DIRECTORY" Display="false">
+				<Value>/usr/java/jre1.7</Value>
+			</Parameter>
+			<Parameter ComponentName="ccmng-agent" 				Name="CCM.TOMCAT_HOME_DIRECTORY" Display="false"/>
+			<Parameter ComponentName="ccmng-agent" 				Name="CCM.ALLOWED_IP_ADDRESS" Display="true" Overwrite="true">
+				<Value>10.*.*.*|172.*.*.*</Value>
+			</Parameter>
+			
+			<Parameter ComponentName="UPDATE-JAVA-HOME" Name="JAVA_HOME" Display="false" Overwrite="true">
+				<Value>/usr/java/jre1.7</Value>
+			</Parameter>						
+								
+								
+			<!--  =============     Babysitter         ============= -->     	
+			<Parameter ComponentName="Babysitter-IC" Name="JAVA_PATH" Display="false" Overwrite="true">
+				<Value>/usr/java/jre1.7/bin/java</Value>
+			</Parameter>
+			<Parameter ComponentName="Babysitter-IC" Name="AgentXServiceName" Display="false">
+                <Value>Dummy</Value>
+            </Parameter>			
+			
+			<Parameter ComponentName="CSP_Base_Linux" Display="false" Name="Legacy_Cleanup"/>
+			<Parameter ComponentName="CSP_Base_Linux" Display="false" Name="Vmtools_only"/>
+			<Parameter ComponentName="CSP_Base_Linux" Display="false" Name="No_Vmtools"/>
+			
+			<Alias DisplayName="SNMP Manager IP" Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"SNMPMANAGER.")]/VUnitInstance/@VirtualIp]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+				</Restrictions>
+				<Parameter ComponentName="SNMP_CONFIG" 				Name="ICC_VIP" />
+				<Parameter ComponentName="mVAS-IPSMGW-Customization-DSU" Name="SnmpManager"/>				
+			</Alias>
+			
+			<Alias DisplayName="NTP SERVER1" Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml://UnitGroup/Logical/Application[contains(@ApplicationName,"NTPSERVER1.")]/UnitInstance/@MngIp]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="mVAS-IPSMGW-Customization-DSU" Name="NtpServer1"/>
+				<Parameter ComponentName="NTP_Client" 					Name="NTP_SRV1"/>
+			</Alias>
+			<Alias DisplayName="NTP SERVER2" Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml://UnitGroup/Logical/Application[contains(@ApplicationName,"NTPSERVER2.")]/UnitInstance/@MngIp]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="mVAS-IPSMGW-Customization-DSU" Name="NtpServer2"/>						
+				<Parameter ComponentName="NTP_Client" 					Name="NTP_SRV2"/>
+			</Alias>													
+													
+			<!--          COMPAS   -->
+			<Parameter ComponentName="ComPAS" Name="BIND_TO_IP" Display="false"/>
+			<Parameter ComponentName="ComPAS" Name="KEY_STORE_FILE" Display="false"/>
+			<Parameter ComponentName="ComPAS" Name="KEY_STORE_PASS" Display="false"/>
+			<Parameter ComponentName="ComPAS" Name="CLUSTER_RESOURCE_GROUP" Overwrite="true" Display="false">
+				<Value>sem_spm</Value>
+			</Parameter>			
+			<Parameter ComponentName="ComPAS" Name="CRITICAL_RESOURCE" Overwrite="true" Display="false">
+				<Value>0</Value>
+			</Parameter>							
+			<Parameter ComponentName="ComPAS" Name="SKIP_HA_REGISTRATION" Overwrite="true" Display="false">
+				<Value>0</Value>
+			</Parameter>	
+			<Parameter ComponentName="ComPAS" Name="ACTIVITY_LOG_DIR" Display="false"/>
+			
+		</Parameters>
+
+	</UnitType>
+</SWIM>
+

@@ -1,0 +1,233 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\DSMYDATA\WORK\SWIM\1.4.1.0-02\SAF.xsd">
+	<System>
+		<Install>
+			<UnitType Name="ISU_Group" UponError="Stop" ExecutionOrder="1">
+				<UAF Name="ISU_Group-UAF.xml" ExecutionOrder="1"/>
+			</UnitType>
+			<UnitType Name="SCA_Group" UponError="Stop" ExecutionOrder="1">
+				<UAF Name="SCA_Group-UAF.xml" ExecutionOrder="1"/>
+			</UnitType>
+			<!-- UnitType Name="MAP_Group" UponError="Stop" ExecutionOrder="1">
+				<UAF Name="MAP_Group-UAF.xml" ExecutionOrder="1"/>
+			</UnitType>-->						
+    </Install>
+
+
+		<Uninstall>
+		
+			<UnitType Name="ISU_Group" UponError="Stop" ExecutionOrder="1">
+				<UAF Name="ISU_Group-UAF.xml" ExecutionOrder="1"/>
+			</UnitType>
+			<UnitType Name="SCA_Group" UponError="Stop" ExecutionOrder="1">
+				<UAF Name="SCA_Group-UAF.xml" ExecutionOrder="1"/>
+			</UnitType>
+
+			<!--<UnitType Name="MAP_Group" UponError="Stop" ExecutionOrder="1">
+				<UAF Name="MAP_Group-UAF.xml" ExecutionOrder="1"/>
+			</UnitType>-->	
+		</Uninstall>
+		
+		<Upgrade>
+			<UnitType Name="ISU_Group" UponError="Stop" ExecutionOrder="1">
+				<UAF Name="ISU_Group-UAF.xml" ExecutionOrder="1"/>
+			</UnitType>
+			<UnitType Name="SCA_Group" UponError="Stop" ExecutionOrder="1">
+				<UAF Name="SCA_Group-UAF.xml" ExecutionOrder="1"/>
+			</UnitType>
+
+			<!--<UnitType Name="MAP_Group" UponError="Stop" ExecutionOrder="1">
+				<UAF Name="MAP_Group-UAF.xml" ExecutionOrder="1"/>
+			</UnitType>-->		
+		</Upgrade>
+		
+		
+		<Parameters>
+			
+			<!--   TRACE DB -->
+			<Alias DisplayName="Middleware Trace DB Name" Display="false" Overwrite="true">
+				<Value>MWTRACESDB</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<MaxLength>255</MaxLength>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<!-- Parameter ComponentName="EXE-NYAUTOCONFIG" 		Name="MWTraceDBHOST"/ -->
+				<Parameter ComponentName="IPSMGW-CUST" Name="MWTraceDBHOST"/>
+				<Parameter ComponentName="TLANG-CUST"               Name="MWTraceDBHOST"/>				
+			</Alias>
+
+			<Alias DisplayName="Middleware Trace DB Service Name" Display="false" Overwrite="true">
+				<Value>ODS</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<MaxLength>255</MaxLength>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<!-- Parameter ComponentName="EXE-NYAUTOCONFIG" 		Name="MWTraceDBSID"/ -->
+				<Parameter ComponentName="IPSMGW-CUST" Name="MWTraceDBSID"/>
+			</Alias>	
+			<Alias DisplayName="Middleware Trace DB password" Display="false" Overwrite="true">
+				<Value>Mw71Trace9</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<MaxLength>255</MaxLength>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="TLANG-CUST"               Name="MWTraceDBPassword"/>
+			</Alias>
+			<Alias DisplayName="Middleware Trace DB User Name" Display="false" Overwrite="true">
+				<Value>mw_trace</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<MaxLength>255</MaxLength>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="TLANG-CUST" Name="MWTraceDBUserName"/>
+			</Alias>
+			
+ 		<!--    MIDDLEWARE DB -->
+			<Alias DisplayName="Middleware DB Service Name" Display="false" Overwrite="true">
+				<Value>SEM_DB</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<MaxLength>255</MaxLength>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="MRE-CONSOLE-CUST"	 	Name="MiddleWareDBSID"/>
+			</Alias> 		
+			<Alias DisplayName="Middleware DB Name" Display="false" Overwrite="true">
+				<Value>MW_DB</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<MaxLength>255</MaxLength>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="MRE-CONSOLE-CUST" 	Name="MiddleWareDBHOST"/>
+				<Parameter ComponentName="IPSMGW-CUST" Name="MiddleWareDBHOST"/>
+			</Alias>
+			<Alias DisplayName="Middleware DB password" Display="false" Overwrite="true">
+				<Value>AZdZhkzS4zPflwd\/NI7ZAQ==</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<MaxLength>255</MaxLength>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="MRE-CONSOLE-CUST" 		Name="MiddleWareDBPassword"/>
+			</Alias>
+			<Alias DisplayName="Middleware DB User Name" Display="false" Overwrite="true">
+				<Value>mw</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<MaxLength>255</MaxLength>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="MRE-CONSOLE-CUST" 		Name="MiddleWareDBUserName"/>
+			</Alias>
+			
+
+			<!-- =============     CCM Agent        ============= -->
+			<Parameter ComponentName="ccmng-agent" 				Name="CCM.JAVA_HOME_DIRECTORY" Display="false">
+				<Value>/usr/java/jre1.7</Value>
+			</Parameter>
+			<Parameter ComponentName="ccmng-agent" 				Name="CCM.TOMCAT_HOME_DIRECTORY" Display="false"/>
+			<Parameter ComponentName="ccmng-agent" 				Name="CCM.ALLOWED_IP_ADDRESS" Display="true" Overwrite="true">
+				<Value>10.*.*.*|172.*.*.*</Value>
+			</Parameter>
+			
+			<Parameter ComponentName="UPDATE-JAVA-HOME" Name="JAVA_HOME" Display="false" Overwrite="true">
+				<Value>/usr/java/jre1.7</Value>
+			</Parameter>			
+								
+								
+			<!--  =============     Babysitter         ============= -->     	
+			<Parameter ComponentName="Babysitter-IC" Name="JAVA_PATH" Display="false" Overwrite="true">
+				<Value>/usr/java/jre1.7/bin/java</Value>
+			</Parameter>
+			<Parameter ComponentName="Babysitter-IC" Name="AgentXServiceName" Display="false">
+                <Value>Dummy</Value>
+            </Parameter>			
+			
+			<Parameter ComponentName="CSP_Base_Linux" Display="false" Name="Legacy_Cleanup"/>
+			<Parameter ComponentName="CSP_Base_Linux" Display="false" Name="Vmtools_only"/>
+			<Parameter ComponentName="CSP_Base_Linux" Display="false" Name="No_Vmtools"/>
+			
+			<!-- Alias Display="false" DisplayName="SZ Netmask" Overwrite="true">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[contains(@GroupName,"ISU")]/UnitInstance[1]/Connection[@Type="Data"]/@Netmask]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="SEM-VM-NW-SZ" Name="SZ-Netmask"/>
+				<Parameter ComponentName="DS-VM-NW-SCA" Name="SZ-Netmask"/>
+			</Alias -->
+			
+			<!-- Alias Display="false" DisplayName="Admin Netmask" Overwrite="true">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[contains(@GroupName,"ISU")]/UnitInstance[1]/Connection[@Type="Management"]/@Netmask]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Parameter ComponentName="SEM-VM-NW-SZ" Name="Admin-Netmask"/>
+				<Parameter ComponentName="DS-VM-NW-SCA" Name="Admin-Netmask"/>
+			</Alias -->			
+
+			<Parameter ComponentName="mVAS-IPSMGW-Customization-APP" Name="SyslogServer" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"SyslogServer.")]/VUnitInstance/@VirtualIp]</Value>
+			</Parameter>			
+			
+			<Parameter ComponentName="mVAS-IPSMGW-Customization-APP" Name="SnmpManagerPA1" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[contains(@GroupName,"SMU")]/UnitInstance[contains(@Hostname,"1a")]/Connection[@Type="Management"]/@IP]</Value>
+			</Parameter>
+			<Parameter ComponentName="mVAS-IPSMGW-Customization-APP" Name="SnmpManagerPA2" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[contains(@GroupName,"SMU")]/UnitInstance[contains(@Hostname,"1b")]/Connection[@Type="Management"]/@IP]</Value>
+			</Parameter>
+			
+			<Alias DisplayName="SNMP Manager IP" Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"SNMPMANAGER.")]/VUnitInstance/@VirtualIp]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+				</Restrictions>
+				<Parameter ComponentName="SNMP_CONFIG" 				Name="ICC_VIP" />
+				<Parameter ComponentName="mVAS-IPSMGW-Customization-APP" Name="SnmpManager"/>
+				<!-- Parameter ComponentName="SEM-VM-NW-SZ" Name="SnmpManager"/>
+				<Parameter ComponentName="DS-VM-NW-SCA" Name="SnmpManager"/ -->
+			</Alias>
+			
+			<Alias DisplayName="NTP SERVER1" Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml://UnitGroup/Logical/Application[contains(@ApplicationName,"NTPSERVER1.")]/UnitInstance/@MngIp]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<!-- Parameter ComponentName="SEM-VM-NW-SZ" Name="NTP1"/ -->
+				<Parameter ComponentName="NTP_Client" 					Name="NTP_SRV1"/>
+				<!-- Parameter ComponentName="DS-VM-NW-SCA" Name="NTP1"/ -->
+				<Parameter ComponentName="mVAS-IPSMGW-Customization-APP" Name="NtpServer1"/>
+			</Alias>
+			<Alias DisplayName="NTP SERVER2" Display="false" Overwrite="true">
+				<Value>[UnitGroup.xml://UnitGroup/Logical/Application[contains(@ApplicationName,"NTPSERVER2.")]/UnitInstance/@MngIp]</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<!-- Parameter ComponentName="SEM-VM-NW-SZ" Name="NTP2"/ -->
+				<Parameter ComponentName="NTP_Client" 					Name="NTP_SRV2"/>
+				<!-- Parameter ComponentName="DS-VM-NW-SCA" Name="NTP2"/ -->
+				<Parameter ComponentName="mVAS-IPSMGW-Customization-APP" Name="NtpServer2"/>
+			</Alias>
+            <Parameter ComponentName="TLANG" Name="TLANG_DB_INSTANCE_NAME" Display="false" Overwrite="true">
+                                <Value>ODS</Value>
+            </Parameter>
+			<Parameter ComponentName="TLANG" Name="OMAP_DB_INSTANCE_NAME" Display="false" Overwrite="true">
+                                <Value>omap_db</Value>
+             </Parameter>				
+			
+	</Parameters>
+		
+		
+	</System>
+</SWIM>

@@ -1,0 +1,81 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+
+	<Component Platform="Linux" Name="SEM-UTILS" Version="_VERSION-_BUILD">
+	
+	
+		<Install>
+		
+			<Copy ExecutionOrder="10" Overwrite="true" UponError="Stop">
+				<Source>./{ComponentName}-{ComponentVersion}*.rpm</Source>
+			</Copy>
+			
+			<SetParams ExecutionOrder="20" UponError="Stop">
+				<ExecutionGroup>SEM-UTILS-PARAMS</ExecutionGroup>
+			</SetParams>	
+		
+			<Execute ExecutionOrder="30" UponError="Stop">
+				<Command>
+									if [ {Test_Production} == "Test" ]; then
+										echo " This is a Test system, setting flag for rpm installation"
+										touch /tmp/.test_environment
+									fi
+				</Command>
+			</Execute>
+		
+	        <Execute ExecutionOrder="40" UponError="Stop">
+				<Command>rpm -ivh ./{ComponentName}-{ComponentVersion}*.rpm</Command>
+			</Execute>
+		
+		</Install>
+	
+		<Upgrade>
+		
+			<Copy ExecutionOrder="10" Overwrite="true" UponError="Stop">
+				<Source>./{ComponentName}-{ComponentVersion}*.rpm</Source>
+			</Copy>
+		
+			<SetParams ExecutionOrder="20" UponError="Stop">
+				<ExecutionGroup>SEM-UTILS-PARAMS</ExecutionGroup>
+			</SetParams>	
+		
+			<Execute ExecutionOrder="30" UponError="Stop">
+				<Command>
+									if [ {Test_Production} == "Test" ]; then
+										echo " This is a Test system, setting flag for rpm installation"
+										touch /tmp/.test_environment
+									fi
+				</Command>
+			</Execute>
+					
+	        <Execute ExecutionOrder="40" UponError="Stop">
+				<Command>rpm -Uvh ./{ComponentName}-{ComponentVersion}*.rpm</Command>
+			</Execute>			
+		
+		</Upgrade>
+		
+		<Uninstall>
+		
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>rpm -e {ComponentName}</Command>
+			</Execute>
+		
+		</Uninstall>
+	
+		<Parameters>
+			<Parameter Name="Test_Production" Level="System" Display="true" DisplayName="Select sizing for Test/Production system" ExecutionGroup="SEM-UTILS-PARAMS">
+				<Restrictions>
+					<Type>Enum</Type>
+					<Enum>
+						<Item  Display="Test system" Value="Test"></Item>
+						<Item Display="Production system" Value="Production"></Item>
+					</Enum>
+				</Restrictions>
+				<Value>Production</Value>
+				<Description>Select sizing for Test/Production system</Description>
+			</Parameter>	
+	</Parameters>
+	
+	</Component>
+
+
+</SWIM>

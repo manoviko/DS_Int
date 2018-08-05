@@ -1,0 +1,43 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="fix_omni_after_ipa" Version="_VERSION-_BUILD">
+		<Install>
+		
+			<!-- This is fix for omni map unit -->
+			<!-- in future omni releases ipa should work properly with omni -->
+			<Execute ExecutionOrder="12" UponError="Stop">
+                  <Command>mkdir -p /var/omni_private_4ipa</Command>
+            </Execute>
+			<Copy ExecutionOrder="10" UponError="Stop" Overwrite="true"> 
+				 <Source>./u019_temp_041718.tar.gz</Source>
+				 <Target>/var/omni_private_4ipa/</Target>
+			</Copy>
+			<Execute ExecutionOrder="12" UponError="Stop">
+                  <Command>service omni stop</Command>
+            </Execute>
+			<Execute ExecutionOrder="14" UponError="Stop">
+			     <Command>			    
+                          Date=`date '+%d%m%Y%H%M'`				 
+                          echo "WARN : backup omni original folder"
+                          cp -rp /home/omni /var/omni_bkp_${Date}			    
+			    </Command>
+            </Execute>
+			<Execute ExecutionOrder="15" UponError="Stop">
+			     <Command>cd /home/omni &amp;&amp; tar cvf /var/tmp/omni_conf_backup.tar /home/omni/conf /home/omni/bin/ /home/omni/library /home/omni/include</Command>
+			</Execute>
+			<Execute ExecutionOrder="25" UponError="Stop">
+			   <Command>tar xvf /var/omni_private_4ipa/u019_temp_041718.tar.gz -C /var/omni_private_4ipa/</Command>
+			</Execute>
+			<Execute ExecutionOrder="65" UponError="Stop">
+			     <Command>cp /var/omni_private_4ipa/conf/* /home/omni/conf/;cp /var/omni_private_4ipa/bin/* /home/omni/bin/</Command>
+			</Execute>
+			<Execute ExecutionOrder="68" UponError="Stop">
+			     <Command>cp /var/omni_private_4ipa/library/* /home/omni/library/;cp /var/omni_private_4ipa/include/* /home/omni/include</Command>
+			</Execute>
+		</Install>
+		<Uninstall>
+			<Execute ExecutionOrder="1" UponError="Stop">
+				<Command>echo</Command>
+			</Execute>
+		</Uninstall>		
+	</Component>
+</SWIM>

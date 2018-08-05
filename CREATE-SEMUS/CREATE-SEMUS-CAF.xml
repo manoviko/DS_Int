@@ -1,0 +1,41 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="CREATE-SEMUS" Version="_VERSION-_BUILD">
+		<Install>
+		
+			<Copy ChmodFlags="+x" ExecutionOrder="10" UponError="Stop" Overwrite="true">
+				<Source>./create_semus.sh</Source>
+			</Copy>
+			
+			<Execute ExecutionOrder="40" UponError="Stop">
+				<Command>./create_semus.sh</Command>
+			</Execute>
+
+		</Install>
+		
+		<Upgrade>
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>echo "relevant to isu and map units"</Command>
+			</Execute>
+			<Copy ChmodFlags="+x" ExecutionOrder="20" UponError="Stop" Overwrite="true">
+				<Source>./create_semus.sh</Source>
+			</Copy>
+			
+			<Execute ExecutionOrder="40" UponError="Stop">
+				<Command>./create_semus.sh -uninstall</Command>
+			</Execute>
+		</Upgrade>
+		
+		<Uninstall>
+		
+			<Copy ChmodFlags="+x" ExecutionOrder="10" UponError="Stop" Overwrite="true">
+				<Source>./create_semus.sh</Source>
+			</Copy>
+			
+			<Execute ExecutionOrder="40" UponError="Stop">
+				<Command>./create_semus.sh -uninstall</Command>
+			</Execute>
+		
+		</Uninstall>
+
+	</Component>
+</SWIM>

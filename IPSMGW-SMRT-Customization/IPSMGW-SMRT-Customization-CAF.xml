@@ -1,0 +1,28 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="IPSMGW-SMRT-Customization" Version="_VERSION-_BUILD">
+		<Install>			
+				<!-- Setup IPGW ccm smrt -->
+				<Copy ExecutionOrder="10" ChmodFlags="+x" Overwrite="true" UponError="Stop">
+					<Source>./IPGW_ccm_smrt_conf.sh</Source>
+				</Copy>
+				<Execute ExecutionOrder="20" UponError="Stop">
+                       <Command>
+                            echo "INFO: add IPGW to CCM SMRT configuration"
+                            ./IPGW_ccm_smrt_conf.sh							 
+					   </Command>
+                 </Execute>		
+		</Install>			
+		<Upgrade>
+		      <!-- Setup IPGW ccm smrt -->
+			  <Copy ExecutionOrder="10" ChmodFlags="+x" Overwrite="true" UponError="Stop">
+				<Source>./IPGW_ccm_smrt_conf.sh</Source>
+			  </Copy>
+			  <Execute ExecutionOrder="20" UponError="Stop">
+                <Command>
+                   echo "INFO: add IPGW to CCM SMRT configuration"
+                   ./IPGW_ccm_smrt_conf.sh
+				</Command>
+               </Execute>
+		</Upgrade>
+	</Component>
+</SWIM>

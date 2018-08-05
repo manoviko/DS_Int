@@ -1,0 +1,42 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="SYSLOG_CONFIG" Version="_VERSION-_BUILD">
+		<Install>
+
+			<Execute ExecutionOrder="50" UponError="Stop">
+				<Command>
+								if [ -f /etc/syslog.conf ]; then
+									perl -ne 'exit 1 if /local0,auth,authpriv.debug;mail.emerg\s+\@syslogServer/' /etc/syslog.conf
+									if [ $? eq 0 ]; then
+										echo "INFO: Adding local0,auth,authpriv.debug;mail.emerg           @syslogServer line to /etc/syslog.conf"
+										echo 'local0,auth,authpriv.debug;mail.emerg           @syslogServer' > /etc/syslog.conf
+									fi
+								fi
+				</Command>
+			</Execute>
+			
+			<Execute ExecutionOrder="100" UponError="Stop">
+				<Command>/usr/cti/apps/CSPbase/csp_networking.pl  --action=set_host --hostname=syslogServer --ip={syslogServer}</Command>
+			</Execute>
+		</Install>
+		
+		<Upgrade>
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>echo "nothing to do for SYSLOG_CONFIG in upgrade"</Command>
+			</Execute>
+		</Upgrade>
+		
+		<Parameters>
+			<Parameter Name="syslogServer" Level="System" Display="false">
+				<!--<Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"SyslogServer.")]/VUnitInstance/@VirtualIp]</Value>-->
+				<Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"SYSLOGSERVER.")]/VUnitInstance/@VirtualIp]</Value>
+				<Description>Syslog server, usually HUB OMU</Description>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+				</Restrictions>
+			</Parameter>
+		</Parameters>
+		
+	</Component>
+</SWIM>

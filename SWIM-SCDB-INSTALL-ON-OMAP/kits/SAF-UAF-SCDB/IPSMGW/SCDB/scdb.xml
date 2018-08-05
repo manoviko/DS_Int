@@ -1,0 +1,297 @@
+<SCDB>
+  <Identification>
+    <ComponentName>scdb</ComponentName>
+    <FileFormatVersion>2.0</FileFormatVersion>
+    <ComponentRelease>7.0.0.0</ComponentRelease>
+    <ComponentBuild>02</ComponentBuild>
+  </Identification>
+  <!--scdb SystemRoot-->
+  <Object ObjectCardinality="Single" display="1" iconURL="/opt/CMVT/ICC/xml/icons/Spark_color.gif" inventoryMask="N/A" objectClass="Site" objectDescription="Group-Site-1" objectLabel="Group-Site-1" objectName="Group-Site-1" objectType="System">
+    <SystemRoot CIRNumber="123" CustomerName="Comverse" ManualInactive="0" SystemDomain="comverse.com" SystemLabel="Group-Site-1" SystemName="Group-Site-1" SystemType="LocalSystem"/>
+    <!--HUB scdb-->
+    <Object ObjectCardinality="Single" display="1" iconURL="/opt/CMVT/ICC/xml/icons/Spark_color.gif" objectClass="System" objectDescription="ECS Site-1 System" objectLabel="ECS Site-1 System" objectName="ECS-Site-1" objectType="System">
+      <Object ObjectCardinality="Single" display="1" iconURL="/opt/OV/www/htdocs/ito_op/images/hdisk.32.gif " inventoryMask="N/A" objectClass="Layer" objectDescription="Data Store Layer" objectLabel="Data Store" objectName="Data_Store_Layer" objectType="Logical">
+        <Object ObjectCardinality="Single" display="1" iconURL="/opt/OV/www/htdocs/ito_op/images/database.32.gif" inventoryMask="N/A" objectClass="Unit_Group" objectDescription="DSU Cluster" objectLabel="DSU Cluster" objectName="DSU_Group" objectType="Logical">
+          <Object ObjectCardinality="Multiple" display="1" iconURL="/opt/CMVT/ICC/xml/icons/DSU.gif" inventoryMask="N/A" objectClass="Unit_Type" objectDescription="DSU" objectLabel="Unit:$UnitName" objectName="DSU_Unit" objectType="Physical">
+            <Application ApplicationLabel="SEM DB (SZ network)" ApplicationLevel="N/A" ApplicationName="MW_DB" ConnectionType="Virtual" VirtualIp="10.11.112.59"/>
+            <Application ApplicationLabel="CCM Agent" ApplicationLevel="Farm" ApplicationName="CCM-Agent" ConnectionType="Management"/>
+            <AgentHeartbeat AgentCommunity="8y7pE4xnXwhnAJNuyc3j2w==" AgentEnable="1" AgentName="OnGuard-MIB" AgentOID="1.3.6.1.2.1.1.1.0" AgentPort="8161" PollingIntervalSec="600" PollingRetries="3" PollingTimeoutSec="30" SetCommunity="pIuSg2Fv6v p1y48Imakiw=="/>
+            <UnitInstance MacAddress="n/a" ManualInactive="0" UnitName="ipsmgw-dsu1a">
+              <Connection Hostname="ipsmgw-dsu1a" IP="10.11.112.67" Netmask="255.255.255.0" Type="Data"/>
+              <Connection Hostname="admin-ipsmgw-dsu1a" IP="10.10.86.67" Netmask="255.255.255.0" Type="Management"/>
+              <Connection Hostname="nfs-ipsmgw-dsu1a" IP="172.10.19.69" Netmask="255.255.255.0" Type="NFS"/>
+            </UnitInstance>
+            <Application ApplicationLabel="Platform" ApplicationLevel="Farm" ApplicationName="Platform" ConnectionType="Management"/>
+            <UnitInstance MacAddress="n/a" ManualInactive="0" UnitName="ipsmgw-dsu1b">
+              <Connection Hostname="ipsmgw-dsu1b" IP="10.11.112.68" Type="Data"/>
+              <Connection Hostname="admin-ipsmgw-dsu1b" IP="10.10.86.68" Type="Management"/>
+              <Connection Hostname="nfs-ipsmgw-dsu1b" IP="172.10.19.70" Type="NFS"/>
+            </UnitInstance>
+            <Application ApplicationLabel="SEM DB (SZ net for all omap like compas)" ApplicationLevel="N/A" ApplicationName="ODS" ConnectionType="Virtual" VirtualIp="10.11.112.59"/>
+          </Object>
+        </Object>
+      </Object>
+      <SystemRoot CIRNumber="N/A" CustomerName="Comverse" ManualInactive="0" SystemDomain="comverse.com" SystemLabel="ECS Site-1 System" SystemName="ECS-Site-1" SystemType="LocalSystem">
+        <Product InstallDate="01/01/2010" ProductName="ECS" ProductRelease="2.4.0.0"/>
+      </SystemRoot>
+      <Object ObjectCardinality="Single" display="1" iconURL="/opt/CMVT/ICC/xml/icons/Application.gif" objectClass="Layer" objectDescription="Application Layer" objectLabel="Application Layer" objectName="Application_Layer" objectType="Logical">
+        <Object ObjectCardinality="Single" display="1" iconURL="/opt/CMVT/ICC/xml/icons/4th.gif" objectClass="Unit_Group" objectDescription="ISU Group" objectLabel="ISU Group" objectName="ISU_Group" objectType="Logical">
+          <Object ObjectCardinality="Multiple" display="1" iconURL="/opt/CMVT/ICC/xml/icons/Linux.gif" objectClass="Unit_Type" objectDescription="ISU Unit" objectLabel="Unit:$UnitName" objectName="ISU_Unit" objectType="Physical">
+            <Application ApplicationLabel="IP SM GW Server Application" ApplicationLevel="Logical" ApplicationName="IPGW" ClusterType="Monitor" ConnectionType="Data"/>
+            <Application ApplicationLabel="MRE CONSOLE" ApplicationLevel="Logical" ApplicationName="MRE_CONSOLE" ClusterType="Monitor" ConnectionType="Management"/>
+            <Application ApplicationLabel="IPGW cluster" ApplicationLevel="Farm" ApplicationName="IPGW_cluster" ClusterType="Monitor" ConnectionType="Data"/>
+            <Application ApplicationLabel="CCM Agent" ApplicationLevel="Farm" ApplicationName="ccm-agent" ConnectionType="Management"/>
+            <UnitInstance MacAddress="n/a" ManualInactive="0" UnitName="ipsmgw-isu2">
+              <Connection Hostname="ipsmgw-isu2" IP="172.11.107.70" Netmask="255.255.255.0" Type="Data"/>
+              <Connection Hostname="admin-ipsmgw-isu2" IP="10.10.86.70" Netmask="255.255.255.0" Type="Management"/>
+              <HostedApplication ApplicationName="IPGW" Precedence="Primary">
+                <AppInstance InstanceLabel="1.2" InstanceName="1.2">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+              </HostedApplication>
+              <HostedApplication ApplicationName="MRE_CONSOLE" Precedence="Primary">
+                <AppInstance InstanceLabel="1.2" InstanceName="1.2">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+              </HostedApplication>
+              <HostedApplication ApplicationName="TLA_NG" Precedence="Primary">
+                <AppInstance InstanceLabel="1.2" InstanceName="1.2">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+              </HostedApplication>
+            </UnitInstance>
+            <Application ApplicationLabel="Trace Loader" ApplicationLevel="Logical" ApplicationName="TLA_NG" ClusterType="Monitor" ConnectionType="Management"/>
+            <Application ApplicationLabel="Platform" ApplicationLevel="Farm" ApplicationName="Platform" ConnectionType="Management"/>
+            <EMS EMSName="SUI-ElementStatus-Linux" URLTarget=""/>
+            <EMS EMSName="SUI-ProcessControl" URLTarget=""/>
+            <AgentHeartbeat AgentCommunity="8y7pE4xnXwhnAJNuyc3j2w==" AgentEnable="1" AgentName="MAM" AgentOID="1.3.6.1.4.1.5271.2.2.1.2.1.0" AgentPort="161" PollingIntervalSec="600" PollingRetries="3" PollingTimeoutSec="30" SetCommunity="pIuSg2Fv6v+p1y48Imakiw=="/>
+            <Application ApplicationLabel="Process Control" ApplicationLevel="Farm" ApplicationName="MAM" ConnectionType="Management"/>
+            <Application ApplicationLabel="Babysitter cluster" ApplicationLevel="Farm" ApplicationName="Babysitter_cluster" ClusterType="BabySitter" ConnectionType="Data"/>
+            <UnitInstance MacAddress="n/a" ManualInactive="0" UnitName="ipsmgw-isu1">
+              <Connection Hostname="ipsmgw-isu1" IP="172.11.107.69" Netmask="255.255.255.0" Type="Data"/>
+              <Connection Hostname="admin-ipsmgw-isu1" IP="10.10.86.69" Netmask="255.255.255.0" Type="Management"/>
+              <HostedApplication ApplicationName="IPGW" Precedence="Primary">
+                <AppInstance InstanceLabel="1.1" InstanceName="1.1">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+              </HostedApplication>
+              <HostedApplication ApplicationName="MRE_CONSOLE" Precedence="Primary">
+                <AppInstance InstanceLabel="1.1" InstanceName="1.1">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+              </HostedApplication>
+              <HostedApplication ApplicationName="TLA_NG" Precedence="Primary">
+                <AppInstance InstanceLabel="1.1" InstanceName="1.1">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+              </HostedApplication>
+            </UnitInstance>
+          </Object>
+        </Object>
+        <Object ObjectCardinality="Single" display="1" iconURL="/opt/CMVT/ICC/xml/icons/4th.gif" objectClass="Unit_Group" objectDescription="SCA Group" objectLabel="SCA Group" objectName="SCA_Group" objectType="Logical">
+          <Object ObjectCardinality="Multiple" display="1" iconURL="/opt/CMVT/ICC/xml/icons/Linux.gif" objectClass="Unit_Type" objectDescription="SCA Unit" objectLabel="Unit:$UnitName" objectName="SCA_Unit" objectType="Physical">
+            <Application ApplicationLabel="CCM Agent" ApplicationLevel="Farm" ApplicationName="ccm-agent" ConnectionType="Management"/>
+            <UnitInstance MacAddress="n/a" ManualInactive="0" UnitName="ipsmgw-shu1">
+              <Connection Hostname="ipsmgw-shu1" IP="172.11.107.63" Netmask="255.255.255.0" Type="Data"/>
+              <HostedApplication ApplicationName="SCA" Precedence="Primary">
+                <AppInstance InstanceLabel="1.1" InstanceName="1.1"/>
+              </HostedApplication>
+              <Connection Hostname="admin-ipsmgw-shu1" IP="10.10.86.63" Netmask="255.255.255.0" Type="Management"/>
+              <Connection Hostname="sip-ipsmgw-shu1" IP="172.12.20.63" Netmask="255.255.255.0" Type="sip"/>
+            </UnitInstance>
+            <Application ApplicationLabel="Platform" ApplicationLevel="Farm" ApplicationName="Platform" ConnectionType="Management"/>
+            <EMS EMSName="SUI-ElementStatus-Linux" URLTarget=""/>
+            <EMS EMSName="SUI-ProcessControl" URLTarget=""/>
+            <AgentHeartbeat AgentCommunity="8y7pE4xnXwhnAJNuyc3j2w==" AgentEnable="1" AgentName="MAM" AgentOID="1.3.6.1.4.1.5271.2.2.1.2.1.0" AgentPort="161" PollingIntervalSec="600" PollingRetries="3" PollingTimeoutSec="30" SetCommunity="pIuSg2Fv6v+p1y48Imakiw=="/>
+            <Application ApplicationLabel="Process Control" ApplicationLevel="Farm" ApplicationName="MAM" ConnectionType="Management"/>
+            <Application ApplicationLabel="SCA Farm(used by FTM)" ApplicationLevel="Farm" ApplicationName="SCA_Farm" ClusterType="N/A" ConnectionType="Data"/>
+            <Application ApplicationLabel="SIP Front End" ApplicationLevel="Logical" ApplicationName="SCA" ClusterType="N/A" ConnectionType="Data"/>
+            <UnitInstance MacAddress="n/a" ManualInactive="0" UnitName="ipsmgw-shu2">
+              <Connection Hostname="ipsmgw-shu2" IP="172.11.107.64" Netmask="255.255.255.0" Type="Data"/>
+              <HostedApplication ApplicationName="SCA" Precedence="Primary">
+                <AppInstance InstanceLabel="1.2" InstanceName="1.2"/>
+              </HostedApplication>
+              <Connection Hostname="admin-ipsmgw-shu2" IP="10.10.86.64" Netmask="255.255.255.0" Type="Management"/>
+              <Connection Hostname="sip-ipsmgw-shu2" IP="172.12.20.64" Netmask="255.255.255.0" Type="sip"/>
+            </UnitInstance>
+          </Object>
+        </Object>
+        <Object ObjectCardinality="Single" display="1" iconURL="/opt/CMVT/ICC/xml/icons/4th.gif" objectClass="Unit_Group" objectDescription="MAP Group" objectLabel="MAP Group" objectName="MAP_Group" objectType="Logical">
+          <Object ObjectCardinality="Multiple" display="1" iconURL="/opt/CMVT/ICC/xml/icons/Linux.gif" objectClass="Unit_Type" objectDescription="MAP Unit" objectLabel="Unit:$UnitName" objectName="MAP_Unit" objectType="Physical">
+            <Application ApplicationLabel="MAP" ApplicationLevel="Logical" ApplicationName="MAP" ClusterType="Monitor" ConnectionType="Data"/>
+            <Application ApplicationLabel="MAP cluster" ApplicationLevel="Farm" ApplicationName="MAP_cluster" ClusterType="Monitor" ConnectionType="Data"/>
+            <Application ApplicationLabel="CCM Agent" ApplicationLevel="Farm" ApplicationName="ccm-agent" ConnectionType="Management"/>
+            <UnitInstance MacAddress="n/a" ManualInactive="0" UnitName="ipsmgw-map1">
+              <Connection Hostname="ipsmgw-map1" IP="172.11.107.61" Netmask="255.255.255.0" Type="Data"/>
+              <Connection Hostname="admin-ipsmgw-map1" IP="10.10.86.61" Netmask="255.255.255.0" Type="Management"/>
+              <HostedApplication ApplicationName="MAP" Precedence="Primary">
+                <AppInstance InstanceLabel="1.1" InstanceName="1.1">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+                <AppInstance InstanceLabel="1.2" InstanceName="1.2">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+                <AppInstance InstanceLabel="1.4" InstanceName="1.4">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+                <AppInstance InstanceLabel="1.3" InstanceName="1.3">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+              </HostedApplication>
+              <HostedApplication ApplicationName="CTRL" Precedence="Primary">
+                <AppInstance InstanceLabel="1.1" InstanceName="1.1">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+              </HostedApplication>
+              <HostedApplication ApplicationName="HLRC" Precedence="Primary">
+                <AppInstance InstanceLabel="1.1" InstanceName="1.1">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+              </HostedApplication>
+            </UnitInstance>
+            <Application ApplicationLabel="Platform" ApplicationLevel="Farm" ApplicationName="Platform" ConnectionType="Management"/>
+            <EMS EMSName="SUI-ElementStatus-Linux" URLTarget=""/>
+            <EMS EMSName="SUI-ProcessControl" URLTarget=""/>
+            <AgentHeartbeat AgentCommunity="8y7pE4xnXwhnAJNuyc3j2w==" AgentEnable="1" AgentName="MAM" AgentOID="1.3.6.1.4.1.5271.2.2.1.2.1.0" AgentPort="161" PollingIntervalSec="600" PollingRetries="3" PollingTimeoutSec="30" SetCommunity="pIuSg2Fv6v+p1y48Imakiw=="/>
+            <Application ApplicationLabel="Process Control" ApplicationLevel="Farm" ApplicationName="MAM" ConnectionType="Management"/>
+            <Application ApplicationLabel="Babysitter cluster" ApplicationLevel="Farm" ApplicationName="Babysitter_cluster" ClusterType="BabySitter" ConnectionType="Data"/>
+            <Application ApplicationLabel="HLRC" ApplicationLevel="Logical" ApplicationName="HLRC" ClusterType="Monitor" ConnectionType="Data"/>
+            <Application ApplicationLabel="CTRL" ApplicationLevel="Logical" ApplicationName="CTRL" ClusterType="Monitor" ConnectionType="Data"/>
+            <UnitInstance MacAddress="n/a" ManualInactive="0" UnitName="ipsmgw-map2">
+              <Connection Hostname="ipsmgw-map2" IP="172.11.107.62" Netmask="255.255.255.0" Type="Data"/>
+              <Connection Hostname="admin-ipsmgw-map2" IP="10.10.86.62" Netmask="255.255.255.0" Type="Management"/>
+              <HostedApplication ApplicationName="MAP" Precedence="Primary">
+                <AppInstance InstanceLabel="1.5" InstanceName="1.5">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+                <AppInstance InstanceLabel="1.6" InstanceName="1.6">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+                <AppInstance InstanceLabel="1.8" InstanceName="1.8">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+                <AppInstance InstanceLabel="1.7" InstanceName="1.7">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+              </HostedApplication>
+              <HostedApplication ApplicationName="CTRL" Precedence="Primary">
+                <AppInstance InstanceLabel="1.2" InstanceName="1.2">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+              </HostedApplication>
+              <HostedApplication ApplicationName="HLRC" Precedence="Primary">
+                <AppInstance InstanceLabel="1.2" InstanceName="1.2">
+                  <Port portId="502" portType="Control"/>
+                </AppInstance>
+              </HostedApplication>
+            </UnitInstance>
+          </Object>
+        </Object>
+      </Object>
+    </Object>
+    <Object ObjectCardinality="Single" display="1" iconURL="/opt/CMVT/ICC/xml/icons/Spark_color.gif" inventoryMask="N/A" objectClass="System" objectDescription="HUB System Site-1" objectLabel="HUB Site-1" objectName="HUB-Site-1" objectType="System">
+      <SystemRoot CIRNumber="123" CustomerName="Comverse" ManualInactive="0" SystemDomain="comverse.com" SystemLabel="HUB Site-1" SystemName="HUB-Site-1" SystemType="LocalSystem">
+        <Product InstallDate="01/01/2010" ProductName="ECS" ProductRelease="2.4.0.0"/>
+      </SystemRoot>
+      <Object ObjectCardinality="Single" display="1" iconURL="/opt/OV/www/htdocs/ito_op/images/internet.32.gif" inventoryMask="N/A" objectClass="Layer" objectDescription="OSS BSS" objectGroup="object group" objectLabel="OSS/BSS" objectName="OSS_BSS_Layer" objectType="Logical">
+        <Object ObjectCardinality="Single" Reference="N/A" display="1" iconURL="/opt/CMVT/ICC/xml/icons/4th.gif" inventoryMask="N/A" objectClass="Unit_Group" objectDescription="OMU Cluster" objectGroup="object group" objectLabel="OMU Group" objectName="OMU_Group" objectType="Logical">
+          <Object ObjectCardinality="Multiple" display="1" iconURL="/opt/CMVT/ICC/xml/icons/Linux.gif" objectClass="Unit_Type" objectDescription="OMU Unit" objectLabel="Unit:$UnitName" objectName="OMU_Unit" objectType="Physical">
+            <Application ApplicationLabel="OMAP" ApplicationLevel="Farm" ApplicationName="OMAP" ClusterType="Veritas" ConnectionType="Virtual">
+              <AppInstance InstanceLabel="1.1" InstanceName="1.1">
+                <Port portId="101" portType="Control"/>
+                <VConnection ConnectionType="Management" VHostname="omap-general-vip" VirtualIp="10.10.86.52"/>
+              </AppInstance>
+            </Application>
+            <Application ApplicationLabel="Platform" ApplicationLevel="Farm" ApplicationName="Platform" ConnectionType="Management"/>
+            <Application ApplicationLabel="Process Control" ApplicationLevel="Farm" ApplicationName="MAM" ConnectionType="Management"/>
+            <Application ApplicationLabel="PGW" ApplicationLevel="Farm" ApplicationName="PGW" ConnectionType="Management"/>
+            <Application ApplicationLabel="AAS" ApplicationLevel="Farm" ApplicationName="AAS" ConnectionType="Management"/>
+            <Application ApplicationLabel="OSS-Portal" ApplicationLevel="Farm" ApplicationName="OSS-Portal" ConnectionType="Management"/>
+            <Application ApplicationLabel="SiteBook(maint-admin-vip)" ApplicationLevel="Farm" ApplicationName="SiteBook" ClusterType="Veritas" ConnectionType="Virtual" VirtualIp="10.10.86.53"/>
+            <Application ApplicationLabel="CCM(maint-admin-vip)" ApplicationLevel="Farm" ApplicationName="CCM" ClusterType="Veritas" ConnectionType="Virtual" VirtualIp="10.10.86.53"/>
+            <Application ApplicationLabel="SWIM(installed on ipgw-omu1a only)" ApplicationLevel="Logical" ApplicationName="SWIM" ConnectionType="Management"/>
+            <Application ApplicationLabel="CCM Agent" ApplicationLevel="Farm" ApplicationName="CCM-Agent" ConnectionType="Management"/>
+            <Application ApplicationLabel="Trace UI" ApplicationLevel="Farm" ApplicationName="Trace_UI" ClusterType="Veritas" ConnectionType="Virtual" VirtualIp="10.10.86.54"/>
+            <Application ApplicationLabel="ODB(omap-db-vip in SZ vlan)" ApplicationLevel="Farm" ApplicationName="ODB" ClusterType="Veritas" ConnectionType="Virtual" VirtualIp="10.11.112.57"/>
+            <Application ApplicationLabel="FTM(omap-processing-vip)" ApplicationLevel="Farm" ApplicationName="FTM" ConnectionType="Management"/>
+            <Application ApplicationLabel="Balancer" ApplicationLevel="Farm" ApplicationName="Balancer" ConnectionType="Data"/>
+            <Application ApplicationLabel="SCDB(maint-admin-vip)" ApplicationLevel="Farm" ApplicationName="SCDB" ClusterType="Veritas" ConnectionType="Virtual" VirtualIp="10.10.86.53"/>
+            <Application ApplicationLabel="SyslogServer(central-log-admin)" ApplicationLevel="Farm" ApplicationName="SyslogServer" ClusterType="Veritas" ConnectionType="Virtual" VirtualIp="10.10.86.51"/>
+            <Application ApplicationLabel="OMAP_Cluster" ApplicationLevel="Farm" ApplicationName="OMAP_Cluster" ClusterType="Veritas" ConnectionType="Management"/>
+            <Application ApplicationLabel="OMAP DB SEM" ApplicationLevel="Farm" ApplicationName="OMAPDB" ClusterType="Veritas" ConnectionType="Virtual">
+              <AppInstance InstanceLabel="1" InstanceName="1">
+                <Port portId="101" portType="Control"/>
+                <VConnection ConnectionType="Data" VHostname="trace-db-vip" VirtualIp="10.11.112.58"/>
+              </AppInstance>
+            </Application>
+            <!--Application ApplicationLabel="TRACES DB" ApplicationLevel="Farm" ApplicationName="TRACESDB" ConnectionType="Virtual">                        <AppInstance InstanceLabel="1" InstanceName="1">                        <Port portId="101" portType="Control"/>                        <VConnection ConnectionType="Management" VHostname="messaging_omap_db-vip" VirtualIp="172.28.153.172"/>                        </AppInstance>                        </Application-->
+            <Application ApplicationLabel="OMAP_DB_Cluster" ApplicationLevel="Farm" ApplicationName="OMAP_DB_Cluster" ClusterType="RAC" ConnectionType="Management"/>
+            <Application ApplicationLabel="OMAP Billing Handler" ApplicationLevel="Farm" ApplicationName="OBH" ConnectionType="Management"/>
+            <Application ApplicationLabel="SEM Web Service Administration(omap-spm-vip)" ApplicationLevel="Farm" ApplicationName="WSA" ClusterType="Veritas" ConnectionType="Virtual" VirtualIp="10.10.86.55"/>
+            <Application ApplicationLabel="OMAP_TASKS" ApplicationLevel="Farm" ApplicationName="OMAP_TASKS" ClusterType="Veritas" ConnectionType="Virtual">
+              <AppInstance InstanceLabel="1.1" InstanceName="1.1">
+                <Port portId="101" portType="Control"/>
+                <VConnection ConnectionType="Management" VHostname="omap-general-vip" VirtualIp="10.10.86.52"/>
+              </AppInstance>
+            </Application>
+            <Application ApplicationLabel="STATISTICS_LOADER" ApplicationLevel="Farm" ApplicationName="STATISTICS_LOADER" ClusterType="Veritas" ConnectionType="Virtual">
+              <AppInstance InstanceLabel="1.1" InstanceName="1.1">
+                <Port portId="101" portType="Control"/>
+                <VConnection ConnectionType="Management" VHostname="omap-processing-vip" VirtualIp="10.10.86.56"/>
+              </AppInstance>
+            </Application>
+            <!--Application ApplicationLabel="STATISTICS_LOADER_TASKS" ApplicationLevel="Farm" ApplicationName="STATISTICS_LOADER_TASKS" ClusterType="Veritas" ConnectionType="Virtual">				<AppInstance InstanceLabel="1.1" InstanceName="1.1">					<Port portId="101" portType="Control"/>					<VConnection ConnectionType="Management" VHostname="omap-processing-vip" VirtualIp="10.10.13.134"/>					</AppInstance>				</Application-->
+            <!--Application ApplicationLabel="TRACE2CSV" ApplicationLevel="Farm" ApplicationName="TRACE2CSV" ClusterType="Veritas" ConnectionType="Virtual">              <AppInstance InstanceLabel="1.1" InstanceName="1.1">                <VConnection ConnectionType="Management" VHostname="omap-processing-vip" VirtualIp="10.10.13.118"/>                <Port portId="101" portType="Control"/>              </AppInstance>            </Application-->
+            <!--Application ApplicationLabel="STATISTICSDB" ApplicationLevel="Farm" ApplicationName="STATISTICSDB" ClusterType="Veritas" ConnectionType="Virtual">				<AppInstance InstanceLabel="1" InstanceName="1">				<Port portId="101" portType="Control"/>				<VConnection ConnectionType="Data" VHostname="trace-db-vip" VirtualIp="172.30.10.131"/>				</AppInstance>			</Application-->
+            <Application ApplicationLabel="SEM Trace DB(trace-db-vip)" ApplicationLevel="N/A" ApplicationName="MWTRACESDB" ConnectionType="Virtual" VirtualIp="10.11.112.58"/>
+            <Application ApplicationLabel="SEM SPM Agent" ApplicationLevel="N/A" ApplicationName="SEM_SPMAgent" ConnectionType="Virtual">
+              <AppInstance InstanceLabel="1.1" InstanceName="1.1">
+                <VConnection ConnectionType="Management" VHostname="omap-spm-vip" VirtualIp="10.10.86.55"/>
+              </AppInstance>
+            </Application>
+            <Application ApplicationLabel="SEM SPM" ApplicationLevel="Farm" ApplicationName="SEM-SPM" ConnectionType="Data"/>
+            <UnitInstance MacAddress="n/a" ManualInactive="0" UnitName="ipsmgw-omu1a">
+              <Connection Hostname="admin-ipsmgw-omu1a" IP="10.45.14.148" Netmask="255.255.255.0" Type="Management"/>
+              <Connection Hostname="ipsmgw-omu1a" IP="172.15.10.148" Netmask="255.255.255.0" Type="Data"/>
+              <Connection Hostname="nfs-ipsmgw-omu1a" IP="172.15.30.148" Netmask="255.255.255.0" Type="NFS"/>
+              <HostedApplication ApplicationName="SWIM" Precedence="Primary"/>
+            </UnitInstance>
+            <UnitInstance MacAddress="n/a" ManualInactive="0" UnitName="ipsmgw-omu1b">
+              <Connection Hostname="admin-ipsmgw-omu1b" IP="10.10.86.66" Type="Management"/>
+              <Connection Hostname="ipsmgw-omu1b" IP="10.11.112.66" Type="Data"/>
+              <Connection Hostname="nfs-ipsmgw-omu1b" IP="172.10.19.68" Type="NFS"/>
+            </UnitInstance>
+            <AgentHeartbeat AgentCommunity="8y7pE4xnXwhnAJNuyc3j2w==" AgentEnable="1" AgentName="MAM" AgentOID="1.3.6.1.4.1.5271.2.2.1.2.1.0" AgentPort="161" PollingIntervalSec="600" PollingRetries="3" PollingTimeoutSec="30" SetCommunity="pIuSg2Fv6v+p1y48Imakiw=="/>
+            <Application ApplicationLabel="N/A" ApplicationLevel="Unit" ApplicationName="NTPSERVER1" ConnectionType="Management" HostingUnits="1a"/>
+            <Application ApplicationLabel="N/A" ApplicationLevel="Unit" ApplicationName="NTPSERVER2" ConnectionType="Management" HostingUnits="1b"/>
+            <Application ApplicationLabel="TRACES DB" ApplicationLevel="Farm" ApplicationName="TRACESDB" ClusterType="Veritas" ConnectionType="Virtual">
+              <AppInstance InstanceLabel="1" InstanceName="1">
+                <VConnection ConnectionType="Data" VHostname="trace-db-vip" VirtualIp="10.11.112.58"/>
+              </AppInstance>
+            </Application>
+          </Object>
+        </Object>
+        <Object ObjectCardinality="Single" display="1" iconURL="/opt/CMVT/ICC/xml/icons/4th.gif" inventoryMask="N/A" objectClass="Unit_Group" objectDescription="Management Server Cluster" objectLabel="SMU_Cluster" objectName="SMU_Group" objectType="Logical">
+          <Object ObjectCardinality="Multiple" display="1" iconURL="/opt/CMVT/ICC/xml/icons/SUN.gif" inventoryMask="smu%" objectClass="Unit_Type" objectDescription="Management Server" objectLabel="Unit:$UnitName" objectName="SMU_Unit" objectType="Physical">
+            <Application ApplicationLabel="Alarm Correlation" ApplicationLevel="Farm" ApplicationName="AC" ConnectionType="Virtual" VirtualIp="2.1.1.1"/>
+            <Application ApplicationLabel="HeartBeat" ApplicationLevel="Farm" ApplicationName="ICC4J" ConnectionType="Virtual" VirtualIp="2.1.1.2"/>
+            <Application ApplicationLabel="CMA" ApplicationLevel="Farm" ApplicationName="CMA" ConnectionType="Virtual" VirtualIp="2.1.1.3"/>
+            <Application ApplicationLabel="ICC" ApplicationLevel="Farm" ApplicationName="Core_SPI" ConnectionType="Virtual" VirtualIp="2.1.1.5"/>
+            <Application ApplicationLabel="SUI" ApplicationLevel="Farm" ApplicationName="SUI" ConnectionType="Virtual" VirtualIp="2.1.1.6"/>
+            <Application ApplicationLabel="N/A" ApplicationLevel="Farm" ApplicationName="SNMPMANAGER" ConnectionType="Virtual" VirtualIp="172.17.5.17"/>
+            <Application ApplicationLabel="CCM Agent" ApplicationLevel="Farm" ApplicationName="ccm-agent" ConnectionType="Management"/>
+            <Application ApplicationLabel="N/A" ApplicationLevel="Farm" ApplicationName="ADMINDB" ConnectionType="Virtual" VirtualIp="172.17.5.20"/>
+            <Application ApplicationLabel="DRS SCDB" ApplicationLevel="N/A" ApplicationName="DRSSCDB" ConnectionType="Virtual" VirtualIp="1.1.1.99"/>
+            <EMS EMSName="SUI-ElementStatus-SMU" URLTarget="N/A"/>
+            <EMS EMSName="SSH-Login-SLS" URLTarget="N/A"/>
+            <UnitInstance MacAddress="n/a" ManualInactive="0" UnitName="smu1a">
+              <Connection Hostname="admin-smu1a" IP="1.1.1.27" Netmask="255.255.255.0" Type="Management" VLAN="200"/>
+              <!--Connection Hostname="smu1a" IP="1.1.1.28" Type="Data"/-->
+            </UnitInstance>
+            <AgentHeartbeat AgentCommunity="8y7pE4xnXwhnAJNuyc3j2w==" AgentEnable="1" AgentName="MAM" AgentOID="1.3.6.1.4.1.5271.2.2.1.2.1.0" AgentPort="51161" PollingIntervalSec="600" PollingRetries="3" PollingTimeoutSec="30"/>
+          </Object>
+        </Object>
+      </Object>
+    </Object>
+  </Object>
+</SCDB>

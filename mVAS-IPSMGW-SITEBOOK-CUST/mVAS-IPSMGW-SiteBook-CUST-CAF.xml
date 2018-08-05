@@ -1,0 +1,151 @@
+<!-- Customization CAF for AAS, SiteBook, PM and OSSP -->
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+        <Component Platform="Linux" Name="mVAS-IPSMGW-SiteBook-CUST" SequentialExecution="true" Version="_VERSION-_BUILD">
+
+                <Install>
+                       <Execute ExecutionOrder="20" UponError="Stop">
+								<Command>
+													test -d /var/tmp/SiteBook/IPGW &amp;&amp; /bin/rm -rf /var/tmp/SiteBook/IPGW/*
+													mkdir -p /var/tmp/SiteBook/IPGW
+													chmod -R 755 /var/tmp/SiteBook
+                                </Command>
+                        </Execute>
+
+                         <Copy ChmodFlags="755" ExecutionOrder="25" Overwrite="true" UponError="Stop">
+                                <Source>./sitebook_customization_ipgw_kit/*</Source>
+                                <Target>/var/tmp/SiteBook/</Target>
+                        </Copy>                        
+
+                        <Copy ChmodFlags="+x" ExecutionOrder="50" Overwrite="true" UponError="Stop">
+                                <Source>./IPGW-SiteBook_Customization.pl</Source>
+                        </Copy>
+
+                <!-- SiteBook customization part start: operate on Active node only! -->
+                        <Execute ExecutionOrder="90" UponError="Stop">
+                                <Command>HOST=`hostname`;
+                                if [ "`/opt/VRTS/bin/hares -state SiteBook|grep -w ONLINE`" ]; then
+                                  if [ "`/opt/VRTS/bin/hares -state SiteBook|grep -w ONLINE|grep $HOST`" ]; then
+                                        /usr/cti/apps/swp/HA/ha_ControlCluster.pl --offline --resource SiteBook --time 180 --host $HOST
+                                        /usr/cti/apps/swp/HA/ha_ControlCluster.pl --online --resource SiteBook --time 180 --host $HOST                                   
+                                        echo "Executing SEM-SiteBook_Customization.pl"
+                                        ./IPGW-SiteBook_Customization.pl {IPGWSYSTEMNAME} IPGW
+                                  else 
+                                       echo "SiteBook is running on another node, No SITEBOOK CUST is done"
+                                       exit 0
+                                  fi
+                                 else
+                                   #/usr/cti/apps/swp/HA/ha_ControlCluster.pl --group omap_maint --online --time 180
+                                   echo "SiteBook is down, trying to start it"
+                                   /opt/VRTS/bin/hagrp -clear omap_maint -sys `hostname`
+                                   /usr/cti/apps/swp/HA/ha_ControlCluster.pl --online --resource SiteBook --time 180
+                                   if [ ! "`/opt/VRTS/bin/hares -state SiteBook|grep -w ONLINE`" ]; then
+                                      echo "Failed to initialize SiteBook, exit ..."
+                                      exit 1
+                                   else
+                                    if [ "`/opt/VRTS/bin/hares -state SiteBook|grep -w ONLINE|grep $HOST`" ]; then
+                                      echo "INFO(After restart): Executing ./SEM-SiteBook_Customization.pl"
+                                      ./IPGW-SiteBook_Customization.pl {IPGWSYSTEMNAME} IPGW
+                                    else
+                                      echo "INFO(After restart): SiteBook is running on another node, No SITEBOOK CUST is done"
+                                      exit 0
+                                    fi
+                                  fi
+                                fi
+                                </Command>
+                                <ExpectedExitCode>0</ExpectedExitCode>
+                        </Execute>
+
+						<Execute ExecutionOrder="100" UponError="Stop">
+                                <Command>/bin/rm -rf /var/tmp/SiteBook/IPGW</Command>
+                        </Execute>
+
+                </Install>
+
+				<Upgrade>
+					<Execute ExecutionOrder="20" UponError="Stop">
+								<Command>
+													test -d /var/tmp/SiteBook/IPGW &amp;&amp; /bin/rm -rf /var/tmp/SiteBook/IPGW/*
+													mkdir -p /var/tmp/SiteBook/IPGW
+													chmod -R 755 /var/tmp/SiteBook
+                                </Command>
+                        </Execute>
+
+                         <Copy ChmodFlags="755" ExecutionOrder="25" Overwrite="true" UponError="Stop">
+                                <Source>./sitebook_customization_ipgw_kit/*</Source>
+                                <Target>/var/tmp/SiteBook/</Target>
+                        </Copy>                        
+
+                        <Copy ChmodFlags="+x" ExecutionOrder="50" Overwrite="true" UponError="Stop">
+                                <Source>./IPGW-SiteBook_Customization.pl</Source>
+                        </Copy>        
+						
+                <!-- SiteBook customization part start: operate on Active node only! -->
+                        <Execute ExecutionOrder="90" UponError="Stop">
+                                <Command>HOST=`hostname`;
+                                if [ "`/opt/VRTS/bin/hares -state SiteBook|grep -w ONLINE`" ]; then
+                                  if [ "`/opt/VRTS/bin/hares -state SiteBook|grep -w ONLINE|grep $HOST`" ]; then
+                                        /usr/cti/apps/swp/HA/ha_ControlCluster.pl --offline --resource SiteBook --time 180 --host $HOST
+                                        /usr/cti/apps/swp/HA/ha_ControlCluster.pl --online --resource SiteBook --time 180 --host $HOST                            
+                                        echo "Executing SEM-SiteBook_Customization.pl"
+                                        ./IPGW-SiteBook_Customization.pl {IPGWSYSTEMNAME} IPGW
+                                  else 
+                                       echo "SiteBook is running on another node, No SITEBOOK CUST is done"
+                                       exit 0
+                                  fi
+                                 else
+                                   #/usr/cti/apps/swp/HA/ha_ControlCluster.pl --group omap_maint --online --time 180
+                                   echo "SiteBook is down, trying to start it"
+                                   /opt/VRTS/bin/hagrp -clear omap_maint -sys `hostname`
+                                   /usr/cti/apps/swp/HA/ha_ControlCluster.pl --online --resource SiteBook --time 180
+                                   if [ ! "`/opt/VRTS/bin/hares -state SiteBook|grep -w ONLINE`" ]; then
+                                      echo "Failed to initialize SiteBook, exit ..."
+                                      exit 1
+                                   else
+                                    if [ "`/opt/VRTS/bin/hares -state SiteBook|grep -w ONLINE|grep $HOST`" ]; then
+                                      echo "INFO(After restart): Executing ./SEM-SiteBook_Customization.pl"                                  
+                                      ./IPGW-SiteBook_Customization.pl {IPGWSYSTEMNAME} IPGW
+                                    else
+                                      echo "INFO(After restart): SiteBook is running on another node, No SITEBOOK CUST is done"
+                                      exit 0
+                                    fi
+                                  fi
+                                fi
+                                </Command>
+                                <ExpectedExitCode>0</ExpectedExitCode>
+                        </Execute>
+
+						<Execute ExecutionOrder="100" UponError="Stop">
+                                <Command>/bin/rm -rf /var/tmp/SiteBook/IPGW</Command>
+                        </Execute>
+                </Upgrade>
+
+                <Uninstall>
+                        <Execute ExecutionOrder="10" UponError="Continue">
+                                <Command>echo uninstall</Command>
+                        </Execute>
+                </Uninstall>
+				
+                    <Parameters>
+                             <Parameter Name="SITEBOOK_BIND" Level="System" Display="false" Overwrite="true">
+                                    <Description>Alias or IP to which SiteBook Application binds e.g maint-admin-vip</Description>
+                                    <Restrictions>
+                                            <Type>String</Type>
+                                            <Mandatory>true</Mandatory>
+                                    </Restrictions>
+                                    <Value>maint-admin-vip</Value>
+                    </Parameter>
+                    
+                    <Parameter Name="IPGWSYSTEMNAME" Level="System" Display="true" DisplayName="IPSMGW Domain Name">
+                        <Restrictions>
+                            <Type>String</Type>
+                            <Mandatory>true</Mandatory>
+                            <MaxLength>255</MaxLength>
+                        </Restrictions>
+                        <Description>IPSMGW Domain Name</Description>
+                        <Value>[File=/var/cti/data/swim/systems/SystemList.xml:/SystemList/SystemRoot/SystemRoot/SystemRoot[contains(@SystemName,"IPSMGW")]/@SystemName]</Value>
+                    </Parameter>        
+                </Parameters>
+                
+                
+        </Component>
+</SWIM>

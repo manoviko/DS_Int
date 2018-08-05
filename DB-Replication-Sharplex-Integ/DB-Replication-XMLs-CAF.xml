@@ -1,0 +1,258 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="DB-Replication-XMLs" Version="_VERSION-_BUILD">
+	
+		<Install>
+			
+			<Copy ExecutionOrder="10" ChmodFlags="+x" Overwrite="true" UponError="Stop">
+				<Source>./set_xml_value.pl</Source>
+			</Copy>
+			
+			<!-- infra part -->
+			<Copy ExecutionOrder="20" Overwrite="true" UponError="Stop">
+				<Source>./db-replication-infra.xml</Source>
+				<Target>/var/tmp/</Target>
+			</Copy>			
+			<SetParams ExecutionOrder="30" UponError="Stop">
+				<ExecutionGroup>infra_params</ExecutionGroup>
+			</SetParams>
+			<!--<Execute ExecutionOrder="40" UponError="Stop">
+				<Command>
+								if [ "{LOCAL_TNS_ALIAS}" == "siteA" ]; then
+									LOCAL_TRAIL_FILE_PREFIX="sa"
+								elif [ "{LOCAL_TNS_ALIAS}" == "siteB" ]; then
+									LOCAL_TRAIL_FILE_PREFIX="sb"
+								else
+									echo "ERROR: LOCAL_TNS_ALIAS value should be either siteA or siteB, and current value is {LOCAL_TNS_ALIAS}"
+									exit 1
+								fi
+								
+								./set_xml_value.pl xml /var/tmp/db-replication-infra.xml  xpath '/configuration/sites-configuration/local-site/LOCAL_TRAIL_FILE_PREFIX' value $LOCAL_TRAIL_FILE_PREFIX
+				</Command>
+			</Execute>-->
+			
+			
+			<!-- config part -->
+			<Copy ExecutionOrder="50" Overwrite="true" UponError="Stop">
+				<Source>./db-replication-config.xml</Source>
+				<Target>/var/tmp/</Target>
+			</Copy>
+			<SetParams ExecutionOrder="60" UponError="Stop">
+				<ExecutionGroup>config_params</ExecutionGroup>
+			</SetParams>
+			<!--<Execute ExecutionOrder="70" UponError="Stop">
+				<Command>
+								if [ "{REMOTE_TNS_ALIAS}" == "siteA" ]; then
+									REMOTE_TRAIL_FILE_PREFIX="sa"
+								elif [ "{REMOTE_TNS_ALIAS}" == "siteB" ]; then
+									REMOTE_TRAIL_FILE_PREFIX="sb"
+								else
+									echo "ERROR: REMOTE_TNS_ALIAS value should be either siteA or siteB, and current value is {REMOTE_TNS_ALIAS}"
+									exit 1
+								fi
+								
+								./set_xml_value.pl xml /var/tmp/db-replication-config.xml xpath '/configuration/sites-configuration/remote-site/REMOTE_TRAIL_FILE_PREFIX' value $REMOTE_TRAIL_FILE_PREFIX
+				</Command>
+			</Execute>-->									
+			
+			
+			<!-- CSPBase utility is used to send SNMP traps when needed. Due to CSP bug, the utility come with wrong pemissions that should be changed -->
+			<Execute ExecutionOrder="100" UponError="Stop">
+				<Command>chmod 755 /usr/cti/apps/CSPbase/csp_snmp_trap.pl</Command>
+			</Execute>
+			<Execute ExecutionOrder="110" UponError="Continue">
+				<Command>chmod 777 /var/cti/logs/swp/SNMP</Command>
+			</Execute>
+			
+			
+			
+	
+		
+		</Install>
+		
+		<Uninstall>
+				
+				<Execute ExecutionOrder="10" UponError="Stop">
+					<Command>/bin/rm -f /var/tmp/db-replication-infra.xml</Command>
+				</Execute>
+		
+		</Uninstall>
+
+			<Parameters>
+			
+				<Parameter Name="LOCAL_DB" Level="UnitType" DisplayName="Local DB name" Display="false" ExecutionGroup="infra_params" Overwrite="true">
+					<Description>The name of the database on the local server (the one you install now).</Description>
+					<Restrictions>
+						<Type>String</Type>
+						<Mandatory>true</Mandatory>
+					</Restrictions>
+					<File Name="/var/tmp/db-replication-infra.xml" Format="XML" ParameterPath="/configuration/sites-configuration/local-site/LOCAL_DB"></File>
+					<Value></Value>
+				</Parameter>
+				<Parameter Name="LOCAL_TNS_ALIAS" Level="UnitType" DisplayName="Local TNS DB alias" Display="true" ExecutionGroup="infra_params" Overwrite="true">
+					<Description>Local site identified name to use in tnsnames file. This alias will be defined in tnsnames by the installation itself. Alias must be up to 6 characters!</Description>
+					<Restrictions>
+						<Type>Enum</Type>
+						<Mandatory>true</Mandatory>
+						<Enum>
+							<Item Value="siteA" Display="siteA"></Item>
+							<Item Value="siteB" Display="siteB"></Item>							
+						</Enum>
+					</Restrictions>
+					<File Name="/var/tmp/db-replication-infra.xml" Format="XML" ParameterPath="/configuration/sites-configuration/local-site/LOCAL_TNS_ALIAS"></File>
+				</Parameter>
+				<Parameter Name="LOCAL_VIP" Level="UnitType" DisplayName="Oracle local IP" Display="false" ExecutionGroup="infra_params" Overwrite="true">
+					<Description>The vip of the local db. It should be the IP itself and not the alias</Description>
+					<Restrictions>
+						<Type>String</Type>
+						<Mandatory>true</Mandatory>
+						<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					</Restrictions>
+					<File Name="/var/tmp/db-replication-infra.xml" Format="XML" ParameterPath="/configuration/sites-configuration/local-site/LOCAL_VIP"></File>
+					<Value></Value>
+				</Parameter>
+                                <Parameter Name="SPLEX_VIP" Level="UnitType" DisplayName="Oracle local IP" Display="false" ExecutionGroup="infra_params" Overwrite="true">
+                                        <Description>The vip of the local db. It should be the IP itself and not the alias</Description>
+                                        <Restrictions>
+                                                <Type>String</Type>
+                                                <Mandatory>true</Mandatory>
+                                                <Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+                                        </Restrictions>
+                                        <File Name="/var/tmp/db-replication-infra.xml" Format="XML" ParameterPath="/configuration/sites-configuration/local-site/SPLEX_VIP"></File>
+                                        <Value></Value>
+                                </Parameter>
+                                <Parameter Name="LICENSE_KEY" Level="UnitType" DisplayName="LICENSE KEY" Display="true" ExecutionGroup="infra_params" Overwrite="true">
+                                        <Description>Shareplex valid license key</Description>
+                                        <Restrictions>
+                                                <Type>String</Type>
+                                                <Mandatory>true</Mandatory>
+                                        </Restrictions>
+                                        <File Name="/var/tmp/db-replication-infra.xml" Format="XML" ParameterPath="/configuration/replication-configuration/LICENSE_KEY"></File>
+                                        <Value></Value>
+                                </Parameter>
+                                <Parameter Name="KEY_SITE_NAME" Level="UnitType" DisplayName="KEY SITE NAME" Display="true" ExecutionGroup="infra_params" Overwrite="true">
+                                        <Description>Shareplex license key site name</Description>
+                                        <Restrictions>
+                                                <Type>String</Type>
+                                                <Mandatory>true</Mandatory>
+                                        </Restrictions>
+                                        <File Name="/var/tmp/db-replication-infra.xml" Format="XML" ParameterPath="/configuration/replication-configuration/KEY_SITE_NAME"></File>
+                                        <Value>Comverse</Value>
+                                </Parameter>
+				<Parameter Name="MASTER_SITE_TNS_ALIAS" Level="UnitType" DisplayName="Master TNS DB alias" Display="true" ExecutionGroup="infra_params" Overwrite="true">
+					<Description>The master site is the site all sites should get the initial load from.</Description>
+					<Restrictions>
+						<Type>Enum</Type>
+						<Mandatory>true</Mandatory>
+						<Enum>
+							<Item Value="siteA" Display="siteA"></Item>
+							<Item Value="siteB" Display="siteB"></Item>							
+						</Enum>
+					</Restrictions>
+					<File Name="/var/tmp/db-replication-infra.xml" Format="XML" ParameterPath="/configuration/sites-configuration/local-site/MASTER_SITE_TNS_ALIAS"></File>
+				</Parameter>				
+				<Parameter Name="REPLICATION_HOME" Level="UnitType" DisplayName="Replication Home Directory" Display="false" ExecutionGroup="infra_params" Overwrite="true">
+					<Description>Path for GG binaries installation. This path should be created on a shared storage and should be mounted using a VCS, prior the installation</Description>
+					<Restrictions>
+						<Type>String</Type>
+						<Mandatory>true</Mandatory>
+					</Restrictions>
+					<File Name="/var/tmp/db-replication-infra.xml" Format="XML" ParameterPath="/configuration/replication-configuration/REPLICATION_HOME"></File>
+					<Value></Value>
+				</Parameter>
+				<!--<Parameter Name="DYNAMIC_PORTS" Level="UnitType" DisplayName="Dynamic Ports " Display="true" ExecutionGroup="infra_params" Overwrite="true">
+					<Description>In multi db installation, this port range should be different between the two databases, and make sure it is free before the installation.</Description>
+					<Restrictions>
+						<Type>String</Type>
+						<Mandatory>true</Mandatory>
+					</Restrictions>
+					<File Name="/var/tmp/db-replication-infra.xml" Format="XML" ParameterPath="/configuration/replication-configuration/DYNAMIC_PORTS"></File>
+					<Value></Value>
+				</Parameter>-->
+				
+				
+				<Parameter Name="REMOTE_DB" Level="UnitType" DisplayName="Remote DB name" Display="false" ExecutionGroup="config_params" Overwrite="true">
+					<Description>The remote db name</Description>
+					<Restrictions>
+						<Type>String</Type>
+						<Mandatory>true</Mandatory>
+					</Restrictions>
+					<File Name="/var/tmp/db-replication-config.xml" Format="XML" ParameterPath="/configuration/sites-configuration/remote-site/REMOTE_DB"></File>
+					<Value></Value>
+				</Parameter>	
+				<Parameter Name="REMOTE_VIP" Level="UnitType" DisplayName="Remote DB VIP" Display="true" ExecutionGroup="config_params" Overwrite="true">
+					<Description>The db vip of the remote database.</Description>
+					<Restrictions>
+						<Type>String</Type>
+						<Mandatory>true</Mandatory>
+						<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					</Restrictions>
+			                <File Name="/var/tmp/db-replication-config.xml" Format="XML" ParameterPath="/configuration/sites-configuration/remote-site/REMOTE_VIP"></File>
+					<Value></Value>
+				</Parameter>	
+                                <Parameter Name="REMOTE_SPLEX_VIP" Level="UnitType" DisplayName="Remote SPLEX DB VIP" Display="true" ExecutionGroup="config_params" Overwrite="true">
+                                        <Description>The db vip of the remote database for splex</Description>
+                                        <Restrictions>
+                                                <Type>String</Type>
+                                                <Mandatory>true</Mandatory>
+                                                <Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+                                        </Restrictions>
+                                        <File Name="/var/tmp/db-replication-config.xml" Format="XML" ParameterPath="/configuration/sites-configuration/remote-site/REMOTE_SPLEX_VIP"></File>
+                                        <Value></Value>
+                                </Parameter>				
+				<Parameter Name="REMOTE_TNS_ALIAS" Level="UnitType" DisplayName="Remote TNS DB alias" Display="true" ExecutionGroup="config_params" Overwrite="true">
+					<Description>Remote site identifier name for tnsnames. This alias will be defined in tnsnames by the installation itself. Alias must be up to 6 characters!.</Description>
+					<Restrictions>
+						<Type>Enum</Type>
+						<Mandatory>true</Mandatory>
+						<Enum>
+							<Item Value="siteA" Display="siteA"></Item>
+							<Item Value="siteB" Display="siteB"></Item>							
+						</Enum>
+					</Restrictions>
+					<File Name="/var/tmp/db-replication-config.xml" Format="XML" ParameterPath="/configuration/sites-configuration/remote-site/REMOTE_TNS_ALIAS"></File>
+				</Parameter>
+				<Parameter Name="REMOTE_REPLICATION_HOME" Level="UnitType" DisplayName="Remote Replication Home Directory " Display="false" ExecutionGroup="config_params" Overwrite="true">
+					<Description>Path for GG binaries installation in the remote system.</Description>
+					<Restrictions>
+						<Type>String</Type>
+						<Mandatory>true</Mandatory>
+					</Restrictions>
+					<File Name="/var/tmp/db-replication-config.xml" Format="XML" ParameterPath="/configuration/sites-configuration/remote-site/REMOTE_REPLICATION_HOME"></File>
+					<Value></Value>
+				</Parameter>
+				<Parameter Name="REMOTE_MGR_PORT" Level="UnitType" DisplayName="Remote Manager Port " Display="false" ExecutionGroup="config_params" Overwrite="true">
+					<Description>The manager port in the remote site.</Description>
+					<Restrictions>
+						<Type>Number</Type>
+						<Mandatory>true</Mandatory>
+					</Restrictions>
+					<File Name="/var/tmp/db-replication-config.xml" Format="XML" ParameterPath="/configuration/sites-configuration/remote-site/REMOTE_MGR_PORT"></File>
+					<Value></Value>
+				</Parameter>
+				
+				<Parameter Name="TABLE_LIST" Level="UnitType" DisplayName="Table list to replicate " Display="true" ExecutionGroup="config_params" Overwrite="true">
+					<Description>List of the tables to replicate. Format: SCHEMA.TB,SCHEMA.TB… For entire schema: SCHEMA.*</Description>
+					<Restrictions>
+						<Type>Number</Type>
+						<Mandatory>true</Mandatory>
+					</Restrictions>
+					<File Name="/var/tmp/db-replication-config.xml" Format="XML" ParameterPath="/configuration/sites-configuration/table-list/TABLE_LIST"></File>
+					<Value></Value>
+				</Parameter>	
+				<Parameter Name="SEQUENCE_LIST" Level="UnitType" DisplayName="Sequence list to replicate " Display="true" ExecutionGroup="config_params" Overwrite="true">
+					<Description>List of sequences to replicate. The format is: SCHEMA:SEQUENCE:RANGE:MAX_VALUE. MAX_VALUE should be calculated manually from DB (see RDD for how-to). RANGE is an capacity of users on site. This value should be the same for both sites.</Description>
+					<Restrictions>
+						<Type>String</Type>
+						<Mandatory>false</Mandatory>
+					</Restrictions>
+					<File Name="/var/tmp/db-replication-config.xml" Format="XML" ParameterPath="/configuration/sites-configuration/sequence-list/SEQUENCE_LIST"></File>
+					<Value></Value>
+				</Parameter>							
+								
+							
+
+			</Parameters>
+
+		
+	</Component>
+</SWIM>

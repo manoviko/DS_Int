@@ -1,0 +1,28 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\SAF.xsd">
+	<System>
+		<Install>
+			<UnitType Name="Shared_OMU_Group" UponError="Stop" ExecutionOrder="1">
+			    <UAF Name="IPSMGW_MVAS_OMU_Group-UAF.xml" ExecutionOrder="1"/>
+			        <!--<UAF Name="IPSMGW_NATCO_OMU_Group_full-UAF.xml" ExecutionOrder="2"/>-->
+                                <!--<UAF Name="IPSMGW_NATCO_OMU_Group-UAF.xml" ExecutionOrder="3"/>-->			
+			</UnitType>
+	</Install>
+
+
+		<Uninstall>
+			<UnitType Name="Shared_OMU_Group" UponError="Stop" ExecutionOrder="2">
+				<UAF Name="IPSMGW_MVAS_OMU_Group-UAF.xml" ExecutionOrder="1"/>
+			</UnitType>						
+		
+		
+		</Uninstall>
+		
+		<Upgrade>
+
+			<UnitType Name="Shared_OMU_Group" UponError="Stop" ExecutionOrder="1">
+				<UAF Name="IPSMGW_MVAS_OMU_Group-UAF.xml" ExecutionOrder="1"/>
+			</UnitType>	
+		</Upgrade>
+		
+	</System>
+</SWIM>

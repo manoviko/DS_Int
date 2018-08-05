@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<sites-configuration>
+		<!-- There can be multiple sections for the remote sites, and all parameters should be modified with correct values-->
+		<!-- Note: All parameters in this section must have values-->
+		<remote-site>
+			<REMOTE_DB></REMOTE_DB>
+			<REMOTE_VIP></REMOTE_VIP>
+			<REMOTE_TNS_ALIAS></REMOTE_TNS_ALIAS>
+			<REMOTE_REPLICATION_HOME></REMOTE_REPLICATION_HOME>
+			<REMOTE_SPLEX_VIP></REMOTE_SPLEX_VIP>
+			<REMOTE_DB_TYPE>Single-instance</REMOTE_DB_TYPE>
+			<REMOTE_MGR_PORT></REMOTE_MGR_PORT>
+		</remote-site>
+		<!-- Multiple values for table list are allowed. TABLE_LIST format is: SCHEMA_NAME.TABLE-->
+		<table-list>
+			<TABLE_LIST></TABLE_LIST>
+		</table-list>
+		<!-- Multiple values are allows. Format: SCHEMA_NAME:SEQUENCE_NAME:RANGE[, ...]-->
+		<sequence-list>
+			<SEQUENCE_LIST></SEQUENCE_LIST>
+		</sequence-list>
+	</sites-configuration>
+</configuration>

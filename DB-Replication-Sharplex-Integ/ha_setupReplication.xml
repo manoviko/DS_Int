@@ -1,0 +1,20 @@
+<swpHA>
+	<configuration>
+
+		<group>
+			<name>sem_db-splex</name>
+			 <resource>
+                 <type>Mount</type>
+                 <name>sem-db-splex-mount</name>
+				<attribute>
+								<Critical>1</Critical>
+								<NetAppID>__oracle_replication_volume_ip__</NetAppID>
+								<NetAppVol>__full_path_to_oracle_replication__</NetAppVol>
+								<MountPoint>"__full_path_to_mount_replication__"</MountPoint>
+								<MountOpt>"rw,bg,hard,nointr,tcp,nfsvers=3,timeo=600,rsize=32768,wsize=32768"</MountOpt>
+							  </attribute>
+             </resource>	
+             <depend>sem_db online local firm</depend>
+		</group>	
+	</configuration>
+</swpHA>

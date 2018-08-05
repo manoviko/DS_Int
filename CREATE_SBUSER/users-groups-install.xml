@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CSPbase>
+  <configuration>
+        <default>
+                <home>/home</home>
+                <shell>/bin/bash</shell>
+        </default>
+        <param>
+                <command>csp_groupadd</command>
+                <options>-g 60511</options>
+                <name>sbuser</name>
+        </param>
+        <param>
+                <command>csp_useradd</command>
+                <options>-u 60510  -g sbuser -s /bin/bash -d /home/sbuser -p '$6$qPmUkAb0$F.mwMdx.Lq7O2pH5986jkU.3tRl/9meWL7inXhMH99Ve4ReQ9jG.p2lDunmsHao0HCDGItCPdHJMyuf9cG5dg/'</options>
+                <name>sbuser</name>
+        </param>
+  </configuration>
+</CSPbase>
+

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+
+	<Component Platform="Linux" Name="IPSMGW-SCDB-Customization" Version="_VERSION-_BUILD">
+
+		<Install>
+		
+			<Execute ExecutionOrder="10" UponError="Stop">
+				<Command>mkdir -p /var/tmp/SCDB_Customization/IPSMGW</Command>
+			</Execute>
+
+			<Copy ExecutionOrder="20" Overwrite="true" UponError="Stop">
+				<Source>./IPSMGW*scdb.xml</Source>
+				<Target>/var/tmp/SCDB_Customization/IPSMGW</Target>
+			</Copy>
+			
+			<Copy ExecutionOrder="30" ChmodFlags="+x" Overwrite="true" UponError="Stop">
+				<Source>./merge_scdb_ipsmgw.sh</Source>
+				<Target>/var/tmp/SCDB_Customization/IPSMGW</Target>
+			</Copy>
+			
+			<!--<SetParams ExecutionOrder="40" UponError="Stop">
+				<ExecutionGroup>Customization</ExecutionGroup>
+			</SetParams>-->
+			
+			<Execute ExecutionOrder="50" Timeout="120" UponError="Stop">
+				<Command>/var/tmp/SCDB_Customization/IPSMGW/merge_scdb_ipsmgw.sh</Command>
+			</Execute>
+			
+			<Copy ExecutionOrder="60" Overwrite="true" ChmodFlags="760" UponError="Stop">
+				<Source>./registrations_IPSMGW.xml</Source>
+				<Target>/usr/cti/conf/scdb/</Target>
+			</Copy>
+			<Execute ExecutionOrder="70" UponError="Stop">
+				<Command>chown scdb_user:scdb /usr/cti/conf/scdb/registrations_IPSMGW.xml</Command>
+			</Execute>
+
+		</Install>
+		<Upgrade>
+		 <Execute ExecutionOrder="10" UponError="Stop">
+				<Command>mkdir -p /var/tmp/SCDB_Customization/IPSMGW</Command>
+			</Execute>
+
+			<Copy ExecutionOrder="20" Overwrite="true" UponError="Stop">
+				<Source>./IPSMGW*scdb.xml</Source>
+				<Target>/var/tmp/SCDB_Customization/IPSMGW</Target>
+			</Copy>
+			
+			<Copy ExecutionOrder="30" ChmodFlags="+x" Overwrite="true" UponError="Stop">
+				<Source>./merge_scdb_ipsmgw.sh</Source>
+				<Target>/var/tmp/SCDB_Customization/IPSMGW</Target>
+			</Copy>
+			
+			<!--<SetParams ExecutionOrder="40" UponError="Stop">
+				<ExecutionGroup>Customization</ExecutionGroup>
+			</SetParams>-->
+			
+			<Execute ExecutionOrder="50" Timeout="120" UponError="Stop">
+				<Command>/var/tmp/SCDB_Customization/IPSMGW/merge_scdb_ipsmgw.sh</Command>
+			</Execute>
+			
+			<Copy ExecutionOrder="60" Overwrite="true" ChmodFlags="760" UponError="Stop">
+				<Source>./registrations_IPSMGW.xml</Source>
+				<Target>/usr/cti/conf/scdb/</Target>
+			</Copy>
+			<Execute ExecutionOrder="70" UponError="Stop">
+				<Command>chown scdb_user:scdb /usr/cti/conf/scdb/registrations_IPSMGW.xml</Command>
+			</Execute>
+		</Upgrade>
+		<!--<Parameters>
+			<Parameter Name="IPSM_SYSTEM_TYPE" Display="true" Level="UnitType" Overwrite="true" DisplayName="IPSMGW System Type" ExecutionGroup="Customization">
+                <Description>IPSM System type, OCS or Cluster.</Description>
+						<Value>HA</Value>
+                        <Restrictions>
+                             <Mandatory>true</Mandatory>
+                             <Type>Enum</Type>
+                             <Enum>
+                                   <Item Display="OCS" Value="OCS"/>
+                                   <Item Display="HA" Value="HA"/>
+                             </Enum>
+                        </Restrictions>
+                        <File Name="/var/tmp/SCDB_Customization/IPSMGW/merge_scdb_ipsmgw.sh" Format="KeyValue" ParameterPath="ipsm_system_type"></File>
+                 </Parameter>
+		</Parameters>-->
+	</Component>
+</SWIM>

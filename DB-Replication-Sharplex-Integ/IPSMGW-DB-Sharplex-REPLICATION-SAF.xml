@@ -1,0 +1,30 @@
+<SWIM>
+
+	<System>
+		<Install>
+			<UnitType Name="DSU_Group" UponError="Stop" 	ExecutionOrder="1">
+				<UAF Name="DSU-DB-Replication-UAF.xml" ExecutionOrder="1"/>
+			</UnitType>
+		</Install>
+		<Uninstall>
+			<UnitType Name="DSU_Group" UponError="Stop" 	ExecutionOrder="1">
+				<UAF Name="DSU-DB-Replication-UAF.xml" ExecutionOrder="1"/>
+			</UnitType>
+		</Uninstall>
+                 <Parameters>
+                
+                        <Alias DisplayName="The db vip of the remote database" Display="true" Overwrite="true">
+                                <Value></Value>
+                                <Restrictions>
+                                                <Type>String</Type>
+                                                <Mandatory>true</Mandatory>
+                                                <Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+                                 </Restrictions>
+                                <Parameter ComponentName="DB-Replication-XMLs" Name="REMOTE_VIP"></Parameter>
+                                <!--<File Name="/var/tmp/db-replication-config.xml" Format="XML" ParameterPath="/configuration/sites-configuration/remote-site/REMOTE_VIP"></File>-->
+                                <Parameter ComponentName="DB-Replication-XMLs" Name="REMOTE_SPLEX_VIP"></Parameter>
+                        </Alias>
+                   </Parameters> 
+	</System>
+
+</SWIM>

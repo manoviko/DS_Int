@@ -1,0 +1,109 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\UAF.xsd">
+	<UnitType Name="OMU-DB-Replication" Platform="Linux">
+	
+		<Dependencies>
+		
+			<Component Name="DB-Replication-Config" UnitName="*omu*">
+				<DependsOn>
+					<Component UnitName="*omu*" Name="DB-Replication-Infra"/>
+				</DependsOn>
+			</Component>
+			<Component Name="DB-Replication-Infra" UnitName="*omu*">
+				<DependsOn>
+					<Component UnitName="*omu*" Name="DB-Replication-HA"/>
+				</DependsOn>
+			</Component>
+			<Component Name="DB-Replication-HA" UnitName="*omu*[^aA1]$">
+				<DependsOn>
+					<Component UnitName="*omu*[aA1]$" Name="DB-Replication-HA"/>
+				</DependsOn>
+			</Component>			
+			
+		</Dependencies>
+		
+			
+		<Install>
+			<Component Name="DB-Replication-HA"	UponError="Stop" 	ExecutionOrder="10"	DisplayGroup="IPSMGW-OMU-REPLICATION"/>
+			<Component Name="DB-Replication-XMLs"	UponError="Stop" 	ExecutionOrder="20"	DisplayGroup="IPSMGW-OMU-REPLICATION"/>
+			<Component Name="DB-Replication-Infra"	UponError="Stop" 	ExecutionOrder="30"	DisplayGroup="IPSMGW-OMU-REPLICATION"/>
+			<!-- Component Name="DB-Replication-Config"	UponError="Stop" 	ExecutionOrder="40"	DisplayGroup="IPSMGW-OMU-REPLICATION"/ -->
+
+		</Install>
+		
+		<Uninstall>
+			<Component Name="DB-Replication-Config"	UponError="Stop" 	ExecutionOrder="10"	DisplayGroup="IPSMGW-OMU-REPLICATION"/>
+			<Component Name="DB-Replication-Infra"	UponError="Stop" 	ExecutionOrder="20"	DisplayGroup="IPSMGW-OMU-REPLICATION"/>
+			<Component Name="DB-Replication-HA"	UponError="Stop" 	ExecutionOrder="30"	DisplayGroup="IPSMGW-OMU-REPLICATION"/>
+		</Uninstall>
+		
+	
+	
+		<Parameters>
+			
+				<Parameter ComponentName="DB-Replication-Infra" Name="XML_FILE" Display="false" Overwrite="true">
+					<Value>/var/tmp/db-replication-infra.xml</Value>
+				</Parameter>
+				
+				<Parameter ComponentName="DB-Replication-Config" Name="XML_FILE" Display="false" Overwrite="true">
+					<Value>/var/tmp/db-replication-config.xml</Value>
+				</Parameter>
+				<Parameter ComponentName="DB-Replication-Config" Name="DB_NAME" Display="false" Overwrite="true">
+					<Value>omap_db</Value>
+				</Parameter>
+				<Parameter ComponentName="DB-Replication-Config" Name="REP_PWD" Display="false" Overwrite="true">
+					<Value>Zx6as7qw</Value>
+				</Parameter>
+				<Parameter ComponentName="DB-Replication-Config" Name="PARALLEL_DEGREE" Display="false" Overwrite="true"/>
+				<Parameter ComponentName="DB-Replication-Config" Name="IMPORT_TYPE" Display="false" Overwrite="true">				
+					<Value>NETWORK</Value>
+				</Parameter>
+				<Parameter ComponentName="DB-Replication-Config" Name="UN_DB_NAME" Display="false" Overwrite="true">
+					<Value>omap_db</Value>
+				</Parameter>				
+				
+                <Parameter ComponentName="DB-Replication-XMLs" Name="REMOTE_REPLICATION_HOME" Display="false" Overwrite="true">
+                   <Value>/data/omap_db_replication</Value>
+                </Parameter>
+                <Parameter ComponentName="DB-Replication-XMLs" Name="REPLICATION_HOME" Display="false" Overwrite="true">
+                    <Value>/data/omap_db_replication</Value>
+                </Parameter>
+                <Parameter ComponentName="DB-Replication-HA" Name="ReplicationMount" Display="false" Overwrite="true">
+                   <Value>/data/omap_db_replication</Value>
+                </Parameter>
+				<Parameter ComponentName="DB-Replication-HA" Name="Group_Name" Display="false" Overwrite="true">
+					<Value>omap_db-replication</Value>
+				</Parameter>
+				<Parameter ComponentName="DB-Replication-HA" Name="Resource_Name" Display="false" Overwrite="true">
+					<Value>omap-db-rep-mount</Value>
+				</Parameter>      
+                <Parameter ComponentName="DB-Replication-HA" Name="Group_Depends" Display="false" Overwrite="true">
+                   <Value>omap_db online local firm</Value>
+                </Parameter> 				          
+                
+                <Parameter ComponentName="DB-Replication-XMLs" Name="DYNAMIC_PORTS" Display="false" Overwrite="true">
+                   <Value>11000-11050</Value>
+                </Parameter>                
+                <Parameter ComponentName="DB-Replication-XMLs" Name="LOCAL_VIP" Display="false" Overwrite="true">
+                   <Value>[UnitGroup.xml://UnitGroup/Virtual/Vapplication[contains(@ApplicationName,"ODB.")]/VUnitInstance/@VirtualIp]</Value>
+                </Parameter>                	
+                <Parameter ComponentName="DB-Replication-XMLs" Name="LOCAL_DB" Display="false" Overwrite="true">
+                   <Value>omap_db</Value>
+                </Parameter>                	
+                <Parameter ComponentName="DB-Replication-XMLs" Name="REMOTE_DB" Display="false" Overwrite="true">
+                   <Value>omap_db</Value>
+                </Parameter>	                			
+				<Parameter ComponentName="DB-Replication-XMLs" Name="TABLE_LIST" Display="false" Overwrite="true">
+					<Value>AAS_OWNER.USERS,AAS_OWNER.USERS_LAST_LOGIN_TIME,AAS_OWNER.ROLES,AAS_OWNER.PRIVILEGE,AAS_OWNER.PRIVILEGES_DEPENDANCES,AAS_OWNER.USERS_ROLES,AAS_OWNER.USERS_DOMAINS,AAS_OWNER.USERS_SYSTEMS,AAS_OWNER.ROLES_PRIVILEGES,AAS_OWNER.PASSWORD_HISTORY,AAS_OWNER.FAILURE_HISTORY,AAS_OWNER.TOKENS,AAS_OWNER.SYSTEMS_MAPPING,AAS_OWNER.DOMAINS_MAPPING,AAS_OWNER.SYS_PARAM_AAS,AAS_OWNER.GROUPS_MAPPING,AAS_OWNER.USERS_GROUPS,AAS_OWNER.GROUPS_SYSTEMS,AAS_OWNER.USER_SYNC_IDS,AAS_OWNER.VERSION</Value>
+				</Parameter>
+				<Parameter ComponentName="DB-Replication-XMLs" Name="SEQUENCE_LIST" Display="false" Overwrite="true"/>
+                <Parameter ComponentName="DB-Replication-XMLs" Name="REMOTE_MGR_PORT" Display="false" Overwrite="true">
+                   <Value>7809</Value>
+                </Parameter>				
+				
+		
+		
+		</Parameters>
+		
+
+	</UnitType>
+</SWIM>

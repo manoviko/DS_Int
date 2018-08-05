@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\2.2.0.0\CAF.xsd">
+	<Component Platform="Linux" Name="IPSMGW-FTM-Customization" Version="_VERSION-_BUILD">
+		<Install>
+			<Execute ExecutionOrder="10" UponError="Stop">
+			   <Command>
+			    if [ -f /usr/cti/conf/ftm/ftmTasks_IPSMGW.xml ]; then
+                  Date=`date '+%d%m%Y%H%M'`
+                  echo "WARN : /usr/cti/conf/ftm/ftmTasks_IPSMGW.xml already exists. Backup it as /usr/cti/conf/ftm/ftmTasks_IPSMGW.xml.${Date}"
+                  /bin/cp -f /usr/cti/conf/ftm/ftmTasks_IPSMGW.xml /usr/cti/conf/ftm/ftmTasks_IPSMGW.xml.${Date}
+			  	fi
+			   </Command>
+             </Execute>
+			<Copy ExecutionOrder="20" UponError="Stop">
+				<Source>./ftmTasks_IPSMGW.xml</Source>
+				<Target>/usr/cti/conf/ftm/</Target>
+			</Copy>
+			
+			<Execute ExecutionOrder="30" UponError="Stop">
+				<Command>chown ftm:ftm /usr/cti/conf/ftm/ftmTasks_IPSMGW.xml</Command>
+			</Execute>			
+	 </Install>
+	 <Upgrade>
+	    <Execute ExecutionOrder="10" UponError="Stop">
+			   <Command>
+			    if [ -f /usr/cti/conf/ftm/ftmTasks_IPSMGW.xml ]; then
+                  Date=`date '+%d%m%Y%H%M'`
+                  echo "WARN : /usr/cti/conf/ftm/ftmTasks_IPSMGW.xml already exists. Backup it as /usr/cti/conf/ftm/ftmTasks_IPSMGW.xml.${Date}"
+                  /bin/cp -f /usr/cti/conf/ftm/ftmTasks_IPSMGW.xml /usr/cti/conf/ftm/ftmTasks_IPSMGW.xml.${Date}
+			  	fi
+			   </Command>
+             </Execute>
+			<Copy ExecutionOrder="20" UponError="Stop">
+				<Source>./ftmTasks_IPSMGW.xml</Source>
+				<Target>/usr/cti/conf/ftm/</Target>
+			</Copy>			
+			<Execute ExecutionOrder="30" UponError="Stop">
+				<Command>chown ftm:ftm /usr/cti/conf/ftm/ftmTasks_IPSMGW.xml</Command>
+			</Execute>			
+	 </Upgrade>
+	</Component>
+</SWIM>

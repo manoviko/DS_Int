@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Provisioning>
+	<ProfileDefinition HashCode="-508689875" LoadingPriority="2" Name="COSProvisioning" Version="5.0.0.0-03">
+		<Entities>
+			 <Entity>
+            <Name>Subscriber</Name>
+            <DsvEntityName>SUB</DsvEntityName>
+             <Fields>
+				 <Field>
+					  <Name>MaxQuota</Name>
+						<DsvName>CnsMaxQuota</DsvName>
+						 <DbName>SUBSCRIBERS.MAS_MAX_QUOTA</DbName>
+						 <XsdValidation>
+							 <Type>xs:string</Type>
+							 <MinOcc>0</MinOcc>
+							 <MaxOcc>0</MaxOcc>
+							 <Nillable>true</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>
+						  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>MAS</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel>
+							<XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>                              
+							 </XsdValidation>      						   
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+							   <Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>                               
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>MAS Max Quota</DisplayName>
+                  <Description>The maximum quota in KB alocated by the message data store for all messages</Description>
+               </Field>             
+             	<Field>
+					  <Name>MaxMsgAge</Name>
+						<DsvName>CnsMaxMsgAge</DsvName>
+						 <DbName>SUBSCRIBERS.MAS_MAX_MSG_AGE</DbName>
+						 <XsdValidation>
+							 <Type>xs:string</Type>
+							 <MinOcc>0</MinOcc>
+							 <MaxOcc>0</MaxOcc>
+							 <Nillable>true</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>							 
+						  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>MAS</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults>
+							<XsdValidation>
+								<MaxOcc>1</MaxOcc>
+								<Nillable>false</Nillable>
+							</XsdValidation>
+                        </DomainDefaults>
+                        <ServiceLevel>
+							<XsdValidation>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 </XsdValidation>      						   
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>MAS Max Validity Period</DisplayName>
+                  <Description>The maximum validity period in days, a message is being kept in the message data store</Description>
+               </Field>
+              	<Field>
+					  <Name>MaxNumMsg</Name>
+						<DsvName>CnsMaxNumMsg</DsvName>
+						 <DbName>SUBSCRIBERS.MAS_MAX_NUM_MSG</DbName>
+						 <XsdValidation>
+							 <Type>xs:string</Type>
+							 <MinOcc>0</MinOcc>
+							 <MaxOcc>0</MaxOcc>
+							 <Nillable>true</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns> 							 
+						  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>MAS</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel>
+							<XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+							 </XsdValidation>      						   
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>MAS Max Number Of Messages</DisplayName>
+                  <Description>The maximum number of messages allowed to be kept in the message data store</Description>
+               </Field>                    
+             
+             
+				 <!-- Field>
+					  <Name>SmsQuota</Name>
+						<DsvName>CnsSmsQuota</DsvName>
+						 <DbName>SUBSCRIBERS.MAS_SMS_QUOTA</DbName>
+						 <XsdValidation>
+							 <Type>xs:string</Type>
+							 <MinOcc>0</MinOcc>
+							 <MaxOcc>0</MaxOcc>
+							 <Nillable>true</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns> 							 
+						  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>MAS</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel>
+							<XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+							 </XsdValidation>      						   
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>MAS SMS Max Quota</DisplayName>
+                  <Description>The maximum quota in KB alocated by the message data store for SMS text messages</Description>
+               </Field -->
+               	<!-- Field>
+					  <Name>SmsMaxMsgAge</Name>
+						<DsvName>CnsSmsMaxMsgAge</DsvName>
+						 <DbName>SUBSCRIBERS.MAS_SMS_MAX_MSG_AGE</DbName>
+						 <XsdValidation>
+							 <Type>xs:string</Type>
+							 <MinOcc>0</MinOcc>
+							 <MaxOcc>0</MaxOcc>
+							 <Nillable>true</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns> 							 
+						  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>MAS</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel>
+							<XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+							 </XsdValidation>      						   
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>MAS SMS Max Validity Period</DisplayName>
+                  <Description>The maximum validity period in days, SMS text message is being kept in the message data store</Description>
+               </Field -->
+              	<!-- Field>
+					  <Name>SmsMaxNumMsg</Name>
+						<DsvName>CnsSmsMaxNumMsg</DsvName>
+						 <DbName>SUBSCRIBERS.MAS_SMS_MAX_NUM_MSG</DbName>
+						 <XsdValidation>
+							 <Type>xs:string</Type>
+							 <MinOcc>0</MinOcc>
+							 <MaxOcc>0</MaxOcc>
+							 <Nillable>true</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns> 							 
+						  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>MAS</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel>
+							<XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+							 </XsdValidation>      						   
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>MAS SMS Max Number Of Messages</DisplayName>
+                  <Description>The maximum number of SMS messages allowed to be kept in the message data store</Description>
+               </Field -->               
+
+				 <!-- Field>
+					  <Name>MmsQuota</Name>
+						<DsvName>CnsMmsQuota</DsvName>
+						 <DbName>SUBSCRIBERS.MAS_MMS_QUOTA</DbName>
+						 <XsdValidation>
+							 <Type>xs:string</Type>
+							 <MinOcc>0</MinOcc>
+							 <MaxOcc>0</MaxOcc>
+							 <Nillable>true</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns> 							 
+						  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>MAS</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel>
+							<XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+							 </XsdValidation>      						   
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>MAS MMS Max Quota</DisplayName>
+                  <Description>The maximum quota in KB alocated by the message data store for multimedia messages</Description>
+               </Field -->
+               	<!-- Field>
+					  <Name>MmsMaxMsgAge</Name>
+						<DsvName>CnsMmsMaxMsgAge</DsvName>
+						 <DbName>SUBSCRIBERS.MAS_MMS_MAX_MSG_AGE</DbName>
+						 <XsdValidation>
+							 <Type>xs:string</Type>
+							 <MinOcc>0</MinOcc>
+							 <MaxOcc>0</MaxOcc>
+							 <Nillable>true</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns> 							 
+						  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>MAS</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel>
+							<XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+							 </XsdValidation>      						   
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>MAS MMS Max Validity Period</DisplayName>
+                  <Description>The maximum validity period in days, multimedia message is being kept in the message data store</Description>
+               </Field -->
+              	<!-- Field>
+					  <Name>MmsMaxNumMsg</Name>
+						<DsvName>CnsMmsMaxNumMsg</DsvName>
+						 <DbName>SUBSCRIBERS.MAS_MMS_MAX_NUM_MSG</DbName>
+						 <XsdValidation>
+							 <Type>xs:string</Type>
+							 <MinOcc>0</MinOcc>
+							 <MaxOcc>0</MaxOcc>
+							 <Nillable>true</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns> 							 
+						  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>MAS</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel>
+							<XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+							 </XsdValidation>      						   
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>MAS MMS Max Number Of Messages</DisplayName>
+                  <Description>The maximum number of multimedia messages allowed to be kept in the message data store</Description>
+               </Field -->    
+               
+				 <!-- Field>
+					  <Name>VmsQuota</Name>
+						<DsvName>CnsVmsQuota</DsvName>
+						 <DbName>SUBSCRIBERS.MAS_VMS_QUOTA</DbName>
+						 <XsdValidation>
+							 <Type>xs:string</Type>
+							 <MinOcc>0</MinOcc>
+							 <MaxOcc>0</MaxOcc>
+							 <Nillable>true</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns> 							 
+						  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>MAS</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel>
+							<XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+							 </XsdValidation>      						   
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>MAS VMS Max Quota</DisplayName>
+                  <Description>The maximum quota in KB alocated by the message data store for voice messages</Description>
+               </Field -->
+               	<!-- Field>
+					  <Name>VmsMaxMsgAge</Name>
+						<DsvName>CnsVmsMaxMsgAge</DsvName>
+						 <DbName>SUBSCRIBERS.MAS_VMS_MAX_MSG_AGE</DbName>
+						 <XsdValidation>
+							 <Type>xs:string</Type>
+							 <MinOcc>0</MinOcc>
+							 <MaxOcc>0</MaxOcc>
+							 <Nillable>true</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns> 							 
+						  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>MAS</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel>
+							<XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+							 </XsdValidation>      						   
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>MAS VMS Max Validity Period</DisplayName>
+                  <Description>The maximum validity period in days, voice message is being kept in the message data store</Description>
+               </Field -->
+              	<!-- Field>
+					  <Name>VmsMaxNumMsg</Name>
+						<DsvName>CnsVmsMaxNumMsg</DsvName>
+						 <DbName>SUBSCRIBERS.MAS_VMS_MAX_NUM_MSG</DbName>
+						 <XsdValidation>
+							 <Type>xs:string</Type>
+							 <MinOcc>0</MinOcc>
+							 <MaxOcc>0</MaxOcc>
+							 <Nillable>true</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns> 							 
+						  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>MAS</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel>
+							<XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+							 </XsdValidation>      						   
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>MAS VMS Max Number Of Messages</DisplayName>
+                  <Description>The maximum number of voice messages allowed to be kept in the message data store</Description>
+               </Field -->                
+               
+
+				 <!-- Field>
+					  <Name>ImQuota</Name>
+						<DsvName>CnsImQuota</DsvName>
+						 <DbName>SUBSCRIBERS.MAS_IM_QUOTA</DbName>
+						 <XsdValidation>
+							 <Type>xs:string</Type>
+							 <MinOcc>0</MinOcc>
+							 <MaxOcc>0</MaxOcc>
+							 <Nillable>true</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns> 							 
+						  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>MAS</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel>
+							<XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+							 </XsdValidation>      						   
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>MAS IM Max Quota</DisplayName>
+                  <Description>The maximum quota in KB alocated by the message data store for IM messages</Description>
+               </Field -->
+               	<!-- Field>
+					  <Name>ImMaxMsgAge</Name>
+						<DsvName>CnsImMaxMsgAge</DsvName>
+						 <DbName>SUBSCRIBERS.MAS_IM_MAX_MSG_AGE</DbName>
+						 <XsdValidation>
+							 <Type>xs:string</Type>
+							 <MinOcc>0</MinOcc>
+							 <MaxOcc>0</MaxOcc>
+							 <Nillable>true</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns> 							 
+						  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>MAS</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel>
+							<XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+							 </XsdValidation>      						   
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>MAS IM Max Validity Period</DisplayName>
+                  <Description>The maximum validity period in days, IM message is being kept in the message data store</Description>
+               </Field -->
+              	<!-- Field>
+					  <Name>ImMaxNumMsg</Name>
+						<DsvName>CnsImMaxNumMsg</DsvName>
+						 <DbName>SUBSCRIBERS.MAS_IM_MAX_NUM_MSG</DbName>
+						 <XsdValidation>
+							 <Type>xs:string</Type>
+							 <MinOcc>0</MinOcc>
+							 <MaxOcc>0</MaxOcc>
+							 <Nillable>true</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns> 							 
+						  </XsdValidation>
+                  <SubscriberBehavioralInfo>
+                     <ServiceName>MAS</ServiceName>
+                     <ResolvedLevels>
+                        <DomainDefaults/>
+                        <ServiceLevel>
+							<XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+							 </XsdValidation>      						   
+                        </ServiceLevel>
+                        <SystemDefaults>
+                           <XsdValidation>
+								<Type>xs:string</Type>
+							   <MaxOcc>1</MaxOcc>
+                              <Nillable>false</Nillable>
+							 <Patterns>
+								<Value>-?\d+</Value>
+							 </Patterns>  
+                           </XsdValidation>
+                        </SystemDefaults>
+                     </ResolvedLevels>
+                  </SubscriberBehavioralInfo>
+                  <DisplayName>MAS IM Max Number Of Messages</DisplayName>
+                  <Description>The maximum number of IM messages allowed to be kept in the message data store</Description>
+				</Field -->
+			</Fields>
+		</Entity>
+		</Entities>
+	</ProfileDefinition>
+</Provisioning>

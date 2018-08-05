@@ -1,0 +1,39 @@
+<!DOCTYPE dsu SYSTEM "/usr/cti/conf/swp/networking.dtd">
+<swpHA>
+<configuration>
+    <group>
+       <name>Server</name>
+       <attribute>
+              <Parallel>1</Parallel>
+       </attribute>
+	   
+     <resource>
+		<name>BBPhantom</name>
+		<type>Phantom</type>
+     </resource>
+   </group>
+   
+    <group>
+    <name>Notifier</name>
+       <attribute>
+            </attribute>
+      <resource>
+	  <name>Notifier_NIC</name>
+	  <type>Proxy</type>
+        <attribute>
+		   <Critical>1</Critical>
+	      <TargetResName>__DEVICE__</TargetResName>
+        </attribute>
+      </resource>
+      <resource>
+	  <name>Notifier</name>
+	  <type>NotifierMngr</type>
+	  <depend>Notifier_NIC</depend>
+	  <attribute>
+	      <SnmpConsoles>snmpManager Information</SnmpConsoles>
+	      <SnmpCommunity>GAS361LI</SnmpCommunity>
+        </attribute>
+      </resource>
+   </group>
+   </configuration>
+</swpHA>

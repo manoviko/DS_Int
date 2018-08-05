@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Note: All parameters in the XML must have values-->
+<configuration>
+	<sites-configuration>
+		<!-- Should be one section for local site, and all the parameters should be modified with correct values-->
+		<local-site>
+			<LOCAL_DB></LOCAL_DB>
+			<LOCAL_TNS_ALIAS></LOCAL_TNS_ALIAS>
+			<LOCAL_VIP></LOCAL_VIP>
+			<MASTER_SITE_TNS_ALIAS></MASTER_SITE_TNS_ALIAS>
+			<SPLEX_VIP></SPLEX_VIP>
+		</local-site>
+	</sites-configuration>
+	<!-- All parameters must have values. Note that existing values are defaults-->
+	<replication-configuration>
+		<REPLICATION_HOME></REPLICATION_HOME>
+		<REPLICATION_DIRECTION>TWOWAYS</REPLICATION_DIRECTION>
+		<IS_DDL>Y</IS_DDL>
+		<SPLEX_PORT>2100</SPLEX_PORT>
+		<LICENSE_KEY></LICENSE_KEY>
+		<KEY_SITE_NAME>"Trial Version"</KEY_SITE_NAME>
+		<MONITOR_HEARTBEAT_CRITICAL>60</MONITOR_HEARTBEAT_CRITICAL>
+        <MONITOR_HEARTBEAT_MAJOR>30</MONITOR_HEARTBEAT_MAJOR>		
+	</replication-configuration>
+</configuration>

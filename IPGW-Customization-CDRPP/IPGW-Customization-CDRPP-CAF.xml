@@ -1,0 +1,196 @@
+<SWIM>
+	<Component Platform="Linux" Name="IPGW-Customization-CDRPP" Version="_VERSION-_BUILD">
+		<Install>
+			
+			<!--<SetParams ExecutionOrder="10" UponError="Stop">
+				<ExecutionGroup>SetParam</ExecutionGroup>
+			</SetParams>-->
+		        <Copy ExecutionOrder="5" UponError="Stop" Overwrite="true" Timeout="30" > 
+				<Source>./ha_setupSG_cdrpp.xml</Source>
+				<Target>/var/tmp/</Target>
+			</Copy>
+                           <Copy ExecutionOrder="6" UponError="Stop" Overwrite="true" Timeout="30" >
+                                <Source>./users-groups-install-CDRPP.xml</Source>
+                                <Target>/var/tmp/</Target>
+                        </Copy>
+                        <Execute ExecutionOrder="7" UponError="Stop">
+                                <Command>cp -p /var/tmp/ha_setupSG_cdrpp.xml /var/tmp/ha_setupSG.xml</Command>
+                                <ExpectedExitCode>0</ExpectedExitCode>
+                        </Execute>
+                        <SetParams ExecutionOrder="10" UponError="Stop">
+                                <ExecutionGroup>SetParam</ExecutionGroup>
+                        </SetParams>
+			<Execute ExecutionOrder="15" UponError="Stop" Timeout="5000">
+				<Command>mkdir -p {cdrs_local_dir}</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+                        <Execute ExecutionOrder="20" UponError="Continue" Timeout="5000">
+                            <Command>/opt/VRTSvcs/bin/hares -clear ConverterTool ;  sleep 10</Command>
+                         </Execute>
+                        <Execute ExecutionOrder="40" UponError="Continue">
+                             <Command>/usr/cti/apps/swp/HA/ha_config.pl --file /var/tmp/ha_setupSG.xml --noonline;  sleep 10</Command>
+                         </Execute>
+                         <Execute ExecutionOrder="50" UponError="Continue" Timeout="5000">
+                            <Command>/opt/VRTSvcs/bin/hares -clear asntool-data-mount -sys `hostname | awk -F. '{print $1}'` ;  sleep 10</Command>
+                         </Execute>
+                          <Execute ExecutionOrder="60" UponError="Continue" Timeout="5000">
+                             <Command>/opt/VRTSvcs/bin/hares -online asntool-data-mount -sys `hostname | awk -F. '{print $1}'` ;  sleep 10</Command>
+                          </Execute>
+                          <Execute ExecutionOrder="70" UponError="Stop">
+                            <Command>
+                                  DIR={IPSMCDR.bad.dir}
+                                  mkdir -p $DIR
+                                  chown ftm:ftm $DIR
+                                  chmod 770 $DIR                                  
+                             </Command>
+                             <ExpectedExitCode>0</ExpectedExitCode>
+                          </Execute>
+                          <Execute ExecutionOrder="80" UponError="Stop">
+                           <Command>
+                                 DIR={IPSMCDR.out.dir}
+                                 mkdir -p $DIR
+                                 chown ftm:ftm $DIR
+                                 chmod 770 $DIR
+                          </Command>
+                          <ExpectedExitCode>0</ExpectedExitCode>
+                         </Execute>
+                         <Execute ExecutionOrder="90" UponError="Stop">
+                          <Command>
+                               DIR={IPSMCDR.backup.dir}
+                               mkdir -p $DIR
+                               chown ftm:ftm $DIR
+                               chmod 770 $DIR                               
+                         </Command>
+                         <ExpectedExitCode>0</ExpectedExitCode>
+                         </Execute>
+                         <Execute ExecutionOrder="100" UponError="Stop">
+                          <Command>
+                               DIR={IPSMCDR.input.dir}
+                               mkdir -p $DIR
+                               chown ftm:ftm $DIR
+                               chmod 770 $DIR                               
+                          </Command>
+                          <ExpectedExitCode>0</ExpectedExitCode>
+                         </Execute>
+                         <Execute ExecutionOrder="101" UponError="Stop">
+                          <Command>
+                               DIR={IPSMCDR.ascii.dir}
+                               mkdir -p $DIR
+                               chown ftm:ftm $DIR
+                               chmod 770 $DIR
+                          </Command>
+                          <ExpectedExitCode>0</ExpectedExitCode>
+                         </Execute>
+                         <Execute ExecutionOrder="110" Timeout="20" UponError="Stop">
+                           <Command> /usr/cti/apps/CSPbase/csp_parse_ugp.pl --file /var/tmp/users-groups-install-CDRPP.xml </Command>
+                           <ExpectedExitCode>0</ExpectedExitCode>
+                         </Execute>
+                         <Execute ExecutionOrder="120" UponError="Continue" Timeout="5000">
+                             <Command>/opt/VRTSvcs/bin/hares -online ConverterTool -sys `hostname | awk -F. '{print $1}'` ;  sleep 10</Command>
+                          </Execute>
+		</Install>
+		
+		<Upgrade>
+			 <Execute ExecutionOrder="10" Timeout="20" UponError="Stop">
+				<Command>echo "Dummy upgrade"</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+			<Execute ExecutionOrder="20" UponError="Continue" Timeout="5000">
+                <Command>/opt/VRTSvcs/bin/hares -online ConverterTool -sys `hostname | awk -F. '{print $1}'` ;  sleep 10</Command>
+            </Execute>
+		</Upgrade>   
+		
+		<Uninstall>
+			<Execute ExecutionOrder="10" Timeout="20" UponError="Stop">
+				<Command>echo "Dummy uninstall"</Command>
+				<ExpectedExitCode>0</ExpectedExitCode>
+			</Execute>
+		</Uninstall>
+		
+		<Parameters>
+			
+			<!-- Parameters for networking.xml -->
+			
+			<!-- Parameters for ha_setupSG_cdrpp.xml -->
+			<!-- Mount IP's -->
+			<Parameter Display="true" DisplayName="asntool data filer IP" ExecutionGroup="SetParam" Level="System" Name="asntool_data_IP" >
+			<Description>The IP address of the filer which is hosting the volume with the CDRs. This volume is shared between the MVAS OMU-APP and the SMSC CDRPP unit.</Description>
+				<File Format="Text" Name="/var/tmp/ha_setupSG.xml"/>
+				<ParameterPath>__asntool_data_volume_ip__</ParameterPath>
+				<Restrictions>
+					<Type>String</Type>
+					<Pattern>^(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])$</Pattern>
+					<Mandatory>true</Mandatory>
+				</Restrictions>
+				<Value></Value>
+			</Parameter>
+			
+			<!-- Mount Volumes -->
+			<Parameter Display="true" DisplayName="full path to asntool data vol" ExecutionGroup="SetParam" Level="System" Name="asntool_data_FP" Overwrite="true">
+				<Description>Full path to asntool data volume. This volume is shared between the MVAS OMU-APP and the SMSC CDRPP unit. (e.g. /T001/mvas_cdrs)</Description>
+				<File Format="Text" Name="/var/tmp/ha_setupSG.xml"/>
+				<ParameterPath>__full_path_to_asntool_data__</ParameterPath>
+				<Value></Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+					<MinLength>3</MinLength>
+				</Restrictions>
+			</Parameter>
+			
+			<!-- Local dir for Mount  -->
+			<Parameter Display="true" DisplayName="local dir for cdrs" ExecutionGroup="SetParam" Level="System" Name="cdrs_local_dir" Overwrite="true">
+				<Description>Local directory  that will be mounted to NetApp mvas_cdrs volume ( /data/cdrs).</Description>
+				<File Format="Text" Name="/var/tmp/ha_setupSG.xml"/>
+				<ParameterPath>__local_cdrs_location__</ParameterPath>
+				<Value>/data/cdrs</Value>
+				<Restrictions>
+					<Type>String</Type>
+					<Mandatory>true</Mandatory>
+					<MinLength>3</MinLength>
+				</Restrictions>
+			</Parameter>
+                        <Parameter Name="IPSMCDR.bad.dir" Level="System" Display="true" Overwrite="true" ExecutionGroup="XMLS" DisplayName="IPSMCDR.bad.dir">
+                                <Description>full path to bad_records folder</Description>
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                </Restrictions>
+                                <Value>/data/ipsmgw_cdr/IPSMGW/bad_records</Value>
+                        </Parameter>
+                        <Parameter Name="IPSMCDR.out.dir" Level="System" Display="true" Overwrite="true" ExecutionGroup="XMLS" DisplayName="IPSMCDR.out.dir">
+                                <Description>full path to output folder</Description>
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                </Restrictions>
+                                <Value>/data/ipsmgw_cdr/IPSMGW/output</Value>
+                        </Parameter>
+                        <Parameter Name="IPSMCDR.backup.dir" Level="System" Display="true" Overwrite="true" ExecutionGroup="XMLS" DisplayName="IPSMCDR.backup.dir">
+                                <Description>full path to backup folder</Description>
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                </Restrictions>
+                                <Value>/data/ipsmgw_cdr/IPSMGW/backup</Value>
+                        </Parameter>
+                        <Parameter Name="IPSMCDR.input.dir" Level="System" Display="true" Overwrite="true" ExecutionGroup="XMLS" DisplayName="IPSMCDR.input.dir">
+                                <Description>full path to input folder</Description>
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                </Restrictions>
+                                <Value>/data/ipsmgw_cdr/IPSMGW/input</Value>
+                        </Parameter>
+                      <Parameter Name="IPSMCDR.ascii.dir" Level="System" Display="true" Overwrite="true" ExecutionGroup="XMLS" DisplayName="IPSMCDR.ascii.dir">
+                                <Description>full path to backup folder</Description>
+                                <Restrictions>
+                                        <Type>String</Type>
+                                        <Mandatory>true</Mandatory>
+                                </Restrictions>
+                                <Value>/data/ipsmgw_cdr/IPSMGW/ascii_output</Value>
+                        </Parameter>
+			<!-- Parameters for ha_defaultSG.xml -->
+		</Parameters>
+	</Component>
+</SWIM>

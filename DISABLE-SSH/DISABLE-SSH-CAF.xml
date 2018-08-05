@@ -1,0 +1,32 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\WORK\SWIM\1.4.1.0-02\CAF.xsd">
+	<Component Platform="Linux" Name="DISABLE-SSH" Version="_VERSION-_BUILD">
+	
+		<Install>
+			 <Copy ExecutionOrder="10" ChmodFlags="+x" Overwrite="true" UponError="Stop">
+				 <Source>./ssh_conf.sh</Source>
+			 </Copy>
+		     <Execute ExecutionOrder="20" UponError="Stop">
+				<Command>./ssh_conf.sh {UnitType}</Command>
+		     </Execute>
+             <Execute ExecutionOrder="30" UponError="Continue">
+				<Command>
+				   service iptables save
+                </Command>			
+			</Execute>
+		</Install>			
+		<Upgrade>
+			 <Copy ExecutionOrder="10" ChmodFlags="+x" Overwrite="true" UponError="Stop">
+				 <Source>./ssh_conf.sh</Source>
+			 </Copy>
+		     <Execute ExecutionOrder="20" UponError="Stop">
+				<Command>./ssh_conf.sh {UnitType}</Command>
+		     </Execute> 
+                     <Execute ExecutionOrder="30" UponError="Continue">
+                     <Command>
+                         service iptables save
+                     </Command>
+                    </Execute>	
+	       </Upgrade>
+	</Component>
+	</SWIM>
+

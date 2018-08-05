@@ -1,0 +1,111 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\UAF.xsd">
+	<UnitType Name="SCA_Group" Platform="Linux">
+		<Install>
+			<Component Name="CSP_Base_Linux" 			ExecutionOrder="10"		UponError="Stop"		DisplayGroup="SCA"/>
+			<!-- Component Name="SEM-VM-NW-SZ" 			ExecutionOrder="30"		UponError="Stop" 		DisplayGroup="SCA"/ -->
+			<Component Name="mVAS-IPSMGW-Customization-APP" 			ExecutionOrder="20" 	UponError="Stop"	DisplayGroup="SCA"/>
+			<Component Name="swp_jre_1.7-64" 				ExecutionOrder="40"		UponError="Stop" 		DisplayGroup="SCA"/>
+			<Component Name="System_Kit" 					ExecutionOrder="45" 	UponError="Stop"		DisplayGroup="SCA"/>			
+			<Component Name="UPDATE-JAVA-HOME" 	ExecutionOrder="50"		UponError="Stop" 		DisplayGroup="SCA"/>		
+			<Component Name="swp_tomcat7_0" ExecutionOrder="60"		UponError="Stop" 		DisplayGroup="SCA"/>
+			<Component Name="SCA"								ExecutionOrder="100" 	UponError="Stop" 		DisplayGroup="SCA"/>
+			<!--<Component Name="SCACF"						ExecutionOrder="110"		UponError="Stop"		DisplayGroup="SCA"/>-->
+			<Component Name="SEM-UTILS"							ExecutionOrder="125"  UponError="Stop"	DisplayGroup="SCA"/>
+            <!--<Component Name="SCA-POST-CONFIG"       ExecutionOrder="130"    UponError="Stop"     DisplayGroup="SCA"/>-->
+			
+			<Component Name="SNMP_CONFIG" 			ExecutionOrder="150" 	UponError="Stop"		DisplayGroup="SCA"/>
+			<Component Name="SYSLOG_CONFIG"		ExecutionOrder="160"	UponError="Stop"		DisplayGroup="SCA"/>				
+			
+			<Component Name="Babysitter-IC" 				ExecutionOrder="180" 	UponError="Stop"		DisplayGroup="SCA"/>
+			<Component Name="BABYSITTER-CUST"		ExecutionOrder="185"	UponError="Stop"		DisplayGroup="SCA"/>
+			
+			<Component Name="ccmng-agent"	 				ExecutionOrder="189"	UponError="Stop"		DisplayGroup="SCA"/>			
+						
+			<Component Name="DNS_Client" 					ExecutionOrder="190" 	UponError="Stop"		DisplayGroup="SCA"/>			
+			<Component Name="DISABLE-APPS" 			ExecutionOrder="200" 	UponError="Stop"		DisplayGroup="SCA"/>			
+					
+			<!--<Component Name="create_sbuser" 				ExecutionOrder="220" 	UponError="Stop"		DisplayGroup="SCA"/>-->
+            <Component Name="CREATE_SBUSER" 		ExecutionOrder="210" 	UponError="Stop"	DisplayGroup="SCA"/>			
+            <Component Name="CREATE-SEMUS"          ExecutionOrder="230"    UponError="Stop"      DisplayGroup="SCA"/>
+			<!-- Component Name="Unit-Recovery-CUST"   ExecutionOrder="250"            UponError="Stop"                DisplayGroup="SCA"/-->
+			<Component Name="FILE-CLEANUP-CUST"	ExecutionOrder="255" UponError="Stop" DisplayGroup="SCA"/>
+			
+			<Component Name="NTP_Client"  					ExecutionOrder="257" 	UponError="Stop" 		DisplayGroup="SCA"/>	
+            <Component Name="Linux_AS6_Hkit"            ExecutionOrder="270"     UponError="Stop"     DisplayGroup="SCA"/>
+            <Component Name="DISABLE-SSH"               ExecutionOrder="275"     UponError="Stop"     DisplayGroup="SCA"/>
+			<Component Name="SWIM-Secure"               ExecutionOrder="280" 	UponError="Stop" 		DisplayGroup="SCA"/> 
+			<Component Name="UPDATE-VERSION" 	ExecutionOrder="300" UponError="Stop" DisplayGroup="SCA"/>
+			<Component Name="SetSwimJreTomcat" 	ExecutionOrder="350" 		UponError="Stop"      DisplayGroup="SCA"/>      
+
+		</Install>
+		
+		<Upgrade>
+		    <Component Name="UNINSTALL-HKIT" ExecutionOrder="1" UponError="Stop" ForceOperation="Install" DisplayGroup="SCA"/>
+            <Component Name="CSP_Base_Linux"                        ExecutionOrder="5"             UponError="Stop"                DisplayGroup="SCA"/>
+			<Component Name="swp_jre_1.7-64" 				ExecutionOrder="7" 	UponError="Stop"	DisplayGroup="SCA"/>
+			<Component Name="swp_tomcat7_0" 			ExecutionOrder="9" 	UponError="Stop"	DisplayGroup="SCA"/>
+			<Component Name="SEM-UTILS"					ExecutionOrder="10"		UponError="Stop"		DisplayGroup="SCA"/>
+			<!-- Component Name="DNS_Client" 					ExecutionOrder="11" 	UponError="Stop"		DisplayGroup="SCA"/ -->
+
+			<Component Name="Babysitter-IC" 				ExecutionOrder="20" 	UponError="Stop"		DisplayGroup="SCA"/>
+			
+			<Component Name="SCA"								ExecutionOrder="70" 	UponError="Stop" 		DisplayGroup="SCA"/>
+			<!--<Component Name="SCACF"						ExecutionOrder="80"	UponError="Stop"			DisplayGroup="SCA"/>
+			<Component Name="SCA-POST-CONFIG"       ExecutionOrder="95"    UponError="Stop"     DisplayGroup="SCA"/>-->
+			<Component Name="System_Kit" 					ExecutionOrder="100" 	UponError="Stop"		DisplayGroup="SCA"/>
+			<Component Name="BABYSITTER-CUST"		ExecutionOrder="110"	UponError="Stop"		DisplayGroup="SCA"/>	
+			<Component Name="ccmng-agent" 				ExecutionOrder="120" 	UponError="Stop"		DisplayGroup="SCA"/>
+			<Component Name="SNMP_CONFIG" 			ExecutionOrder="130" 	UponError="Stop"		DisplayGroup="SCA"/>
+			<Component Name="CREATE_SBUSER" 				ExecutionOrder="150" 	UponError="Stop"	DisplayGroup="SCA"/>
+			<Component Name="DNS_Client" 					ExecutionOrder="190" 	UponError="Stop"		DisplayGroup="SCA"/>
+			<Component Name="FILE-CLEANUP-CUST"	ExecutionOrder="255" UponError="Stop" DisplayGroup="SCA"/>
+			<Component Name="SWIM-Secure"               ExecutionOrder="280" 	UponError="Stop" 		DisplayGroup="SCA"/>
+            <Component Name="Linux_AS6_Hkit"                    ExecutionOrder="290"    ForceOperation="Install" UponError="Stop"       DisplayGroup="SCA"/>
+            <Component Name="DISABLE-SSH"               ExecutionOrder="295"     UponError="Stop"     DisplayGroup="SCA"/>			
+			<Component Name="UPDATE-VERSION" 	ExecutionOrder="300" UponError="Stop" DisplayGroup="SCA"/>	
+			<Component Name="Reboot-KIT" 					ExecutionOrder="350"	UponError="Stop" 		DisplayGroup="SCA"/>
+
+		</Upgrade>
+		
+		<Uninstall>
+
+             <Component Name="Linux_AS6_Hkit"          ExecutionOrder="10"     UponError="Stop"        DisplayGroup="SCA"/>
+			<Component Name="SEM-UTILS"					ExecutionOrder="25"		UponError="Stop"		DisplayGroup="SCA"/>
+			
+			<!--<Component Name="SCA-POST-CONFIG"       ExecutionOrder="29"    UponError="Stop"     DisplayGroup="SCA"/>
+			<Component Name="SCACF"						ExecutionOrder="40"		UponError="Stop"		DisplayGroup="SCA"/>-->				
+			<Component Name="SCA"								ExecutionOrder="50" 	UponError="Stop" 		DisplayGroup="SCA"/>
+			
+			<Component Name="ccmng-agent" 				ExecutionOrder="90" 	UponError="Stop"		DisplayGroup="SCA"/>					
+			<Component Name="Babysitter-IC" 				ExecutionOrder="100" 	UponError="Stop"		DisplayGroup="SCA"/>
+			<Component Name="swp_jre_1.7-64" 				ExecutionOrder="120" 	UponError="Stop"		DisplayGroup="SCA"/>			
+			<Component Name="swp_tomcat7_0" ExecutionOrder="130" 	UponError="Stop"		DisplayGroup="SCA"/>
+
+		</Uninstall>
+
+		
+		<Parameters>
+		
+			<!--  =============     Babysitter         ============= -->
+			<Parameter ComponentName="Babysitter-IC" Name="AgentXPortNumber" Display="false" Overwrite="true">
+				<Value>1055</Value>
+			</Parameter>
+	
+			<Parameter ComponentName="DNS_Client" Name="BALANCER_IPS"        Display="false" Overwrite="true">
+                         <Value>[UnitGroup.xml://string-join(/UnitGroup/Physical[contains(@GroupName,"Shared_OMU_Group")]/UnitInstance/Connection[@Type="Admin"]/@IP,',')]</Value>
+                         <!--<Value>[UnitGroup.xml://string-join(/UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance/Connection[@Type="Data"]/@IP,',')]</Value>-->
+            </Parameter>
+            
+            
+			<!--  =============     Network KIT !!! replace it when using another CAF !!!      ============= --> 
+			<!-- Parameter ComponentName="SEM-VM-NW-SZ" Name="AdminIP" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[@GroupName="{UnitType}"]/UnitInstance[contains(@Hostname,"{HostName}")]/Connection[@Type="Management"]/@IP]</Value>
+			</Parameter>
+			<Parameter ComponentName="SEM-VM-NW-SZ" Name="SZIP" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[@GroupName="{UnitType}"]/UnitInstance[contains(@Hostname,"{HostName}")]/Connection[@Type="Data"]/@IP]</Value>
+			</Parameter -->
+            
+							
+		</Parameters>
+	</UnitType>
+</SWIM>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE dsu SYSTEM "/usr/cti/conf/swp/networking.dtd">
+<!--
+=============================================================================================
+
+DSU 5.X Networking schema
+
+This XML will be parsed by the CSP Base networking utility and will configure the following:
+
+1. Bonded Interface 
+2. Bonded VLAN interfaces
+3. NICs
+
+Host Aliases wil be created using designated utility
+
+Please note :
+some of the values are being resolved by the networking.dtd while others are replaced by SWIM 
+during installation.
+=============================================================================================
+-->
+
+
+<CSPbase>
+	<configuration>
+		<DOMAIN></DOMAIN>
+		
+		<param>
+			<action>set_host</action>
+			<ip>__snmpManagerPA1__</ip>
+			<hostname>snmpManagerPA1</hostname>
+		</param>
+		<param>
+			<action>set_host</action>
+			<ip>__snmpManagerPA2__</ip>
+			<hostname>snmpManagerPA2</hostname>
+		</param>
+		
+		<param>
+			<action>set_host</action>
+			<ip>__snmpManager__</ip>
+			<hostname>snmpManager</hostname>
+		</param>
+		<param>
+			<action>set_host</action>
+			<ip>__SyslogServer__</ip>
+			<hostname>syslogServer</hostname>
+		</param>
+		<param>
+			<action>set_host</action>
+			<ip>__NtpServer1__</ip>
+			<hostname>NtpServer1</hostname>
+		</param>
+		<param>
+			<action>set_host</action>
+			<ip>__NtpServer2__</ip>
+			<hostname>NtpServer2</hostname>
+		</param>
+		
+	</configuration>
+</CSPbase>

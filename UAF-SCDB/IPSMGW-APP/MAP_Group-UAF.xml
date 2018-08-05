@@ -1,0 +1,190 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\WORK\SWIM\1.4.1.0-02\UAF.xsd">
+	<UnitType Name="MAP_Group" Platform="Linux">
+		<Install>
+			<Component Name="CSP_Base_Linux" 			ExecutionOrder="10"		UponError="Stop"		DisplayGroup="MAP"/>
+			<!-- Component Name="SEM-VM-NW-SZ" 			ExecutionOrder="20" 	UponError="Stop"	DisplayGroup="MAP"/ -->
+			<Component Name="mVAS-IPSMGW-Customization-APP" 			ExecutionOrder="20" 	UponError="Stop"	DisplayGroup="MAP"/>
+			<Component Name="NYadmin" 						ExecutionOrder="30" 	UponError="Stop"	DisplayGroup="MAP"/>
+			<!--<Component Name="SEM-SIL-SSH" 				ExecutionOrder="40" 	UponError="Stop"	DisplayGroup="MAP"/>-->
+			<Component Name="swp_jre_1.7-64" 				ExecutionOrder="50" 	UponError="Stop"	DisplayGroup="MAP"/>
+			<Component Name="System_Kit" 					ExecutionOrder="60" 	UponError="Stop"	DisplayGroup="MAP"/>			
+			<Component Name="UPDATE-JAVA-HOME"	ExecutionOrder="70" 	UponError="Stop"	DisplayGroup="MAP"/>			
+			<Component Name="swp_tomcat7_0" ExecutionOrder="80" 	UponError="Stop"	DisplayGroup="MAP"/>
+			
+			 <Component Name="Babysitter-IC" 				ExecutionOrder="100" 	UponError="Stop"	DisplayGroup="MAP"/>
+			
+			<Component Name="Ora_Client_Linux" 			ExecutionOrder="120"		UponError="Stop" 		DisplayGroup="MAP"/>
+			<Component Name="NYOMNI7" 					ExecutionOrder="130"		UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYACE" 						ExecutionOrder="140"	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYXERCES" 					ExecutionOrder="150"	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYAGENTXPP" 				ExecutionOrder="160"	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYINFRA" 					ExecutionOrder="170"	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYSMSBASE" 				ExecutionOrder="180"	UponError="Stop"		DisplayGroup="MAP"/>
+			<!--Component Name="NYJGE" 						ExecutionOrder="190" UponError="Stop"		DisplayGroup="MAP"/-->
+			<!--Component Name="NYJRM" 						ExecutionOrder="200" UponError="Stop"		DisplayGroup="MAP"/-->
+			<!--Component Name="NYJUTIL" 						ExecutionOrder="210" UponError="Stop"		DisplayGroup="MAP"/-->
+			<Component Name="NYSHARED" 				ExecutionOrder="220"	UponError="Stop" 		DisplayGroup="MAP"/>
+			<Component Name="NYSMSLICENSE" 			ExecutionOrder="230"	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYSMRT" 						ExecutionOrder="240"	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYMAP" 						ExecutionOrder="250" UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYSMSCUSTCOMM" 	ExecutionOrder="260" UponError="Stop"		DisplayGroup="MAP"/>
+			 <Component Name="NYAUTOCONFIG"         ExecutionOrder="270"    UponError="Stop"                DisplayGroup="MAP"/>
+			 <!--<Component Name="NYSMSCUSTMAP"       ExecutionOrder="280"    UponError="Stop"                DisplayGroup="MAP"/>-->
+			<Component Name="NYSMSCTL" 					ExecutionOrder="290" UponError="Stop"		DisplayGroup="MAP"/>
+			<!-- Component Name="NYBEUTILS" 					ExecutionOrder="300" UponError="Stop"		DisplayGroup="MAP"/ -->
+			<!--<Component Name="TLANG" 						ExecutionOrder="320" 	UponError="Stop"	DisplayGroup="MAP"/>-->
+
+			<Component Name="DNS_Client" 					ExecutionOrder="330" 	UponError="Stop"	DisplayGroup="MAP"/>
+			<Component Name="ccmng-agent" 				ExecutionOrder="380" 	UponError="Stop"	DisplayGroup="MAP"/>
+			<Component Name="MAP-POST-CONFIG"		ExecutionOrder="390" 	UponError="Stop"		DisplayGroup="MAP"/>
+
+			<!--<Component Name="TLANG-CUST" 				ExecutionOrder="400" 	UponError="Stop"	DisplayGroup="MAP"/>-->
+			
+			<Component Name="SNMP_CONFIG" 			ExecutionOrder="410" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="SYSLOG_CONFIG"		ExecutionOrder="420"	UponError="Stop"		DisplayGroup="MAP"/>				
+			<Component Name="DISABLE-APPS" 			ExecutionOrder="450" 	UponError="Stop"		DisplayGroup="MAP"/>			
+			<Component Name="NTP_Client"  					ExecutionOrder="460" 	UponError="Stop" 		DisplayGroup="MAP"/>			
+			<!--<Component Name="create_sbuser" 				ExecutionOrder="470" 	UponError="Stop"		DisplayGroup="MAP"/>-->
+			<Component Name="CREATE_SBUSER" 				UponError="Stop" 		ExecutionOrder="500"	DisplayGroup="MAP"/>
+			<Component Name="CREATE-SEMUS"			ExecutionOrder="600"	UponError="Stop"	DisplayGroup="MAP"/>
+			<Component Name="BABYSITTER-CUST"		ExecutionOrder="610" 	UponError="Stop" 	DisplayGroup="MAP"/>
+			<Component Name="AUDIT-CUST"	        ExecutionOrder="700" UponError="Stop" DisplayGroup="MAP"/>
+            <Component Name="DISABLE-SSH"               ExecutionOrder="710"     UponError="Stop"     DisplayGroup="MAP"/>		 
+			<Component Name="FILE-CLEANUP-CUST"	ExecutionOrder="750" UponError="Stop" DisplayGroup="MAP"/>
+			<Component Name="SSH-PASSWORD-LESS"	ExecutionOrder="760" UponError="Stop" DisplayGroup="MAP"/>
+			<Component Name="Linux_AS6_Hkit" 			ExecutionOrder="800" 	UponError="Stop"	DisplayGroup="MAP"/>
+            <Component Name="SWIM-Secure"				ExecutionOrder="810" UponError="Stop" DisplayGroup="MAP"/>
+			<Component Name="UPDATE-VERSION"		ExecutionOrder="820"	UponError="Stop"	DisplayGroup="MAP"/>			
+			<Component Name="SetSwimJreTomcat" 		ExecutionOrder="850" 	UponError="Stop"   DisplayGroup="MAP"/>	
+
+		</Install>
+		
+		<Upgrade>
+		    <Component Name="UNINSTALL-HKIT" ExecutionOrder="1" UponError="Stop" ForceOperation="Install" DisplayGroup="MAP"/>
+            <Component Name="CSP_Base_Linux"        ExecutionOrder="5"          UponError="Stop"     DisplayGroup="MAP"/>
+			<Component Name="PreUpgradeOrRollback" 	ExecutionOrder="10" 		UponError="Stop"	DisplayGroup="MAP"/>
+			<Component Name="swp_jre_1.7-64" 				ExecutionOrder="13" 	UponError="Stop"	DisplayGroup="MAP"/>
+			<Component Name="swp_tomcat7_0" 			ExecutionOrder="15" 	UponError="Stop"	DisplayGroup="MAP"/>
+			<Component Name="Babysitter-IC" 				ExecutionOrder="17" 	UponError="Stop"	DisplayGroup="MAP"/>
+			<Component Name="Ora_Client_Linux" 			ExecutionOrder="20"		UponError="Stop" 		DisplayGroup="MAP"/>
+			<Component Name="NYOMNI7" 					ExecutionOrder="50" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYACE" 						ExecutionOrder="60" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYINFRA" 					ExecutionOrder="70" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYSMSBASE" 				ExecutionOrder="80"	UponError="Stop"  	DisplayGroup="MAP"/>
+			<!--<Component Name="NYJUTIL" 						ExecutionOrder="90" 	UponError="Stop"		DisplayGroup="MAP"/>-->
+			<Component Name="NYSHARED" 				ExecutionOrder="100" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYSMSLICENSE" 			ExecutionOrder="110" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYSMRT" 						ExecutionOrder="120" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYMAP" 						ExecutionOrder="130"	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYSMSCUSTCOMM" 	ExecutionOrder="140" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYAUTOCONFIG"         ExecutionOrder="145"    UponError="Stop"                DisplayGroup="MAP"/>
+			<!--<Component Name="NYSMSCUSTMAP" 		ExecutionOrder="150" 	UponError="Stop"		DisplayGroup="MAP"/>-->
+			<Component Name="NYSMSCTL" 					ExecutionOrder="160" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<!-- Component Name="NYBEUTILS" 					ExecutionOrder="170" 	UponError="Stop"		DisplayGroup="MAP"/ -->
+			<Component Name="ccmng-agent" 				ExecutionOrder="180" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="DNS_Client" 					ExecutionOrder="185" 	UponError="Stop"	DisplayGroup="MAP"/>
+			<Component Name="FILE-CLEANUP-CUST"	ExecutionOrder="190" UponError="Stop" DisplayGroup="MAP"/>
+			<Component Name="AUDIT-CUST"	        ExecutionOrder="192" UponError="Stop" DisplayGroup="MAP"/>
+            <Component Name="DISABLE-SSH"               ExecutionOrder="194"     UponError="Stop"     DisplayGroup="MAP"/>		 
+			<Component Name="CREATE_SBUSER" 				ExecutionOrder="195" 	UponError="Stop"	DisplayGroup="MAP"/>			
+			<Component Name="SSH-PASSWORD-LESS"	ExecutionOrder="200" UponError="Stop" DisplayGroup="MAP"/>
+			<Component Name="UPDATE-VERSION"		ExecutionOrder="210"	UponError="Stop"	DisplayGroup="MAP"/>
+            <Component Name="Linux_AS6_Hkit" 			ExecutionOrder="220" 	UponError="Stop"	DisplayGroup="MAP"/>			
+			<Component Name="Reboot-KIT"   				ExecutionOrder="230"	UponError="Stop" 	DisplayGroup="MAP"/>						
+		</Upgrade>
+		
+		<Uninstall>
+			<Component Name="Linux_AS6_Hkit" 			ExecutionOrder="10" 	UponError="Stop"	DisplayGroup="MAP"/>
+            <Component Name="NYSMSCUSTMAP"       ExecutionOrder="20"    UponError="Stop"                DisplayGroup="MAP"/>
+			<Component Name="NYSMSCUSTCOMM" 	ExecutionOrder="60" 	UponError="Stop"		DisplayGroup="MAP"/>	
+			<Component Name="NYMAP" 						ExecutionOrder="70"		UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYSMRT" 						ExecutionOrder="75"	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="ccmng-agent" 				ExecutionOrder="80" 	UponError="Stop"		DisplayGroup="MAP"/>					
+			<!-- Component Name="NYBEUTILS" 					ExecutionOrder="100" 	UponError="Stop"		DisplayGroup="MAP"/ -->
+			<!--<Component Name="TLANG" 						ExecutionOrder="120" 	UponError="Stop"	DisplayGroup="MAP"/>-->
+			
+			<Component Name="Babysitter-IC" 				ExecutionOrder="140" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYSHARED" 				ExecutionOrder="160" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYJRM" 						ExecutionOrder="170" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYJGE" 						ExecutionOrder="180" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYJUTIL" 						ExecutionOrder="190" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYSMSBASE" 				ExecutionOrder="200" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYINFRA" 					ExecutionOrder="210" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYAGENTXPP" 				ExecutionOrder="220" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYXERCES" 					ExecutionOrder="230" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYACE" 						ExecutionOrder="240" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYadmin" 						ExecutionOrder="280" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="NYOMNI7" 					ExecutionOrder="290" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="Ora_Client_Linux" 			ExecutionOrder="300" 	UponError="Stop"		DisplayGroup="MAP"/>
+			<Component Name="swp_tomcat7_0" ExecutionOrder="390" 	UponError="Stop"	DisplayGroup="MAP"/>			
+			<Component Name="swp_jre_1.7-32" 				ExecutionOrder="400" 	UponError="Stop"	DisplayGroup="MAP"/>
+		</Uninstall>
+
+		<Dependencies>
+			<Component UnitName="*MAP[0-9]" Name="NYadmin">
+				<DependsOn>
+					<Component UnitName="*MAP[0-9]" Name="CSP_Base_Linux"/>
+				</DependsOn>
+			</Component>
+			<Component UnitName="*MAP[0-9]" Name="SilSSH">
+				<DependsOn>
+					<Component UnitName="*MAP[0-9]" Name="NYadmin"/>
+				</DependsOn>
+			</Component>
+		</Dependencies>		
+		
+		<Parameters>
+		
+			<!--  =============     Babysitter         ============= -->
+			<Parameter ComponentName="Babysitter-IC" Name="AgentXPortNumber" Display="false" Overwrite="true">
+                <Value>1055</Value>
+			</Parameter>
+		
+                         <Parameter ComponentName="DNS_Client" Name="BALANCER_IPS"        Display="false" Overwrite="true">
+                                <!--<Value>[UnitGroup.xml://string-join(/UnitGroup/Physical[contains(@GroupName,"OMU")]/UnitInstance/Connection[@Type="Data"]/@IP,',')]</Value>-->
+                              <Value>[UnitGroup.xml://string-join(/UnitGroup/Physical[contains(@GroupName,"Shared_OMU_Group")]/UnitInstance/Connection[@Type="Admin"]/@IP,',')]</Value>
+                        </Parameter>
+
+			
+			<!-- =============     NY AUTOCONFIG ============= -->
+			<Parameter ComponentName="NYAUTOCONFIG" Name="ConfigurableApplications" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="NYAUTOCONFIG" Name="RunAutoConfig" Display="false" Overwrite="true">
+				<Value>false</Value>
+			</Parameter>
+			<Parameter ComponentName="NYAUTOCONFIG" Name="IPGWApplication" Display="false" Overwrite="true">
+				<Value>false</Value>
+			</Parameter>
+			<Parameter ComponentName="NYAUTOCONFIG" Name="vsfe_names" Display="false" Overwrite="true">
+				<Value></Value>
+			</Parameter>
+            <Parameter ComponentName="NYAUTOCONFIG" Name="Product" Display="false" Overwrite="true">
+				<Value>IPSMGW</Value>
+			</Parameter>			
+						
+			<!-- ============			NYBEUTILS ============= -->
+			<!-- Parameter ComponentName="NYBEUTILS" Name="RegisterToVeritas" Display="false" Overwrite="true">
+				<Value>false</Value>
+			</Parameter>
+			<Parameter ComponentName="NYBEUTILS" Name="VeritasGroup1" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="NYBEUTILS" Name="VeritasGroup2" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="NYBEUTILS" Name="InstancesListGFTGroup1" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="NYBEUTILS" Name="InstancesListGFTGroup2" Display="false" Overwrite="true"/>
+			<Parameter ComponentName="NYBEUTILS" Name="RegisterToVeritas_OMU" Display="false" Overwrite="true">
+				<Value>false</Value>
+			</Parameter>
+			<Parameter ComponentName="NYBEUTILS" Name="RegisterToVeritas_sfe" Display="false" Overwrite="true">
+				<Value>false</Value>
+			</Parameter -->					
+			
+			<!--<Parameter ComponentName="SEM-VM-NW-SZ" Name="AdminIP" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[@GroupName="{UnitType}"]/UnitInstance[contains(@Hostname,"{HostName}")]/Connection[@Type="Management"]/@IP]</Value>
+			</Parameter>
+			<Parameter ComponentName="SEM-VM-NW-SZ" Name="SZIP" Overwrite="true" Display="false">
+				<Value>[UnitGroup.xml://UnitGroup/Physical[@GroupName="{UnitType}"]/UnitInstance[contains(@Hostname,"{HostName}")]/Connection[@Type="Data"]/@IP]</Value>
+			</Parameter>-->					
+
+		</Parameters>
+
+	</UnitType>
+
+</SWIM>

@@ -1,0 +1,19 @@
+<SWIM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Component Name="SetSwimJreTomcat" Platform="Linux" Version="_VERSION-_BUILD">
+		<Install>
+			<Execute ExecutionOrder="1" Timeout="600" UponError="Stop">
+				<Command>if [ -x /usr/cti/apps/swimagent/bin/setJreTomcat2Swp.sh ]; then /usr/cti/apps/swimagent/bin/setJreTomcat2Swp.sh -d no -r no; else if [ -x /usr/cti/apps/swim/bin/setJreTomcat2Swp.sh ]; then /usr/cti/apps/swim/bin/setJreTomcat2Swp.sh -d no -r no; fi; fi</Command>
+			</Execute>		
+			<Reboot ExecutionOrder="2" UponError="Stop" Timeout="600"/>
+			<Execute ExecutionOrder="3" Timeout="600" UponError="Stop">
+				<Command>rm -rf /usr/cti/apps/swim/3rdParty/</Command>
+			</Execute>		
+			<Execute ExecutionOrder="4" Timeout="600" UponError="Stop">
+				<Command>rm -rf /usr/cti/apps/swimagent/3rdParty/</Command>
+			</Execute>					
+		</Install>
+	</Component>
+</SWIM>
+
+
+
