@@ -1,5 +1,5 @@
-.unloaded/*
-.contrib*
+*.unloaded*
+*.contrib*
 target/*
 .settings/*
 .classpath
